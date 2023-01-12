@@ -1,0 +1,33 @@
+{
+  "time": "2023-01-07 07:53:57",
+  "sql_list_part": "Q41.sql, Q33.sql, Q31.sql, Q23.sql, Q32.sql, Q42.sql, Q22.sql, Q21.sql, Q43.sql",
+  "sql_list_all": "Q41.sql, Q33.sql, Q31.sql, Q23.sql, Q32.sql, Q42.sql, Q22.sql, Q21.sql, Q43.sql",
+  "parameter_configuration": {
+    "engine": "ClickHouse",
+    "recommend_method": "RL",
+    "single_or_multiple": "Single",
+    "num_of_epoch": 5,
+    "num_of_train": 100,
+    "cnt_limit": 30,
+    "space_limit": 1024,
+    "refer_threshold": 1,
+    "table_size_upper_bound": 50000000,
+    "table_size_lower_bound": 10485760
+  },
+  "benefit": {
+    "benefit1": "1.325",
+    "benefit2": "0.196",
+    "benefit3": "85.21",
+    "benefit4": "1991.67",
+    "benefit5": "0.251",
+    "benefit6": "0.012"
+  },
+  "coverage": {
+    "coverage1": "13",
+    "coverage2": "6",
+    "coverage3": "9",
+    "coverage4": "69.23"
+  },
+  "mv_list_part": "mv0, mv3, mv5, mv1, mv2, mv4",
+  "mv_list_all": "mv0, mv3, mv5, mv1, mv2, mv4"
+}

@@ -1,0 +1,28 @@
+{
+  "time": "2023-01-07 09:53:14",
+  "sql_list_part": "1d.sql, 1b.sql, 8a.sql, 4b.sql, 6e.sql, 27b.sql, 3c.sql, 3a.sql, 2c.sql, 12a.sql, 11b.sql, 17b.sql...",
+  "sql_list_all": "1d.sql, 1b.sql, 8a.sql, 4b.sql, 6e.sql, 27b.sql, 3c.sql, 3a.sql, 2c.sql, 12a.sql, 11b.sql, 17b.sql, 6c.sql, 2a.sql, 16d.sql, 17e.sql, 12c.sql, 4a.sql, 13b.sql, 6b.sql, 29c.sql, 29a.sql, 28a.sql, 17f.sql, 28b.sql, 6f.sql, 17d.sql, 17a.sql, 4c.sql, 2d.sql, 8b.sql, 6a.sql, 13c.sql, 16b.sql, 29b.sql, 22a.sql, 14a.sql, 2b.sql, 6d.sql, 19d.sql, 32b.sql, 28c.sql, 27c.sql",
+  "parameter_configuration": {
+    "engine": "PostgreSQL",
+    "recommend_method": "Greedy",
+    "single_or_multiple": "Multiple",
+    "num_of_epoch": 5,
+    "num_of_train": 100,
+    "cnt_limit": 30,
+    "space_limit": 1024,
+    "refer_threshold": 1,
+    "table_size_upper_bound": 50000000,
+    "table_size_lower_bound": 10485760
+  },
+  "benefit": {
+    "line1": "The original query takes 1071.98s, and the query after using the view takes 85.562s.",
+    "line2": "The total benefit rate is 92.02%.",
+    "line3": "The highest single pick yield is 928533.90%, reduced from the original 3.2595s to 0.000351s."
+  },
+  "coverage": {
+    "line1": "There are 113 original queries. 30 views are recommended, and 43 queries are covered by these views.",
+    "line2": "Coverage is 38.05%."
+  },
+  "mv_list_part": "mv52, mv491, mv443, mv471, mv19, mv119, mv44, mv21, mv127, mv475, mv328, mv74...",
+  "mv_list_all": "mv52, mv491, mv443, mv471, mv19, mv119, mv44, mv21, mv127, mv475, mv328, mv74, mv69"
+}

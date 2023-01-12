@@ -1,0 +1,21 @@
+Aggregate  (cost=35129.47..35129.48 rows=1 width=68)
+   ->  Gather  (cost=35108.20..35129.47 rows=1 width=45)
+         Workers Planned: 2
+         ->  Nested Loop  (cost=34108.20..34129.37 rows=1 width=45)
+               ->  Merge Join  (cost=34107.77..34127.02 rows=4 width=32)
+                     Merge Cond: (mc.movie_id = mv6.movie_id)
+                     ->  Sort  (cost=34058.34..34066.22 rows=3151 width=28)
+                           Sort Key: mc.movie_id
+                           ->  Hash Join  (cost=18.93..33875.24 rows=3151 width=28)
+                                 Hash Cond: (mc.company_type_id = ct.id)
+                                 ->  Parallel Seq Scan on movie_companies mc  (cost=0.00..32379.21 rows=559366 width=32)
+                                       Filter: ((note)::text !~~ '%(as Metro-Goldwyn-Mayer Pictures)%'::text)
+                                 ->  Hash  (cost=18.88..18.88 rows=4 width=4)
+                                       ->  Seq Scan on company_type ct  (cost=0.00..18.88 rows=4 width=4)
+                                             Filter: ((kind)::text = 'production companies'::text)
+                     ->  Sort  (cost=49.44..51.16 rows=690 width=4)
+                           Sort Key: mv6.movie_id
+                           ->  Seq Scan on mv6  (cost=0.00..16.90 rows=690 width=4)
+               ->  Index Scan using title_pkey on title t  (cost=0.43..0.59 rows=1 width=25)
+                     Index Cond: (id = mc.movie_id)
+                     Filter: ((production_year >= 2005) AND (production_year <= 2010))

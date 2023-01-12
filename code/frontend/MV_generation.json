@@ -1,0 +1,2372 @@
+[
+  {
+    "info": "0"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q1.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 3"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "1"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q2.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:223 replaceString:d_week_seq#223"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:1 replaceString:round((sun_sales1#1 / sun_sales2#9), 2)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:2 replaceString:round((mon_sales1#2 / mon_sales2#10), 2)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:3 replaceString:round((tue_sales1#3 / tue_sales2#11), 2)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:4 replaceString:round((wed_sales1#4 / wed_sales2#12), 2)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:5 replaceString:round((thu_sales1#5 / thu_sales2#13), 2)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:6 replaceString:round((fri_sales1#6 / fri_sales2#14), 2)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:7 replaceString:round((sat_sales1#7 / sat_sales2#15), 2)"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "2"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q3.sql"
+  },
+  {
+    "info": "3"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q4.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:10 replaceString:customer_id#10"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:18 replaceString:year_total#18"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:20 replaceString:customer_id#20"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:28 replaceString:year_total#28"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#1462"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#1452"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#1442"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#1432"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#1422"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (year_total#8 > 0.000000)) can't find num: 8"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (year_total#8 > 0.000000)) can't find num: 8 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (year_total#18 > 0.000000)) can't find num: 18"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (year_total#18 > 0.000000)) can't find num: 18 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (year_total#28 > 0.000000)) can't find num: 28"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (year_total#28 > 0.000000)) can't find num: 28 still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "4"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q5.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 422"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 423"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 421L"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 24"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 26"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 2"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 16"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 17"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 32"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 33"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 48"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 49"
+  },
+  {
+    "info": "5"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q6.sql"
+  },
+  {
+    "info": "[FilterFieldManage] data: (count(1)#267L >= 10) can't find num: 267L"
+  },
+  {
+    "info": "[FilterFieldManage] data: (count(1)#267L >= 10) can't find num: 267L still can't find!"
+  },
+  {
+    "info": "6"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q7.sql"
+  },
+  {
+    "info": "7"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q8.sql"
+  },
+  {
+    "info": "[FilterFieldManage] data: (count(1)#161L > 10) can't find num: 161L"
+  },
+  {
+    "info": "[FilterFieldManage] data: (count(1)#161L > 10) can't find num: 161L still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "8"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q9.sql"
+  },
+  {
+    "info": "[deleteBracketValue] partial_count(1) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] count(1) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] partial_count(1) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] count(1) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] partial_count(1) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] count(1) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] partial_count(1) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] count(1) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] partial_count(1) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] count(1) curStr maybe not suitable!"
+  },
+  {
+    "info": "9"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q10.sql"
+  },
+  {
+    "info": "10"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q11.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:10 replaceString:customer_id#10"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#644"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#634"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#624"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "11"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q12.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:92 replaceString:((web_sales.ws_ext_sales_price * 100.00) / _we0#92)"
+  },
+  {
+    "info": "12"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q13.sql"
+  },
+  {
+    "info": "13"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q14.sql"
+  },
+  {
+    "info": "[deleteBracketValue] 0)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2))) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2)))) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] true)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 0)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2))) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2)))) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] true)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 1752"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 1751L"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 2"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 3L"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (d_year#343 >= 1999))  can't find num: 343"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (d_year#511 >= 1999))  can't find num: 511"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "14"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q15.sql"
+  },
+  {
+    "info": "15"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q16.sql"
+  },
+  {
+    "info": "16"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q17.sql"
+  },
+  {
+    "info": "17"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q18.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 151L"
+  },
+  {
+    "info": "18"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q19.sql"
+  },
+  {
+    "info": "19"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q20.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:92 replaceString:((catalog_sales.cs_ext_sales_price * 100.00) / _we0#92)"
+  },
+  {
+    "info": "20"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q21.sql"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((CASE WHEN (inv_before#0L > 0) THEN (cast(inv_after#1L as double) / cast(inv_before#0L as double)) ELSE null END >= 0.666667)  can't find num: 0L"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((CASE WHEN (inv_before#0L > 0) THEN (cast(inv_after#1L as double) / cast(inv_before#0L as double)) ELSE null END >= 0.666667)  can't find num: 0L still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (CASE WHEN (inv_before#0L > 0) THEN (cast(inv_after#1L as double) / cast(inv_before#0L as double)) ELSE null END <= 1.5)) can't find num: 0L"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (CASE WHEN (inv_before#0L > 0) THEN (cast(inv_after#1L as double) / cast(inv_before#0L as double)) ELSE null END <= 1.5)) can't find num: 0L still can't find!"
+  },
+  {
+    "info": "21"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q22.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 74L"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "22"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q23.sql"
+  },
+  {
+    "info": "[deleteBracketValue] 0)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2))) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2)))) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] true)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 0)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2))) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2)))) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] 2) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] true)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[FilterFieldManage] data: (count(1)#287L > 4) can't find num: 287L"
+  },
+  {
+    "info": "[FilterFieldManage] data: (count(1)#287L > 4) can't find num: 287L still can't find!"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 10"
+  },
+  {
+    "info": "[FilterFieldManage] data: (count(1)#287L > 4) can't find num: 287L"
+  },
+  {
+    "info": "[FilterFieldManage] data: (count(1)#287L > 4) can't find num: 287L still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "    __canMerge__newCondition:['Or(((d_yearOfdate_dim == 2000),(d_yearOfdate_dim == 2001),(d_yearOfdate_dim == 2002),(d_yearOfdate_dim == 2003)))'], orgCondition:['Or(d_yearOfdate_dim == 2001,d_yearOfdate_dim == 2002)']"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "23"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q24.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 2"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 2"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "24"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q25.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "25"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q26.sql"
+  },
+  {
+    "info": "26"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q27.sql"
+  },
+  {
+    "info": "[deleteBracketValue] cast((shiftright(spark_grouping_id#122L, 0) & 1) as tinyint) curStr maybe not suitable!"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 122L"
+  },
+  {
+    "info": "27"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q28.sql"
+  },
+  {
+    "info": "28"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q29.sql"
+  },
+  {
+    "info": "    __canMerge__newCondition:['Or(((d_yearOfdate_dim == 1999),(d_yearOfdate_dim == 2000),(d_yearOfdate_dim == 2001)))', 'd_yearOfdate_dim == 1999'], orgCondition:['d_yearOfdate_dim == 2001']"
+  },
+  {
+    "info": "    __canMerge__newCondition:['Or(((d_yearOfdate_dim == 1999),(d_yearOfdate_dim == 2000),(d_yearOfdate_dim == 2001)))', 'd_yearOfdate_dim == 1999'], orgCondition:['d_yearOfdate_dim == 2001']"
+  },
+  {
+    "info": "    __canMerge__newCondition:['Or(((d_yearOfdate_dim == 1999),(d_yearOfdate_dim == 2000),(d_yearOfdate_dim == 2001)))', 'd_yearOfdate_dim == 1999'], orgCondition:['d_yearOfdate_dim == 2001']"
+  },
+  {
+    "info": "    __canMerge__newCondition:['Or(((d_yearOfdate_dim == 1999),(d_yearOfdate_dim == 2000),(d_yearOfdate_dim == 2001)))', 'd_yearOfdate_dim == 1999'], orgCondition:['d_yearOfdate_dim == 2001']"
+  },
+  {
+    "info": "    __canMerge__newCondition:['Or(((d_yearOfdate_dim == 1999),(d_yearOfdate_dim == 2000),(d_yearOfdate_dim == 2001)))', 'd_yearOfdate_dim == 1999'], orgCondition:['d_yearOfdate_dim == 2001']"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "29"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q30.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 3"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "30"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q31.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "31"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q32.sql"
+  },
+  {
+    "info": "32"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q33.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 2"
+  },
+  {
+    "info": "33"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q34.sql"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((cnt#0L >= 15)  can't find num: 0L"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((cnt#0L >= 15)  can't find num: 0L still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (cnt#0L <= 20)) can't find num: 0L"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (cnt#0L <= 20)) can't find num: 0L still can't find!"
+  },
+  {
+    "info": "34"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q35.sql"
+  },
+  {
+    "info": "    __canMerge__newCondition:['d_qoyOfdate_dim < 4'], orgCondition:['Or(d_qoyOfdate_dim == 2,d_qoyOfdate_dim == 1,d_qoyOfdate_dim == 3)']"
+  },
+  {
+    "info": "    __canMerge__newCondition:['d_qoyOfdate_dim < 4'], orgCondition:['Or(d_qoyOfdate_dim == 1,d_qoyOfdate_dim == 2,d_qoyOfdate_dim == 3)']"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "35"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q36.sql"
+  },
+  {
+    "info": "[deleteBracketValue] (cast((shiftright(spark_grouping_id#113L, 1) & 1) as tinyint) + cast((shiftright(spark_grouping_id#113L, 0) & 1) as tinyint)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] (cast((shiftright(spark_grouping_id#113L, 1) & 1) as tinyint) + cast((shiftright(spark_grouping_id#113L, 0) & 1) as tinyint)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] CASE WHEN (cast((shiftright(spark_grouping_id#113L, 0) & 1) as tinyint) = 0) THEN i_category#114 END curStr maybe not suitable!"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 113L"
+  },
+  {
+    "info": "36"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q37.sql"
+  },
+  {
+    "info": "37"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q38.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "38"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q39.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:1 replaceString:CASE WHEN (mean#1 = 0.0) THEN null ELSE (stdev#0 / mean#1) END"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:193 replaceString:CASE WHEN (mean#193 = 0.0) THEN null ELSE (stdev#192 / mean#193) END"
+  },
+  {
+    "info": "[FilterFieldManage] data: (CASE WHEN (mean#1 = 0.0) THEN 0.0 ELSE (stdev#0 / mean#1) END > 1.0) can't find num: 1"
+  },
+  {
+    "info": "[FilterFieldManage] data: (CASE WHEN (mean#1 = 0.0) THEN 0.0 ELSE (stdev#0 / mean#1) END > 1.0) can't find num: 1 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data: (CASE WHEN (mean#193 = 0.0) THEN 0.0 ELSE (stdev#192 / mean#193) END > 1.0) can't find num: 193"
+  },
+  {
+    "info": "[FilterFieldManage] data: (CASE WHEN (mean#193 = 0.0) THEN 0.0 ELSE (stdev#192 / mean#193) END > 1.0) can't find num: 193 still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "39"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q40.sql"
+  },
+  {
+    "info": "40"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q41.sql"
+  },
+  {
+    "info": "[FilterFieldManage] data: (item_cnt#0L > 0) can't find num: 0L"
+  },
+  {
+    "info": "[FilterFieldManage] data: (item_cnt#0L > 0) can't find num: 0L still can't find!"
+  },
+  {
+    "info": "41"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q42.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "42"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q43.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "43"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q44.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:105 replaceString:i_product_name#105"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:item_sk#5L"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:rnk#4"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (rnk#4 < 11))  can't find num: 4"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (rnk#4 < 11))  can't find num: 4 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (rnk#9 < 11))  can't find num: 9"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (rnk#9 < 11))  can't find num: 9 still can't find!"
+  },
+  {
+    "info": "44"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q45.sql"
+  },
+  {
+    "info": "45"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q46.sql"
+  },
+  {
+    "info": "46"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q47.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:407 replaceString:sum_sales#407"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (avg_monthly_sales#1 > 0.000000))  can't find num: 1"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (avg_monthly_sales#1 > 0.000000))  can't find num: 1 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (CASE WHEN (avg_monthly_sales#1 > 0.000000) THEN CheckOverflow((promote_precision(abs(CheckOverflow((promote_precision(cast(sum_sales#0 as decimal(22,6))) - promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(22,6), true))) / promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(38,16), true) ELSE null END > 0.1000000000000000))  can't find num: 1"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (CASE WHEN (avg_monthly_sales#1 > 0.000000) THEN CheckOverflow((promote_precision(abs(CheckOverflow((promote_precision(cast(sum_sales#0 as decimal(22,6))) - promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(22,6), true))) / promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(38,16), true) ELSE null END > 0.1000000000000000))  can't find num: 1 still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "47"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q48.sql"
+  },
+  {
+    "info": "48"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q49.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 5"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 3"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 4"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((return_rank#3 <= 10)  can't find num: 3"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((return_rank#3 <= 10)  can't find num: 3 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (currency_rank#4 <= 10)) can't find num: 4"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (currency_rank#4 <= 10)) can't find num: 4 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((return_rank#9 <= 10)  can't find num: 9"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((return_rank#9 <= 10)  can't find num: 9 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (currency_rank#10 <= 10)) can't find num: 10"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (currency_rank#10 <= 10)) can't find num: 10 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((return_rank#15 <= 10)  can't find num: 15"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((return_rank#15 <= 10)  can't find num: 15 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (currency_rank#16 <= 10)) can't find num: 16"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (currency_rank#16 <= 10)) can't find num: 16 still can't find!"
+  },
+  {
+    "info": "49"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q50.sql"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 30) THEN 1 ELSE 0 END ))#133L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 30) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 60)) THEN 1 ELSE 0 END ))#134L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 60) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 90)) THEN 1 ELSE 0 END ))#135L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 90) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 120)) THEN 1 ELSE 0 END ))#136L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 120) THEN 1 ELSE 0 END ))#137L curStr maybe not suitable!"
+  },
+  {
+    "info": "50"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q51.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:97 replaceString:CASE WHEN isnotnull(date_dim.d_date) THEN date_dim.d_date ELSE d_date#97 END"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:7 replaceString:cume_sales#7"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:9 replaceString:cume_sales#9"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (web_cumulative#4 > store_cumulative#5)) can't find num: 4"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (web_cumulative#4 > store_cumulative#5)) can't find num: 4 still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "51"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q52.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "52"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q53.sql"
+  },
+  {
+    "info": "[FilterFieldManage] data: (CASE WHEN (avg_quarterly_sales#1 > 0.000000) THEN CheckOverflow((promote_precision(abs(CheckOverflow((promote_precision(cast(sum_sales#0 as decimal(22,6))) - promote_precision(cast(avg_quarterly_sales#1 as decimal(22,6)))), DecimalType(22,6), true))) / promote_precision(cast(avg_quarterly_sales#1 as decimal(22,6)))), DecimalType(38,16), true) ELSE null END > 0.1000000000000000) can't find num: 1"
+  },
+  {
+    "info": "[FilterFieldManage] data: (CASE WHEN (avg_quarterly_sales#1 > 0.000000) THEN CheckOverflow((promote_precision(abs(CheckOverflow((promote_precision(cast(sum_sales#0 as decimal(22,6))) - promote_precision(cast(avg_quarterly_sales#1 as decimal(22,6)))), DecimalType(22,6), true))) / promote_precision(cast(avg_quarterly_sales#1 as decimal(22,6)))), DecimalType(38,16), true) ELSE null END > 0.1000000000000000) can't find num: 1 still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "53"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q54.sql"
+  },
+  {
+    "info": "[deleteBracketValue] (segment#11 * 50) curStr maybe not suitable!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "54"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q55.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "55"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q56.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 2"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "56"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q57.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:446 replaceString:sum_sales#446"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (avg_monthly_sales#1 > 0.000000))  can't find num: 1"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (avg_monthly_sales#1 > 0.000000))  can't find num: 1 still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (CASE WHEN (avg_monthly_sales#1 > 0.000000) THEN CheckOverflow((promote_precision(abs(CheckOverflow((promote_precision(cast(sum_sales#0 as decimal(22,6))) - promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(22,6), true))) / promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(38,16), true) ELSE null END > 0.1000000000000000))  can't find num: 1"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (CASE WHEN (avg_monthly_sales#1 > 0.000000) THEN CheckOverflow((promote_precision(abs(CheckOverflow((promote_precision(cast(sum_sales#0 as decimal(22,6))) - promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(22,6), true))) / promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(38,16), true) ELSE null END > 0.1000000000000000))  can't find num: 1 still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "57"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q58.sql"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:item_id#14"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:item_id#10"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "58"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q59.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:162 replaceString:d_week_seq#162"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:3 replaceString:(sun_sales1#3 / sun_sales2#13)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:4 replaceString:(mon_sales1#4 / mon_sales2#14)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:5 replaceString:(tue_sales1#5 / tue_sales2#15)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:6 replaceString:(wed_sales1#6 / wed_sales2#16)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:7 replaceString:(thu_sales1#7 / thu_sales2#17)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:8 replaceString:(fri_sales1#8 / fri_sales2#18)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:9 replaceString:(sat_sales1#9 / sat_sales2#19)"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "59"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q60.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 2"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "60"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q61.sql"
+  },
+  {
+    "info": "61"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q62.sql"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN ((ws_ship_date_sk#6L - ws_sold_date_sk#38L) <= 30) THEN 1 ELSE 0 END ))#114L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN (((ws_ship_date_sk#6L - ws_sold_date_sk#38L) > 30) AND ((ws_ship_date_sk#6L - ws_sold_date_sk#38L) <= 60)) THEN 1 ELSE 0 END ))#115L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN (((ws_ship_date_sk#6L - ws_sold_date_sk#38L) > 60) AND ((ws_ship_date_sk#6L - ws_sold_date_sk#38L) <= 90)) THEN 1 ELSE 0 END ))#116L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN (((ws_ship_date_sk#6L - ws_sold_date_sk#38L) > 90) AND ((ws_ship_date_sk#6L - ws_sold_date_sk#38L) <= 120)) THEN 1 ELSE 0 END ))#117L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN ((ws_ship_date_sk#6L - ws_sold_date_sk#38L) > 120) THEN 1 ELSE 0 END ))#118L curStr maybe not suitable!"
+  },
+  {
+    "info": "62"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q63.sql"
+  },
+  {
+    "info": "[FilterFieldManage] data: (CASE WHEN (avg_monthly_sales#1 > 0.000000) THEN CheckOverflow((promote_precision(abs(CheckOverflow((promote_precision(cast(sum_sales#0 as decimal(22,6))) - promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(22,6), true))) / promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(38,16), true) ELSE null END > 0.1000000000000000) can't find num: 1"
+  },
+  {
+    "info": "[FilterFieldManage] data: (CASE WHEN (avg_monthly_sales#1 > 0.000000) THEN CheckOverflow((promote_precision(abs(CheckOverflow((promote_precision(cast(sum_sales#0 as decimal(22,6))) - promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(22,6), true))) / promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(38,16), true) ELSE null END > 0.1000000000000000) can't find num: 1 still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "63"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q64.sql"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:item_sk#783L"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:store_name#784"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:store_zip#785"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (cast(sum(cs_ext_list_price#426)#768 as decimal(21,2)) > CheckOverflow((2.00 * promote_precision(sum(CheckOverflow((promote_precision(cast(CheckOverflow((promote_precision(cast(cr_refunded_cash#458 as decimal(8,2))) + promote_precision(cast(cr_reversed_charge#459 as decimal(8,2)))), DecimalType(8,2), true) as decimal(9,2))) + promote_precision(cast(cr_store_credit#460 as decimal(9,2)))), DecimalType(9,2), true))#769)), DecimalType(21,2), true))) can't find num: 458"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "64"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q65.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 0"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "65"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q66.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 2"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 3"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 4"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 5"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 6"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 7"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 8"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 9"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 10"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 11"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 12"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 13"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 2"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 3"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 4"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 5"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 6"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 7"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 8"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 9"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 10"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 11"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 12"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 13"
+  },
+  {
+    "info": "66"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q67.sql"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (rk#1 <= 100)) can't find num: 1"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (rk#1 <= 100)) can't find num: 1 still can't find!"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 115L"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "67"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q68.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "68"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q69.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "69"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q70.sql"
+  },
+  {
+    "info": "[deleteBracketValue] (cast((shiftright(spark_grouping_id#269L, 1) & 1) as tinyint) + cast((shiftright(spark_grouping_id#269L, 0) & 1) as tinyint)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] (cast((shiftright(spark_grouping_id#269L, 1) & 1) as tinyint) + cast((shiftright(spark_grouping_id#269L, 0) & 1) as tinyint)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] CASE WHEN (cast((shiftright(spark_grouping_id#269L, 0) & 1) as tinyint) = 0) THEN s_state#270 END curStr maybe not suitable!"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 269L"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (ranking#1 <= 5)) can't find num: 1"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (ranking#1 <= 5)) can't find num: 1 still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "70"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q71.sql"
+  },
+  {
+    "info": "71"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q72.sql"
+  },
+  {
+    "info": "72"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q73.sql"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((cnt#0L >= 1)  can't find num: 0L"
+  },
+  {
+    "info": "[FilterFieldManage] data: ((cnt#0L >= 1)  can't find num: 0L still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (cnt#0L <= 5)) can't find num: 0L"
+  },
+  {
+    "info": "[FilterFieldManage] data:  (cnt#0L <= 5)) can't find num: 0L still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "73"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q74.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:6 replaceString:customer_id#6"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#628"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#622"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:customer_id#616"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "    __canMerge__newCondition:['Or(((d_yearOfdate_dim == 2001),(d_yearOfdate_dim == 2002)))'], orgCondition:['d_yearOfdate_dim == 2002', 'd_yearOfdate_dim == 2001']"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "74"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q75.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:426 replaceString:(catalog_sales.cs_quantity - coalesce(cr_return_quantity#426, 0))"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:427 replaceString:(catalog_sales.cs_ext_sales_price - coalesce(cr_return_amount#427, 0.00))"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:519 replaceString:(store_sales.ss_quantity - coalesce(sr_return_quantity#519, 0))"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:520 replaceString:(store_sales.ss_ext_sales_price - coalesce(sr_return_amt#520, 0.00))"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:627 replaceString:(web_sales.ws_quantity - coalesce(wr_return_quantity#627, 0))"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:628 replaceString:(web_sales.ws_ext_sales_price - coalesce(wr_return_amt#628, 0.00))"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:642L replaceString:sales_cnt#642L"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:12L replaceString:sales_cnt#12L"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:12L replaceString:(sales_cnt#12L - sales_cnt#642L)"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "75"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q76.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 0"
+  },
+  {
+    "info": "76"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q77.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 462"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 463L"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 461L"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 14"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "77"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q78.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:18L replaceString:round((ss_qty#18L / coalesce((ws_qty#9L + cs_qty#14L), 1)), 2)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:18L replaceString:ss_qty#18L"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:9L replaceString:(coalesce(ws_qty#9L, 0) + coalesce(cs_qty#14L, 0))"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:cs_sold_year#12"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:ws_sold_year#7"
+  },
+  {
+    "info": "[FilterFieldManage] data: (coalesce(ws_qty#9L, 0) > 0) can't find num: 9L"
+  },
+  {
+    "info": "[FilterFieldManage] data: (coalesce(ws_qty#9L, 0) > 0) can't find num: 9L still can't find!"
+  },
+  {
+    "info": "[FilterFieldManage] data: (coalesce(cs_qty#14L, 0) > 0) can't find num: 14L"
+  },
+  {
+    "info": "[FilterFieldManage] data: (coalesce(cs_qty#14L, 0) > 0) can't find num: 14L still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "78"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q79.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "79"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q80.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 468"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 469"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 467L"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 10"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 11"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 12"
+  },
+  {
+    "info": "80"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q81.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 3"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "81"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q82.sql"
+  },
+  {
+    "info": "82"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q83.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:7L replaceString:(((sr_item_qty#7L / ((sr_item_qty#7L + cr_item_qty#11L) + wr_item_qty#15L)) / 3.0) * 100.0)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:11L replaceString:(((cr_item_qty#11L / ((sr_item_qty#7L + cr_item_qty#11L) + wr_item_qty#15L)) / 3.0) * 100.0)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:15L replaceString:(((wr_item_qty#15L / ((sr_item_qty#7L + cr_item_qty#11L) + wr_item_qty#15L)) / 3.0) * 100.0)"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:7L replaceString:(((sr_item_qty#7L + cr_item_qty#11L) + wr_item_qty#15L) / 3.0)"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:item_id#14"
+  },
+  {
+    "info": "[parse_operator_join] can't find num:item_id#10"
+  },
+  {
+    "info": "83"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q84.sql"
+  },
+  {
+    "info": "84"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q85.sql"
+  },
+  {
+    "info": "85"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q86.sql"
+  },
+  {
+    "info": "[deleteBracketValue] (cast((shiftright(spark_grouping_id#93L, 1) & 1) as tinyint) + cast((shiftright(spark_grouping_id#93L, 0) & 1) as tinyint)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] (cast((shiftright(spark_grouping_id#93L, 1) & 1) as tinyint) + cast((shiftright(spark_grouping_id#93L, 0) & 1) as tinyint)) curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] CASE WHEN (cast((shiftright(spark_grouping_id#93L, 0) & 1) as tinyint) = 0) THEN i_category#94 END curStr maybe not suitable!"
+  },
+  {
+    "info": "[parse_HashAggregate] cant find 93L"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "86"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q87.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "87"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q88.sql"
+  },
+  {
+    "info": "88"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q89.sql"
+  },
+  {
+    "info": "[FilterFieldManage] data: (CASE WHEN NOT (avg_monthly_sales#1 = 0.000000) THEN CheckOverflow((promote_precision(abs(CheckOverflow((promote_precision(cast(sum_sales#0 as decimal(22,6))) - promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(22,6), true))) / promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(38,16), true) ELSE null END > 0.1000000000000000) can't find num: 1"
+  },
+  {
+    "info": "[FilterFieldManage] data: (CASE WHEN NOT (avg_monthly_sales#1 = 0.000000) THEN CheckOverflow((promote_precision(abs(CheckOverflow((promote_precision(cast(sum_sales#0 as decimal(22,6))) - promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(22,6), true))) / promote_precision(cast(avg_monthly_sales#1 as decimal(22,6)))), DecimalType(38,16), true) ELSE null END > 0.1000000000000000) can't find num: 1 still can't find!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "89"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q90.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:0L replaceString:(amc#0L / pmc#1L)"
+  },
+  {
+    "info": "90"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q91.sql"
+  },
+  {
+    "info": "91"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q92.sql"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "92"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q93.sql"
+  },
+  {
+    "info": "93"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q94.sql"
+  },
+  {
+    "info": "94"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q95.sql"
+  },
+  {
+    "info": "95"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q96.sql"
+  },
+  {
+    "info": "96"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q97.sql"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 3L"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 5L"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 3L"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 5L"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 3L"
+  },
+  {
+    "info": "[parse_HashAggregate] functions find 5L"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "97"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q98.sql"
+  },
+  {
+    "info": "[replace_with_relations] can not find num:81 replaceString:((store_sales.ss_ext_sales_price * 100.00) / _we0#81)"
+  },
+  {
+    "info": "[can_merge_z3_SP] group_by success!"
+  },
+  {
+    "info": "98"
+  },
+  {
+    "info": "resources/spark/plan-log/sql/q99.sql"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN ((cs_ship_date_sk#6L - cs_sold_date_sk#38L) <= 30) THEN 1 ELSE 0 END ))#119L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN (((cs_ship_date_sk#6L - cs_sold_date_sk#38L) > 30) AND ((cs_ship_date_sk#6L - cs_sold_date_sk#38L) <= 60)) THEN 1 ELSE 0 END ))#120L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN (((cs_ship_date_sk#6L - cs_sold_date_sk#38L) > 60) AND ((cs_ship_date_sk#6L - cs_sold_date_sk#38L) <= 90)) THEN 1 ELSE 0 END ))#121L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN (((cs_ship_date_sk#6L - cs_sold_date_sk#38L) > 90) AND ((cs_ship_date_sk#6L - cs_sold_date_sk#38L) <= 120)) THEN 1 ELSE 0 END ))#122L curStr maybe not suitable!"
+  },
+  {
+    "info": "[deleteBracketValue] sum(cast(CASE WHEN ((cs_ship_date_sk#6L - cs_sold_date_sk#38L) > 120) THEN 1 ELSE 0 END ))#123L curStr maybe not suitable!"
+  },
+  {
+    "info": "defaultdict(<class 'list'>, {(9, 3, 2): [46], (7, 4, 10): [9], (7, 3, 1): [189], (6, 5, 12): [184], (5, 4, 4): [19], (5, 3, 3): [236], (5, 3, 2): [48], (4, 4, 4): [23, 12], (4, 3, 3): [5], (4, 4, 3): [103], (4, 4, 1): [11, 262], (4, 3, 1): [194], (4, 3, 0): [88, 64, 59, 17, 10], (3, 5, 12): [175], (3, 7, 11): [95], (3, 8, 9): [54], (3, 5, 8): [170, 167], (3, 6, 8): [171], (3, 5, 5): [114], (3, 4, 4): [58], (3, 3, 3): [172, 163], (3, 4, 3): [15], (3, 4, 2): [165, 168], (3, 3, 2): [39], (3, 4, 1): [18], (3, 3, 1): [191, 75], (3, 4, 0): [89], (3, 3, 0): [219, 128], (2, 6, 8): [216], (2, 6, 5): [140], (2, 5, 5): [139, 137, 138], (2, 7, 5): [141], (2, 4, 4): [35], (2, 3, 3): [34], (2, 4, 3): [186, 110], (2, 3, 2): [157, 185, 212], (2, 5, 2): [55], (2, 5, 1): [300, 193], (2, 4, 1): [192, 190, 119, 195], (2, 6, 1): [196, 197], (2, 3, 1): [358], (2, 3, 0): [305, 24, 13, 274, 66], (2, 1, 0): [366, 200, 368], (2, 4, 0): [112], (1, 7, 7): [63], (1, 8, 6): [269], (1, 6, 6): [340, 146, 176, 38, 145, 313, 37, 62], (1, 5, 6): [312, 174, 339], (1, 7, 6): [315, 314], (1, 7, 5): [414, 218, 217, 268, 101, 102], (1, 6, 5): [375, 215, 100, 149, 224, 267, 148], (1, 5, 5): [214, 374, 266, 147, 420], (1, 8, 5): [415, 416], (1, 6, 4): [325, 326, 413, 231, 211, 245], (1, 7, 4): [246, 431, 52, 322], (1, 8, 4): [247, 433, 248, 249, 323, 53, 432], (1, 4, 4): [419, 156, 143, 311, 159, 338, 173, 242], (1, 5, 4): [243, 223, 451, 144, 244, 99, 160, 61, 36], (1, 14, 4): [299], (1, 6, 3): [123, 79, 78, 72, 44, 303, 126, 74, 45, 51, 309, 447, 210, 308, 71, 105, 304, 448], (1, 5, 3): [169, 426, 423, 441, 125, 321, 166, 263, 87, 442, 86, 104, 49, 393, 187, 347, 122, 281, 240, 264, 188, 392, 324, 250, 348, 251], (1, 4, 3): [229, 422, 230, 124, 226, 227, 239, 213, 265, 98, 450, 120, 280, 373, 60, 97, 319], (1, 8, 3): [335, 334, 337, 333, 336, 332], (1, 7, 3): [107, 273, 127, 310, 106], (1, 3, 3): [317, 142, 320, 316, 238, 50, 279, 47, 318], (1, 14, 3): [298], (1, 4, 2): [85, 40, 158, 440, 425, 57, 428, 222, 252, 270, 8, 2, 454, 435, 346, 343, 155, 109, 345, 342, 220, 164], (1, 5, 2): [429, 271, 302, 253, 81, 178, 130, 208, 199, 31, 307, 446, 233, 3, 82, 411, 412, 16, 154, 391, 92, 90, 183, 254, 91, 221, 235, 234], (1, 8, 2): [287, 386, 289, 288, 182], (1, 7, 2): [133, 286, 94, 132, 409, 181, 331], (1, 6, 2): [379, 384, 272, 93, 285, 380, 32, 385, 430, 131, 33, 180, 209, 20, 408], (1, 10, 2): [292], (1, 3, 2): [241, 179, 421, 177, 96, 418], (1, 11, 2): [293, 294], (1, 9, 2): [291, 290], (1, 12, 2): [295, 296], (1, 13, 2): [297], (1, 3, 1): [369, 381, 434, 206, 56, 405, 1, 449, 344, 225, 108, 367, 162, 42, 453, 387, 352, 161, 118, 371, 115, 354, 376, 361, 76, 0, 43, 6, 84, 41, 21, 7, 228, 150, 439, 424, 341], (1, 5, 1): [390, 400, 27, 117, 68, 134, 372, 357, 407, 153, 204, 284, 203, 364, 26, 378, 257, 113, 383], (1, 4, 1): [396, 403, 363, 355, 360, 65, 25, 237, 116, 67, 14, 151, 129, 356, 370, 399, 306, 402, 255, 437, 395, 258, 301, 452, 445, 22, 152, 382, 417, 205, 359, 377, 398, 353, 362, 256, 389, 436, 406, 77, 388], (1, 6, 1): [73, 404, 278, 277, 70, 457, 69, 135, 259, 458, 330], (1, 7, 1): [136, 28], (1, 8, 1): [365], (1, 4, 0): [275, 455, 202, 350, 261, 30, 349, 328, 232, 80, 410, 207], (1, 3, 0): [427, 121, 4, 282, 260, 201, 283, 443, 401, 397, 29, 327, 394, 444, 198, 111], (1, 1, 0): [83, 438], (1, 5, 0): [351, 276, 329, 456]})"
+  },
+  {
+    "info": "[89, 128, 24, 366, 200, 368, 282, 9, 184, 19, 236, 23, 12, 5, 175, 95, 54, 170, 167, 171, 114, 58, 163, 15, 216, 110, 197, 146, 38, 102]"
+  },
+  {
+    "info": "q1"
+  },
+  {
+    "info": "['0', '1', '2', '3']"
+  },
+  {
+    "info": "q2"
+  },
+  {
+    "info": "['4', '5', '6']"
+  },
+  {
+    "info": "q3"
+  },
+  {
+    "info": "['7', '8', '9']"
+  },
+  {
+    "info": "q4"
+  },
+  {
+    "info": "['10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20']"
+  },
+  {
+    "info": "q5"
+  },
+  {
+    "info": "['21', '22', '23', '24', '25', '26', '27', '28']"
+  },
+  {
+    "info": "q6"
+  },
+  {
+    "info": "['29', '30', '31', '32', '33']"
+  },
+  {
+    "info": "q7"
+  },
+  {
+    "info": "['34', '35', '36', '37', '38']"
+  },
+  {
+    "info": "q8"
+  },
+  {
+    "info": "['39', '40', '41', '42', '43', '44', '45']"
+  },
+  {
+    "info": "q10"
+  },
+  {
+    "info": "['46', '47', '48', '49', '50', '51', '52', '53', '54']"
+  },
+  {
+    "info": "q11"
+  },
+  {
+    "info": "['10', '11', '12', '17', '18', '19', '55']"
+  },
+  {
+    "info": "q12"
+  },
+  {
+    "info": "['56', '57', '58']"
+  },
+  {
+    "info": "q13"
+  },
+  {
+    "info": "['59', '60', '61', '62', '63']"
+  },
+  {
+    "info": "q14"
+  },
+  {
+    "info": "['64', '65', '66', '67', '68', '69', '70', '71', '72', '73', '74', '75', '76', '77', '78', '79']"
+  },
+  {
+    "info": "q15"
+  },
+  {
+    "info": "['13', '80', '81', '82']"
+  },
+  {
+    "info": "q16"
+  },
+  {
+    "info": "['83', '84', '85', '86', '87']"
+  },
+  {
+    "info": "q17"
+  },
+  {
+    "info": "['88', '89', '90', '91', '92', '93', '94', '95']"
+  },
+  {
+    "info": "q18"
+  },
+  {
+    "info": "['96', '97', '98', '99', '100', '101', '102']"
+  },
+  {
+    "info": "q19"
+  },
+  {
+    "info": "['46', '103', '104', '105', '106', '107']"
+  },
+  {
+    "info": "q20"
+  },
+  {
+    "info": "['108', '109', '110']"
+  },
+  {
+    "info": "q21"
+  },
+  {
+    "info": "['111', '112', '113', '114']"
+  },
+  {
+    "info": "q22"
+  },
+  {
+    "info": "['114', '115', '116', '117']"
+  },
+  {
+    "info": "q23"
+  },
+  {
+    "info": "['9', '10', '11', '12', '118', '119', '120', '121', '122', '123', '124', '125', '126', '127']"
+  },
+  {
+    "info": "q24"
+  },
+  {
+    "info": "['128', '129', '130', '131', '132', '133', '134', '135', '136']"
+  },
+  {
+    "info": "q25"
+  },
+  {
+    "info": "['88', '89', '95', '137', '138', '139', '140', '141']"
+  },
+  {
+    "info": "q26"
+  },
+  {
+    "info": "['142', '143', '144', '145', '146']"
+  },
+  {
+    "info": "q27"
+  },
+  {
+    "info": "['34', '35', '147', '148', '149']"
+  },
+  {
+    "info": "q29"
+  },
+  {
+    "info": "['88', '89', '95', '137', '138', '139', '140', '141']"
+  },
+  {
+    "info": "q30"
+  },
+  {
+    "info": "['150', '151', '152', '153', '154']"
+  },
+  {
+    "info": "q31"
+  },
+  {
+    "info": "['39', '155', '156', '157', '158', '159', '160']"
+  },
+  {
+    "info": "q32"
+  },
+  {
+    "info": "['161', '162', '163', '164']"
+  },
+  {
+    "info": "q33"
+  },
+  {
+    "info": "['46', '48', '165', '166', '167', '168', '169', '170', '171']"
+  },
+  {
+    "info": "q34"
+  },
+  {
+    "info": "['172', '173', '174', '175', '176']"
+  },
+  {
+    "info": "q35"
+  },
+  {
+    "info": "['39', '54', '157', '177', '178', '179', '180', '181', '182']"
+  },
+  {
+    "info": "q36"
+  },
+  {
+    "info": "['75', '119', '183', '184']"
+  },
+  {
+    "info": "q37"
+  },
+  {
+    "info": "['185', '186', '187', '188']"
+  },
+  {
+    "info": "q38"
+  },
+  {
+    "info": "['15', '19', '189', '190', '191', '192', '193', '194', '195', '196', '197']"
+  },
+  {
+    "info": "q39"
+  },
+  {
+    "info": "['112', '114', '198', '199']"
+  },
+  {
+    "info": "q40"
+  },
+  {
+    "info": "['200', '201', '202', '203', '204']"
+  },
+  {
+    "info": "q42"
+  },
+  {
+    "info": "['9', '46', '103']"
+  },
+  {
+    "info": "q43"
+  },
+  {
+    "info": "['23', '75', '205']"
+  },
+  {
+    "info": "q44"
+  },
+  {
+    "info": "['206']"
+  },
+  {
+    "info": "q45"
+  },
+  {
+    "info": "['17', '207', '208', '209', '210', '211']"
+  },
+  {
+    "info": "q46"
+  },
+  {
+    "info": "['212', '213', '214', '215', '216', '217', '218']"
+  },
+  {
+    "info": "q47"
+  },
+  {
+    "info": "['184', '219', '220', '221']"
+  },
+  {
+    "info": "q48"
+  },
+  {
+    "info": "['59', '222', '223', '224']"
+  },
+  {
+    "info": "q49"
+  },
+  {
+    "info": "['225', '226', '227', '228', '229', '230', '231']"
+  },
+  {
+    "info": "q50"
+  },
+  {
+    "info": "['88', '232', '233', '234', '235']"
+  },
+  {
+    "info": "q51"
+  },
+  {
+    "info": "['5', '189', '194', '236', '237']"
+  },
+  {
+    "info": "q52"
+  },
+  {
+    "info": "['9', '46', '103']"
+  },
+  {
+    "info": "q53"
+  },
+  {
+    "info": "['184', '238', '239', '240']"
+  },
+  {
+    "info": "q54"
+  },
+  {
+    "info": "['241', '242', '243', '244', '245', '246', '247', '248', '249']"
+  },
+  {
+    "info": "q55"
+  },
+  {
+    "info": "['9', '46', '103']"
+  },
+  {
+    "info": "q56"
+  },
+  {
+    "info": "['46', '48', '165', '167', '168', '170', '171', '250', '251']"
+  },
+  {
+    "info": "q57"
+  },
+  {
+    "info": "['64', '252', '253', '254']"
+  },
+  {
+    "info": "q58"
+  },
+  {
+    "info": "['9', '58', '64', '66', '110', '219', '255', '256', '257', '258', '259']"
+  },
+  {
+    "info": "q59"
+  },
+  {
+    "info": "['236', '260', '261', '262']"
+  },
+  {
+    "info": "q60"
+  },
+  {
+    "info": "['46', '48', '165', '167', '168', '170', '171', '263', '264']"
+  },
+  {
+    "info": "q61"
+  },
+  {
+    "info": "['59', '265', '266', '267', '268', '269', '270', '271', '272', '273']"
+  },
+  {
+    "info": "q62"
+  },
+  {
+    "info": "['274', '275', '276', '277', '278']"
+  },
+  {
+    "info": "q63"
+  },
+  {
+    "info": "['184', '279', '280', '281']"
+  },
+  {
+    "info": "q64"
+  },
+  {
+    "info": "['128', '282', '283', '284', '285', '286', '287', '288', '289', '290', '291', '292', '293', '294', '295', '296', '297', '298', '299']"
+  },
+  {
+    "info": "q65"
+  },
+  {
+    "info": "['189', '236', '262', '300']"
+  },
+  {
+    "info": "q66"
+  },
+  {
+    "info": "['274', '301', '302', '303', '304', '305', '306', '307', '308', '309', '310']"
+  },
+  {
+    "info": "q67"
+  },
+  {
+    "info": "['184', '189', '262', '300']"
+  },
+  {
+    "info": "q68"
+  },
+  {
+    "info": "['172', '216', '311', '312', '313', '314', '315']"
+  },
+  {
+    "info": "q69"
+  },
+  {
+    "info": "['54', '316', '317', '318', '319', '320', '321', '322', '323']"
+  },
+  {
+    "info": "q70"
+  },
+  {
+    "info": "['23', '59', '189', '262']"
+  },
+  {
+    "info": "q71"
+  },
+  {
+    "info": "['46', '48', '324', '325', '326']"
+  },
+  {
+    "info": "q72"
+  },
+  {
+    "info": "['327', '328', '329', '330', '331', '332', '333', '334', '335', '336', '337']"
+  },
+  {
+    "info": "q73"
+  },
+  {
+    "info": "['172', '175', '338', '339', '340']"
+  },
+  {
+    "info": "q74"
+  },
+  {
+    "info": "['10', '11', '12', '17', '18', '19', '55']"
+  },
+  {
+    "info": "q75"
+  },
+  {
+    "info": "['341', '342', '343', '344', '345', '346', '347', '348']"
+  },
+  {
+    "info": "q76"
+  },
+  {
+    "info": "['64', '219', '349', '350', '351']"
+  },
+  {
+    "info": "q77"
+  },
+  {
+    "info": "['23', '352', '353', '354', '355', '356', '357', '358', '359', '360', '361', '362', '363', '364', '365']"
+  },
+  {
+    "info": "q78"
+  },
+  {
+    "info": "['5', '163', '200', '236', '366', '367', '368', '369', '370', '371', '372']"
+  },
+  {
+    "info": "q79"
+  },
+  {
+    "info": "['175', '212', '373', '374', '375']"
+  },
+  {
+    "info": "q80"
+  },
+  {
+    "info": "['366', '368', '376', '377', '378', '379', '380', '381', '382', '383', '384', '385', '386']"
+  },
+  {
+    "info": "q81"
+  },
+  {
+    "info": "['387', '388', '389', '390', '391']"
+  },
+  {
+    "info": "q82"
+  },
+  {
+    "info": "['185', '186', '392', '393']"
+  },
+  {
+    "info": "q83"
+  },
+  {
+    "info": "['394', '395', '396', '397', '398', '399', '400', '401', '402', '403', '404']"
+  },
+  {
+    "info": "q84"
+  },
+  {
+    "info": "['405', '406', '407', '408', '409']"
+  },
+  {
+    "info": "q85"
+  },
+  {
+    "info": "['24', '410', '411', '412', '413', '414', '415', '416']"
+  },
+  {
+    "info": "q86"
+  },
+  {
+    "info": "['58', '194', '417']"
+  },
+  {
+    "info": "q87"
+  },
+  {
+    "info": "['15', '19', '189', '190', '191', '192', '193', '194', '195', '196', '197']"
+  },
+  {
+    "info": "q88"
+  },
+  {
+    "info": "['418', '419', '420']"
+  },
+  {
+    "info": "q89"
+  },
+  {
+    "info": "['184', '421', '422', '423']"
+  },
+  {
+    "info": "q90"
+  },
+  {
+    "info": "['424', '425', '426']"
+  },
+  {
+    "info": "q91"
+  },
+  {
+    "info": "['427', '428', '429', '430', '431', '432', '433']"
+  },
+  {
+    "info": "q92"
+  },
+  {
+    "info": "['5', '358', '434', '435']"
+  },
+  {
+    "info": "q93"
+  },
+  {
+    "info": "['128', '436', '437']"
+  },
+  {
+    "info": "q94"
+  },
+  {
+    "info": "['438', '439', '440', '441', '442']"
+  },
+  {
+    "info": "q95"
+  },
+  {
+    "info": "['443', '444', '445', '446', '447', '448']"
+  },
+  {
+    "info": "q96"
+  },
+  {
+    "info": "['449', '450', '451']"
+  },
+  {
+    "info": "q97"
+  },
+  {
+    "info": "['163', '189', '191', '236', '452']"
+  },
+  {
+    "info": "q98"
+  },
+  {
+    "info": "['9', '453', '454']"
+  },
+  {
+    "info": "q99"
+  },
+  {
+    "info": "['305', '455', '456', '457', '458']"
+  },
+  {
+    "info": "{0: 0.0009996891021728516, 1: 0.07649588584899902, 2: 0.0, 3: 0.18337035179138184, 4: 0.000997304916381836, 5: 0.0, 6: 0.0011012554168701172, 7: 0.0009961128234863281, 8: 0.0, 9: 0.0, 10: 0.1767256259918213, 11: 0.0010051727294921875, 12: 0.009972095489501953, 13: 0.2015056610107422, 14: 0.14656710624694824, 15: 0.0019948482513427734, 16: 0.0, 17: 0.0009980201721191406, 18: 0.1217193603515625, 19: 0.0006074905395507812, 20: 0.0009644031524658203, 21: 0.0, 22: 0.7737979888916016, 23: 0.010129928588867188, 24: 0.003578662872314453, 25: 0.000997304916381836, 26: 0.02534794807434082, 27: 0.0, 28: 0.4433634281158447, 29: 0.002991914749145508, 30: 0.3235921859741211, 31: 0.0028853416442871094, 32: 0.1774919033050537, 33: 0.0019948482513427734, 34: 0.18667030334472656, 35: 0.1436154842376709, 36: 0.001995086669921875, 37: 0.005984783172607422, 38: 0.06682229042053223, 39: 0.0015153884887695312, 40: 0.0, 41: 0.13465499877929688, 42: 0.16545605659484863, 43: 0.0007107257843017578, 44: 0.22180986404418945, 45: 0.0019948482513427734, 46: 0.09077072143554688, 47: 0.005984067916870117, 48: 0.000997304916381836, 49: 0.001804351806640625, 50: 0.003042459487915039, 51: 0.2376260757446289, 52: 0.001994609832763672, 53: 0.003988504409790039, 54: 0.09490013122558594, 55: 0.2343745231628418, 56: 0.15857672691345215, 57: 0.16456055641174316, 58: 0.08178114891052246, 59: 0.6111023426055908, 60: 0.025855064392089844, 61: 0.0015931129455566406, 62: 0.005658388137817383, 63: 0.5435929298400879, 64: 0.2486720085144043, 65: 0.009972810745239258, 66: 0.2622675895690918, 67: 0.06831908226013184, 68: 0.1695084571838379, 69: 0.12093043327331543, 70: 0.19335150718688965, 71: 0.0039899349212646484, 72: 0.18328619003295898, 73: 0.4727365970611572, 74: 0.07181143760681152, 75: 0.0037713050842285156, 76: 0.08181333541870117, 77: 0.003991842269897461, 78: 0.015546321868896484, 79: 0.0049860477447509766, 80: 0.008020401000976562, 81: 0.04391312599182129, 82: 0.0040225982666015625, 83: 0.0029282569885253906, 84: 0.15387582778930664, 85: 0.0020589828491210938, 86: 0.010970830917358398, 87: 2.1742303371429443, 88: 0.0014858245849609375, 89: 0.23732972145080566, 90: 0.005984306335449219, 91: 0.03471541404724121, 92: 0.0035698413848876953, 93: 0.009762048721313477, 94: 0.009472846984863281, 95: 0.005984067916870117, 96: 0.004022836685180664, 97: 0.000997781753540039, 98: 0.0035622119903564453}"
+  },
+  {
+    "info": "total time of equal: 10.523486852645874"
+  },
+  {
+    "info": "average time of equal: 0.10629784699642297"
+  },
+  {
+    "info": "total time: 26.820637226104736"
+  },
+  {
+    "info": "generate success!"
+  }
+]

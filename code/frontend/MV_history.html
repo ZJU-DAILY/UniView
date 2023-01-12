@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MV History</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .wrap {
+            width: 450px;
+            padding-top: 30px;
+        }
+
+        .item {
+            height: 30px;
+        }
+
+        label {
+            width: 300px;
+            display: inline-block;
+            text-align: right;
+            padding-right: 5px;
+            font-weight: bold;
+        }
+
+        .top input {
+            width: 180px;
+        }
+
+        .first {
+            width: 30%;
+            float: left;
+            height: 660px;
+            border: 1px solid #3B6273;
+        }
+
+        .second {
+            width: 40%;
+            float: left;
+            height: 660px;
+            border: 1px solid #3B6273;
+        }
+
+        .third {
+            width: 30%;
+            float: left;
+            height: 660px;
+            border: 1px solid #3B6273;
+        }
+
+        /* Tooltip 容器 */
+        .my_tooltip {
+            position: relative;
+            display: inline-block;
+            text-align: left;
+            padding-right: 5px;
+            /*font-weight: bold;*/
+            /*border-bottom: 1px dotted black; !* 悬停元素上显示点线 *!*/
+        }
+
+        /* Tooltip 文本 */
+        .my_tooltip .tooltiptext {
+            visibility: hidden;
+            width: 300px;
+            background-color: #3cb371;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* 定位 */
+            position: absolute;
+            z-index: 1;
+
+            top: -5px;
+            right: 30%;
+        }
+
+        /* 鼠标移动上去后显示提示框 */
+        .my_tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table td {
+            border: 2px solid #ddd;
+            padding: 8px;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #ddd;
+        }
+
+        thead tr th {
+            position: sticky;
+            top: 0;
+        }
+
+        /* 滚动槽 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.06);
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 滚动条滑块 */
+        ::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.12);
+            -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+    </style>
+</head>
+
+
+<body>
+<br>
+<div class="container" style="border: 2px solid black;width: 1180px; height: 680px;">
+    <nav class="navbar navbar-fix-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
+                    <!--                    <img style="max-width:100px; margin-top: -7px;" src="/static/logo_black.png">-->
+                    <h1 style="max-width:100px; margin-top: -7px;">UniView</h1>
+                </a>                    <!-- <a class="navbar-brand" href="#">DeepO</a> -->
+            </div>
+            <p></p>
+            <p></p>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="nav nav-pills navbar-right">
+                    <li><a href="parameter_configuration.html">Parameter
+                        Configuration</a></li>
+                    <li><a href="MV_process_tracking_MV_generation.html">MV Process Tracking</a></li>
+                    <li><a href="MV_results_evaluation.html">MV Results
+                        Evaluation</a></li>
+                    <li role="presentation" class="nav-item active"><a href="#.html">MV History</a></li>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="main">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="clo-md-4">
+                <div>
+                    <div class="row marketing">
+                        <div class="col-lg-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Current Result</div>
+                                <table class="table table-hover"
+                                       style="table-layout: fixed;border-collapse: collapse;width: 1200px;height: 100px;">
+                                    <!-- 关键代码 start -->
+                                    <colgroup>
+                                        <col style="width: 60px;">
+                                        <col style="width: 70px;">
+                                        <col style="width: 80px;">
+                                        <col style="width: 70px;">
+                                        <col style="width: 80px;">
+                                        <col style="width: 70px;">
+                                    </colgroup>
+                                    <!-- 关键代码 end -->
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" class="col-xs-1">Time</th>
+                                        <th scope="col" class="col-xs-1">Query SQL list</th>
+                                        <th scope="col" class="col-xs-1">Parameter configuration</th>
+                                        <th scope="col" class="col-xs-1">Benefit</th>
+                                        <th scope="col" class="col-xs-1">Coverage</th>
+                                        <th scope="col" class="col-xs-1">Recommend MV list</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody class="x-cate" id="current_result">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clo-md-4">
+                <div>
+                    <div class="row marketing">
+                        <div class="col-lg-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Historical Results</div>
+                                <div style="overflow: auto; height: 300px;">
+                                    <table id="history_table" class="table table-hover"
+                                           style="table-layout: fixed;border-collapse: collapse;width: 1200px;height: 300px;">
+                                        <thead>
+                                        <!-- 关键代码 start -->
+                                        <colgroup>
+                                            <col style="width: 60px;">
+                                            <col style="width: 70px;">
+                                            <col style="width: 80px;">
+                                            <col style="width: 70px;">
+                                            <col style="width: 80px;">
+                                            <col style="width: 70px;">
+                                        </colgroup>
+                                        <!-- 关键代码 end -->
+                                        <tr>
+                                            <th scope="col" class="col-xs-1"
+                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                Time
+                                            </th>
+                                            <th scope="col" class="col-xs-1"
+                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                Query SQL list
+                                            </th>
+                                            <th scope="col" class="col-xs-1"
+                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                Parameter configuration
+                                            </th>
+                                            <th scope="col" class="col-xs-1"
+                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                Benefit
+                                            </th>
+                                            <th scope="col" class="col-xs-1"
+                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                Coverage
+                                            </th>
+                                            <th scope="col" class="col-xs-1"
+                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                Recommend MV list
+                                            </th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="x-cate" id="historical_result">
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <br>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+</div>
+
+</body>
+
+<script>
+    var saveParameters = document.getElementById("saveParameters");
+    var defaultParameters = document.getElementById("defaultParameters");
+    var ip = 'http://10.77.110.234:5002/';
+    var submit_num = "0";
+
+    // 同文件夹下的json文件路径
+    var url_current = "./exam_result/MV_history_PG_v2.json"
+    // 申明一个XMLHttpRequest
+    var request_current = new XMLHttpRequest();
+    // 设置请求方法与路径
+    request_current.open("get", url_current);
+    // 不发送数据到服务器
+    request_current.send(null);
+    //XHR对象获取到返回信息后执行
+    request_current.onload = function () {
+        // 返回状态为200，即为数据获取成功
+        if (request_current.status == 200) {
+            // var data = JSON.parse(request_current.responseText);
+            var obj_current = request_current.responseText;
+            var data_current = eval("(" + obj_current + ")");
+            console.log(data_current);
+
+            var str_current = "";   //声明str1，防止产生undefined
+            str_current += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                "<td>" + data_current.time + "</td>" +
+                "<td><div class='my_tooltip'>"
+                + data_current.sql_list_part +
+                "<span class='tooltiptext' style='z-index: 1000;'>" + data_current.sql_list_all + "</span></div></td>" +
+                "<td><div class='my_tooltip'>" +
+                "Engine = <span style='color: mediumseagreen'>" + data_current.parameter_configuration.engine + "</span><br>" +
+                "Recommend method = <span style='color: mediumseagreen'>" + data_current.parameter_configuration.recommend_method + "</span><br>" +
+                "Single or multiple = <span style='color: mediumseagreen'>" + data_current.parameter_configuration.single_or_multiple + "</span><br>" +
+                "<span class='tooltiptext' style='z-index: 1000;'>" +
+                "Engine = " + data_current.parameter_configuration.engine + "<br>" +
+                "Recommend method = " + data_current.parameter_configuration.recommend_method + "<br>" +
+                "Single or multiple = " + data_current.parameter_configuration.single_or_multiple + "<br>" +
+                "Num of epoch = " + data_current.parameter_configuration.num_of_epoch + "<br>" +
+                "Num of train = " + data_current.parameter_configuration.num_of_train + "<br>" +
+                "Cnt limit = " + data_current.parameter_configuration.cnt_limit + "<br>" +
+                "Space limit = " + data_current.parameter_configuration.space_limit + "<br>" +
+                "Refer threshold = " + data_current.parameter_configuration.refer_threshold + "<br>" +
+                "Table size upper bound = " + data_current.parameter_configuration.table_size_upper_bound + "<br>" +
+                "Table size lower bound = " + data_current.parameter_configuration.table_size_lower_bound + "<br>" +
+                "</span></div></td>" +
+                "<td><div class='my_tooltip'>" +
+                "The original query takes <span style='color: red'>" + data_current.benefit.benefit1 +
+                "</span>s, and the query after using the view takes <span style='color: mediumseagreen'>" + data_current.benefit.benefit2 + "</span>s.<br>" +
+                "<span class='tooltiptext' style='z-index: 1000;'>" +
+                "The original query takes " + data_current.benefit.benefit1 +
+                "s, and the query after using the view takes " + data_current.benefit.benefit2 + "s.<br>" +
+                "The total benefit rate is " + data_current.benefit.benefit3 + "%.<br>" +
+                "The highest single pick yield is " + data_current.benefit.benefit4 + "%, reduced from the original " +
+                data_current.benefit.benefit5 + "s to " + data_current.benefit.benefit6 + "s.<br>" +
+                "</span></div></td>" +
+                "<td><div class='my_tooltip'>" +
+                "There are <span style='color: red'>" + data_current.coverage.coverage1 + "</span> original queries. <span style='color: mediumseagreen'>" + data_current.coverage.coverage2 +
+                "</span> views are recommended, and <span style='color: mediumseagreen'>" + data_current.coverage.coverage3 + "</span> queries are covered by these views.<br>" +
+                "<span class='tooltiptext' style='z-index: 1000;'>" +
+                "There are " + data_current.coverage.coverage1 + " original queries. " + data_current.coverage.coverage2 +
+                " views are recommended, and " + data_current.coverage.coverage3 + " queries are covered by these views.<br>" +
+                "Coverage is " + data_current.coverage.coverage4 + "%.<br>" +
+                "</span></div></td>" +
+                "<td><div class='my_tooltip'>" +
+                data_current.mv_list_part +
+                "<span class='tooltiptext' style='z-index: 1000;'>" + data_current.mv_list_all + "</span></div></td>" + "</tr>"
+            current_result.innerHTML = str_current;
+        }
+    }
+
+    // 同文件夹下的json文件路径
+    var url_history = "./exam_result/MV_history_v2.json"
+    // 申明一个XMLHttpRequest
+    var request_history = new XMLHttpRequest();
+    // 设置请求方法与路径
+    request_history.open("get", url_history);
+    // 不发送数据到服务器
+    request_history.send(null);
+    //XHR对象获取到返回信息后执行
+    request_history.onload = function () {
+        // 返回状态为200，即为数据获取成功
+        if (request_history.status == 200) {
+            // var data = JSON.parse(request_current.responseText);
+            var obj_history = request_history.responseText;
+            var data_history = eval(obj_history);
+            console.log(data_history);
+
+            var str2 = "";   //声明str1，防止产生undefined
+            for (var i = 0; i < data_history.length; i++) {
+                str2 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                    "<td>" + data_history[i].time + "</td>" +
+                    "<td><div class='my_tooltip'>"
+                    + data_history[i].sql_list_part +
+                    "<span class='tooltiptext' style='z-index: 1000;'>" + data_history[i].sql_list_all + "</span></div></td>" +
+                    "<td><div class='my_tooltip'>" +
+                    "Engine = <span style='color: mediumseagreen'>" + data_history[i].parameter_configuration.engine + "</span><br>" +
+                    "Recommend method = <span style='color: mediumseagreen'>" + data_history[i].parameter_configuration.recommend_method + "</span><br>" +
+                    "Single or multiple = <span style='color: mediumseagreen'>" + data_history[i].parameter_configuration.single_or_multiple + "</span><br>" +
+                    "<span class='tooltiptext' style='z-index: 1000;'>" +
+                    "Engine = " + data_history[i].parameter_configuration.engine + "<br>" +
+                    "Recommend method = " + data_history[i].parameter_configuration.recommend_method + "<br>" +
+                    "Single or multiple = " + data_history[i].parameter_configuration.single_or_multiple + "<br>" +
+                    "Num of epoch = " + data_history[i].parameter_configuration.num_of_epoch + "<br>" +
+                    "Num of train = " + data_history[i].parameter_configuration.num_of_train + "<br>" +
+                    "Cnt limit = " + data_history[i].parameter_configuration.cnt_limit + "<br>" +
+                    "Space limit = " + data_history[i].parameter_configuration.space_limit + "<br>" +
+                    "Refer threshold = " + data_history[i].parameter_configuration.refer_threshold + "<br>" +
+                    "Table size upper bound = " + data_history[i].parameter_configuration.table_size_upper_bound + "<br>" +
+                    "Table size lower bound = " + data_history[i].parameter_configuration.table_size_lower_bound + "<br>" +
+                    "</span></div></td>" +
+                    "<td><div class='my_tooltip'>" +
+                    "The original query takes <span style='color: red'>" + data_history[i].benefit.benefit1 +
+                    "</span>s, and the query after using the view takes <span style='color: mediumseagreen'>" + data_history[i].benefit.benefit2 + "</span>s.<br>" +
+                    "<span class='tooltiptext' style='z-index: 1000;'>" +
+                    "The original query takes " + data_history[i].benefit.benefit1 +
+                    "s, and the query after using the view takes " + data_history[i].benefit.benefit2 + "s.<br>" +
+                    "The total benefit rate is " + data_history[i].benefit.benefit3 + "%.<br>" +
+                    "The highest single pick yield is " + data_history[i].benefit.benefit4 + "%, reduced from the original " +
+                    data_history[i].benefit.benefit5 + "s to " + data_history[i].benefit.benefit6 + "s.<br>" +
+                    "</span></div></td>" +
+                    "<td><div class='my_tooltip'>" +
+                    "There are <span style='color: red'>" + data_history[i].coverage.coverage1 + "</span> original queries. <span style='color: mediumseagreen'>" + data_history[i].coverage.coverage2 +
+                    "</span> views are recommended, and <span style='color: mediumseagreen'>" + data_history[i].coverage.coverage3 + "</span> queries are covered by these views.<br>" +
+                    "<span class='tooltiptext' style='z-index: 1000;'>" +
+                    "There are " + data_history[i].coverage.coverage1 + " original queries. " + data_history[i].coverage.coverage2 +
+                    " views are recommended, and " + data_history[i].coverage.coverage3 + " queries are covered by these views.<br>" +
+                    "Coverage is " + data_history[i].coverage.coverage4 + "%.<br>" +
+                    "</span></div></td>" +
+                    "<td><div class='my_tooltip'>" +
+                    data_history[i].mv_list_part +
+                    "<span class='tooltiptext' style='z-index: 1000;'>" + data_history[i].mv_list_all + "</span></div></td>" + "</tr>"
+            }
+            historical_result.innerHTML = str2;
+        }
+    }
+
+
+    function change(change) {
+        var oObj = window.event.srcElement;
+        //alert(change.tagName.toLowerCase());
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            for (var i = 0; i < document.all.form.rows.length; i++) {
+                document.all.form.rows[i].style.backgroundColor = "";
+                document.all.form.rows[i].tag = false;
+            }
+            submit_num = oObj.parentElement.rowIndex;
+            console.log(submit_num);
+            oTr.style.backgroundColor = "#CCCCFF";
+            oTr.tag = true;
+        }
+    }
+
+    //鼠标点击另外一行时关闭已选行变色
+    function out() {
+        var oObj = event.srcElement;
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            if (!oTr.tag) oTr.style.backgroundColor = "";
+        }
+    }
+
+    //鼠标移动到选择行上时的行变色
+    function over() {
+        var oObj = event.srcElement;
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            if (!oTr.tag) oTr.style.backgroundColor = "#E1E9FD";
+        }
+    }
+
+
+</script>

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Parameter Configuration</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <style>
+        .wrap {
+            width: 450px;
+            padding-top: 30px;
+        }
+
+        .item {
+            height: 30px;
+        }
+
+        .first {
+            width: 50%;
+            float: left;
+            height: 400px;
+            /*border: 1px solid #3B6273;*/
+        }
+
+        .second {
+            width: 50%;
+            float: left;
+            height: 400px;
+            /*border: 1px solid #3B6273;*/
+        }
+
+        label {
+            width: 250px;
+            display: inline-block;
+            text-align: right;
+            padding-right: 5px;
+            font-weight: bold;
+        }
+
+        .top input {
+            width: 130px;
+        }
+
+        /* Tooltip 容器 */
+        .my_tooltip {
+            position: relative;
+            width: 250px;
+            display: inline-block;
+            text-align: right;
+            padding-right: 5px;
+            font-weight: bold;
+            /*border-bottom: 1px dotted black; !* 悬停元素上显示点线 *!*/
+        }
+
+        /* Tooltip 文本 */
+        .my_tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: #3cb371;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* 定位 */
+            position: absolute;
+            z-index: 1;
+
+            top: -5px;
+            right: 30%;
+        }
+
+        /* 鼠标移动上去后显示提示框 */
+        .my_tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+    </style>
+</head>
+
+
+<body>
+<br>
+<div class="container" style="border: 2px solid black; width: 1180px; height: 680px;">
+    <nav class="navbar navbar-fix-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
+                    <!--                    <img style="max-width:100px; margin-top: -7px;" src="/static/logo_black.png">-->
+                    <h1 style="max-width:100px; margin-top: -7px;">UniView</h1>
+                </a>                    <!-- <a class="navbar-brand" href="#">DeepO</a> -->
+            </div>
+            <p></p>
+            <p></p>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="nav nav-pills navbar-right">
+                    <li role="presentation" class="nav-item active"><a href="#">Parameter
+                        Configuration</a></li>
+                    <li><a href="MV_process_tracking_MV_generation.html">MV Process Tracking</a></li>
+                    <li><a href="MV_results_evaluation.html">MV Results Evaluation</a></li>
+                    <li><a href="MV_history.html">MV History</a></li>
+                </div>
+                <!-- <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search..."> -->
+                <!-- </form> -->
+            </div>
+        </div>
+    </nav>
+    <br>
+    <div class="main">
+        <div class="btn-toolbar" role="toolbar">
+            <div>
+                <div class="row marketing">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary" style="height: 470px;">
+                            <div class="panel-heading">Parameter Configuration</div>
+
+                            <div class="first">
+                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                    Engine
+                                    <span class="tooltiptext">Select a database engine</span>
+                                </div>
+
+                                <input type="radio" id="engine1" name="engine" value="Spark"/>
+                                <span style="font-size:15px; display:inline-block;width: 50px; height: 20px;margin-right: 20px;">Spark</span>
+                                <input type="radio" id="engine2" name="engine" value="PostgreSQL"/>
+                                <span style="font-size:15px; display:inline-block;width: 80px;margin-right: 20px;">PostgreSQL</span>
+                                <input type="radio" id="engine3" name="engine" value="ClickHouse"/>
+                                <span style="font-size:15px; display:inline-block;width: 70px;">ClickHouse</span>
+                                <br><br>
+
+                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                    Single or multiple
+                                    <span class="tooltiptext">Select table mode</span>
+                                </div>
+                                <input type="radio" id="single_or_multiple1" name="single_or_multiple" value="single"/>
+                                <span style="font-size:15px; display:inline-block;width: 50px; height: 20px;margin-right: 20px;">
+                                        Single
+                                    </span>
+                                <input type="radio" id="single_or_multiple2" name="single_or_multiple"
+                                       value="multiple"/>
+                                <span style="font-size:15px; display:inline-block;width: 70px;margin-right: 20px;">
+                                        Multiple
+                                    </span>
+                                <br><br>
+
+                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                    Num of train
+                                    <span class="tooltiptext">Number of training samples</span>
+                                </div>
+                                <input type="text" id="num_train" name="num_train"
+                                       placeholder="default:100">
+                                <br><br>
+
+                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                    Space limit
+                                    <span class="tooltiptext">Space limit M</span>
+                                </div>
+                                <input type="text" id="space_limit" name="space_limit"
+                                       placeholder="default:1024">
+                                <br><br>
+
+                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                    Table size upper bound
+                                    <span class="tooltiptext">The threshold for distinguishing between large and small tables. A table with a size of more than 1G is a large table, and a table with a size of less than 10M is a small table.</span>
+                                </div>
+                                <input type="text" id="table_size_upper_bound"
+                                       name="table_size_upper_bound"
+                                       placeholder="default:50000000">
+                                <br><br>
+
+                            </div>
+
+                            <div class="second">
+                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                    Recommend method
+                                    <span class="tooltiptext">Select a recommend method</span>
+                                </div>
+                                <input type="radio" id="recommend_method1" name="recommend_method" value="greedy"/>
+                                    <span style="font-size:15px; display:inline-block;width: 50px; height: 20px;margin-right: 20px;">
+                                        Greedy
+                                    </span>
+                                <input type="radio" id="recommend_method2" name="recommend_method" value="RL"/>
+                                    <span style="font-size:15px; display:inline-block;width: 70px;margin-right: 20px;">
+                                        RL
+                                    </span>
+                                <br><br>
+
+                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                    Num of epoch
+                                    <span class="tooltiptext">Number of training rounds</span>
+                                </div>
+                                <input type="text" id="epoch" name="epoch"
+                                       placeholder="default:5">
+                                <br><br>
+
+                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                    Cnt limit
+                                    <span class="tooltiptext">The limit of topN's MV</span>
+                                </div>
+                                <input type="text" id="cnt_limit" name="cnt_limit"
+                                       placeholder="default:30">
+                                <br><br>
+
+                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                    Refer threshold
+                                    <span class="tooltiptext">Subtrees whose reference count is less than ref_threshold will not be used as candidate views</span>
+                                </div>
+                                <input type="text" id="refer_threshold" name="refer_threshold"
+                                       placeholder="default:1">
+                                <br><br>
+
+                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                    Table size lower bound
+                                    <span class="tooltiptext">The threshold for distinguishing between large and small tables. A table with a size of more than 1G is a large table, and a table with a size of less than 10M is a small table.</span>
+                                </div>
+                                <input type="text" id="table_size_lower_bound"
+                                       name="table_size_lower_bound"
+                                       placeholder="default:10485760">
+                                <br><br>
+
+
+                            </div>
+
+                            <!--                                <div class="my_tooltip" style=" margin-top: 20px;">-->
+                            <!--                                    Engine-->
+                            <!--                                    <span class="tooltiptext">Select a database engine</span>-->
+                            <!--                                </div>-->
+                            <!--                                <input type="radio" id="engine1" name="engine" value="Spark"/>Spark-->
+                            <!--                                <label style="width: 45px"></label>-->
+                            <!--                                <input type="radio" id="engine2" name="engine" value="PostgreSQL"/>PostgreSQL-->
+                            <!--                                <label style="width: 40px"></label>-->
+                            <!--                                <input type="radio" id="engine3" name="engine" value="ClickHouse"/>ClickHouse-->
+
+
+                            <!--                                <div class="my_tooltip" style=" margin-top: 20px;">-->
+                            <!--                                    Recommend method-->
+                            <!--                                    <span class="tooltiptext">Select a recommend method</span>-->
+                            <!--                                </div>-->
+                            <!--                                <input type="radio" id="recommend_method1" name="recommend_method" value="greedy"/>Greedy-->
+                            <!--                                <label style="width: 40px"></label>-->
+                            <!--                                <input type="radio" id="recommend_method2" name="recommend_method" value="RL"/>RL-->
+                            <!--                                <br><br>-->
+
+                            <!--                                <div class="my_tooltip">-->
+                            <!--                                    Single or multiple-->
+                            <!--                                    <span class="tooltiptext">Select table mode</span>-->
+                            <!--                                </div>-->
+                            <!--                                <input type="radio" id="single_or_multiple1" name="single_or_multiple" value="single"/>Single-->
+                            <!--                                <label style="width: 45px"></label>-->
+                            <!--                                <input type="radio" id="single_or_multiple2" name="single_or_multiple"-->
+                            <!--                                       value="multiple"/>Multiple-->
+
+                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
+                            <!--                                    Num of epoch-->
+                            <!--                                    <span class="tooltiptext">Number of training rounds</span>-->
+                            <!--                                </div>-->
+                            <!--                                <input type="text" id="epoch" name="epoch"-->
+                            <!--                                       placeholder="default:5">-->
+
+                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
+                            <!--                                    Num of train-->
+                            <!--                                    <span class="tooltiptext">Number of training samples</span>-->
+                            <!--                                </div>-->
+                            <!--                                <input type="text" id="num_train" name="num_train"-->
+                            <!--                                       placeholder="default:100">-->
+
+                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
+                            <!--                                    Cnt limit-->
+                            <!--                                    <span class="tooltiptext">The limit of topN's MV</span>-->
+                            <!--                                </div>-->
+                            <!--                                <input type="text" id="cnt_limit" name="cnt_limit"-->
+                            <!--                                       placeholder="default:30">-->
+
+                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
+                            <!--                                    Space limit-->
+                            <!--                                    <span class="tooltiptext">Space limit M</span>-->
+                            <!--                                </div>-->
+                            <!--                                <input type="text" id="space_limit" name="space_limit"-->
+                            <!--                                       placeholder="default:1024">-->
+
+                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
+                            <!--                                    Refer threshold-->
+                            <!--                                    <span class="tooltiptext">Subtrees whose reference count is less than ref_threshold will not be used as candidate views</span>-->
+                            <!--                                </div>-->
+                            <!--                                <input type="text" id="refer_threshold" name="refer_threshold"-->
+                            <!--                                       placeholder="default:1">-->
+
+                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
+                            <!--                                    Table size upper bound-->
+                            <!--                                    <span class="tooltiptext">The threshold for distinguishing between large and small tables. A table with a size of more than 1G is a large table, and a table with a size of less than 10M is a small table.</span>-->
+                            <!--                                </div>-->
+                            <!--                                <input type="text" id="table_size_upper_bound"-->
+                            <!--                                       name="table_size_upper_bound"-->
+                            <!--                                       placeholder="default:50000000">-->
+
+                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
+                            <!--                                    Table size lower bound-->
+                            <!--                                    <span class="tooltiptext">The threshold for distinguishing between large and small tables. A table with a size of more than 1G is a large table, and a table with a size of less than 10M is a small table.</span>-->
+                            <!--                                </div>-->
+                            <!--                                <input type="text" id="table_size_lower_bound"-->
+                            <!--                                       name="table_size_lower_bound"-->
+                            <!--                                       placeholder="default:10485760">-->
+
+                        </div>
+
+                    </div>
+                </div>
+                <!--                    <textarea id="sqleditor" name="query" class="form-control" rows="5"-->
+                <!--                              placeholder="Enter your Query"></textarea>-->
+
+                <!--                    <label style="margin-left: 150px" title="选择引擎">-->
+                <!--                        engine-->
+                <!--                    </label>-->
+
+            </div>
+        </div>
+        <div class="btn-toolbar">
+            <button type="button" id="saveParameters" class="btn btn-secondary" data-loading-text="Loading..."
+                    style="margin-left: 250px;background-color:#337ab7; color:white; width: 200px;
+	                    height: 45px; border:0; font-size: 22px; box-sizing: content-box; border-radius: 5px;">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Save parameters
+            </button>
+            <button type="button" id="defaultParameters" class="btn btn-secondary" data-toggle="modal"
+                    data-target="#exampleModalCenter" style="margin-left: 250px;background-color:#337ab7;
+	            color:white;
+	            width: 200px;
+	            height: 45px;
+	            border:0;
+	            font-size: 22px;
+	            box-sizing: content-box;
+                border-radius: 5px;">
+                Default parameters
+            </button>
+
+            <div id="output"></div>
+        </div>
+    </div>
+
+
+</div>
+
+<br>
+</div>
+
+</body>
+
+<script>
+    var data = document.getElementById("sqleditor");
+    var saveParameters = document.getElementById("saveParameters");
+    var defaultParameters = document.getElementById("defaultParameters");
+    var ip = 'http://10.77.110.234:5002/';
+    var submit_num = "0";
+
+    function getValueFromRatios(radios) {
+        var value = 0;
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked == true) {
+                value = radios[i].value;
+                break;
+            }
+        }
+        return value;
+    }
+
+    function isAvailable(engine, Dataset, single_or_multiple) {
+        if (engine === "Spark" && Dataset != "TPCDS") {
+            alert("Spark engine only supports TPCDS datasets!");
+            return false;
+        } else if (engine === "PostgreSQL" && Dataset != "JOB") {
+            alert("PostgreSQL engine only supports JOB datasets!");
+            return false;
+        } else if (engine === "ClickHouse" && !((Dataset === "SSB" && single_or_multiple === "single")
+            || (Dataset === "JOB" && single_or_multiple === "multiple")
+            || (Dataset === "CBG" && single_or_multiple === "single"))) {
+            alert("ClickHouse engine only supports SSB datasets in single table mode " +
+                "or JOB datasets in multiple mode or CBG datasets in single table mode!");
+            return false;
+        }
+
+        return true;
+    }
+
+    saveParameters.onclick = function () {
+        var radios_engine = document.getElementsByName("engine");
+        var engine = getValueFromRatios(radios_engine);
+
+        // var radios_DataSet = document.getElementsByName("DataSet");
+        // var DataSet = getValueFromRatios(radios_DataSet);
+
+        var radios_recommend_method = document.getElementsByName("radios_recommend_method");
+        var recommend_method = getValueFromRatios(radios_recommend_method);
+
+        var radios_single_or_multiple = document.getElementsByName("single_or_multiple");
+        var single_or_multiple = getValueFromRatios(radios_single_or_multiple);
+
+        var epoch = window.document.getElementById("epoch");
+        var num_train = window.document.getElementById("num_train");
+        var cnt_limit = window.document.getElementById("cnt_limit");
+        var space_limit = window.document.getElementById("space_limit");
+        var refer_threshold = window.document.getElementById("refer_threshold");
+        var table_size_upper_bound = window.document.getElementById("table_size_upper_bound");
+        var table_size_lower_bound = window.document.getElementById("table_size_lower_bound");
+        // if (isAvailable(engine, DataSet, single_or_multiple)) {
+        //     // ajax与后端连接
+        // }
+    }
+    // var result=document.getElementById("showResult");
+    // var form=document.getElementById("form")
+    // saveParameters.onclick = function () {
+    //     var info = {
+    //         "sql": data.value,
+    //     };
+    //     console.log(info);
+    //     $.ajax({
+    //         url_current: ip + "pg_run",
+    //         type: 'post',
+    //         data: info,
+    //         dataType: 'json',
+    //         beforeSend: function () {
+    //             showResult.innerHTML = "";
+    //             $("#loading").html("<img src='/static/loading.gif' />");
+    //
+    //         },
+    //         success: function (res) {
+    //             $("#loading").empty();
+    //             showResult.innerHTML = res.data;
+    //         },
+    //         error: function () {
+    //             alert("server error");
+    //         }
+    //     });
+    // }
+
+    defaultParameters.onclick = function () {
+        var info = {
+            "sql": data.value,
+        };
+        console.log(info);
+        $.post(ip + "deepo_optimize", info,
+            function (res) {
+                var arm = res.info_arm;   //第一个data代表json,第二个data代表json里的数组或对象
+                var cost = res.info_cost;
+                var confidence = res.info_confidence;
+                var str1 = "";   //声明str1，防止产生undefined
+                for (var i = 0; i < arm.length; i++) {   //遍历
+                    str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                        "<td>" + i + "</td>" +
+                        "<td>" + arm[i] + "</td>" +
+                        "<td>" + cost[i] + "</td>" +
+                        "<td>" + confidence[i] + "</td>";
+                }
+                form.innerHTML = str1;
+            });
+    }
+
+
+    function change(change) {
+        var oObj = window.event.srcElement;
+        //alert(change.tagName.toLowerCase());
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            for (var i = 0; i < document.all.form.rows.length; i++) {
+                document.all.form.rows[i].style.backgroundColor = "";
+                document.all.form.rows[i].tag = false;
+            }
+            submit_num = oObj.parentElement.rowIndex;
+            console.log(submit_num);
+            oTr.style.backgroundColor = "#CCCCFF";
+            oTr.tag = true;
+        }
+    }
+
+    //鼠标点击另外一行时关闭已选行变色
+    function out() {
+        var oObj = event.srcElement;
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            if (!oTr.tag) oTr.style.backgroundColor = "";
+        }
+    }
+
+    //鼠标移动到选择行上时的行变色
+    function over() {
+        var oObj = event.srcElement;
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            if (!oTr.tag) oTr.style.backgroundColor = "#E1E9FD";
+        }
+    }
+
+
+</script>

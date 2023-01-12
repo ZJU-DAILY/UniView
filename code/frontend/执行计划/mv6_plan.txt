@@ -1,0 +1,8 @@
+Gather  (cost=1002.42..17474.90 rows=12213 width=22)
+   Workers Planned: 2
+   ->  Hash Join  (cost=2.43..15253.60 rows=5089 width=22)
+         Hash Cond: (movie_info_idx.info_type_id = info_type.id)
+         ->  Parallel Seq Scan on movie_info_idx  (cost=0.00..13685.15 rows=575015 width=8)
+         ->  Hash  (cost=2.41..2.41 rows=1 width=18)
+               ->  Seq Scan on info_type  (cost=0.00..2.41 rows=1 width=18)
+                     Filter: ((info)::text = 'bottom 10 rank'::text)

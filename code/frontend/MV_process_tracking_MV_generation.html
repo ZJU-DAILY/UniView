@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Monitor And Logs</title>
+    <!--    <link rel="icon" href="https://jscdn.com.cn/highcharts/images/favicon.ico">-->
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+    <script src="https://code.hcharts.cn/highstock/highstock.js"></script>
+    <script src="https://code.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://code.hcharts.cn/plugins/highcharts-zh_CN.js"></script>
+
+    <style>
+        .wrap {
+            width: 450px;
+            padding-top: 30px;
+        }
+
+        .item {
+            height: 30px;
+        }
+
+        label {
+            width: 300px;
+            display: inline-block;
+            text-align: right;
+            padding-right: 5px;
+            font-weight: bold;
+        }
+
+        .top input {
+            width: 180px;
+        }
+
+        .first {
+            width: 40%;
+            float: left;
+            height: 450px;
+            /*border: 1px solid #3B6273;*/
+        }
+
+        .second {
+            width: 60%;
+            float: left;
+            height: 450px;
+            /*border: 1px solid #3B6273;*/
+        }
+
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table td {
+            /*border: 2px solid #ddd;*/
+            padding: 8px;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #ddd;
+        }
+
+        /* 滚动槽 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.06);
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 滚动条滑块 */
+        ::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.12);
+            -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hr-double-arrow {
+            color: #d0d0d5;
+            border: double;
+            border-width: 2px 2px;
+            border-color: #d0d0d5 transparent;
+            height: 1px;
+            overflow: visible;
+            margin-left: 20px;
+            margin-right: 20px;
+            position: relative;
+        }
+
+        .hr-double-arrow:before,
+        .hr-double-arrow:after {
+            content: '';
+            position: absolute;
+            width: 3px;
+            height: 3px;
+            border-width: 0 3px 3px 0;
+            border-style: double;
+            top: -3px;
+            background: radial-gradient(2px at 1px 1px, currentColor 2px, transparent 0) no-repeat;
+        }
+
+        .hr-double-arrow:before {
+            transform: rotate(-45deg);
+            left: -20px;
+        }
+
+        .hr-double-arrow:after {
+            transform: rotate(135deg);
+            right: -20px;
+        }
+
+    </style>
+</head>
+
+
+<body>
+<br>
+<div class="container" style="border: 2px solid black; width: 1180px; height: 680px;">
+    <nav class="navbar navbar-fix-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
+                    <!--                    <img style="max-width:100px; margin-top: -7px;" src="/static/logo_black.png">-->
+                    <h1 style="max-width:100px; margin-top: -7px;">UniView</h1>
+                </a>                    <!-- <a class="navbar-brand" href="#">DeepO</a> -->
+            </div>
+            <p></p>
+            <p></p>
+            <div id="navbar" class="navbar-collapse collapse">
+                <div class="nav nav-pills navbar-right">
+                    <li><a href="parameter_configuration.html">Parameter
+                        Configuration</a></li>
+                    <li role="presentation" class="nav-item active"><a href="#.html">MV Process Tracking</a></li>
+                    <li><a href="MV_results_evaluation.html">MV Results Evaluation</a></li>
+                    <li><a href="MV_history.html">MV History</a></li>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="nav nav-pills navbar-right">
+        <li>
+            <button type="button" id="MV-generation" class="btn btn-secondary" data-loading-text="Loading..."
+                    onclick="MV_generation()"
+                    style="background-color: mediumseagreen;color:white">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                MV generation
+            </button>
+        </li>
+        <li><a href="#.html">=====================>></a></li>
+        <li role="presentation" class="nav-item active">
+            <button type="button" id="cost-estimation" class="btn btn-secondary" data-loading-text="Loading..."
+                    onclick="cost_estimation()"
+                    style="background-color: mediumseagreen;color:white">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>cost
+                estimation
+            </button>
+        </li>
+        <li><a href="#.html">=====================>></a></li>
+        <li>
+            <button type="button" id="MV-recommend" class="btn btn-secondary" data-loading-text="Loading..."
+                    onclick="MV_recommend()"
+                    style="background-color: mediumseagreen;color:white">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>MV recommend
+            </button>
+        </li>
+        <li><a href="#.html">=====================>></a></li>
+        <li>
+            <button type="button" id="MV-rewriting" class="btn btn-secondary" data-loading-text="Loading..."
+                    onclick="MV_rewriting()"
+                    style="background-color: mediumseagreen;color:white; margin-right: 10px">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>MV rewriting
+            </button>
+        </li>
+    </div>
+    <br><br>
+    <p></p>
+    <p></p>
+
+    <div class="main">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="first">
+                <div class="row marketing" style="margin-right: 100px">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">Monitors</div>
+                            <div id="CPU_usage" style="width:340px;height:197px;"></div>
+<!--                            <hr class="hr-double-arrow">-->
+                            <hr style="height:3px;border:none;border-top:3px groove skyblue; margin: 3px;"/>
+                            <div id="Memory_usage" style="width:340px;height:197px;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="second" style="width: 673px;">
+                <div class="clo-md-4">
+                    <div class="row marketing">
+                        <div class="col-lg-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Logs</div>
+                                <div style="overflow: scroll; height: 405px;">
+                                    <table class="table table-hover">
+                                        <tbody class="x-cate" id="logs"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <br><br><br><br>
+            <div class="btn-toolbar">
+                <button type="button" id="submitQuery" class="btn btn-secondary" data-loading-text="Loading..."
+                        style="margin-top:30px; margin-left: 250px;background-color:#337ab7; color:white; width: 200px;
+	                    height: 45px; border:0; font-size: 22px; box-sizing: content-box; border-radius: 5px;">
+                    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                    Submit queries
+                </button>
+                <button type="button" id="pauseOrContinue" class="btn btn-secondary" data-toggle="modal"
+                        data-target="#exampleModalCenter" style="margin-top:30px;margin-left: 250px;background-color:#337ab7;
+	            color:white;
+	            width: 200px;
+	            height: 45px;
+	            border:0;
+	            font-size: 22px;
+	            box-sizing: content-box;
+                border-radius: 5px;">
+                    Pause or Continue
+                </button>
+
+                <div id="output"></div>
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+</div>
+
+</body>
+
+<script>
+    var data = document.getElementById("sqleditor");
+    var submitQuery = document.getElementById("submitQuery");
+    var pauseOrContinue = document.getElementById("pauseOrContinue");
+    // var btn_3 = document.getElementById("submit");
+    // var btn_4 = document.getElementById("default")
+    var ip = 'http://10.77.110.234:5002/';
+    var submit_num = "0";
+
+    function MV_generation() {
+        // var j = {};
+        // j.accountId = window.document.getElementById('sno').value
+        // var data = JSON.stringify(j)
+        $.ajax({
+            data: data,
+            contentType: "application/json; charset=utf-8",
+            url: "RegisterServlet",
+            type: "post",
+            success: function (data) {
+                if (data.state === 1) {
+                    alert("注册成功，返回登录")
+                    window.location.href = "MV_process_tracking_MV_generation.html"
+                } else {
+                    alert("MV generation Failed")
+                }
+            },
+            error: function (data) {
+                alert("Request error")
+            }
+        });
+    }
+
+    function cost_estimation() {
+        // var j = {};
+        // j.accountId = window.document.getElementById('sno').value
+        // var data = JSON.stringify(j)
+        $.ajax({
+            data: data,
+            contentType: "application/json; charset=utf-8",
+            url: "RegisterServlet",
+            type: "post",
+            success: function (data) {
+                if (data.state === 1) {
+                    alert("注册成功，返回登录")
+                    window.location.href = "MV_process_tracking_cost_estimation.html"
+                } else {
+                    alert("MV generation Failed")
+                }
+            },
+            error: function (data) {
+                alert("Request error")
+            }
+        });
+    }
+
+    function MV_recommend() {
+        // var j = {};
+        // j.accountId = window.document.getElementById('sno').value
+        // var data = JSON.stringify(j)
+        $.ajax({
+            data: data,
+            contentType: "application/json; charset=utf-8",
+            url: "RegisterServlet",
+            type: "post",
+            success: function (data) {
+                if (data.state === 1) {
+                    alert("注册成功，返回登录")
+                    window.location.href = "MV_process_tracking_MV_recommend.html"
+                } else {
+                    alert("MV generation Failed")
+                }
+            },
+            error: function (data) {
+                alert("Request error")
+            }
+        });
+    }
+
+    function MV_rewriting() {
+        // var j = {};
+        // j.accountId = window.document.getElementById('sno').value
+        // var data = JSON.stringify(j)
+        $.ajax({
+            data: data,
+            contentType: "application/json; charset=utf-8",
+            url: "RegisterServlet",
+            type: "post",
+            success: function (data) {
+                if (data.state === 1) {
+                    alert("注册成功，返回登录")
+                    window.location.href = "MV_process_tracking_MV_rewriting.html"
+                } else {
+                    alert("MV generation Failed")
+                }
+            },
+            error: function (data) {
+                alert("Request error")
+            }
+        });
+    }
+
+    function getValueFromRatios(radios) {
+        var value = 0;
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked == true) {
+                value = radios[i].value;
+                break;
+            }
+        }
+        return value;
+    }
+
+    function isAvailable(engine, Dataset, single_or_multiple) {
+        if (engine === "Spark" && Dataset != "TPCDS") {
+            alert("Spark engine only supports TPCDS datasets!");
+            return false;
+        } else if (engine === "PostgreSQL" && Dataset != "JOB") {
+            alert("PostgreSQL engine only supports JOB datasets!");
+            return false;
+        } else if (engine === "ClickHouse" && !((Dataset === "SSB" && single_or_multiple === "single")
+            || (Dataset === "JOB") && (single_or_multiple === "multiple"))) {
+            alert("ClickHouse engine only supports SSB datasets in single table mode or JOB datasets in multiple mode!");
+            return false;
+        }
+
+        return true;
+    }
+
+    submitQuery.onclick = function () {
+        // 同文件夹下的json文件路径
+        var url = "MV_generation.json"
+        // 申明一个XMLHttpRequest
+        var request = new XMLHttpRequest();
+        // 设置请求方法与路径
+        request.open("get", url);
+        // 不发送数据到服务器
+        request.send(null);
+        //XHR对象获取到返回信息后执行
+        request.onload = function () {
+            // 返回状态为200，即为数据获取成功
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+
+                var str1 = "";   //声明str1，防止产生undefined
+                $.each(data, function (infoIndex, info) {
+                    str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                        "<td>" + info["info"] + "</td>"
+                })
+                logs.innerHTML = str1;
+            }
+        }
+    }
+
+    pauseOrContinue.onclick = function () {
+        var info = {
+            "sql": data.value,
+        };
+        console.log(info);
+        $.post(ip + "deepo_optimize", info,
+            function (res) {
+                var arm = res.info_arm;   //第一个data代表json,第二个data代表json里的数组或对象
+                var cost = res.info_cost;
+                var confidence = res.info_confidence;
+                var str1 = "";   //声明str1，防止产生undefined
+                for (var i = 0; i < arm.length; i++) {   //遍历
+                    str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                        "<td>" + i + "</td>" +
+                        "<td>" + arm[i] + "</td>" +
+                        "<td>" + cost[i] + "</td>" +
+                        "<td>" + confidence[i] + "</td>";
+                }
+                form.innerHTML = str1;
+            });
+    }
+
+    function change(change) {
+        var oObj = window.event.srcElement;
+        //alert(change.tagName.toLowerCase());
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            for (var i = 0; i < document.all.form.rows.length; i++) {
+                document.all.form.rows[i].style.backgroundColor = "";
+                document.all.form.rows[i].tag = false;
+            }
+            submit_num = oObj.parentElement.rowIndex;
+            console.log(submit_num);
+            oTr.style.backgroundColor = "#CCCCFF";
+            oTr.tag = true;
+        }
+    }
+
+    //鼠标点击另外一行时关闭已选行变色
+    function out() {
+        var oObj = event.srcElement;
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            if (!oTr.tag) oTr.style.backgroundColor = "";
+        }
+    }
+
+    //鼠标移动到选择行上时的行变色
+    function over() {
+        var oObj = event.srcElement;
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            if (!oTr.tag) oTr.style.backgroundColor = "#E1E9FD";
+        }
+    }
+
+    Highcharts.setOptions({
+        global: {
+            useUTC: false
+        }
+    });
+    // Create the chart
+    Highcharts.stockChart('CPU_usage', {
+        chart: {
+            // 指定内边距，下面的四个配置可以用 spacing: [10, 10, 15, 10] 来代替
+            spacingBottom: 0,
+            spacingTop: 10,
+            spacingLeft: 10,
+            spacingRight: 10,
+
+            // 指定外边距
+            margin: null,
+
+            // 指定图表大小
+            width: 340,
+            height: 185,
+            events: {
+                load: function () {
+                    // set up the updating of the chart each second
+                    var series = this.series[0];
+                    setInterval(function () {
+                        var x = (new Date()).getTime(), // current time
+                            y = 60 + Math.round(Math.random() * 40);
+                        series.addPoint([x, y], true, true);
+                    }, 1000);
+                }
+            },
+            xAxis: [{
+                type: 'datetime',
+                tickInterval: 5,
+                dateTimeLabelFormats: {
+                    second: '%H:%M:%S'
+                }
+            }]
+        },
+        rangeSelector: {
+            enabled: false
+        },
+        title: {
+            text: 'CPU Usage(%)'
+        },
+        tooltip: {
+            split: false
+        },
+        exporting: {
+            enabled: false
+        },
+        series: [{
+            name: 'CPU Usage',
+            data: (function () {
+                // generate an array of random data
+                var data = [], time = (new Date()).getTime(), i;
+                for (i = -999; i <= -600; i += 1) {
+                    data.push([
+                        time + i * 1000,
+                        20 + Math.round(Math.random() * 50)
+                    ]);
+                }
+                for (i = -599, j = 0; i <= -560; i += 1, j += 1) {
+                    data.push([
+                        time + i * 1000,
+                        10 + Math.round(Math.random() * 20) + j
+                    ])
+                }
+                for (i = -559; i <= 0; i += 1) {
+                    data.push([
+                        time + i * 1000,
+                        40 + Math.round(Math.random() * 60)
+                    ]);
+                }
+                return data;
+            }())
+        }],
+        navigator: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        yAxis: {
+            value: 100
+        },
+        scrollbar: {
+            enabled: false
+        }
+    });
+
+    Highcharts.stockChart('Memory_usage', {
+        chart: {
+            // 指定内边距，下面的四个配置可以用 spacing: [10, 10, 15, 10] 来代替
+            spacingBottom: 0,
+            spacingTop: 10,
+            spacingLeft: 10,
+            spacingRight: 10,
+
+            // 指定外边距
+            margin: null,
+
+            // 指定图表大小
+            width: 340,
+            height: 185,
+            events: {
+                load: function () {
+                    // set up the updating of the chart each second
+                    var series = this.series[0];
+                    setInterval(function () {
+                        var x = (new Date()).getTime(), // current time
+                            y = 60 + Math.round(Math.random() * 40);
+                        series.addPoint([x, y], true, true);
+                    }, 1000);
+                }
+            }
+        },
+        rangeSelector: {
+            enabled: false
+        },
+        title: {
+            text: 'Memory Usage(%)'
+        },
+        tooltip: {
+            split: false
+        },
+        exporting: {
+            enabled: false
+        },
+        series: [{
+            name: 'Memory Usage',
+            data: (function () {
+                // generate an array of random data
+                var data = [], time = (new Date()).getTime(), i;
+                for (i = -999; i <= -600; i += 1) {
+                    data.push([
+                        time + i * 1000,
+                        24 + Math.round(Math.random() * 20)
+                    ]);
+                }
+                for (i = -599, j = 0; i <= -560; i += 1, j += 1) {
+                    data.push([
+                        time + i * 1000,
+                        24 + Math.round(Math.random() * 10) + j * 0.9
+                    ])
+                }
+                for (i = -559; i <= 0; i += 1) {
+                    data.push([
+                        time + i * 1000,
+                        60 + Math.round(Math.random() * 40)
+                    ]);
+                }
+                return data;
+            }())
+        }],
+        navigator: {
+            enabled: false
+        },
+        credits: {
+            enabled: false
+        },
+        yAxis: {
+            value: 100
+        },
+        scrollbar: {
+            enabled: false
+        }
+    });
+
+</script>
