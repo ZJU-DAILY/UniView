@@ -1,0 +1,195 @@
+== Physical Plan ==
+TakeOrderedAndProject (32)
++- * HashAggregate (31)
+   +- Exchange (30)
+      +- * HashAggregate (29)
+         +- * Project (28)
+            +- * BroadcastHashJoin Inner BuildRight (27)
+               :- * Project (21)
+               :  +- * BroadcastHashJoin Inner BuildRight (20)
+               :     :- * Project (15)
+               :     :  +- * BroadcastHashJoin Inner BuildRight (14)
+               :     :     :- * Project (9)
+               :     :     :  +- * BroadcastHashJoin Inner BuildRight (8)
+               :     :     :     :- * Filter (3)
+               :     :     :     :  +- * ColumnarToRow (2)
+               :     :     :     :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (1)
+               :     :     :     +- BroadcastExchange (7)
+               :     :     :        +- * Filter (6)
+               :     :     :           +- * ColumnarToRow (5)
+               :     :     :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_returns (4)
+               :     :     +- BroadcastExchange (13)
+               :     :        +- * Filter (12)
+               :     :           +- * ColumnarToRow (11)
+               :     :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store (10)
+               :     +- BroadcastExchange (19)
+               :        +- * Filter (18)
+               :           +- * ColumnarToRow (17)
+               :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (16)
+               +- BroadcastExchange (26)
+                  +- * Project (25)
+                     +- * Filter (24)
+                        +- * ColumnarToRow (23)
+                           +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (22)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [5]: [ss_item_sk#6L, ss_customer_sk#7L, ss_store_sk#11L, ss_ticket_number#13L, ss_sold_date_sk#27L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales/ss_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ss_sold_date_sk#27L)]
+PushedFilters: [IsNotNull(ss_ticket_number), IsNotNull(ss_item_sk), IsNotNull(ss_customer_sk), IsNotNull(ss_store_sk)]
+ReadSchema: struct<ss_item_sk:bigint,ss_customer_sk:bigint,ss_store_sk:bigint,ss_ticket_number:bigint>
+
+(2) ColumnarToRow [codegen id : 5]
+Input [5]: [ss_item_sk#6L, ss_customer_sk#7L, ss_store_sk#11L, ss_ticket_number#13L, ss_sold_date_sk#27L]
+
+(3) Filter [codegen id : 5]
+Input [5]: [ss_item_sk#6L, ss_customer_sk#7L, ss_store_sk#11L, ss_ticket_number#13L, ss_sold_date_sk#27L]
+Condition : (((isnotnull(ss_ticket_number#13L) AND isnotnull(ss_item_sk#6L)) AND isnotnull(ss_customer_sk#7L)) AND isnotnull(ss_store_sk#11L))
+
+(4) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_returns
+Output [4]: [sr_item_sk#29L, sr_customer_sk#30L, sr_ticket_number#36L, sr_returned_date_sk#47L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_returns/sr_returned_date_sk=2450820, ... 2002 entries]
+PartitionFilters: [isnotnull(sr_returned_date_sk#47L), dynamicpruningexpression(sr_returned_date_sk#47L IN dynamicpruning#263)]
+PushedFilters: [IsNotNull(sr_ticket_number), IsNotNull(sr_item_sk), IsNotNull(sr_customer_sk)]
+ReadSchema: struct<sr_item_sk:bigint,sr_customer_sk:bigint,sr_ticket_number:bigint>
+
+(5) ColumnarToRow [codegen id : 1]
+Input [4]: [sr_item_sk#29L, sr_customer_sk#30L, sr_ticket_number#36L, sr_returned_date_sk#47L]
+
+(6) Filter [codegen id : 1]
+Input [4]: [sr_item_sk#29L, sr_customer_sk#30L, sr_ticket_number#36L, sr_returned_date_sk#47L]
+Condition : ((isnotnull(sr_ticket_number#36L) AND isnotnull(sr_item_sk#29L)) AND isnotnull(sr_customer_sk#30L))
+
+(7) BroadcastExchange
+Input [4]: [sr_item_sk#29L, sr_customer_sk#30L, sr_ticket_number#36L, sr_returned_date_sk#47L]
+Arguments: HashedRelationBroadcastMode(List(input[2, bigint, false], input[0, bigint, false], input[1, bigint, false]),false), [id=#243]
+
+(8) BroadcastHashJoin [codegen id : 5]
+Left keys [3]: [ss_ticket_number#13L, ss_item_sk#6L, ss_customer_sk#7L]
+Right keys [3]: [sr_ticket_number#36L, sr_item_sk#29L, sr_customer_sk#30L]
+Join condition: None
+
+(9) Project [codegen id : 5]
+Output [3]: [ss_store_sk#11L, ss_sold_date_sk#27L, sr_returned_date_sk#47L]
+Input [9]: [ss_item_sk#6L, ss_customer_sk#7L, ss_store_sk#11L, ss_ticket_number#13L, ss_sold_date_sk#27L, sr_item_sk#29L, sr_customer_sk#30L, sr_ticket_number#36L, sr_returned_date_sk#47L]
+
+(10) Scan orc tpcds_bin_partitioned_decimal_orc_2.store
+Output [11]: [s_store_sk#48L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store]
+PushedFilters: [IsNotNull(s_store_sk)]
+ReadSchema: struct<s_store_sk:bigint,s_store_name:string,s_company_id:int,s_street_number:string,s_street_name:string,s_street_type:string,s_suite_number:string,s_city:string,s_county:string,s_state:string,s_zip:string>
+
+(11) ColumnarToRow [codegen id : 2]
+Input [11]: [s_store_sk#48L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+
+(12) Filter [codegen id : 2]
+Input [11]: [s_store_sk#48L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+Condition : isnotnull(s_store_sk#48L)
+
+(13) BroadcastExchange
+Input [11]: [s_store_sk#48L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#192]
+
+(14) BroadcastHashJoin [codegen id : 5]
+Left keys [1]: [ss_store_sk#11L]
+Right keys [1]: [s_store_sk#48L]
+Join condition: None
+
+(15) Project [codegen id : 5]
+Output [12]: [ss_sold_date_sk#27L, sr_returned_date_sk#47L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+Input [14]: [ss_store_sk#11L, ss_sold_date_sk#27L, sr_returned_date_sk#47L, s_store_sk#48L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+
+(16) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [1]: [d_date_sk#77L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_date_sk)]
+ReadSchema: struct<d_date_sk:bigint>
+
+(17) ColumnarToRow [codegen id : 3]
+Input [1]: [d_date_sk#77L]
+
+(18) Filter [codegen id : 3]
+Input [1]: [d_date_sk#77L]
+Condition : isnotnull(d_date_sk#77L)
+
+(19) BroadcastExchange
+Input [1]: [d_date_sk#77L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#200]
+
+(20) BroadcastHashJoin [codegen id : 5]
+Left keys [1]: [ss_sold_date_sk#27L]
+Right keys [1]: [d_date_sk#77L]
+Join condition: None
+
+(21) Project [codegen id : 5]
+Output [12]: [ss_sold_date_sk#27L, sr_returned_date_sk#47L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+Input [13]: [ss_sold_date_sk#27L, sr_returned_date_sk#47L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73, d_date_sk#77L]
+
+(22) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [3]: [d_date_sk#105L, d_year#111, d_moy#113]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_year), IsNotNull(d_moy), EqualTo(d_year,2001), EqualTo(d_moy,8), IsNotNull(d_date_sk)]
+ReadSchema: struct<d_date_sk:bigint,d_year:int,d_moy:int>
+
+(23) ColumnarToRow [codegen id : 4]
+Input [3]: [d_date_sk#105L, d_year#111, d_moy#113]
+
+(24) Filter [codegen id : 4]
+Input [3]: [d_date_sk#105L, d_year#111, d_moy#113]
+Condition : ((((isnotnull(d_year#111) AND isnotnull(d_moy#113)) AND (d_year#111 = 2001)) AND (d_moy#113 = 8)) AND isnotnull(d_date_sk#105L))
+
+(25) Project [codegen id : 4]
+Output [1]: [d_date_sk#105L]
+Input [3]: [d_date_sk#105L, d_year#111, d_moy#113]
+
+(26) BroadcastExchange
+Input [1]: [d_date_sk#105L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#209]
+
+(27) BroadcastHashJoin [codegen id : 5]
+Left keys [1]: [sr_returned_date_sk#47L]
+Right keys [1]: [d_date_sk#105L]
+Join condition: None
+
+(28) Project [codegen id : 5]
+Output [12]: [ss_sold_date_sk#27L, sr_returned_date_sk#47L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+Input [13]: [ss_sold_date_sk#27L, sr_returned_date_sk#47L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73, d_date_sk#105L]
+
+(29) HashAggregate [codegen id : 5]
+Input [12]: [ss_sold_date_sk#27L, sr_returned_date_sk#47L, s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+Keys [10]: [s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+Functions [5]: [partial_sum(cast(CASE WHEN ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 30) THEN 1 ELSE 0 END as bigint)), partial_sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 30) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 60)) THEN 1 ELSE 0 END as bigint)), partial_sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 60) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 90)) THEN 1 ELSE 0 END as bigint)), partial_sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 90) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 120)) THEN 1 ELSE 0 END as bigint)), partial_sum(cast(CASE WHEN ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 120) THEN 1 ELSE 0 END as bigint))]
+Aggregate Attributes [5]: [sum#264L, sum#265L, sum#266L, sum#267L, sum#268L]
+Results [15]: [s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73, sum#269L, sum#270L, sum#271L, sum#272L, sum#273L]
+
+(30) Exchange
+Input [15]: [s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73, sum#269L, sum#270L, sum#271L, sum#272L, sum#273L]
+Arguments: hashpartitioning(s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73, 200), ENSURE_REQUIREMENTS, [id=#255]
+
+(31) HashAggregate [codegen id : 6]
+Input [15]: [s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73, sum#269L, sum#270L, sum#271L, sum#272L, sum#273L]
+Keys [10]: [s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73]
+Functions [5]: [sum(cast(CASE WHEN ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 30) THEN 1 ELSE 0 END as bigint)), sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 30) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 60)) THEN 1 ELSE 0 END as bigint)), sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 60) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 90)) THEN 1 ELSE 0 END as bigint)), sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 90) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 120)) THEN 1 ELSE 0 END as bigint)), sum(cast(CASE WHEN ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 120) THEN 1 ELSE 0 END as bigint))]
+Aggregate Attributes [5]: [sum(cast(CASE WHEN ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 30) THEN 1 ELSE 0 END as bigint))#133L, sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 30) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 60)) THEN 1 ELSE 0 END as bigint))#134L, sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 60) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 90)) THEN 1 ELSE 0 END as bigint))#135L, sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 90) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 120)) THEN 1 ELSE 0 END as bigint))#136L, sum(cast(CASE WHEN ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 120) THEN 1 ELSE 0 END as bigint))#137L]
+Results [15]: [s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73, sum(cast(CASE WHEN ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 30) THEN 1 ELSE 0 END as bigint))#133L AS 30 days #0L, sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 30) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 60)) THEN 1 ELSE 0 END as bigint))#134L AS 31 - 60 days #1L, sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 60) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 90)) THEN 1 ELSE 0 END as bigint))#135L AS 61 - 90 days #2L, sum(cast(CASE WHEN (((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 90) AND ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) <= 120)) THEN 1 ELSE 0 END as bigint))#136L AS 91 - 120 days #3L, sum(cast(CASE WHEN ((sr_returned_date_sk#47L - ss_sold_date_sk#27L) > 120) THEN 1 ELSE 0 END as bigint))#137L AS >120 days #4L]
+
+(32) TakeOrderedAndProject
+Input [15]: [s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73, 30 days #0L, 31 - 60 days #1L, 61 - 90 days #2L, 91 - 120 days #3L, >120 days #4L]
+Arguments: 100, [s_store_name#53 ASC NULLS FIRST, s_company_id#64 ASC NULLS FIRST, s_street_number#66 ASC NULLS FIRST, s_street_name#67 ASC NULLS FIRST, s_street_type#68 ASC NULLS FIRST, s_suite_number#69 ASC NULLS FIRST, s_city#70 ASC NULLS FIRST, s_county#71 ASC NULLS FIRST, s_state#72 ASC NULLS FIRST, s_zip#73 ASC NULLS FIRST], [s_store_name#53, s_company_id#64, s_street_number#66, s_street_name#67, s_street_type#68, s_suite_number#69, s_city#70, s_county#71, s_state#72, s_zip#73, 30 days #0L, 31 - 60 days #1L, 61 - 90 days #2L, 91 - 120 days #3L, >120 days #4L]
+
+===== Subqueries =====
+
+Subquery:1 Hosting operator id = 4 Hosting Expression = sr_returned_date_sk#47L IN dynamicpruning#263
+ReusedExchange (33)
+
+
+(33) ReusedExchange [Reuses operator id: 26]
+Output [1]: [d_date_sk#105L]
+
+

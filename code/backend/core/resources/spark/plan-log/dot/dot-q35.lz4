@@ -1,0 +1,266 @@
+digraph G {
+  0 [labelType="html" label="<br><b>TakeOrderedAndProject</b><br><br>"];
+
+  subgraph cluster1 {
+    isCluster="true";
+    label="WholeStageCodegen (15)\n \nduration: total (min, med, max (stageId: taskId))\n10.9 s (14 ms, 50 ms, 134 ms (stage 11.0: task 5991))";
+      2 [labelType="html" label="<b>HashAggregate</b><br><br>time in aggregation build total (min, med, max (stageId: taskId))<br>1.6 s (1 ms, 6 ms, 22 ms (stage 11.0: task 6018))<br>peak memory total (min, med, max (stageId: taskId))<br>12.5 GiB (64.3 MiB, 64.3 MiB, 64.3 MiB (stage 11.0: task 5999))<br>number of output rows: 11,707<br>avg hash probe bucket list iters (min, med, max (stageId: taskId)):<br>(1, 1, 1 (stage 11.0: task 5999))"];
+  }
+     
+  3 [labelType="html" label="<b>Exchange</b><br><br>shuffle records written: 12,345<br>shuffle write time total (min, med, max (stageId: taskId))<br>49.5 s (10 ms, 104 ms, 3.7 s (stage 10.0: task 5794))<br>records read: 12,345<br>local bytes read total (min, med, max (stageId: taskId))<br>1555.2 KiB (4.7 KiB, 7.7 KiB, 10.7 KiB (stage 11.0: task 6078))<br>fetch wait time total (min, med, max (stageId: taskId))<br>5 ms (0 ms, 0 ms, 4 ms (stage 11.0: task 5995))<br>local blocks read: 10,633<br>data size total (min, med, max (stageId: taskId))<br>2.2 MiB (7.9 KiB, 11.0 KiB, 14.5 KiB (stage 10.0: task 5928))<br>shuffle bytes written total (min, med, max (stageId: taskId))<br>1555.2 KiB (5.5 KiB, 7.8 KiB, 10.0 KiB (stage 10.0: task 5928))"];
+
+  subgraph cluster4 {
+    isCluster="true";
+    label="WholeStageCodegen (14)\n \nduration: total (min, med, max (stageId: taskId))\n11.0 m (26 ms, 3.0 s, 9.7 s (stage 10.0: task 5794))";
+      5 [labelType="html" label="<b>HashAggregate</b><br><br>time in aggregation build total (min, med, max (stageId: taskId))<br>1.7 m (2 ms, 169 ms, 4.9 s (stage 10.0: task 5848))<br>peak memory total (min, med, max (stageId: taskId))<br>10.4 GiB (256.0 KiB, 64.3 MiB, 64.3 MiB (stage 10.0: task 5865))<br>number of output rows: 12,345<br>avg hash probe bucket list iters (min, med, max (stageId: taskId)):<br>(1, 1, 1 (stage 10.0: task 5865))"];    
+  6 [labelType="html" label="<br><b>Project</b><br><br>"];    
+  7 [labelType="html" label="<b>BroadcastHashJoin</b><br><br>number of output rows: 12,352"];    
+  8 [labelType="html" label="<br><b>Project</b><br><br>"];    
+  9 [labelType="html" label="<b>BroadcastHashJoin</b><br><br>number of output rows: 12,352"];    
+  10 [labelType="html" label="<br><b>Project</b><br><br>"];    
+  11 [labelType="html" label="<b>Filter</b><br><br>number of output rows: 12,352"];
+  }
+     
+  12 [labelType="html" label="<b>SortMergeJoin</b><br><br>number of output rows: 43,357"];
+  13 [labelType="html" label="<b>SortMergeJoin</b><br><br>number of output rows: 43,357"];
+  14 [labelType="html" label="<b>SortMergeJoin</b><br><br>number of output rows: 43,357"];
+
+  subgraph cluster15 {
+    isCluster="true";
+    label="WholeStageCodegen (2)\n \nduration: total (min, med, max (stageId: taskId))\n4.4 m (0 ms, 0 ms, 10.2 s (stage 10.0: task 5804))";
+      16 [labelType="html" label="<b>Sort</b><br><br>sort time total (min, med, max (stageId: taskId))<br>54 ms (0 ms, 0 ms, 25 ms (stage 10.0: task 5813))<br>peak memory total (min, med, max (stageId: taskId))<br>12.5 GiB (64.1 MiB, 64.1 MiB, 64.1 MiB (stage 10.0: task 5865))<br>spill size total (min, med, max (stageId: taskId))<br>0.0 B (0.0 B, 0.0 B, 0.0 B (stage 10.0: task 5865))"];
+  }
+     
+  17 [labelType="html" label="<b>Exchange</b><br><br>shuffle records written: 139,059<br>shuffle write time total (min, med, max (stageId: taskId))<br>181 ms (0 ms, 181 ms, 181 ms (stage 8.0: task 5670))<br>records read: 139,059<br>local bytes read total (min, med, max (stageId: taskId))<br>2.3 MiB (10.5 KiB, 11.5 KiB, 12.6 KiB (stage 10.0: task 5943))<br>fetch wait time total (min, med, max (stageId: taskId))<br>0 ms (0 ms, 0 ms, 0 ms (stage 10.0: task 5865))<br>local blocks read: 200<br>data size total (min, med, max (stageId: taskId))<br>4.2 MiB (0.0 B, 4.2 MiB, 4.2 MiB (stage 8.0: task 5670))<br>shuffle bytes written total (min, med, max (stageId: taskId))<br>2.3 MiB (0.0 B, 2.3 MiB, 2.3 MiB (stage 8.0: task 5670))"];
+
+  subgraph cluster18 {
+    isCluster="true";
+    label="WholeStageCodegen (1)\n \nduration: total (min, med, max (stageId: taskId))\n877 ms (76 ms, 801 ms, 801 ms (stage 8.0: task 5670))";
+      19 [labelType="html" label="<b>Filter</b><br><br>number of output rows: 139,059"];    
+  20 [labelType="html" label="<b>ColumnarToRow</b><br><br>number of output rows: 144,000<br>number of input batches: 36"];
+  }
+     
+  21 [labelType="html" label="<b>Scan orc tpcds_bin_partitioned_decimal_orc_2.customer</b><br><br>number of files read: 1<br>scan time total (min, med, max (stageId: taskId))<br>143 ms (63 ms, 80 ms, 80 ms (stage 8.0: task 5670))<br>metadata time: 0 ms<br>size of files read: 5.2 MiB<br>number of output rows: 144,000"];
+
+  subgraph cluster22 {
+    isCluster="true";
+    label="WholeStageCodegen (5)\n \nduration: total (min, med, max (stageId: taskId))\n15.9 m (0 ms, 4.7 s, 10.0 s (stage 10.0: task 5849))";
+      23 [labelType="html" label="<b>Sort</b><br><br>sort time total (min, med, max (stageId: taskId))<br>2.1 s (0 ms, 6 ms, 46 ms (stage 10.0: task 5775))<br>peak memory total (min, med, max (stageId: taskId))<br>12.5 GiB (64.1 MiB, 64.1 MiB, 65.0 MiB (stage 10.0: task 5805))<br>spill size total (min, med, max (stageId: taskId))<br>0.0 B (0.0 B, 0.0 B, 0.0 B (stage 10.0: task 5865))"];
+  }
+     
+  24 [labelType="html" label="<b>Exchange</b><br><br>shuffle records written: 618,376<br>shuffle write time total (min, med, max (stageId: taskId))<br>40.5 s (159 ms, 365 ms, 2.2 s (stage 7.0: task 5590))<br>records read: 618,376<br>local bytes read total (min, med, max (stageId: taskId))<br>1530.2 KiB (6.8 KiB, 7.6 KiB, 14.8 KiB (stage 10.0: task 5805))<br>fetch wait time total (min, med, max (stageId: taskId))<br>56 ms (0 ms, 0 ms, 14 ms (stage 10.0: task 5815))<br>local blocks read: 16,744<br>data size total (min, med, max (stageId: taskId))<br>9.4 MiB (65.4 KiB, 83.6 KiB, 292.2 KiB (stage 7.0: task 5579))<br>shuffle bytes written total (min, med, max (stageId: taskId))<br>1530.2 KiB (13.2 KiB, 15.1 KiB, 29.3 KiB (stage 7.0: task 5579))"];
+
+  subgraph cluster25 {
+    isCluster="true";
+    label="WholeStageCodegen (4)\n \nduration: total (min, med, max (stageId: taskId))\n1.2 m (214 ms, 462 ms, 3.5 s (stage 7.0: task 5582))";
+      26 [labelType="html" label="<br><b>Project</b><br><br>"];    
+  27 [labelType="html" label="<b>BroadcastHashJoin</b><br><br>number of output rows: 618,376"];    
+  28 [labelType="html" label="<b>ColumnarToRow</b><br><br>number of output rows: 618,376<br>number of input batches: 287"];
+  }
+     
+  29 [labelType="html" label="<b>Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales</b><br><br>number of files read: 273<br>scan time total (min, med, max (stageId: taskId))<br>30.0 s (39 ms, 94 ms, 2.5 s (stage 7.0: task 5587))<br>dynamic partition pruning time: 50 ms<br>metadata time: 576 ms<br>size of files read: 22.1 MiB<br>number of output rows: 618,376<br>static number of files read: 1,823<br>static size of files read: 193.2 MiB<br>number of partitions read: 273"];
+  30 [labelType="html" label="<b>SubqueryBroadcast</b><br><br>data size (bytes): 4,384<br>time to collect (ms): 2,119"];
+  31 [labelType="html" label="<br><b>ReusedExchange</b><br><br>"];
+  32 [labelType="html" label="<b>BroadcastExchange</b><br><br>time to broadcast: 7 ms<br>time to build: 53 ms<br>time to collect: 2.0 s<br>number of output rows: 274<br>data size: 1026.1 KiB"];
+
+  subgraph cluster33 {
+    isCluster="true";
+    label="WholeStageCodegen (3)\n \nduration: 1.0 s";
+      34 [labelType="html" label="<br><b>Project</b><br><br>"];    
+  35 [labelType="html" label="<b>Filter</b><br><br>number of output rows: 274"];    
+  36 [labelType="html" label="<b>ColumnarToRow</b><br><br>number of output rows: 73,049<br>number of input batches: 18"];
+  }
+     
+  37 [labelType="html" label="<b>Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim</b><br><br>number of files read: 1<br>scan time: 977 ms<br>metadata time: 12 ms<br>size of files read: 186.7 KiB<br>number of output rows: 73,049"];
+  38 [labelType="html" label="<b>BroadcastExchange</b><br><br>time to broadcast: 7 ms<br>time to build: 53 ms<br>time to collect: 2.0 s<br>number of output rows: 274<br>data size: 1026.1 KiB"];
+
+  subgraph cluster39 {
+    isCluster="true";
+    label="WholeStageCodegen (3)\n \nduration: 1.0 s";
+      40 [labelType="html" label="<br><b>Project</b><br><br>"];    
+  41 [labelType="html" label="<b>Filter</b><br><br>number of output rows: 274"];    
+  42 [labelType="html" label="<b>ColumnarToRow</b><br><br>number of output rows: 73,049<br>number of input batches: 18"];
+  }
+     
+  43 [labelType="html" label="<b>Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim</b><br><br>number of files read: 1<br>scan time: 977 ms<br>metadata time: 12 ms<br>size of files read: 186.7 KiB<br>number of output rows: 73,049"];
+
+  subgraph cluster44 {
+    isCluster="true";
+    label="WholeStageCodegen (8)\n \nduration: total (min, med, max (stageId: taskId))\n11.8 m (0 ms, 996 ms, 9.5 s (stage 10.0: task 5864))";
+      45 [labelType="html" label="<b>Sort</b><br><br>sort time total (min, med, max (stageId: taskId))<br>453 ms (0 ms, 0 ms, 50 ms (stage 10.0: task 5816))<br>peak memory total (min, med, max (stageId: taskId))<br>12.5 GiB (64.1 MiB, 64.1 MiB, 64.1 MiB (stage 10.0: task 5865))<br>spill size total (min, med, max (stageId: taskId))<br>0.0 B (0.0 B, 0.0 B, 0.0 B (stage 10.0: task 5865))"];
+  }
+     
+  46 [labelType="html" label="<b>Exchange</b><br><br>shuffle records written: 159,934<br>shuffle write time total (min, med, max (stageId: taskId))<br>16.1 s (16 ms, 189 ms, 424 ms (stage 9.0: task 5680))<br>records read: 159,934<br>local bytes read total (min, med, max (stageId: taskId))<br>639.0 KiB (2.3 KiB, 3.2 KiB, 3.9 KiB (stage 10.0: task 5888))<br>fetch wait time total (min, med, max (stageId: taskId))<br>43 ms (0 ms, 0 ms, 11 ms (stage 10.0: task 5820))<br>local blocks read: 9,066<br>data size total (min, med, max (stageId: taskId))<br>2.4 MiB (13.1 KiB, 22.7 KiB, 71.0 KiB (stage 9.0: task 5672))<br>shuffle bytes written total (min, med, max (stageId: taskId))<br>639.0 KiB (3.8 KiB, 6.3 KiB, 13.5 KiB (stage 9.0: task 5672))"];
+
+  subgraph cluster47 {
+    isCluster="true";
+    label="WholeStageCodegen (7)\n \nduration: total (min, med, max (stageId: taskId))\n47.8 s (75 ms, 553 ms, 912 ms (stage 9.0: task 5756))";
+      48 [labelType="html" label="<br><b>Project</b><br><br>"];    
+  49 [labelType="html" label="<b>BroadcastHashJoin</b><br><br>number of output rows: 159,934"];    
+  50 [labelType="html" label="<b>ColumnarToRow</b><br><br>number of output rows: 159,934<br>number of input batches: 273"];
+  }
+     
+  51 [labelType="html" label="<b>Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales</b><br><br>number of files read: 273<br>scan time total (min, med, max (stageId: taskId))<br>28.6 s (33 ms, 81 ms, 698 ms (stage 9.0: task 5731))<br>dynamic partition pruning time: 11 ms<br>metadata time: 246 ms<br>size of files read: 9.4 MiB<br>number of output rows: 159,934<br>static number of files read: 1,823<br>static size of files read: 81.0 MiB<br>number of partitions read: 273"];
+  52 [labelType="html" label="<b>SubqueryBroadcast</b><br><br>data size (bytes): 4,384<br>time to collect (ms): 2,119"];
+
+  subgraph cluster53 {
+    isCluster="true";
+    label="WholeStageCodegen (11)\n \nduration: total (min, med, max (stageId: taskId))\n6.6 m (0 ms, 65 ms, 9.1 s (stage 10.0: task 5838))";
+      54 [labelType="html" label="<b>Sort</b><br><br>sort time total (min, med, max (stageId: taskId))<br>153 ms (0 ms, 0 ms, 32 ms (stage 10.0: task 5820))<br>peak memory total (min, med, max (stageId: taskId))<br>12.5 GiB (64.1 MiB, 64.1 MiB, 64.1 MiB (stage 10.0: task 5805))<br>spill size total (min, med, max (stageId: taskId))<br>0.0 B (0.0 B, 0.0 B, 0.0 B (stage 10.0: task 5865))"];
+  }
+     
+  55 [labelType="html" label="<b>Exchange</b><br><br>shuffle records written: 317,747<br>shuffle write time total (min, med, max (stageId: taskId))<br>1.3 m (221 ms, 482 ms, 2.2 s (stage 6.0: task 5490))<br>records read: 317,747<br>local bytes read total (min, med, max (stageId: taskId))<br>1200.7 KiB (4.8 KiB, 6.0 KiB, 8.3 KiB (stage 10.0: task 5805))<br>fetch wait time total (min, med, max (stageId: taskId))<br>1 ms (0 ms, 0 ms, 1 ms (stage 10.0: task 5786))<br>local blocks read: 14,984<br>data size total (min, med, max (stageId: taskId))<br>4.8 MiB (38.3 KiB, 42.8 KiB, 101.6 KiB (stage 6.0: task 5488))<br>shuffle bytes written total (min, med, max (stageId: taskId))<br>1200.7 KiB (11.3 KiB, 11.9 KiB, 18.4 KiB (stage 6.0: task 5489))"];
+
+  subgraph cluster56 {
+    isCluster="true";
+    label="WholeStageCodegen (10)\n \nduration: total (min, med, max (stageId: taskId))\n4.1 m (830 ms, 2.5 s, 5.2 s (stage 6.0: task 5540))";
+      57 [labelType="html" label="<br><b>Project</b><br><br>"];    
+  58 [labelType="html" label="<b>BroadcastHashJoin</b><br><br>number of output rows: 317,747"];    
+  59 [labelType="html" label="<b>ColumnarToRow</b><br><br>number of output rows: 317,747<br>number of input batches: 273"];
+  }
+     
+  60 [labelType="html" label="<b>Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales</b><br><br>number of files read: 273<br>scan time total (min, med, max (stageId: taskId))<br>1.8 m (196 ms, 310 ms, 2.6 s (stage 6.0: task 5526))<br>dynamic partition pruning time: 11 ms<br>metadata time: 245 ms<br>size of files read: 16.4 MiB<br>number of output rows: 317,747<br>static number of files read: 1,839<br>static size of files read: 143.9 MiB<br>number of partitions read: 273"];
+  61 [labelType="html" label="<b>SubqueryBroadcast</b><br><br>data size (bytes): 4,384<br>time to collect (ms): 2,119"];
+  62 [labelType="html" label="<b>BroadcastExchange</b><br><br>time to broadcast: 10 ms<br>time to build: 84 ms<br>time to collect: 2.1 s<br>number of output rows: 72,000<br>data size: 4.5 MiB"];
+
+  subgraph cluster63 {
+    isCluster="true";
+    label="WholeStageCodegen (12)\n \nduration: 1.1 s";
+      64 [labelType="html" label="<b>Filter</b><br><br>number of output rows: 72,000"];    
+  65 [labelType="html" label="<b>ColumnarToRow</b><br><br>number of output rows: 72,000<br>number of input batches: 18"];
+  }
+     
+  66 [labelType="html" label="<b>Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_address</b><br><br>number of files read: 1<br>scan time: 1.0 s<br>metadata time: 12 ms<br>size of files read: 909.0 KiB<br>number of output rows: 72,000"];
+  67 [labelType="html" label="<b>BroadcastExchange</b><br><br>time to broadcast: 414 ms<br>time to build: 1.0 s<br>time to collect: 2.9 s<br>number of output rows: 1,920,800<br>data size: 270.7 MiB"];
+
+  subgraph cluster68 {
+    isCluster="true";
+    label="WholeStageCodegen (13)\n \nduration: 1.7 s";
+      69 [labelType="html" label="<b>Filter</b><br><br>number of output rows: 1,920,800"];    
+  70 [labelType="html" label="<b>ColumnarToRow</b><br><br>number of output rows: 1,920,800<br>number of input batches: 470"];
+  }
+     
+  71 [labelType="html" label="<b>Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_demographics</b><br><br>number of files read: 1<br>scan time: 1.1 s<br>metadata time: 12 ms<br>size of files read: 31.4 KiB<br>number of output rows: 1,920,800"];
+  2->0;
+
+  3->2;
+
+  5->3;
+
+  6->5;
+
+  7->6;
+
+  8->7;
+
+  9->8;
+
+  10->9;
+
+  11->10;
+
+  12->11;
+
+  13->12;
+
+  14->13;
+
+  16->14;
+
+  17->16;
+
+  19->17;
+
+  20->19;
+
+  21->20;
+
+  23->14;
+
+  24->23;
+
+  26->24;
+
+  27->26;
+
+  28->27;
+
+  29->28;
+
+  30->29;
+
+  31->30;
+
+  32->31;
+
+  34->32;
+
+  35->34;
+
+  36->35;
+
+  37->36;
+
+  38->27;
+
+  40->38;
+
+  41->40;
+
+  42->41;
+
+  43->42;
+
+  45->13;
+
+  46->45;
+
+  48->46;
+
+  49->48;
+
+  50->49;
+
+  51->50;
+
+  52->51;
+
+  38->52;
+
+  38->49;
+
+  54->12;
+
+  55->54;
+
+  57->55;
+
+  58->57;
+
+  59->58;
+
+  60->59;
+
+  61->60;
+
+  38->61;
+
+  38->58;
+
+  62->9;
+
+  64->62;
+
+  65->64;
+
+  66->65;
+
+  67->7;
+
+  69->67;
+
+  70->69;
+
+  71->70;
+
+}

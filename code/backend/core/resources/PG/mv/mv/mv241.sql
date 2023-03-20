@@ -1,0 +1,3 @@
+create materialized view if not exists mv241 as select info_type.id AS id, info_type.info AS info_type_info_1, movie_info.info AS movie_info_info_2, movie_info.movie_id AS movie_info_movie_id_3, movie_info_idx.info AS movie_info_idx_info_4, movie_info_idx.movie_id AS movie_info_idx_movie_id_5, title.title AS title
+ from movie_info,info_type,title,movie_info_idx
+ where (movie_info.movie_id = title.id) And (movie_info.movie_id = movie_info_idx.movie_id) And (info_type.id = movie_info.info_type_id) And (movie_info.info in ('Horror', 'Action', 'Sci-Fi', 'Thriller', 'Crime', 'War')) And (movie_info_idx.info_type_id = info_type.id) And (info_type.info = 'genres') And (info_type.info = 'votes') And (title.id = movie_info_idx.movie_id)

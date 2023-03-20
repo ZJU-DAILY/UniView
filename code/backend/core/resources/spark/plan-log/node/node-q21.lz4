@@ -1,0 +1,275 @@
+[PlanMetric]
+id:0 name:TakeOrderedAndProject desc:TakeOrderedAndProject(limit=100, orderBy=[w_warehouse_name#8 ASC NULLS FIRST,i_item_id#21 ASC NULLS FIRST], output=[w_warehouse_name#8,i_item_id#21,inv_before#0L,inv_after#1L])
+SQLPlanMetric(shuffle records written,41, sum)
+SQLPlanMetric(shuffle write time,42 ns, nsTiming)
+SQLPlanMetric(records read,39, sum)
+SQLPlanMetric(local bytes read,37, size)
+SQLPlanMetric(fetch wait time,38000000 ns, timing)
+SQLPlanMetric(remote bytes read,35, size)
+SQLPlanMetric(local blocks read,34, sum)
+SQLPlanMetric(remote blocks read,33, sum)
+SQLPlanMetric(remote bytes read to disk,36, size)
+SQLPlanMetric(shuffle bytes written,40, size)
+
+
+
+id:2 name:Filter desc:Filter ((CASE WHEN (inv_before#0L > 0) THEN (cast(inv_after#1L as double) / cast(inv_before#0L as double)) ELSE null END >= 0.666667) AND (CASE WHEN (inv_before#0L > 0) THEN (cast(inv_after#1L as double) / cast(inv_before#0L as double)) ELSE null END <= 1.5))
+SQLPlanMetric(number of output rows,44, sum)
+
+
+
+id:3 name:HashAggregate desc:HashAggregate(keys=[w_warehouse_name#8, i_item_id#21], functions=[sum(cast(CASE WHEN (d_date#44 < 11027) THEN inv_quantity_on_hand#5 ELSE 0 END as bigint)), sum(cast(CASE WHEN (d_date#44 >= 11027) THEN inv_quantity_on_hand#5 ELSE 0 END as bigint))])
+SQLPlanMetric(spill size,47, size)
+SQLPlanMetric(time in aggregation build,48000000 ns, timing)
+SQLPlanMetric(peak memory,46, size)
+SQLPlanMetric(number of output rows,45, sum)
+SQLPlanMetric(avg hash probe bucket list iters,49, average)
+
+
+
+id:1 name:WholeStageCodegen (5) desc:WholeStageCodegen (5)
+SQLPlanMetric(duration,43000000 ns, timing)
+
+
+
+id:4 name:Exchange desc:Exchange hashpartitioning(w_warehouse_name#8, i_item_id#21, 200), ENSURE_REQUIREMENTS, [id=#149]
+SQLPlanMetric(shuffle records written,31, sum)
+SQLPlanMetric(shuffle write time,32 ns, nsTiming)
+SQLPlanMetric(records read,29, sum)
+SQLPlanMetric(local bytes read,27, size)
+SQLPlanMetric(fetch wait time,28000000 ns, timing)
+SQLPlanMetric(remote bytes read,25, size)
+SQLPlanMetric(local blocks read,24, sum)
+SQLPlanMetric(remote blocks read,23, sum)
+SQLPlanMetric(data size,22, size)
+SQLPlanMetric(remote bytes read to disk,26, size)
+SQLPlanMetric(shuffle bytes written,30, size)
+
+
+
+id:6 name:HashAggregate desc:HashAggregate(keys=[w_warehouse_name#8, i_item_id#21], functions=[partial_sum(cast(CASE WHEN (d_date#44 < 11027) THEN inv_quantity_on_hand#5 ELSE 0 END as bigint)), partial_sum(cast(CASE WHEN (d_date#44 >= 11027) THEN inv_quantity_on_hand#5 ELSE 0 END as bigint))])
+SQLPlanMetric(spill size,53, size)
+SQLPlanMetric(time in aggregation build,54000000 ns, timing)
+SQLPlanMetric(peak memory,52, size)
+SQLPlanMetric(number of output rows,51, sum)
+SQLPlanMetric(avg hash probe bucket list iters,55, average)
+
+
+
+id:7 name:Project desc:Project [inv_quantity_on_hand#5, w_warehouse_name#8, i_item_id#21, d_date#44]
+
+
+
+id:8 name:BroadcastHashJoin desc:BroadcastHashJoin [inv_date_sk#2L], [d_date_sk#42L], Inner, BuildRight, false
+SQLPlanMetric(number of output rows,56, sum)
+
+
+
+id:9 name:Project desc:Project [inv_date_sk#2L, inv_quantity_on_hand#5, w_warehouse_name#8, i_item_id#21]
+
+
+
+id:10 name:BroadcastHashJoin desc:BroadcastHashJoin [inv_item_sk#3L], [i_item_sk#20L], Inner, BuildRight, false
+SQLPlanMetric(number of output rows,57, sum)
+
+
+
+id:11 name:Project desc:Project [inv_date_sk#2L, inv_item_sk#3L, inv_quantity_on_hand#5, w_warehouse_name#8]
+
+
+
+id:12 name:BroadcastHashJoin desc:BroadcastHashJoin [inv_warehouse_sk#4L], [w_warehouse_sk#6L], Inner, BuildRight, false
+SQLPlanMetric(number of output rows,58, sum)
+
+
+
+id:13 name:Filter desc:Filter ((isnotnull(inv_warehouse_sk#4L) AND isnotnull(inv_item_sk#3L)) AND isnotnull(inv_date_sk#2L))
+SQLPlanMetric(number of output rows,59, sum)
+
+
+
+id:14 name:ColumnarToRow desc:ColumnarToRow
+SQLPlanMetric(number of output rows,60, sum)
+SQLPlanMetric(number of input batches,61, sum)
+
+
+
+id:5 name:WholeStageCodegen (4) desc:WholeStageCodegen (4)
+SQLPlanMetric(duration,50000000 ns, timing)
+
+
+
+id:15 name:Scan orc tpcds_bin_partitioned_decimal_orc_2.inventory desc:FileScan orc tpcds_bin_partitioned_decimal_orc_2.inventory[inv_date_sk#2L,inv_item_sk#3L,inv_warehouse_sk#4L,inv_quantity_on_hand#5] Batched: true, DataFilters: [isnotnull(inv_warehouse_sk#4L), isnotnull(inv_item_sk#3L), isnotnull(inv_date_sk#2L)], Format: ORC, Location: InMemoryFileIndex[hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/..., PartitionFilters: [], PushedFilters: [IsNotNull(inv_warehouse_sk), IsNotNull(inv_item_sk), IsNotNull(inv_date_sk)], ReadSchema: struct<inv_date_sk:bigint,inv_item_sk:bigint,inv_warehouse_sk:bigint,inv_quantity_on_hand:int>
+SQLPlanMetric(number of files read,63, sum)
+SQLPlanMetric(scan time,66000000 ns, timing)
+SQLPlanMetric(metadata time,64000000 ns, timing)
+SQLPlanMetric(size of files read,65, size)
+SQLPlanMetric(number of output rows,62, sum)
+
+
+
+id:16 name:BroadcastExchange desc:BroadcastExchange HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#126]
+SQLPlanMetric(time to broadcast,71000000 ns, timing)
+SQLPlanMetric(time to build,70000000 ns, timing)
+SQLPlanMetric(time to collect,69000000 ns, timing)
+SQLPlanMetric(number of output rows,68, sum)
+SQLPlanMetric(data size,67, size)
+
+
+
+id:18 name:Filter desc:Filter isnotnull(w_warehouse_sk#6L)
+SQLPlanMetric(number of output rows,73, sum)
+
+
+
+id:19 name:ColumnarToRow desc:ColumnarToRow
+SQLPlanMetric(number of output rows,74, sum)
+SQLPlanMetric(number of input batches,75, sum)
+
+
+
+id:17 name:WholeStageCodegen (1) desc:WholeStageCodegen (1)
+SQLPlanMetric(duration,72000000 ns, timing)
+
+
+
+id:20 name:Scan orc tpcds_bin_partitioned_decimal_orc_2.warehouse desc:FileScan orc tpcds_bin_partitioned_decimal_orc_2.warehouse[w_warehouse_sk#6L,w_warehouse_name#8] Batched: true, DataFilters: [isnotnull(w_warehouse_sk#6L)], Format: ORC, Location: InMemoryFileIndex[hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/..., PartitionFilters: [], PushedFilters: [IsNotNull(w_warehouse_sk)], ReadSchema: struct<w_warehouse_sk:bigint,w_warehouse_name:string>
+SQLPlanMetric(number of files read,77, sum)
+SQLPlanMetric(scan time,80000000 ns, timing)
+SQLPlanMetric(metadata time,78000000 ns, timing)
+SQLPlanMetric(size of files read,79, size)
+SQLPlanMetric(number of output rows,76, sum)
+
+
+
+id:21 name:BroadcastExchange desc:BroadcastExchange HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#135]
+SQLPlanMetric(time to broadcast,85000000 ns, timing)
+SQLPlanMetric(time to build,84000000 ns, timing)
+SQLPlanMetric(time to collect,83000000 ns, timing)
+SQLPlanMetric(number of output rows,82, sum)
+SQLPlanMetric(data size,81, size)
+
+
+
+id:23 name:Project desc:Project [i_item_sk#20L, i_item_id#21]
+
+
+
+id:24 name:Filter desc:Filter (((isnotnull(i_current_price#25) AND (i_current_price#25 >= 0.99)) AND (i_current_price#25 <= 1.49)) AND isnotnull(i_item_sk#20L))
+SQLPlanMetric(number of output rows,87, sum)
+
+
+
+id:25 name:ColumnarToRow desc:ColumnarToRow
+SQLPlanMetric(number of output rows,88, sum)
+SQLPlanMetric(number of input batches,89, sum)
+
+
+
+id:22 name:WholeStageCodegen (2) desc:WholeStageCodegen (2)
+SQLPlanMetric(duration,86000000 ns, timing)
+
+
+
+id:26 name:Scan orc tpcds_bin_partitioned_decimal_orc_2.item desc:FileScan orc tpcds_bin_partitioned_decimal_orc_2.item[i_item_sk#20L,i_item_id#21,i_current_price#25] Batched: true, DataFilters: [isnotnull(i_current_price#25), (i_current_price#25 >= 0.99), (i_current_price#25 <= 1.49), isnot..., Format: ORC, Location: InMemoryFileIndex[hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/..., PartitionFilters: [], PushedFilters: [IsNotNull(i_current_price), GreaterThanOrEqual(i_current_price,0.99), LessThanOrEqual(i_current_..., ReadSchema: struct<i_item_sk:bigint,i_item_id:string,i_current_price:decimal(7,2)>
+SQLPlanMetric(number of files read,91, sum)
+SQLPlanMetric(scan time,94000000 ns, timing)
+SQLPlanMetric(metadata time,92000000 ns, timing)
+SQLPlanMetric(size of files read,93, size)
+SQLPlanMetric(number of output rows,90, sum)
+
+
+
+id:27 name:BroadcastExchange desc:BroadcastExchange HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#143]
+SQLPlanMetric(time to broadcast,99000000 ns, timing)
+SQLPlanMetric(time to build,98000000 ns, timing)
+SQLPlanMetric(time to collect,97000000 ns, timing)
+SQLPlanMetric(number of output rows,96, sum)
+SQLPlanMetric(data size,95, size)
+
+
+
+id:29 name:Filter desc:Filter (((isnotnull(d_date#44) AND (d_date#44 >= 10997)) AND (d_date#44 <= 11057)) AND isnotnull(d_date_sk#42L))
+SQLPlanMetric(number of output rows,101, sum)
+
+
+
+id:30 name:ColumnarToRow desc:ColumnarToRow
+SQLPlanMetric(number of output rows,102, sum)
+SQLPlanMetric(number of input batches,103, sum)
+
+
+
+id:28 name:WholeStageCodegen (3) desc:WholeStageCodegen (3)
+SQLPlanMetric(duration,100000000 ns, timing)
+
+
+
+id:31 name:Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim desc:FileScan orc tpcds_bin_partitioned_decimal_orc_2.date_dim[d_date_sk#42L,d_date#44] Batched: true, DataFilters: [isnotnull(d_date#44), (d_date#44 >= 10997), (d_date#44 <= 11057), isnotnull(d_date_sk#42L)], Format: ORC, Location: InMemoryFileIndex[hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/..., PartitionFilters: [], PushedFilters: [IsNotNull(d_date), GreaterThanOrEqual(d_date,2000-02-10), LessThanOrEqual(d_date,2000-04-10), Is..., ReadSchema: struct<d_date_sk:bigint,d_date:date>
+SQLPlanMetric(number of files read,105, sum)
+SQLPlanMetric(scan time,108000000 ns, timing)
+SQLPlanMetric(metadata time,106000000 ns, timing)
+SQLPlanMetric(size of files read,107, size)
+SQLPlanMetric(number of output rows,104, sum)
+
+
+
+  2->0;
+
+  3->2;
+
+  4->3;
+
+  6->4;
+
+  7->6;
+
+  8->7;
+
+  9->8;
+
+  10->9;
+
+  11->10;
+
+  12->11;
+
+  13->12;
+
+  14->13;
+
+  15->14;
+
+  16->12;
+
+  18->16;
+
+  19->18;
+
+  20->19;
+
+  21->10;
+
+  23->21;
+
+  24->23;
+
+  25->24;
+
+  26->25;
+
+  27->8;
+
+  29->27;
+
+  30->29;
+
+  31->30;
+
+[SubGraph]
+cluster 1 : 2 3 
+cluster 5 : 6 7 8 9 10 11 12 13 14 
+cluster 17 : 18 19 
+cluster 22 : 23 24 25 
+cluster 28 : 29 30 
+

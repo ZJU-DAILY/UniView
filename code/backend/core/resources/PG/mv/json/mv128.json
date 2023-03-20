@@ -1,0 +1,74 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Inner",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 18.93,
+    "Total Cost": 48249.59,
+    "Plan Rows": 7146,
+    "Plan Width": 8,
+    "Actual Startup Time": 143.088,
+    "Actual Total Time": 580.509,
+    "Actual Rows": 1193928,
+    "Actual Loops": 199,
+    "Inner Unique": true,
+    "Hash Cond": "(mc.company_type_id = ct.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_companies",
+        "Alias": "mc",
+        "Startup Cost": 0.0,
+        "Total Cost": 44881.29,
+        "Plan Rows": 1268385,
+        "Plan Width": 12,
+        "Actual Startup Time": 0.017,
+        "Actual Total Time": 324.608,
+        "Actual Rows": 1271989,
+        "Actual Loops": 199,
+        "Filter": "(note IS NULL)",
+        "Rows Removed by Filter": 1337140
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 18.88,
+        "Total Cost": 18.88,
+        "Plan Rows": 4,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.012,
+        "Actual Total Time": 0.012,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "company_type",
+            "Alias": "ct",
+            "Startup Cost": 0.0,
+            "Total Cost": 18.88,
+            "Plan Rows": 4,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.007,
+            "Actual Total Time": 0.009,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((kind)::text = 'production companies'::text)",
+            "Rows Removed by Filter": 3
+          }
+        ]
+      }
+    ]
+  }
+}

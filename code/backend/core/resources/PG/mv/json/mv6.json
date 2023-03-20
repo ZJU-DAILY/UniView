@@ -1,0 +1,72 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 2.43,
+    "Total Cost": 25496.24,
+    "Plan Rows": 12213,
+    "Plan Width": 4,
+    "Actual Startup Time": 49.623,
+    "Actual Total Time": 291.27,
+    "Actual Rows": 10,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Hash Cond": "(mi_idx.info_type_id = it.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_info_idx",
+        "Alias": "mi_idx",
+        "Startup Cost": 0.0,
+        "Total Cost": 21735.35,
+        "Plan Rows": 1380035,
+        "Plan Width": 8,
+        "Actual Startup Time": 0.013,
+        "Actual Total Time": 139.993,
+        "Actual Rows": 1380035,
+        "Actual Loops": 1
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 2.41,
+        "Total Cost": 2.41,
+        "Plan Rows": 1,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.017,
+        "Actual Total Time": 0.017,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "info_type",
+            "Alias": "it",
+            "Startup Cost": 0.0,
+            "Total Cost": 2.41,
+            "Plan Rows": 1,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.012,
+            "Actual Total Time": 0.013,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((info)::text = 'bottom 10 rank'::text)",
+            "Rows Removed by Filter": 112
+          }
+        ]
+      }
+    ]
+  }
+}

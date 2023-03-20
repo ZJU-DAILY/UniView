@@ -1,0 +1,74 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 6020.39,
+    "Total Cost": 63966.66,
+    "Plan Rows": 221,
+    "Plan Width": 4,
+    "Actual Startup Time": 39.654,
+    "Actual Total Time": 498.561,
+    "Actual Rows": 48328,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Hash Cond": "(mc.company_id = cn.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_companies",
+        "Alias": "mc",
+        "Startup Cost": 0.0,
+        "Total Cost": 57926.93,
+        "Plan Rows": 7367,
+        "Plan Width": 8,
+        "Actual Startup Time": 0.043,
+        "Actual Total Time": 444.689,
+        "Actual Rows": 48897,
+        "Actual Loops": 1,
+        "Filter": "(((note)::text ~~ '%(Japan)%'::text) AND ((note)::text !~~ '%(USA)%'::text))",
+        "Rows Removed by Filter": 2560232
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 5932.46,
+        "Total Cost": 5932.46,
+        "Plan Rows": 7034,
+        "Plan Width": 4,
+        "Actual Startup Time": 39.581,
+        "Actual Total Time": 39.582,
+        "Actual Rows": 6752,
+        "Actual Loops": 1,
+        "Hash Buckets": 8192,
+        "Original Hash Buckets": 8192,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 302,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "company_name",
+            "Alias": "cn",
+            "Startup Cost": 0.0,
+            "Total Cost": 5932.46,
+            "Plan Rows": 7034,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.015,
+            "Actual Total Time": 38.355,
+            "Actual Rows": 6752,
+            "Actual Loops": 1,
+            "Filter": "((country_code)::text = '[jp]'::text)",
+            "Rows Removed by Filter": 228245
+          }
+        ]
+      }
+    ]
+  }
+}

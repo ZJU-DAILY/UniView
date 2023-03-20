@@ -1,0 +1,275 @@
+== Physical Plan ==
+TakeOrderedAndProject (47)
++- * HashAggregate (46)
+   +- Exchange (45)
+      +- * HashAggregate (44)
+         +- * Expand (43)
+            +- * Project (42)
+               +- * BroadcastHashJoin Inner BuildRight (41)
+                  :- * Project (36)
+                  :  +- * BroadcastHashJoin Inner BuildRight (35)
+                  :     :- * Project (29)
+                  :     :  +- * BroadcastHashJoin Inner BuildRight (28)
+                  :     :     :- * Project (23)
+                  :     :     :  +- * BroadcastHashJoin Inner BuildRight (22)
+                  :     :     :     :- * Project (17)
+                  :     :     :     :  +- * BroadcastHashJoin Inner BuildRight (16)
+                  :     :     :     :     :- * Project (10)
+                  :     :     :     :     :  +- * BroadcastHashJoin Inner BuildRight (9)
+                  :     :     :     :     :     :- * Filter (3)
+                  :     :     :     :     :     :  +- * ColumnarToRow (2)
+                  :     :     :     :     :     :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales (1)
+                  :     :     :     :     :     +- BroadcastExchange (8)
+                  :     :     :     :     :        +- * Project (7)
+                  :     :     :     :     :           +- * Filter (6)
+                  :     :     :     :     :              +- * ColumnarToRow (5)
+                  :     :     :     :     :                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_demographics (4)
+                  :     :     :     :     +- BroadcastExchange (15)
+                  :     :     :     :        +- * Project (14)
+                  :     :     :     :           +- * Filter (13)
+                  :     :     :     :              +- * ColumnarToRow (12)
+                  :     :     :     :                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.customer (11)
+                  :     :     :     +- BroadcastExchange (21)
+                  :     :     :        +- * Filter (20)
+                  :     :     :           +- * ColumnarToRow (19)
+                  :     :     :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_demographics (18)
+                  :     :     +- BroadcastExchange (27)
+                  :     :        +- * Filter (26)
+                  :     :           +- * ColumnarToRow (25)
+                  :     :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_address (24)
+                  :     +- BroadcastExchange (34)
+                  :        +- * Project (33)
+                  :           +- * Filter (32)
+                  :              +- * ColumnarToRow (31)
+                  :                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (30)
+                  +- BroadcastExchange (40)
+                     +- * Filter (39)
+                        +- * ColumnarToRow (38)
+                           +- Scan orc tpcds_bin_partitioned_decimal_orc_2.item (37)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales
+Output [9]: [cs_bill_customer_sk#9L, cs_bill_cdemo_sk#10L, cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/catalog_sales/cs_sold_date_sk=2450815, ... 1838 entries]
+PartitionFilters: [isnotnull(cs_sold_date_sk#40L), dynamicpruningexpression(cs_sold_date_sk#40L IN dynamicpruning#295)]
+PushedFilters: [IsNotNull(cs_bill_cdemo_sk), IsNotNull(cs_bill_customer_sk), IsNotNull(cs_item_sk)]
+ReadSchema: struct<cs_bill_customer_sk:bigint,cs_bill_cdemo_sk:bigint,cs_item_sk:bigint,cs_quantity:int,cs_list_price:decimal(7,2),cs_sales_price:decimal(7,2),cs_coupon_amt:decimal(7,2),cs_net_profit:decimal(7,2)>
+
+(2) ColumnarToRow [codegen id : 7]
+Input [9]: [cs_bill_customer_sk#9L, cs_bill_cdemo_sk#10L, cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L]
+
+(3) Filter [codegen id : 7]
+Input [9]: [cs_bill_customer_sk#9L, cs_bill_cdemo_sk#10L, cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L]
+Condition : ((isnotnull(cs_bill_cdemo_sk#10L) AND isnotnull(cs_bill_customer_sk#9L)) AND isnotnull(cs_item_sk#21L))
+
+(4) Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_demographics
+Output [4]: [cd_demo_sk#41L, cd_gender#42, cd_education_status#44, cd_dep_count#47]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/customer_demographics]
+PushedFilters: [IsNotNull(cd_gender), IsNotNull(cd_education_status), EqualTo(cd_gender,F), EqualTo(cd_education_status,Unknown), IsNotNull(cd_demo_sk)]
+ReadSchema: struct<cd_demo_sk:bigint,cd_gender:string,cd_education_status:string,cd_dep_count:int>
+
+(5) ColumnarToRow [codegen id : 1]
+Input [4]: [cd_demo_sk#41L, cd_gender#42, cd_education_status#44, cd_dep_count#47]
+
+(6) Filter [codegen id : 1]
+Input [4]: [cd_demo_sk#41L, cd_gender#42, cd_education_status#44, cd_dep_count#47]
+Condition : ((((isnotnull(cd_gender#42) AND isnotnull(cd_education_status#44)) AND (cd_gender#42 = F)) AND (cd_education_status#44 = Unknown)) AND isnotnull(cd_demo_sk#41L))
+
+(7) Project [codegen id : 1]
+Output [2]: [cd_demo_sk#41L, cd_dep_count#47]
+Input [4]: [cd_demo_sk#41L, cd_gender#42, cd_education_status#44, cd_dep_count#47]
+
+(8) BroadcastExchange
+Input [2]: [cd_demo_sk#41L, cd_dep_count#47]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#258]
+
+(9) BroadcastHashJoin [codegen id : 7]
+Left keys [1]: [cs_bill_cdemo_sk#10L]
+Right keys [1]: [cd_demo_sk#41L]
+Join condition: None
+
+(10) Project [codegen id : 7]
+Output [9]: [cs_bill_customer_sk#9L, cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L, cd_dep_count#47]
+Input [11]: [cs_bill_customer_sk#9L, cs_bill_cdemo_sk#10L, cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L, cd_demo_sk#41L, cd_dep_count#47]
+
+(11) Scan orc tpcds_bin_partitioned_decimal_orc_2.customer
+Output [5]: [c_customer_sk#59L, c_current_cdemo_sk#61L, c_current_addr_sk#63L, c_birth_month#71, c_birth_year#72]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/customer]
+PushedFilters: [In(c_birth_month, [1,6,8,9,12,2]), IsNotNull(c_customer_sk), IsNotNull(c_current_cdemo_sk), IsNotNull(c_current_addr_sk)]
+ReadSchema: struct<c_customer_sk:bigint,c_current_cdemo_sk:bigint,c_current_addr_sk:bigint,c_birth_month:int,c_birth_year:int>
+
+(12) ColumnarToRow [codegen id : 2]
+Input [5]: [c_customer_sk#59L, c_current_cdemo_sk#61L, c_current_addr_sk#63L, c_birth_month#71, c_birth_year#72]
+
+(13) Filter [codegen id : 2]
+Input [5]: [c_customer_sk#59L, c_current_cdemo_sk#61L, c_current_addr_sk#63L, c_birth_month#71, c_birth_year#72]
+Condition : (((c_birth_month#71 IN (1,6,8,9,12,2) AND isnotnull(c_customer_sk#59L)) AND isnotnull(c_current_cdemo_sk#61L)) AND isnotnull(c_current_addr_sk#63L))
+
+(14) Project [codegen id : 2]
+Output [4]: [c_customer_sk#59L, c_current_cdemo_sk#61L, c_current_addr_sk#63L, c_birth_year#72]
+Input [5]: [c_customer_sk#59L, c_current_cdemo_sk#61L, c_current_addr_sk#63L, c_birth_month#71, c_birth_year#72]
+
+(15) BroadcastExchange
+Input [4]: [c_customer_sk#59L, c_current_cdemo_sk#61L, c_current_addr_sk#63L, c_birth_year#72]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#267]
+
+(16) BroadcastHashJoin [codegen id : 7]
+Left keys [1]: [cs_bill_customer_sk#9L]
+Right keys [1]: [c_customer_sk#59L]
+Join condition: None
+
+(17) Project [codegen id : 7]
+Output [11]: [cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L, cd_dep_count#47, c_current_cdemo_sk#61L, c_current_addr_sk#63L, c_birth_year#72]
+Input [13]: [cs_bill_customer_sk#9L, cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L, cd_dep_count#47, c_customer_sk#59L, c_current_cdemo_sk#61L, c_current_addr_sk#63L, c_birth_year#72]
+
+(18) Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_demographics
+Output [1]: [cd_demo_sk#50L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/customer_demographics]
+PushedFilters: [IsNotNull(cd_demo_sk)]
+ReadSchema: struct<cd_demo_sk:bigint>
+
+(19) ColumnarToRow [codegen id : 3]
+Input [1]: [cd_demo_sk#50L]
+
+(20) Filter [codegen id : 3]
+Input [1]: [cd_demo_sk#50L]
+Condition : isnotnull(cd_demo_sk#50L)
+
+(21) BroadcastExchange
+Input [1]: [cd_demo_sk#50L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#275]
+
+(22) BroadcastHashJoin [codegen id : 7]
+Left keys [1]: [c_current_cdemo_sk#61L]
+Right keys [1]: [cd_demo_sk#50L]
+Join condition: None
+
+(23) Project [codegen id : 7]
+Output [10]: [cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L, cd_dep_count#47, c_current_addr_sk#63L, c_birth_year#72]
+Input [12]: [cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L, cd_dep_count#47, c_current_cdemo_sk#61L, c_current_addr_sk#63L, c_birth_year#72, cd_demo_sk#50L]
+
+(24) Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_address
+Output [4]: [ca_address_sk#77L, ca_county#84, ca_state#85, ca_country#87]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/customer_address]
+PushedFilters: [In(ca_state, [MS,IN,ND,OK,NM,VA]), IsNotNull(ca_address_sk)]
+ReadSchema: struct<ca_address_sk:bigint,ca_county:string,ca_state:string,ca_country:string>
+
+(25) ColumnarToRow [codegen id : 4]
+Input [4]: [ca_address_sk#77L, ca_county#84, ca_state#85, ca_country#87]
+
+(26) Filter [codegen id : 4]
+Input [4]: [ca_address_sk#77L, ca_county#84, ca_state#85, ca_country#87]
+Condition : (ca_state#85 IN (MS,IN,ND,OK,NM,VA) AND isnotnull(ca_address_sk#77L))
+
+(27) BroadcastExchange
+Input [4]: [ca_address_sk#77L, ca_county#84, ca_state#85, ca_country#87]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#283]
+
+(28) BroadcastHashJoin [codegen id : 7]
+Left keys [1]: [c_current_addr_sk#63L]
+Right keys [1]: [ca_address_sk#77L]
+Join condition: None
+
+(29) Project [codegen id : 7]
+Output [12]: [cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L, cd_dep_count#47, c_birth_year#72, ca_county#84, ca_state#85, ca_country#87]
+Input [14]: [cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L, cd_dep_count#47, c_current_addr_sk#63L, c_birth_year#72, ca_address_sk#77L, ca_county#84, ca_state#85, ca_country#87]
+
+(30) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [2]: [d_date_sk#90L, d_year#96]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_year), EqualTo(d_year,1998), IsNotNull(d_date_sk)]
+ReadSchema: struct<d_date_sk:bigint,d_year:int>
+
+(31) ColumnarToRow [codegen id : 5]
+Input [2]: [d_date_sk#90L, d_year#96]
+
+(32) Filter [codegen id : 5]
+Input [2]: [d_date_sk#90L, d_year#96]
+Condition : ((isnotnull(d_year#96) AND (d_year#96 = 1998)) AND isnotnull(d_date_sk#90L))
+
+(33) Project [codegen id : 5]
+Output [1]: [d_date_sk#90L]
+Input [2]: [d_date_sk#90L, d_year#96]
+
+(34) BroadcastExchange
+Input [1]: [d_date_sk#90L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#292]
+
+(35) BroadcastHashJoin [codegen id : 7]
+Left keys [1]: [cs_sold_date_sk#40L]
+Right keys [1]: [d_date_sk#90L]
+Join condition: None
+
+(36) Project [codegen id : 7]
+Output [11]: [cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, ca_county#84, ca_state#85, ca_country#87]
+Input [13]: [cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cs_sold_date_sk#40L, cd_dep_count#47, c_birth_year#72, ca_county#84, ca_state#85, ca_country#87, d_date_sk#90L]
+
+(37) Scan orc tpcds_bin_partitioned_decimal_orc_2.item
+Output [2]: [i_item_sk#118L, i_item_id#119]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/item]
+PushedFilters: [IsNotNull(i_item_sk)]
+ReadSchema: struct<i_item_sk:bigint,i_item_id:string>
+
+(38) ColumnarToRow [codegen id : 6]
+Input [2]: [i_item_sk#118L, i_item_id#119]
+
+(39) Filter [codegen id : 6]
+Input [2]: [i_item_sk#118L, i_item_id#119]
+Condition : isnotnull(i_item_sk#118L)
+
+(40) BroadcastExchange
+Input [2]: [i_item_sk#118L, i_item_id#119]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#300]
+
+(41) BroadcastHashJoin [codegen id : 7]
+Left keys [1]: [cs_item_sk#21L]
+Right keys [1]: [i_item_sk#118L]
+Join condition: None
+
+(42) Project [codegen id : 7]
+Output [11]: [cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, i_item_id#119, ca_country#87, ca_state#85, ca_county#84]
+Input [13]: [cs_item_sk#21L, cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, ca_county#84, ca_state#85, ca_country#87, i_item_sk#118L, i_item_id#119]
+
+(43) Expand [codegen id : 7]
+Input [11]: [cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, i_item_id#119, ca_country#87, ca_state#85, ca_county#84]
+Arguments: [List(cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, i_item_id#119, ca_country#87, ca_state#85, ca_county#84, 0), List(cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, i_item_id#119, ca_country#87, ca_state#85, null, 1), List(cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, i_item_id#119, ca_country#87, null, null, 3), List(cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, i_item_id#119, null, null, null, 7), List(cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, null, null, null, null, 15)], [cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, i_item_id#152, ca_country#153, ca_state#154, ca_county#155, spark_grouping_id#151L]
+
+(44) HashAggregate [codegen id : 7]
+Input [12]: [cs_quantity#24, cs_list_price#26, cs_sales_price#27, cs_coupon_amt#33, cs_net_profit#39, cd_dep_count#47, c_birth_year#72, i_item_id#152, ca_country#153, ca_state#154, ca_county#155, spark_grouping_id#151L]
+Keys [5]: [i_item_id#152, ca_country#153, ca_state#154, ca_county#155, spark_grouping_id#151L]
+Functions [7]: [partial_avg(cast(cs_quantity#24 as decimal(12,2))), partial_avg(cast(cs_list_price#26 as decimal(12,2))), partial_avg(cast(cs_coupon_amt#33 as decimal(12,2))), partial_avg(cast(cs_sales_price#27 as decimal(12,2))), partial_avg(cast(cs_net_profit#39 as decimal(12,2))), partial_avg(cast(c_birth_year#72 as decimal(12,2))), partial_avg(cast(cd_dep_count#47 as decimal(12,2)))]
+Aggregate Attributes [14]: [sum#296, count#297L, sum#298, count#299L, sum#300, count#301L, sum#302, count#303L, sum#304, count#305L, sum#306, count#307L, sum#308, count#309L]
+Results [19]: [i_item_id#152, ca_country#153, ca_state#154, ca_county#155, spark_grouping_id#151L, sum#310, count#311L, sum#312, count#313L, sum#314, count#315L, sum#316, count#317L, sum#318, count#319L, sum#320, count#321L, sum#322, count#323L]
+
+(45) Exchange
+Input [19]: [i_item_id#152, ca_country#153, ca_state#154, ca_county#155, spark_grouping_id#151L, sum#310, count#311L, sum#312, count#313L, sum#314, count#315L, sum#316, count#317L, sum#318, count#319L, sum#320, count#321L, sum#322, count#323L]
+Arguments: hashpartitioning(i_item_id#152, ca_country#153, ca_state#154, ca_county#155, spark_grouping_id#151L, 200), ENSURE_REQUIREMENTS, [id=#349]
+
+(46) HashAggregate [codegen id : 8]
+Input [19]: [i_item_id#152, ca_country#153, ca_state#154, ca_county#155, spark_grouping_id#151L, sum#310, count#311L, sum#312, count#313L, sum#314, count#315L, sum#316, count#317L, sum#318, count#319L, sum#320, count#321L, sum#322, count#323L]
+Keys [5]: [i_item_id#152, ca_country#153, ca_state#154, ca_county#155, spark_grouping_id#151L]
+Functions [7]: [avg(cast(cs_quantity#24 as decimal(12,2))), avg(cast(cs_list_price#26 as decimal(12,2))), avg(cast(cs_coupon_amt#33 as decimal(12,2))), avg(cast(cs_sales_price#27 as decimal(12,2))), avg(cast(cs_net_profit#39 as decimal(12,2))), avg(cast(c_birth_year#72 as decimal(12,2))), avg(cast(cd_dep_count#47 as decimal(12,2)))]
+Aggregate Attributes [7]: [avg(cast(cs_quantity#24 as decimal(12,2)))#140, avg(cast(cs_list_price#26 as decimal(12,2)))#141, avg(cast(cs_coupon_amt#33 as decimal(12,2)))#142, avg(cast(cs_sales_price#27 as decimal(12,2)))#143, avg(cast(cs_net_profit#39 as decimal(12,2)))#144, avg(cast(c_birth_year#72 as decimal(12,2)))#145, avg(cast(cd_dep_count#47 as decimal(12,2)))#146]
+Results [11]: [i_item_id#152, ca_country#153, ca_state#154, ca_county#155, avg(cast(cs_quantity#24 as decimal(12,2)))#140 AS agg1#0, avg(cast(cs_list_price#26 as decimal(12,2)))#141 AS agg2#1, avg(cast(cs_coupon_amt#33 as decimal(12,2)))#142 AS agg3#2, avg(cast(cs_sales_price#27 as decimal(12,2)))#143 AS agg4#3, avg(cast(cs_net_profit#39 as decimal(12,2)))#144 AS agg5#4, avg(cast(c_birth_year#72 as decimal(12,2)))#145 AS agg6#5, avg(cast(cd_dep_count#47 as decimal(12,2)))#146 AS agg7#6]
+
+(47) TakeOrderedAndProject
+Input [11]: [i_item_id#152, ca_country#153, ca_state#154, ca_county#155, agg1#0, agg2#1, agg3#2, agg4#3, agg5#4, agg6#5, agg7#6]
+Arguments: 100, [ca_country#153 ASC NULLS FIRST, ca_state#154 ASC NULLS FIRST, ca_county#155 ASC NULLS FIRST, i_item_id#152 ASC NULLS FIRST], [i_item_id#152, ca_country#153, ca_state#154, ca_county#155, agg1#0, agg2#1, agg3#2, agg4#3, agg5#4, agg6#5, agg7#6]
+
+===== Subqueries =====
+
+Subquery:1 Hosting operator id = 1 Hosting Expression = cs_sold_date_sk#40L IN dynamicpruning#295
+ReusedExchange (48)
+
+
+(48) ReusedExchange [Reuses operator id: 34]
+Output [1]: [d_date_sk#90L]
+
+

@@ -1,0 +1,55 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 0.0,
+    "Total Cost": 88108.64,
+    "Plan Rows": 1,
+    "Plan Width": 4,
+    "Actual Startup Time": 3.313,
+    "Actual Total Time": 379.193,
+    "Actual Rows": 64,
+    "Actual Loops": 1,
+    "Inner Unique": false,
+    "Join Filter": "(it.id = pi.info_type_id)",
+    "Rows Removed by Join Filter": 0,
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "info_type",
+        "Alias": "it",
+        "Startup Cost": 0.0,
+        "Total Cost": 2.41,
+        "Plan Rows": 1,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.021,
+        "Actual Total Time": 0.029,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Filter": "((info)::text = 'mini biography'::text)",
+        "Rows Removed by Filter": 112
+      },
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Relation Name": "person_info",
+        "Alias": "pi",
+        "Startup Cost": 0.0,
+        "Total Cost": 88105.86,
+        "Plan Rows": 29,
+        "Plan Width": 8,
+        "Actual Startup Time": 3.29,
+        "Actual Total Time": 379.072,
+        "Actual Rows": 64,
+        "Actual Loops": 1,
+        "Filter": "((note)::text = 'Volker Boehm'::text)",
+        "Rows Removed by Filter": 2963600
+      }
+    ]
+  }
+}

@@ -1,0 +1,127 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 2467.01,
+    "Total Cost": 56880.03,
+    "Plan Rows": 1884,
+    "Plan Width": 20,
+    "Actual Startup Time": 67.454,
+    "Actual Total Time": 710.128,
+    "Actual Rows": 125186,
+    "Actual Loops": 1,
+    "Inner Unique": false,
+    "Hash Cond": "(mc.movie_id = cc.movie_id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_companies",
+        "Alias": "mc",
+        "Startup Cost": 0.0,
+        "Total Cost": 44881.29,
+        "Plan Rows": 1268385,
+        "Plan Width": 12,
+        "Actual Startup Time": 0.014,
+        "Actual Total Time": 363.061,
+        "Actual Rows": 1271989,
+        "Actual Loops": 1,
+        "Filter": "(note IS NULL)",
+        "Rows Removed by Filter": 1337140
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 2457.5,
+        "Total Cost": 2457.5,
+        "Plan Rows": 761,
+        "Plan Width": 8,
+        "Actual Startup Time": 67.369,
+        "Actual Total Time": 67.37,
+        "Actual Rows": 110494,
+        "Actual Loops": 1,
+        "Hash Buckets": 131072,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 2,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 3172,
+        "Plans": [
+          {
+            "Node Type": "Hash Join",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Join Type": "Inner",
+            "Startup Cost": 18.93,
+            "Total Cost": 2457.5,
+            "Plan Rows": 761,
+            "Plan Width": 8,
+            "Actual Startup Time": 0.033,
+            "Actual Total Time": 45.173,
+            "Actual Rows": 110494,
+            "Actual Loops": 1,
+            "Inner Unique": true,
+            "Hash Cond": "(cc.status_id = cct2.id)",
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Relation Name": "complete_cast",
+                "Alias": "cc",
+                "Startup Cost": 0.0,
+                "Total Cost": 2081.86,
+                "Plan Rows": 135086,
+                "Plan Width": 12,
+                "Actual Startup Time": 0.013,
+                "Actual Total Time": 16.227,
+                "Actual Rows": 135086,
+                "Actual Loops": 1
+              },
+              {
+                "Node Type": "Hash",
+                "Parent Relationship": "Inner",
+                "Parallel Aware": false,
+                "Startup Cost": 18.88,
+                "Total Cost": 18.88,
+                "Plan Rows": 4,
+                "Plan Width": 4,
+                "Actual Startup Time": 0.009,
+                "Actual Total Time": 0.01,
+                "Actual Rows": 1,
+                "Actual Loops": 1,
+                "Hash Buckets": 1024,
+                "Original Hash Buckets": 1024,
+                "Hash Batches": 1,
+                "Original Hash Batches": 1,
+                "Peak Memory Usage": 9,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Relation Name": "comp_cast_type",
+                    "Alias": "cct2",
+                    "Startup Cost": 0.0,
+                    "Total Cost": 18.88,
+                    "Plan Rows": 4,
+                    "Plan Width": 4,
+                    "Actual Startup Time": 0.008,
+                    "Actual Total Time": 0.008,
+                    "Actual Rows": 1,
+                    "Actual Loops": 1,
+                    "Filter": "((kind)::text = 'complete'::text)",
+                    "Rows Removed by Filter": 3
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

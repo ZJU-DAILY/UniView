@@ -1,0 +1,3 @@
+select title.id AS title_id_0, movie_keyword.movie_id AS movie_id, link_type.link AS link, keyword.id AS keyword_id_3, link_type.id AS link_type_id_4, keyword.keyword AS keyword, movie_link.linked_movie_id AS linked_movie_id, title.title AS title
+ from movie_link,title,movie_keyword,keyword,link_type
+ where (movie_link.movie_id = title.id) And (movie_link.linked_movie_id = title.id) And (link_type.id = movie_link.link_type_id) And title.id = movie_keyword.movie_id  And  movie_keyword.movie_id = title.id And (movie_keyword.keyword_id = keyword.id) And (keyword.keyword = '10,000-mile-club')

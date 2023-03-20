@@ -1,0 +1,72 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Inner",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 2.43,
+    "Total Cost": 352214.64,
+    "Plan Rows": 132303,
+    "Plan Width": 46,
+    "Actual Startup Time": 435.459,
+    "Actual Total Time": 3335.347,
+    "Actual Rows": 121863,
+    "Actual Loops": 33,
+    "Inner Unique": true,
+    "Hash Cond": "(mi.info_type_id = it1.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_info",
+        "Alias": "mi",
+        "Startup Cost": 0.0,
+        "Total Cost": 311495.85,
+        "Plan Rows": 14950285,
+        "Plan Width": 50,
+        "Actual Startup Time": 0.009,
+        "Actual Total Time": 1681.11,
+        "Actual Rows": 14835720,
+        "Actual Loops": 33
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 2.41,
+        "Total Cost": 2.41,
+        "Plan Rows": 1,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.025,
+        "Actual Total Time": 0.025,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "info_type",
+            "Alias": "it1",
+            "Startup Cost": 0.0,
+            "Total Cost": 2.41,
+            "Plan Rows": 1,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.016,
+            "Actual Total Time": 0.018,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((info)::text = 'budget'::text)",
+            "Rows Removed by Filter": 112
+          }
+        ]
+      }
+    ]
+  }
+}

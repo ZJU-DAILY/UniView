@@ -1,0 +1,161 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 3464.22,
+    "Total Cost": 85059.12,
+    "Plan Rows": 10,
+    "Plan Width": 94,
+    "Actual Startup Time": 975.723,
+    "Actual Total Time": 975.725,
+    "Actual Rows": 0,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Plans": [
+      {
+        "Node Type": "Hash Join",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Join Type": "Inner",
+        "Startup Cost": 3464.07,
+        "Total Cost": 85057.43,
+        "Plan Rows": 10,
+        "Plan Width": 16,
+        "Actual Startup Time": 975.722,
+        "Actual Total Time": 975.724,
+        "Actual Rows": 0,
+        "Actual Loops": 1,
+        "Inner Unique": false,
+        "Hash Cond": "(mk.movie_id = ml.movie_id)",
+        "Plans": [
+          {
+            "Node Type": "Hash Join",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Join Type": "Inner",
+            "Startup Cost": 2626.14,
+            "Total Cost": 84195.13,
+            "Plan Rows": 34,
+            "Plan Width": 4,
+            "Actual Startup Time": 899.296,
+            "Actual Total Time": 965.096,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Inner Unique": true,
+            "Hash Cond": "(mk.keyword_id = k.id)",
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Relation Name": "movie_keyword",
+                "Alias": "mk",
+                "Startup Cost": 0.0,
+                "Total Cost": 69693.3,
+                "Plan Rows": 4523930,
+                "Plan Width": 8,
+                "Actual Startup Time": 0.017,
+                "Actual Total Time": 459.533,
+                "Actual Rows": 4523930,
+                "Actual Loops": 1
+              },
+              {
+                "Node Type": "Hash",
+                "Parent Relationship": "Inner",
+                "Parallel Aware": false,
+                "Startup Cost": 2626.12,
+                "Total Cost": 2626.12,
+                "Plan Rows": 1,
+                "Plan Width": 4,
+                "Actual Startup Time": 12.661,
+                "Actual Total Time": 12.661,
+                "Actual Rows": 1,
+                "Actual Loops": 1,
+                "Hash Buckets": 1024,
+                "Original Hash Buckets": 1024,
+                "Hash Batches": 1,
+                "Original Hash Batches": 1,
+                "Peak Memory Usage": 9,
+                "Plans": [
+                  {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Relation Name": "keyword",
+                    "Alias": "k",
+                    "Startup Cost": 0.0,
+                    "Total Cost": 2626.12,
+                    "Plan Rows": 1,
+                    "Plan Width": 4,
+                    "Actual Startup Time": 12.375,
+                    "Actual Total Time": 12.641,
+                    "Actual Rows": 1,
+                    "Actual Loops": 1,
+                    "Filter": "((keyword)::text = '10,000-mile-club'::text)",
+                    "Rows Removed by Filter": 134169
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Node Type": "Hash",
+            "Parent Relationship": "Inner",
+            "Parallel Aware": false,
+            "Startup Cost": 462.97,
+            "Total Cost": 462.97,
+            "Plan Rows": 29997,
+            "Plan Width": 12,
+            "Actual Startup Time": 10.573,
+            "Actual Total Time": 10.574,
+            "Actual Rows": 29997,
+            "Actual Loops": 1,
+            "Hash Buckets": 32768,
+            "Original Hash Buckets": 32768,
+            "Hash Batches": 1,
+            "Original Hash Batches": 1,
+            "Peak Memory Usage": 1545,
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Relation Name": "movie_link",
+                "Alias": "ml",
+                "Startup Cost": 0.0,
+                "Total Cost": 462.97,
+                "Plan Rows": 29997,
+                "Plan Width": 12,
+                "Actual Startup Time": 0.023,
+                "Actual Total Time": 5.292,
+                "Actual Rows": 29997,
+                "Actual Loops": 1
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Node Type": "Index Scan",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Scan Direction": "Forward",
+        "Index Name": "link_type_pkey",
+        "Relation Name": "link_type",
+        "Alias": "lt",
+        "Startup Cost": 0.15,
+        "Total Cost": 0.17,
+        "Plan Rows": 1,
+        "Plan Width": 86,
+        "Actual Startup Time": 0.0,
+        "Actual Total Time": 0.0,
+        "Actual Rows": 0,
+        "Actual Loops": 0,
+        "Index Cond": "(id = ml.link_type_id)",
+        "Rows Removed by Index Recheck": 0
+      }
+    ]
+  }
+}

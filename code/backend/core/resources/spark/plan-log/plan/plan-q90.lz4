@@ -1,0 +1,290 @@
+== Physical Plan ==
+TakeOrderedAndProject (52)
++- * Project (51)
+   +- BroadcastNestedLoopJoin Inner BuildRight (50)
+      :- * HashAggregate (28)
+      :  +- Exchange (27)
+      :     +- * HashAggregate (26)
+      :        +- * Project (25)
+      :           +- * BroadcastHashJoin Inner BuildRight (24)
+      :              :- * Project (18)
+      :              :  +- * BroadcastHashJoin Inner BuildRight (17)
+      :              :     :- * Project (11)
+      :              :     :  +- * BroadcastHashJoin Inner BuildRight (10)
+      :              :     :     :- * Project (4)
+      :              :     :     :  +- * Filter (3)
+      :              :     :     :     +- * ColumnarToRow (2)
+      :              :     :     :        +- Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales (1)
+      :              :     :     +- BroadcastExchange (9)
+      :              :     :        +- * Project (8)
+      :              :     :           +- * Filter (7)
+      :              :     :              +- * ColumnarToRow (6)
+      :              :     :                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.household_demographics (5)
+      :              :     +- BroadcastExchange (16)
+      :              :        +- * Project (15)
+      :              :           +- * Filter (14)
+      :              :              +- * ColumnarToRow (13)
+      :              :                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.time_dim (12)
+      :              +- BroadcastExchange (23)
+      :                 +- * Project (22)
+      :                    +- * Filter (21)
+      :                       +- * ColumnarToRow (20)
+      :                          +- Scan orc tpcds_bin_partitioned_decimal_orc_2.web_page (19)
+      +- BroadcastExchange (49)
+         +- * HashAggregate (48)
+            +- Exchange (47)
+               +- * HashAggregate (46)
+                  +- * Project (45)
+                     +- * BroadcastHashJoin Inner BuildRight (44)
+                        :- * Project (42)
+                        :  +- * BroadcastHashJoin Inner BuildRight (41)
+                        :     :- * Project (35)
+                        :     :  +- * BroadcastHashJoin Inner BuildRight (34)
+                        :     :     :- * Project (32)
+                        :     :     :  +- * Filter (31)
+                        :     :     :     +- * ColumnarToRow (30)
+                        :     :     :        +- Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales (29)
+                        :     :     +- ReusedExchange (33)
+                        :     +- BroadcastExchange (40)
+                        :        +- * Project (39)
+                        :           +- * Filter (38)
+                        :              +- * ColumnarToRow (37)
+                        :                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.time_dim (36)
+                        +- ReusedExchange (43)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales
+Output [4]: [ws_sold_time_sk#5L, ws_ship_hdemo_sk#14L, ws_web_page_sk#16L, ws_sold_date_sk#38L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/web_sales]
+PushedFilters: [IsNotNull(ws_ship_hdemo_sk), IsNotNull(ws_sold_time_sk), IsNotNull(ws_web_page_sk)]
+ReadSchema: struct<ws_sold_time_sk:bigint,ws_ship_hdemo_sk:bigint,ws_web_page_sk:bigint>
+
+(2) ColumnarToRow [codegen id : 4]
+Input [4]: [ws_sold_time_sk#5L, ws_ship_hdemo_sk#14L, ws_web_page_sk#16L, ws_sold_date_sk#38L]
+
+(3) Filter [codegen id : 4]
+Input [4]: [ws_sold_time_sk#5L, ws_ship_hdemo_sk#14L, ws_web_page_sk#16L, ws_sold_date_sk#38L]
+Condition : ((isnotnull(ws_ship_hdemo_sk#14L) AND isnotnull(ws_sold_time_sk#5L)) AND isnotnull(ws_web_page_sk#16L))
+
+(4) Project [codegen id : 4]
+Output [3]: [ws_sold_time_sk#5L, ws_ship_hdemo_sk#14L, ws_web_page_sk#16L]
+Input [4]: [ws_sold_time_sk#5L, ws_ship_hdemo_sk#14L, ws_web_page_sk#16L, ws_sold_date_sk#38L]
+
+(5) Scan orc tpcds_bin_partitioned_decimal_orc_2.household_demographics
+Output [2]: [hd_demo_sk#39L, hd_dep_count#42]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/household_demographics]
+PushedFilters: [IsNotNull(hd_dep_count), EqualTo(hd_dep_count,6), IsNotNull(hd_demo_sk)]
+ReadSchema: struct<hd_demo_sk:bigint,hd_dep_count:int>
+
+(6) ColumnarToRow [codegen id : 1]
+Input [2]: [hd_demo_sk#39L, hd_dep_count#42]
+
+(7) Filter [codegen id : 1]
+Input [2]: [hd_demo_sk#39L, hd_dep_count#42]
+Condition : ((isnotnull(hd_dep_count#42) AND (hd_dep_count#42 = 6)) AND isnotnull(hd_demo_sk#39L))
+
+(8) Project [codegen id : 1]
+Output [1]: [hd_demo_sk#39L]
+Input [2]: [hd_demo_sk#39L, hd_dep_count#42]
+
+(9) BroadcastExchange
+Input [1]: [hd_demo_sk#39L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#232]
+
+(10) BroadcastHashJoin [codegen id : 4]
+Left keys [1]: [ws_ship_hdemo_sk#14L]
+Right keys [1]: [hd_demo_sk#39L]
+Join condition: None
+
+(11) Project [codegen id : 4]
+Output [2]: [ws_sold_time_sk#5L, ws_web_page_sk#16L]
+Input [4]: [ws_sold_time_sk#5L, ws_ship_hdemo_sk#14L, ws_web_page_sk#16L, hd_demo_sk#39L]
+
+(12) Scan orc tpcds_bin_partitioned_decimal_orc_2.time_dim
+Output [2]: [t_time_sk#44L, t_hour#47]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/time_dim]
+PushedFilters: [IsNotNull(t_hour), GreaterThanOrEqual(t_hour,8), LessThanOrEqual(t_hour,9), IsNotNull(t_time_sk)]
+ReadSchema: struct<t_time_sk:bigint,t_hour:int>
+
+(13) ColumnarToRow [codegen id : 2]
+Input [2]: [t_time_sk#44L, t_hour#47]
+
+(14) Filter [codegen id : 2]
+Input [2]: [t_time_sk#44L, t_hour#47]
+Condition : (((isnotnull(t_hour#47) AND (t_hour#47 >= 8)) AND (t_hour#47 <= 9)) AND isnotnull(t_time_sk#44L))
+
+(15) Project [codegen id : 2]
+Output [1]: [t_time_sk#44L]
+Input [2]: [t_time_sk#44L, t_hour#47]
+
+(16) BroadcastExchange
+Input [1]: [t_time_sk#44L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#241]
+
+(17) BroadcastHashJoin [codegen id : 4]
+Left keys [1]: [ws_sold_time_sk#5L]
+Right keys [1]: [t_time_sk#44L]
+Join condition: None
+
+(18) Project [codegen id : 4]
+Output [1]: [ws_web_page_sk#16L]
+Input [3]: [ws_sold_time_sk#5L, ws_web_page_sk#16L, t_time_sk#44L]
+
+(19) Scan orc tpcds_bin_partitioned_decimal_orc_2.web_page
+Output [2]: [wp_web_page_sk#54L, wp_char_count#64]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/web_page]
+PushedFilters: [IsNotNull(wp_char_count), GreaterThanOrEqual(wp_char_count,5000), LessThanOrEqual(wp_char_count,5200), IsNotNull(wp_web_page_sk)]
+ReadSchema: struct<wp_web_page_sk:bigint,wp_char_count:int>
+
+(20) ColumnarToRow [codegen id : 3]
+Input [2]: [wp_web_page_sk#54L, wp_char_count#64]
+
+(21) Filter [codegen id : 3]
+Input [2]: [wp_web_page_sk#54L, wp_char_count#64]
+Condition : (((isnotnull(wp_char_count#64) AND (wp_char_count#64 >= 5000)) AND (wp_char_count#64 <= 5200)) AND isnotnull(wp_web_page_sk#54L))
+
+(22) Project [codegen id : 3]
+Output [1]: [wp_web_page_sk#54L]
+Input [2]: [wp_web_page_sk#54L, wp_char_count#64]
+
+(23) BroadcastExchange
+Input [1]: [wp_web_page_sk#54L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#250]
+
+(24) BroadcastHashJoin [codegen id : 4]
+Left keys [1]: [ws_web_page_sk#16L]
+Right keys [1]: [wp_web_page_sk#54L]
+Join condition: None
+
+(25) Project [codegen id : 4]
+Output: []
+Input [2]: [ws_web_page_sk#16L, wp_web_page_sk#54L]
+
+(26) HashAggregate [codegen id : 4]
+Input: []
+Keys: []
+Functions [1]: [partial_count(1)]
+Aggregate Attributes [1]: [count#195L]
+Results [1]: [count#196L]
+
+(27) Exchange
+Input [1]: [count#196L]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#256]
+
+(28) HashAggregate [codegen id : 5]
+Input [1]: [count#196L]
+Keys: []
+Functions [1]: [count(1)]
+Aggregate Attributes [1]: [count(1)#3L]
+Results [1]: [count(1)#3L AS amc#0L]
+
+(29) Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales
+Output [4]: [ws_sold_time_sk#68L, ws_ship_hdemo_sk#77L, ws_web_page_sk#79L, ws_sold_date_sk#101L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/web_sales]
+PushedFilters: [IsNotNull(ws_ship_hdemo_sk), IsNotNull(ws_sold_time_sk), IsNotNull(ws_web_page_sk)]
+ReadSchema: struct<ws_sold_time_sk:bigint,ws_ship_hdemo_sk:bigint,ws_web_page_sk:bigint>
+
+(30) ColumnarToRow [codegen id : 9]
+Input [4]: [ws_sold_time_sk#68L, ws_ship_hdemo_sk#77L, ws_web_page_sk#79L, ws_sold_date_sk#101L]
+
+(31) Filter [codegen id : 9]
+Input [4]: [ws_sold_time_sk#68L, ws_ship_hdemo_sk#77L, ws_web_page_sk#79L, ws_sold_date_sk#101L]
+Condition : ((isnotnull(ws_ship_hdemo_sk#77L) AND isnotnull(ws_sold_time_sk#68L)) AND isnotnull(ws_web_page_sk#79L))
+
+(32) Project [codegen id : 9]
+Output [3]: [ws_sold_time_sk#68L, ws_ship_hdemo_sk#77L, ws_web_page_sk#79L]
+Input [4]: [ws_sold_time_sk#68L, ws_ship_hdemo_sk#77L, ws_web_page_sk#79L, ws_sold_date_sk#101L]
+
+(33) ReusedExchange [Reuses operator id: 9]
+Output [1]: [hd_demo_sk#102L]
+
+(34) BroadcastHashJoin [codegen id : 9]
+Left keys [1]: [ws_ship_hdemo_sk#77L]
+Right keys [1]: [hd_demo_sk#102L]
+Join condition: None
+
+(35) Project [codegen id : 9]
+Output [2]: [ws_sold_time_sk#68L, ws_web_page_sk#79L]
+Input [4]: [ws_sold_time_sk#68L, ws_ship_hdemo_sk#77L, ws_web_page_sk#79L, hd_demo_sk#102L]
+
+(36) Scan orc tpcds_bin_partitioned_decimal_orc_2.time_dim
+Output [2]: [t_time_sk#107L, t_hour#110]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/time_dim]
+PushedFilters: [IsNotNull(t_hour), GreaterThanOrEqual(t_hour,19), LessThanOrEqual(t_hour,20), IsNotNull(t_time_sk)]
+ReadSchema: struct<t_time_sk:bigint,t_hour:int>
+
+(37) ColumnarToRow [codegen id : 7]
+Input [2]: [t_time_sk#107L, t_hour#110]
+
+(38) Filter [codegen id : 7]
+Input [2]: [t_time_sk#107L, t_hour#110]
+Condition : (((isnotnull(t_hour#110) AND (t_hour#110 >= 19)) AND (t_hour#110 <= 20)) AND isnotnull(t_time_sk#107L))
+
+(39) Project [codegen id : 7]
+Output [1]: [t_time_sk#107L]
+Input [2]: [t_time_sk#107L, t_hour#110]
+
+(40) BroadcastExchange
+Input [1]: [t_time_sk#107L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#278]
+
+(41) BroadcastHashJoin [codegen id : 9]
+Left keys [1]: [ws_sold_time_sk#68L]
+Right keys [1]: [t_time_sk#107L]
+Join condition: None
+
+(42) Project [codegen id : 9]
+Output [1]: [ws_web_page_sk#79L]
+Input [3]: [ws_sold_time_sk#68L, ws_web_page_sk#79L, t_time_sk#107L]
+
+(43) ReusedExchange [Reuses operator id: 23]
+Output [1]: [wp_web_page_sk#117L]
+
+(44) BroadcastHashJoin [codegen id : 9]
+Left keys [1]: [ws_web_page_sk#79L]
+Right keys [1]: [wp_web_page_sk#117L]
+Join condition: None
+
+(45) Project [codegen id : 9]
+Output: []
+Input [2]: [ws_web_page_sk#79L, wp_web_page_sk#117L]
+
+(46) HashAggregate [codegen id : 9]
+Input: []
+Keys: []
+Functions [1]: [partial_count(1)]
+Aggregate Attributes [1]: [count#197L]
+Results [1]: [count#198L]
+
+(47) Exchange
+Input [1]: [count#198L]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#369]
+
+(48) HashAggregate [codegen id : 10]
+Input [1]: [count#198L]
+Keys: []
+Functions [1]: [count(1)]
+Aggregate Attributes [1]: [count(1)#4L]
+Results [1]: [count(1)#4L AS pmc#1L]
+
+(49) BroadcastExchange
+Input [1]: [pmc#1L]
+Arguments: IdentityBroadcastMode, [id=#423]
+
+(50) BroadcastNestedLoopJoin
+Join condition: None
+
+(51) Project [codegen id : 11]
+Output [1]: [CheckOverflow((promote_precision(cast(amc#0L as decimal(15,4))) / promote_precision(cast(pmc#1L as decimal(15,4)))), DecimalType(35,20), true) AS am_pm_ratio#2]
+Input [2]: [amc#0L, pmc#1L]
+
+(52) TakeOrderedAndProject
+Input [1]: [am_pm_ratio#2]
+Arguments: 100, [am_pm_ratio#2 ASC NULLS FIRST], [am_pm_ratio#2]
+

@@ -1,0 +1,298 @@
+== Physical Plan ==
+TakeOrderedAndProject (51)
++- * HashAggregate (50)
+   +- Exchange (49)
+      +- * HashAggregate (48)
+         +- * Project (47)
+            +- * BroadcastHashJoin Inner BuildRight (46)
+               :- * Project (41)
+               :  +- * BroadcastHashJoin Inner BuildRight (40)
+               :     :- * Project (35)
+               :     :  +- * Filter (34)
+               :     :     +- SortMergeJoin ExistenceJoin(exists#425) (33)
+               :     :        :- SortMergeJoin ExistenceJoin(exists#424) (25)
+               :     :        :  :- SortMergeJoin LeftSemi (17)
+               :     :        :  :  :- * Sort (5)
+               :     :        :  :  :  +- Exchange (4)
+               :     :        :  :  :     +- * Filter (3)
+               :     :        :  :  :        +- * ColumnarToRow (2)
+               :     :        :  :  :           +- Scan orc tpcds_bin_partitioned_decimal_orc_2.customer (1)
+               :     :        :  :  +- * Sort (16)
+               :     :        :  :     +- Exchange (15)
+               :     :        :  :        +- * Project (14)
+               :     :        :  :           +- * BroadcastHashJoin Inner BuildRight (13)
+               :     :        :  :              :- * ColumnarToRow (7)
+               :     :        :  :              :  +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (6)
+               :     :        :  :              +- BroadcastExchange (12)
+               :     :        :  :                 +- * Project (11)
+               :     :        :  :                    +- * Filter (10)
+               :     :        :  :                       +- * ColumnarToRow (9)
+               :     :        :  :                          +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (8)
+               :     :        :  +- * Sort (24)
+               :     :        :     +- Exchange (23)
+               :     :        :        +- * Project (22)
+               :     :        :           +- * BroadcastHashJoin Inner BuildRight (21)
+               :     :        :              :- * ColumnarToRow (19)
+               :     :        :              :  +- Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales (18)
+               :     :        :              +- ReusedExchange (20)
+               :     :        +- * Sort (32)
+               :     :           +- Exchange (31)
+               :     :              +- * Project (30)
+               :     :                 +- * BroadcastHashJoin Inner BuildRight (29)
+               :     :                    :- * ColumnarToRow (27)
+               :     :                    :  +- Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales (26)
+               :     :                    +- ReusedExchange (28)
+               :     +- BroadcastExchange (39)
+               :        +- * Filter (38)
+               :           +- * ColumnarToRow (37)
+               :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_address (36)
+               +- BroadcastExchange (45)
+                  +- * Filter (44)
+                     +- * ColumnarToRow (43)
+                        +- Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_demographics (42)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.customer
+Output [3]: [c_customer_sk#9L, c_current_cdemo_sk#11L, c_current_addr_sk#13L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/customer]
+PushedFilters: [IsNotNull(c_current_addr_sk), IsNotNull(c_current_cdemo_sk)]
+ReadSchema: struct<c_customer_sk:bigint,c_current_cdemo_sk:bigint,c_current_addr_sk:bigint>
+
+(2) ColumnarToRow [codegen id : 1]
+Input [3]: [c_customer_sk#9L, c_current_cdemo_sk#11L, c_current_addr_sk#13L]
+
+(3) Filter [codegen id : 1]
+Input [3]: [c_customer_sk#9L, c_current_cdemo_sk#11L, c_current_addr_sk#13L]
+Condition : (isnotnull(c_current_addr_sk#13L) AND isnotnull(c_current_cdemo_sk#11L))
+
+(4) Exchange
+Input [3]: [c_customer_sk#9L, c_current_cdemo_sk#11L, c_current_addr_sk#13L]
+Arguments: hashpartitioning(c_customer_sk#9L, 200), ENSURE_REQUIREMENTS, [id=#329]
+
+(5) Sort [codegen id : 2]
+Input [3]: [c_customer_sk#9L, c_current_cdemo_sk#11L, c_current_addr_sk#13L]
+Arguments: [c_customer_sk#9L ASC NULLS FIRST], false, 0
+
+(6) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [2]: [ss_customer_sk#51L, ss_sold_date_sk#71L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales/ss_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ss_sold_date_sk#71L), dynamicpruningexpression(ss_sold_date_sk#71L IN dynamicpruning#426)]
+ReadSchema: struct<ss_customer_sk:bigint>
+
+(7) ColumnarToRow [codegen id : 4]
+Input [2]: [ss_customer_sk#51L, ss_sold_date_sk#71L]
+
+(8) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [3]: [d_date_sk#72L, d_year#78, d_qoy#82]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_year), IsNotNull(d_qoy), EqualTo(d_year,2002), LessThan(d_qoy,4), IsNotNull(d_date_sk)]
+ReadSchema: struct<d_date_sk:bigint,d_year:int,d_qoy:int>
+
+(9) ColumnarToRow [codegen id : 3]
+Input [3]: [d_date_sk#72L, d_year#78, d_qoy#82]
+
+(10) Filter [codegen id : 3]
+Input [3]: [d_date_sk#72L, d_year#78, d_qoy#82]
+Condition : ((((isnotnull(d_year#78) AND isnotnull(d_qoy#82)) AND (d_year#78 = 2002)) AND (d_qoy#82 < 4)) AND isnotnull(d_date_sk#72L))
+
+(11) Project [codegen id : 3]
+Output [1]: [d_date_sk#72L]
+Input [3]: [d_date_sk#72L, d_year#78, d_qoy#82]
+
+(12) BroadcastExchange
+Input [1]: [d_date_sk#72L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#340]
+
+(13) BroadcastHashJoin [codegen id : 4]
+Left keys [1]: [ss_sold_date_sk#71L]
+Right keys [1]: [d_date_sk#72L]
+Join condition: None
+
+(14) Project [codegen id : 4]
+Output [1]: [ss_customer_sk#51L]
+Input [3]: [ss_customer_sk#51L, ss_sold_date_sk#71L, d_date_sk#72L]
+
+(15) Exchange
+Input [1]: [ss_customer_sk#51L]
+Arguments: hashpartitioning(ss_customer_sk#51L, 200), ENSURE_REQUIREMENTS, [id=#486]
+
+(16) Sort [codegen id : 5]
+Input [1]: [ss_customer_sk#51L]
+Arguments: [ss_customer_sk#51L ASC NULLS FIRST], false, 0
+
+(17) SortMergeJoin
+Left keys [1]: [c_customer_sk#9L]
+Right keys [1]: [ss_customer_sk#51L]
+Join condition: None
+
+(18) Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales
+Output [2]: [ws_bill_customer_sk#154L, ws_sold_date_sk#184L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/web_sales/ws_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ws_sold_date_sk#184L), dynamicpruningexpression(ws_sold_date_sk#184L IN dynamicpruning#426)]
+ReadSchema: struct<ws_bill_customer_sk:bigint>
+
+(19) ColumnarToRow [codegen id : 7]
+Input [2]: [ws_bill_customer_sk#154L, ws_sold_date_sk#184L]
+
+(20) ReusedExchange [Reuses operator id: 12]
+Output [1]: [d_date_sk#185L]
+
+(21) BroadcastHashJoin [codegen id : 7]
+Left keys [1]: [ws_sold_date_sk#184L]
+Right keys [1]: [d_date_sk#185L]
+Join condition: None
+
+(22) Project [codegen id : 7]
+Output [1]: [ws_bill_customer_sk#154L]
+Input [3]: [ws_bill_customer_sk#154L, ws_sold_date_sk#184L, d_date_sk#185L]
+
+(23) Exchange
+Input [1]: [ws_bill_customer_sk#154L]
+Arguments: hashpartitioning(ws_bill_customer_sk#154L, 200), ENSURE_REQUIREMENTS, [id=#556]
+
+(24) Sort [codegen id : 8]
+Input [1]: [ws_bill_customer_sk#154L]
+Arguments: [ws_bill_customer_sk#154L ASC NULLS FIRST], false, 0
+
+(25) SortMergeJoin
+Left keys [1]: [c_customer_sk#9L]
+Right keys [1]: [ws_bill_customer_sk#154L]
+Join condition: None
+
+(26) Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales
+Output [2]: [cs_ship_customer_sk#253L, cs_sold_date_sk#280L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/catalog_sales/cs_sold_date_sk=2450815, ... 1838 entries]
+PartitionFilters: [isnotnull(cs_sold_date_sk#280L), dynamicpruningexpression(cs_sold_date_sk#280L IN dynamicpruning#426)]
+ReadSchema: struct<cs_ship_customer_sk:bigint>
+
+(27) ColumnarToRow [codegen id : 10]
+Input [2]: [cs_ship_customer_sk#253L, cs_sold_date_sk#280L]
+
+(28) ReusedExchange [Reuses operator id: 12]
+Output [1]: [d_date_sk#281L]
+
+(29) BroadcastHashJoin [codegen id : 10]
+Left keys [1]: [cs_sold_date_sk#280L]
+Right keys [1]: [d_date_sk#281L]
+Join condition: None
+
+(30) Project [codegen id : 10]
+Output [1]: [cs_ship_customer_sk#253L]
+Input [3]: [cs_ship_customer_sk#253L, cs_sold_date_sk#280L, d_date_sk#281L]
+
+(31) Exchange
+Input [1]: [cs_ship_customer_sk#253L]
+Arguments: hashpartitioning(cs_ship_customer_sk#253L, 200), ENSURE_REQUIREMENTS, [id=#569]
+
+(32) Sort [codegen id : 11]
+Input [1]: [cs_ship_customer_sk#253L]
+Arguments: [cs_ship_customer_sk#253L ASC NULLS FIRST], false, 0
+
+(33) SortMergeJoin
+Left keys [1]: [c_customer_sk#9L]
+Right keys [1]: [cs_ship_customer_sk#253L]
+Join condition: None
+
+(34) Filter [codegen id : 14]
+Input [5]: [c_customer_sk#9L, c_current_cdemo_sk#11L, c_current_addr_sk#13L, exists#424, exists#425]
+Condition : (exists#424 OR exists#425)
+
+(35) Project [codegen id : 14]
+Output [2]: [c_current_cdemo_sk#11L, c_current_addr_sk#13L]
+Input [5]: [c_customer_sk#9L, c_current_cdemo_sk#11L, c_current_addr_sk#13L, exists#424, exists#425]
+
+(36) Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_address
+Output [2]: [ca_address_sk#27L, ca_state#35]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/customer_address]
+PushedFilters: [IsNotNull(ca_address_sk)]
+ReadSchema: struct<ca_address_sk:bigint,ca_state:string>
+
+(37) ColumnarToRow [codegen id : 12]
+Input [2]: [ca_address_sk#27L, ca_state#35]
+
+(38) Filter [codegen id : 12]
+Input [2]: [ca_address_sk#27L, ca_state#35]
+Condition : isnotnull(ca_address_sk#27L)
+
+(39) BroadcastExchange
+Input [2]: [ca_address_sk#27L, ca_state#35]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#391]
+
+(40) BroadcastHashJoin [codegen id : 14]
+Left keys [1]: [c_current_addr_sk#13L]
+Right keys [1]: [ca_address_sk#27L]
+Join condition: None
+
+(41) Project [codegen id : 14]
+Output [2]: [c_current_cdemo_sk#11L, ca_state#35]
+Input [4]: [c_current_cdemo_sk#11L, c_current_addr_sk#13L, ca_address_sk#27L, ca_state#35]
+
+(42) Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_demographics
+Output [6]: [cd_demo_sk#40L, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/customer_demographics]
+PushedFilters: [IsNotNull(cd_demo_sk)]
+ReadSchema: struct<cd_demo_sk:bigint,cd_gender:string,cd_marital_status:string,cd_dep_count:int,cd_dep_employed_count:int,cd_dep_college_count:int>
+
+(43) ColumnarToRow [codegen id : 13]
+Input [6]: [cd_demo_sk#40L, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48]
+
+(44) Filter [codegen id : 13]
+Input [6]: [cd_demo_sk#40L, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48]
+Condition : isnotnull(cd_demo_sk#40L)
+
+(45) BroadcastExchange
+Input [6]: [cd_demo_sk#40L, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#399]
+
+(46) BroadcastHashJoin [codegen id : 14]
+Left keys [1]: [c_current_cdemo_sk#11L]
+Right keys [1]: [cd_demo_sk#40L]
+Join condition: None
+
+(47) Project [codegen id : 14]
+Output [6]: [ca_state#35, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48]
+Input [8]: [c_current_cdemo_sk#11L, ca_state#35, cd_demo_sk#40L, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48]
+
+(48) HashAggregate [codegen id : 14]
+Input [6]: [ca_state#35, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48]
+Keys [6]: [ca_state#35, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48]
+Functions [10]: [partial_count(1), partial_min(cd_dep_count#46), partial_max(cd_dep_count#46), partial_avg(cast(cd_dep_count#46 as bigint)), partial_min(cd_dep_employed_count#47), partial_max(cd_dep_employed_count#47), partial_avg(cast(cd_dep_employed_count#47 as bigint)), partial_min(cd_dep_college_count#48), partial_max(cd_dep_college_count#48), partial_avg(cast(cd_dep_college_count#48 as bigint))]
+Aggregate Attributes [13]: [count#429L, min#430, max#431, sum#432, count#433L, min#434, max#435, sum#436, count#437L, min#438, max#439, sum#440, count#441L]
+Results [19]: [ca_state#35, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48, count#442L, min#443, max#444, sum#445, count#446L, min#447, max#448, sum#449, count#450L, min#451, max#452, sum#453, count#454L]
+
+(49) Exchange
+Input [19]: [ca_state#35, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48, count#442L, min#443, max#444, sum#445, count#446L, min#447, max#448, sum#449, count#450L, min#451, max#452, sum#453, count#454L]
+Arguments: hashpartitioning(ca_state#35, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48, 200), ENSURE_REQUIREMENTS, [id=#583]
+
+(50) HashAggregate [codegen id : 15]
+Input [19]: [ca_state#35, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48, count#442L, min#443, max#444, sum#445, count#446L, min#447, max#448, sum#449, count#450L, min#451, max#452, sum#453, count#454L]
+Keys [6]: [ca_state#35, cd_gender#41, cd_marital_status#42, cd_dep_count#46, cd_dep_employed_count#47, cd_dep_college_count#48]
+Functions [10]: [count(1), min(cd_dep_count#46), max(cd_dep_count#46), avg(cast(cd_dep_count#46 as bigint)), min(cd_dep_employed_count#47), max(cd_dep_employed_count#47), avg(cast(cd_dep_employed_count#47 as bigint)), min(cd_dep_college_count#48), max(cd_dep_college_count#48), avg(cast(cd_dep_college_count#48 as bigint))]
+Aggregate Attributes [10]: [count(1)#6L, min(cd_dep_count#46)#343, max(cd_dep_count#46)#344, avg(cast(cd_dep_count#46 as bigint))#345, min(cd_dep_employed_count#47)#346, max(cd_dep_employed_count#47)#347, avg(cast(cd_dep_employed_count#47 as bigint))#348, min(cd_dep_college_count#48)#349, max(cd_dep_college_count#48)#350, avg(cast(cd_dep_college_count#48 as bigint))#351]
+Results [18]: [ca_state#35, cd_gender#41, cd_marital_status#42, count(1)#6L AS cnt1#3L, min(cd_dep_count#46)#343 AS min(cd_dep_count)#352, max(cd_dep_count#46)#344 AS max(cd_dep_count)#353, avg(cast(cd_dep_count#46 as bigint))#345 AS avg(cd_dep_count)#354, cd_dep_employed_count#47, count(1)#6L AS cnt2#4L, min(cd_dep_employed_count#47)#346 AS min(cd_dep_employed_count)#355, max(cd_dep_employed_count#47)#347 AS max(cd_dep_employed_count)#356, avg(cast(cd_dep_employed_count#47 as bigint))#348 AS avg(cd_dep_employed_count)#357, cd_dep_college_count#48, count(1)#6L AS cnt3#5L, min(cd_dep_college_count#48)#349 AS min(cd_dep_college_count)#358, max(cd_dep_college_count#48)#350 AS max(cd_dep_college_count)#359, avg(cast(cd_dep_college_count#48 as bigint))#351 AS avg(cd_dep_college_count)#360, cd_dep_count#46 AS aggOrder#364]
+
+(51) TakeOrderedAndProject
+Input [18]: [ca_state#35, cd_gender#41, cd_marital_status#42, cnt1#3L, min(cd_dep_count)#352, max(cd_dep_count)#353, avg(cd_dep_count)#354, cd_dep_employed_count#47, cnt2#4L, min(cd_dep_employed_count)#355, max(cd_dep_employed_count)#356, avg(cd_dep_employed_count)#357, cd_dep_college_count#48, cnt3#5L, min(cd_dep_college_count)#358, max(cd_dep_college_count)#359, avg(cd_dep_college_count)#360, aggOrder#364]
+Arguments: 100, [ca_state#35 ASC NULLS FIRST, cd_gender#41 ASC NULLS FIRST, cd_marital_status#42 ASC NULLS FIRST, aggOrder#364 ASC NULLS FIRST, cd_dep_employed_count#47 ASC NULLS FIRST, cd_dep_college_count#48 ASC NULLS FIRST], [ca_state#35, cd_gender#41, cd_marital_status#42, cnt1#3L, min(cd_dep_count)#352, max(cd_dep_count)#353, avg(cd_dep_count)#354, cd_dep_employed_count#47, cnt2#4L, min(cd_dep_employed_count)#355, max(cd_dep_employed_count)#356, avg(cd_dep_employed_count)#357, cd_dep_college_count#48, cnt3#5L, min(cd_dep_college_count)#358, max(cd_dep_college_count)#359, avg(cd_dep_college_count)#360]
+
+===== Subqueries =====
+
+Subquery:1 Hosting operator id = 6 Hosting Expression = ss_sold_date_sk#71L IN dynamicpruning#426
+ReusedExchange (52)
+
+
+(52) ReusedExchange [Reuses operator id: 12]
+Output [1]: [d_date_sk#72L]
+
+Subquery:2 Hosting operator id = 18 Hosting Expression = ws_sold_date_sk#184L IN dynamicpruning#426
+
+Subquery:3 Hosting operator id = 26 Hosting Expression = cs_sold_date_sk#280L IN dynamicpruning#426
+
+

@@ -1,0 +1,4 @@
+create materialized view if not exists mv15 engine = MergeTree() order by tuple() POPULATE as 
+select movie_info.info AS info, movie_keyword.movie_id AS movie_id, keyword.id AS id, keyword.keyword AS keyword
+ from movie_keyword,movie_info,keyword
+ where (movie_keyword.movie_id = movie_info.movie_id) And (keyword.id = movie_keyword.keyword_id) And ((movie_info.info = 'Sweden') Or (movie_info.info =  'Norway') Or (movie_info.info =  'Germany') Or (movie_info.info =  'Denmark') Or (movie_info.info =  'Swedish') Or (movie_info.info =  'Denish') Or (movie_info.info =  'Norwegian') Or (movie_info.info =  'German') Or (movie_info.info =  'USA') Or (movie_info.info =  'American')) And ((keyword.keyword like '%sequel%'))

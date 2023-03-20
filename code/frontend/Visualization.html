@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://unpkg.com/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://unpkg.com/pev2/dist/style.css" />
+    <style>
+        .splitpanes__splitter,
+        .diagram .plan-diagram,
+        .align-items-center,
+        .plan-stats,
+        .plan-diagram,
+        .splitpanes>.splitpanes__pane:first-child {
+            display: none !important;
+        }
+
+        .splitpanes>.splitpanes__pane:last-child {
+            height: 80vh;
+            width: 100% !important;
+            /*border: black;*/
+        }
+
+        #app {
+            position: relative;
+        }
+
+        .tools {
+            position: absolute;
+            z-index: 19899;
+            bottom: 10px;
+            left: 7%;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='title' style='text-align: center; font-size: 18px;'>SQL ID: <span style='color: mediumseagreen'>1d.sql</span>
+    </div>
+    <div id="app">
+        <pev2 :plan-source="plan" plan-query="" :key="index" />
+    </div>
+    &nbsp;&nbsp;
+    <br>
+    
+    <div class="tools">
+        <button id="pre" style="border: 0">
+            <img src="./imgs/arrow_left.png" width="15" height="15">
+        </button>
+        <button id="switch" style="background: #3CB371;color:white;
+	            width: 200px;
+	            height: 30px;
+	            border:0;
+	            font-size: 18px;
+	            box-sizing: content-box;
+                border-radius: 5px;
+                margin-left: 10px;">Switch query or MV
+        </button>
+        <button id="next" style="margin-left: 10px;border: 0">
+            <img src="./imgs/arrow_right.png" width="15" height="15">
+        </button>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>
+    <script src="https://unpkg.com/pev2/dist/pev2.umd.js"></script>
+    <script>
+        const { createApp } = Vue
+        const app = createApp({
+            data() {
+                cur_plan =  JSON.stringify(
+                         { "Plan": { "Node Type": "Aggregate", "Strategy": "Plain","Partial Mode": "Simple", "Parallel Aware": false,"Startup Cost": 80748.17, "Total Cost": 80748.18, "Plan Rows": 1, "Plan Width": 68, "Actual Startup Time": 933.915, "Actual Total Time": 933.918, "Actual Rows": 1, "Actual Loops": 1,"Plans": [{ "Node Type": "Nested Loop", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 25668.25, "Total Cost": 80747.44, "Plan Rows": 98,"Plan Width": 45, "Actual Startup Time": 316.755, "Actual Total Time": 933.902, "Actual Rows": 4, "Actual Loops": 1,"Inner Unique": true, "Plans": [{ "Node Type": "Hash Join", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 25667.82, "Total Cost": 80642.28, "Plan Rows": 180, "Plan Width": 32, "Actual Startup Time": 287.111, "Actual Total Time": 933.810, "Actual Rows": 5, "Actual Loops": 1,"Inner Unique": false,"Hash Cond": "(mc.movie_id = mi_idx.movie_id)", "Plans": [{ "Node Type": "Hash Join", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 18.93,"Total Cost": 54963.25, "Plan Rows": 7553,"Plan Width": 28, "Actual Startup Time": 0.049, "Actual Total Time": 634.331, "Actual Rows": 140904,"Actual Loops": 1,"Inner Unique": true, "Hash Cond": "(mc.company_type_id = ct.id)","Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "movie_companies", "Alias": "mc","Startup Cost": 0.00, "Total Cost": 51404.11, "Plan Rows": 1340652, "Plan Width": 32, "Actual Startup Time": 0.026, "Actual Total Time": 494.301, "Actual Rows": 1337088, "Actual Loops": 1,"Filter": "((note)::text !~~ '%(as Metro-Goldwyn-Mayer Pictures)%'::text)", "Rows Removed by Filter": 1272041 },{ "Node Type": "Hash","Parent Relationship": "Inner", "Parallel Aware": false,"Startup Cost": 18.88,"Total Cost": 18.88,"Plan Rows": 4, "Plan Width": 4,"Actual Startup Time": 0.010, "Actual Total Time": 0.011, "Actual Rows": 1, "Actual Loops": 1,"Hash Buckets": 1024, "Original Hash Buckets": 1024,"Hash Batches": 1,"Original Hash Batches": 1, "Peak Memory Usage": 9, "Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "company_type","Alias": "ct","Startup Cost": 0.00, "Total Cost": 18.88,"Plan Rows": 4, "Plan Width": 4,"Actual Startup Time": 0.004, "Actual Total Time": 0.005, "Actual Rows": 1, "Actual Loops": 1,"Filter": "((kind)::text = 'production companies'::text)","Rows Removed by Filter": 3 } ] } ] },{ "Node Type": "Hash","Parent Relationship": "Inner", "Parallel Aware": false,"Startup Cost": 25496.24, "Total Cost": 25496.24, "Plan Rows": 12213, "Plan Width": 4,"Actual Startup Time": 284.369, "Actual Total Time": 284.370, "Actual Rows": 10,"Actual Loops": 1,"Hash Buckets": 16384,"Original Hash Buckets": 16384, "Hash Batches": 1,"Original Hash Batches": 1, "Peak Memory Usage": 129, "Plans": [{ "Node Type": "Hash Join", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 2.43, "Total Cost": 25496.24, "Plan Rows": 12213, "Plan Width": 4,"Actual Startup Time": 48.197,"Actual Total Time": 284.364, "Actual Rows": 10,"Actual Loops": 1,"Inner Unique": true, "Hash Cond": "(mi_idx.info_type_id = it.id)", "Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "movie_info_idx","Alias": "mi_idx","Startup Cost": 0.00, "Total Cost": 21735.35, "Plan Rows": 1380035, "Plan Width": 8,"Actual Startup Time": 0.016, "Actual Total Time": 132.675, "Actual Rows": 1380035, "Actual Loops": 1 },{ "Node Type": "Hash","Parent Relationship": "Inner", "Parallel Aware": false,"Startup Cost": 2.41, "Total Cost": 2.41, "Plan Rows": 1, "Plan Width": 4,"Actual Startup Time": 0.019, "Actual Total Time": 0.019, "Actual Rows": 1, "Actual Loops": 1,"Hash Buckets": 1024, "Original Hash Buckets": 1024,"Hash Batches": 1,"Original Hash Batches": 1, "Peak Memory Usage": 9, "Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "info_type", "Alias": "it","Startup Cost": 0.00, "Total Cost": 2.41, "Plan Rows": 1, "Plan Width": 4,"Actual Startup Time": 0.015, "Actual Total Time": 0.015, "Actual Rows": 1, "Actual Loops": 1,"Filter": "((info)::text = 'bottom 10 rank'::text)","Rows Removed by Filter": 112 } ] } ] } ] } ] },{ "Node Type": "Index Scan","Parent Relationship": "Inner", "Parallel Aware": false,"Scan Direction": "Forward","Index Name": "title_pkey", "Relation Name": "title", "Alias": "t", "Startup Cost": 0.43, "Total Cost": 0.58, "Plan Rows": 1, "Plan Width": 25, "Actual Startup Time": 0.016, "Actual Total Time": 0.016, "Actual Rows": 1, "Actual Loops": 5,"Index Cond": "(id = mc.movie_id)", "Rows Removed by Index Recheck": 0, "Filter": "(production_year > 2000)", "Rows Removed by Filter": 0 } ] } ] },"Planning Time": 1.135, "Triggers": [ ],"Execution Time": 934.008 }   
+                    );
+                return {
+                    index: 1,
+                    plan: cur_plan,
+                    query: ""
+                }
+            },
+            methods: {
+                // 在这个事件函数里可以做你要处理的逻辑
+                next() {
+                    // window.fetch('url/xx').then(res => res.json()).then(res => {
+                    //     // res 就是数据
+                    //     // vue赋值处理，一旦赋值，页面会自动呈现的
+                    //     this.plan = res.xx
+                    //     this.query = res.query
+                    // })
+                    document.getElementById('title').innerHTML=
+                        "SQL ID: <span style='color: mediumseagreen'>1b.sql</span>";
+                    plan =  JSON.stringify(
+                        { "Plan": { "Node Type": "Aggregate", "Strategy": "Plain","Partial Mode": "Simple", "Parallel Aware": false,"Startup Cost": 80748.26, "Total Cost": 80748.27, "Plan Rows": 1, "Plan Width": 68, "Actual Startup Time": 952.177, "Actual Total Time": 952.180, "Actual Rows": 1, "Actual Loops": 1,"Plans": [{ "Node Type": "Nested Loop", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 25668.25, "Total Cost": 80747.89, "Plan Rows": 50,"Plan Width": 45, "Actual Startup Time": 916.171, "Actual Total Time": 952.154, "Actual Rows": 3, "Actual Loops": 1,"Inner Unique": true, "Plans": [{ "Node Type": "Hash Join", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 25667.82, "Total Cost": 80642.28, "Plan Rows": 180, "Plan Width": 32, "Actual Startup Time": 293.913, "Actual Total Time": 951.969, "Actual Rows": 5, "Actual Loops": 1,"Inner Unique": false,"Hash Cond": "(mc.movie_id = mi_idx.movie_id)", "Plans": [{ "Node Type": "Hash Join", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 18.93,"Total Cost": 54963.25, "Plan Rows": 7553,"Plan Width": 28, "Actual Startup Time": 0.057, "Actual Total Time": 646.459, "Actual Rows": 140904,"Actual Loops": 1,"Inner Unique": true, "Hash Cond": "(mc.company_type_id = ct.id)","Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "movie_companies", "Alias": "mc","Startup Cost": 0.00, "Total Cost": 51404.11, "Plan Rows": 1340652, "Plan Width": 32, "Actual Startup Time": 0.029, "Actual Total Time": 506.160, "Actual Rows": 1337088, "Actual Loops": 1,"Filter": "((note)::text !~~ '%(as Metro-Goldwyn-Mayer Pictures)%'::text)", "Rows Removed by Filter": 1272041 },{ "Node Type": "Hash","Parent Relationship": "Inner", "Parallel Aware": false,"Startup Cost": 18.88,"Total Cost": 18.88,"Plan Rows": 4, "Plan Width": 4,"Actual Startup Time": 0.013, "Actual Total Time": 0.013, "Actual Rows": 1, "Actual Loops": 1,"Hash Buckets": 1024, "Original Hash Buckets": 1024,"Hash Batches": 1,"Original Hash Batches": 1, "Peak Memory Usage": 9, "Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "company_type","Alias": "ct","Startup Cost": 0.00, "Total Cost": 18.88,"Plan Rows": 4, "Plan Width": 4,"Actual Startup Time": 0.005, "Actual Total Time": 0.006, "Actual Rows": 1, "Actual Loops": 1,"Filter": "((kind)::text = 'production companies'::text)","Rows Removed by Filter": 3 } ] } ] },{ "Node Type": "Hash","Parent Relationship": "Inner", "Parallel Aware": false,"Startup Cost": 25496.24, "Total Cost": 25496.24, "Plan Rows": 12213, "Plan Width": 4,"Actual Startup Time": 291.274, "Actual Total Time": 291.275, "Actual Rows": 10,"Actual Loops": 1,"Hash Buckets": 16384,"Original Hash Buckets": 16384, "Hash Batches": 1,"Original Hash Batches": 1, "Peak Memory Usage": 129, "Plans": [{ "Node Type": "Hash Join", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 2.43, "Total Cost": 25496.24, "Plan Rows": 12213, "Plan Width": 4,"Actual Startup Time": 49.623,"Actual Total Time": 291.270, "Actual Rows": 10,"Actual Loops": 1,"Inner Unique": true, "Hash Cond": "(mi_idx.info_type_id = it.id)", "Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "movie_info_idx","Alias": "mi_idx","Startup Cost": 0.00, "Total Cost": 21735.35, "Plan Rows": 1380035, "Plan Width": 8,"Actual Startup Time": 0.013, "Actual Total Time": 139.993, "Actual Rows": 1380035, "Actual Loops": 1 },{ "Node Type": "Hash","Parent Relationship": "Inner", "Parallel Aware": false,"Startup Cost": 2.41, "Total Cost": 2.41, "Plan Rows": 1, "Plan Width": 4,"Actual Startup Time": 0.017, "Actual Total Time": 0.017, "Actual Rows": 1, "Actual Loops": 1,"Hash Buckets": 1024, "Original Hash Buckets": 1024,"Hash Batches": 1,"Original Hash Batches": 1, "Peak Memory Usage": 9, "Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "info_type", "Alias": "it","Startup Cost": 0.00, "Total Cost": 2.41, "Plan Rows": 1, "Plan Width": 4,"Actual Startup Time": 0.012, "Actual Total Time": 0.013, "Actual Rows": 1, "Actual Loops": 1,"Filter": "((info)::text = 'bottom 10 rank'::text)","Rows Removed by Filter": 112 } ] } ] } ] } ] },{ "Node Type": "Index Scan","Parent Relationship": "Inner", "Parallel Aware": false,"Scan Direction": "Forward","Index Name": "title_pkey", "Relation Name": "title", "Alias": "t", "Startup Cost": 0.43, "Total Cost": 0.59, "Plan Rows": 1, "Plan Width": 25, "Actual Startup Time": 0.033, "Actual Total Time": 0.033, "Actual Rows": 1, "Actual Loops": 5,"Index Cond": "(id = mc.movie_id)", "Rows Removed by Index Recheck": 0, "Filter": "((production_year >= 2005) AND (production_year <= 2010))","Rows Removed by Filter": 0 } ] } ] },"Planning Time": 1.275, "Triggers": [ ],"Execution Time": 952.314 }
+                    );
+                    this.plan = plan;
+                    this.index++;
+                },
+                pre() {
+                    document.getElementById('title').innerHTML=
+                        "SQL ID: <span style='color: mediumseagreen'>1d.sql</span>";
+                    plan =  JSON.stringify(
+                         { "Plan": { "Node Type": "Aggregate", "Strategy": "Plain","Partial Mode": "Simple", "Parallel Aware": false,"Startup Cost": 80748.17, "Total Cost": 80748.18, "Plan Rows": 1, "Plan Width": 68, "Actual Startup Time": 933.915, "Actual Total Time": 933.918, "Actual Rows": 1, "Actual Loops": 1,"Plans": [{ "Node Type": "Nested Loop", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 25668.25, "Total Cost": 80747.44, "Plan Rows": 98,"Plan Width": 45, "Actual Startup Time": 316.755, "Actual Total Time": 933.902, "Actual Rows": 4, "Actual Loops": 1,"Inner Unique": true, "Plans": [{ "Node Type": "Hash Join", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 25667.82, "Total Cost": 80642.28, "Plan Rows": 180, "Plan Width": 32, "Actual Startup Time": 287.111, "Actual Total Time": 933.810, "Actual Rows": 5, "Actual Loops": 1,"Inner Unique": false,"Hash Cond": "(mc.movie_id = mi_idx.movie_id)", "Plans": [{ "Node Type": "Hash Join", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 18.93,"Total Cost": 54963.25, "Plan Rows": 7553,"Plan Width": 28, "Actual Startup Time": 0.049, "Actual Total Time": 634.331, "Actual Rows": 140904,"Actual Loops": 1,"Inner Unique": true, "Hash Cond": "(mc.company_type_id = ct.id)","Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "movie_companies", "Alias": "mc","Startup Cost": 0.00, "Total Cost": 51404.11, "Plan Rows": 1340652, "Plan Width": 32, "Actual Startup Time": 0.026, "Actual Total Time": 494.301, "Actual Rows": 1337088, "Actual Loops": 1,"Filter": "((note)::text !~~ '%(as Metro-Goldwyn-Mayer Pictures)%'::text)", "Rows Removed by Filter": 1272041 },{ "Node Type": "Hash","Parent Relationship": "Inner", "Parallel Aware": false,"Startup Cost": 18.88,"Total Cost": 18.88,"Plan Rows": 4, "Plan Width": 4,"Actual Startup Time": 0.010, "Actual Total Time": 0.011, "Actual Rows": 1, "Actual Loops": 1,"Hash Buckets": 1024, "Original Hash Buckets": 1024,"Hash Batches": 1,"Original Hash Batches": 1, "Peak Memory Usage": 9, "Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "company_type","Alias": "ct","Startup Cost": 0.00, "Total Cost": 18.88,"Plan Rows": 4, "Plan Width": 4,"Actual Startup Time": 0.004, "Actual Total Time": 0.005, "Actual Rows": 1, "Actual Loops": 1,"Filter": "((kind)::text = 'production companies'::text)","Rows Removed by Filter": 3 } ] } ] },{ "Node Type": "Hash","Parent Relationship": "Inner", "Parallel Aware": false,"Startup Cost": 25496.24, "Total Cost": 25496.24, "Plan Rows": 12213, "Plan Width": 4,"Actual Startup Time": 284.369, "Actual Total Time": 284.370, "Actual Rows": 10,"Actual Loops": 1,"Hash Buckets": 16384,"Original Hash Buckets": 16384, "Hash Batches": 1,"Original Hash Batches": 1, "Peak Memory Usage": 129, "Plans": [{ "Node Type": "Hash Join", "Parent Relationship": "Outer", "Parallel Aware": false,"Join Type": "Inner", "Startup Cost": 2.43, "Total Cost": 25496.24, "Plan Rows": 12213, "Plan Width": 4,"Actual Startup Time": 48.197,"Actual Total Time": 284.364, "Actual Rows": 10,"Actual Loops": 1,"Inner Unique": true, "Hash Cond": "(mi_idx.info_type_id = it.id)", "Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "movie_info_idx","Alias": "mi_idx","Startup Cost": 0.00, "Total Cost": 21735.35, "Plan Rows": 1380035, "Plan Width": 8,"Actual Startup Time": 0.016, "Actual Total Time": 132.675, "Actual Rows": 1380035, "Actual Loops": 1 },{ "Node Type": "Hash","Parent Relationship": "Inner", "Parallel Aware": false,"Startup Cost": 2.41, "Total Cost": 2.41, "Plan Rows": 1, "Plan Width": 4,"Actual Startup Time": 0.019, "Actual Total Time": 0.019, "Actual Rows": 1, "Actual Loops": 1,"Hash Buckets": 1024, "Original Hash Buckets": 1024,"Hash Batches": 1,"Original Hash Batches": 1, "Peak Memory Usage": 9, "Plans": [{ "Node Type": "Seq Scan","Parent Relationship": "Outer", "Parallel Aware": false,"Relation Name": "info_type", "Alias": "it","Startup Cost": 0.00, "Total Cost": 2.41, "Plan Rows": 1, "Plan Width": 4,"Actual Startup Time": 0.015, "Actual Total Time": 0.015, "Actual Rows": 1, "Actual Loops": 1,"Filter": "((info)::text = 'bottom 10 rank'::text)","Rows Removed by Filter": 112 } ] } ] } ] } ] },{ "Node Type": "Index Scan","Parent Relationship": "Inner", "Parallel Aware": false,"Scan Direction": "Forward","Index Name": "title_pkey", "Relation Name": "title", "Alias": "t", "Startup Cost": 0.43, "Total Cost": 0.58, "Plan Rows": 1, "Plan Width": 25, "Actual Startup Time": 0.016, "Actual Total Time": 0.016, "Actual Rows": 1, "Actual Loops": 5,"Index Cond": "(id = mc.movie_id)", "Rows Removed by Index Recheck": 0, "Filter": "(production_year > 2000)", "Rows Removed by Filter": 0 } ] } ] },"Planning Time": 1.135, "Triggers": [ ],"Execution Time": 934.008 }   
+                    );
+                    this.plan = plan;
+                    this.index++;
+                }
+            },
+            mounted() {
+                console.log('页面打开后自动发起请求')
+                // ajax请求，假设这里和后端不存在跨域，可以直接使用浏览器自带的请求来做就好了
+                // window.fetch('url_current/xx').then(res => res.json()).then(res => {
+                // res 就是数据
+                // vue 赋值处理，一旦赋值，页面会自动呈现的
+                // this.plan = "Seq Scan on foo  (cost=0.00..155.00 rows=10000 width=4)"
+                // this.query1 = res.query
+                // })
+            }
+        })
+        app.component("pev2", pev2.Plan)
+        var ap = app.mount("#app")
+
+        document.getElementById('next').addEventListener('click', function () {
+            ap.next()
+        })
+
+        document.getElementById('pre').addEventListener('click', function () {
+            ap.pre()
+        })
+    </script>
+</body>
+
+</html>

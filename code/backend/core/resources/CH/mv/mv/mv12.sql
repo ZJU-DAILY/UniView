@@ -1,0 +1,4 @@
+create materialized view if not exists mv12 engine = MergeTree() order by tuple() POPULATE as 
+select title.id AS title_id_0, movie_keyword.movie_id AS movie_keyword_movie_id_1, company_name.country_code AS country_code, keyword.id AS keyword_id_3, company_name.id AS company_name_id_4, keyword.keyword AS keyword, title.title AS title, movie_companies.movie_id AS movie_companies_movie_id_7
+ from title,movie_keyword,company_name,keyword,movie_companies
+ where movie_companies.movie_id = title.id  And  title.id = movie_keyword.movie_id And  movie_companies.movie_id = movie_keyword.movie_id And (movie_keyword.keyword_id = keyword.id) And (company_name.country_code = '[sm]') And (company_name.id = movie_companies.company_id) And (keyword.keyword = 'character-name-in-title')

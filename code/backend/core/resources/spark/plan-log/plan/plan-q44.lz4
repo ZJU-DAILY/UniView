@@ -1,0 +1,253 @@
+== Physical Plan ==
+TakeOrderedAndProject (37)
++- * Project (36)
+   +- * BroadcastHashJoin Inner BuildRight (35)
+      :- * Project (33)
+      :  +- * BroadcastHashJoin Inner BuildRight (32)
+      :     :- * Project (27)
+      :     :  +- * SortMergeJoin Inner (26)
+      :     :     :- * Sort (15)
+      :     :     :  +- * Project (14)
+      :     :     :     +- * Filter (13)
+      :     :     :        +- Window (12)
+      :     :     :           +- * Sort (11)
+      :     :     :              +- Exchange (10)
+      :     :     :                 +- * Project (9)
+      :     :     :                    +- * Filter (8)
+      :     :     :                       +- * HashAggregate (7)
+      :     :     :                          +- Exchange (6)
+      :     :     :                             +- * HashAggregate (5)
+      :     :     :                                +- * Project (4)
+      :     :     :                                   +- * Filter (3)
+      :     :     :                                      +- * ColumnarToRow (2)
+      :     :     :                                         +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (1)
+      :     :     +- * Sort (25)
+      :     :        +- * Project (24)
+      :     :           +- * Filter (23)
+      :     :              +- Window (22)
+      :     :                 +- * Sort (21)
+      :     :                    +- Exchange (20)
+      :     :                       +- * Project (19)
+      :     :                          +- * Filter (18)
+      :     :                             +- * HashAggregate (17)
+      :     :                                +- ReusedExchange (16)
+      :     +- BroadcastExchange (31)
+      :        +- * Filter (30)
+      :           +- * ColumnarToRow (29)
+      :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.item (28)
+      +- ReusedExchange (34)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [4]: [ss_item_sk#17L, ss_store_sk#22L, ss_net_profit#37, ss_sold_date_sk#38L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales]
+PushedFilters: [IsNotNull(ss_store_sk), EqualTo(ss_store_sk,4)]
+ReadSchema: struct<ss_item_sk:bigint,ss_store_sk:bigint,ss_net_profit:decimal(7,2)>
+
+(2) ColumnarToRow [codegen id : 1]
+Input [4]: [ss_item_sk#17L, ss_store_sk#22L, ss_net_profit#37, ss_sold_date_sk#38L]
+
+(3) Filter [codegen id : 1]
+Input [4]: [ss_item_sk#17L, ss_store_sk#22L, ss_net_profit#37, ss_sold_date_sk#38L]
+Condition : (isnotnull(ss_store_sk#22L) AND (ss_store_sk#22L = 4))
+
+(4) Project [codegen id : 1]
+Output [2]: [ss_item_sk#17L, ss_net_profit#37]
+Input [4]: [ss_item_sk#17L, ss_store_sk#22L, ss_net_profit#37, ss_sold_date_sk#38L]
+
+(5) HashAggregate [codegen id : 1]
+Input [2]: [ss_item_sk#17L, ss_net_profit#37]
+Keys [1]: [ss_item_sk#17L]
+Functions [1]: [partial_avg(UnscaledValue(ss_net_profit#37))]
+Aggregate Attributes [2]: [sum#234, count#235L]
+Results [3]: [ss_item_sk#17L, sum#236, count#237L]
+
+(6) Exchange
+Input [3]: [ss_item_sk#17L, sum#236, count#237L]
+Arguments: hashpartitioning(ss_item_sk#17L, 200), ENSURE_REQUIREMENTS, [id=#272]
+
+(7) HashAggregate [codegen id : 2]
+Input [3]: [ss_item_sk#17L, sum#236, count#237L]
+Keys [1]: [ss_item_sk#17L]
+Functions [1]: [avg(UnscaledValue(ss_net_profit#37))]
+Aggregate Attributes [1]: [avg(UnscaledValue(ss_net_profit#37))#106]
+Results [3]: [ss_item_sk#17L AS item_sk#0L, cast((avg(UnscaledValue(ss_net_profit#37))#106 / 100.0) as decimal(11,6)) AS rank_col#1, cast((avg(UnscaledValue(ss_net_profit#37))#106 / 100.0) as decimal(11,6)) AS avg(ss_net_profit#37)#181]
+
+(8) Filter [codegen id : 2]
+Input [3]: [item_sk#0L, rank_col#1, avg(ss_net_profit#37)#181]
+Condition : (isnotnull(avg(ss_net_profit#37)#181) AND (cast(avg(ss_net_profit#37)#181 as decimal(13,7)) > CheckOverflow((0.900000 * promote_precision(Subquery scalar-subquery#3, [id=#139])), DecimalType(13,7), true)))
+
+(9) Project [codegen id : 2]
+Output [2]: [item_sk#0L, rank_col#1]
+Input [3]: [item_sk#0L, rank_col#1, avg(ss_net_profit#37)#181]
+
+(10) Exchange
+Input [2]: [item_sk#0L, rank_col#1]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#278]
+
+(11) Sort [codegen id : 3]
+Input [2]: [item_sk#0L, rank_col#1]
+Arguments: [rank_col#1 ASC NULLS FIRST], false, 0
+
+(12) Window
+Input [2]: [item_sk#0L, rank_col#1]
+Arguments: [rank(rank_col#1) windowspecdefinition(rank_col#1 ASC NULLS FIRST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS rnk#4], [rank_col#1 ASC NULLS FIRST]
+
+(13) Filter [codegen id : 4]
+Input [3]: [item_sk#0L, rank_col#1, rnk#4]
+Condition : ((isnotnull(rnk#4) AND (rnk#4 < 11)) AND isnotnull(item_sk#0L))
+
+(14) Project [codegen id : 4]
+Output [2]: [item_sk#0L, rnk#4]
+Input [3]: [item_sk#0L, rank_col#1, rnk#4]
+
+(15) Sort [codegen id : 4]
+Input [2]: [item_sk#0L, rnk#4]
+Arguments: [rnk#4 ASC NULLS FIRST], false, 0
+
+(16) ReusedExchange [Reuses operator id: 6]
+Output [3]: [ss_item_sk#40L, sum#240, count#241L]
+
+(17) HashAggregate [codegen id : 6]
+Input [3]: [ss_item_sk#40L, sum#240, count#241L]
+Keys [1]: [ss_item_sk#40L]
+Functions [1]: [avg(UnscaledValue(ss_net_profit#60))]
+Aggregate Attributes [1]: [avg(UnscaledValue(ss_net_profit#60))#107]
+Results [3]: [ss_item_sk#40L AS item_sk#5L, cast((avg(UnscaledValue(ss_net_profit#60))#107 / 100.0) as decimal(11,6)) AS rank_col#6, cast((avg(UnscaledValue(ss_net_profit#60))#107 / 100.0) as decimal(11,6)) AS avg(ss_net_profit#60)#184]
+
+(18) Filter [codegen id : 6]
+Input [3]: [item_sk#5L, rank_col#6, avg(ss_net_profit#60)#184]
+Condition : (isnotnull(avg(ss_net_profit#60)#184) AND (cast(avg(ss_net_profit#60)#184 as decimal(13,7)) > CheckOverflow((0.900000 * promote_precision(ReusedSubquery Subquery scalar-subquery#3, [id=#139])), DecimalType(13,7), true)))
+
+(19) Project [codegen id : 6]
+Output [2]: [item_sk#5L, rank_col#6]
+Input [3]: [item_sk#5L, rank_col#6, avg(ss_net_profit#60)#184]
+
+(20) Exchange
+Input [2]: [item_sk#5L, rank_col#6]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#453]
+
+(21) Sort [codegen id : 7]
+Input [2]: [item_sk#5L, rank_col#6]
+Arguments: [rank_col#6 DESC NULLS LAST], false, 0
+
+(22) Window
+Input [2]: [item_sk#5L, rank_col#6]
+Arguments: [rank(rank_col#6) windowspecdefinition(rank_col#6 DESC NULLS LAST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS rnk#9], [rank_col#6 DESC NULLS LAST]
+
+(23) Filter [codegen id : 8]
+Input [3]: [item_sk#5L, rank_col#6, rnk#9]
+Condition : ((isnotnull(rnk#9) AND (rnk#9 < 11)) AND isnotnull(item_sk#5L))
+
+(24) Project [codegen id : 8]
+Output [2]: [item_sk#5L, rnk#9]
+Input [3]: [item_sk#5L, rank_col#6, rnk#9]
+
+(25) Sort [codegen id : 8]
+Input [2]: [item_sk#5L, rnk#9]
+Arguments: [rnk#9 ASC NULLS FIRST], false, 0
+
+(26) SortMergeJoin [codegen id : 11]
+Left keys [1]: [rnk#4]
+Right keys [1]: [rnk#9]
+Join condition: None
+
+(27) Project [codegen id : 11]
+Output [3]: [item_sk#0L, rnk#4, item_sk#5L]
+Input [4]: [item_sk#0L, rnk#4, item_sk#5L, rnk#9]
+
+(28) Scan orc tpcds_bin_partitioned_decimal_orc_2.item
+Output [2]: [i_item_sk#62L, i_product_name#83]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/item]
+PushedFilters: [IsNotNull(i_item_sk)]
+ReadSchema: struct<i_item_sk:bigint,i_product_name:string>
+
+(29) ColumnarToRow [codegen id : 9]
+Input [2]: [i_item_sk#62L, i_product_name#83]
+
+(30) Filter [codegen id : 9]
+Input [2]: [i_item_sk#62L, i_product_name#83]
+Condition : isnotnull(i_item_sk#62L)
+
+(31) BroadcastExchange
+Input [2]: [i_item_sk#62L, i_product_name#83]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#318]
+
+(32) BroadcastHashJoin [codegen id : 11]
+Left keys [1]: [item_sk#0L]
+Right keys [1]: [i_item_sk#62L]
+Join condition: None
+
+(33) Project [codegen id : 11]
+Output [3]: [rnk#4, item_sk#5L, i_product_name#83]
+Input [5]: [item_sk#0L, rnk#4, item_sk#5L, i_item_sk#62L, i_product_name#83]
+
+(34) ReusedExchange [Reuses operator id: 31]
+Output [2]: [i_item_sk#84L, i_product_name#105]
+
+(35) BroadcastHashJoin [codegen id : 11]
+Left keys [1]: [item_sk#5L]
+Right keys [1]: [i_item_sk#84L]
+Join condition: None
+
+(36) Project [codegen id : 11]
+Output [3]: [rnk#4, i_product_name#83 AS best_performing#10, i_product_name#105 AS worst_performing#11]
+Input [5]: [rnk#4, item_sk#5L, i_product_name#83, i_item_sk#84L, i_product_name#105]
+
+(37) TakeOrderedAndProject
+Input [3]: [rnk#4, best_performing#10, worst_performing#11]
+Arguments: 100, [rnk#4 ASC NULLS FIRST], [rnk#4, best_performing#10, worst_performing#11]
+
+===== Subqueries =====
+
+Subquery:1 Hosting operator id = 8 Hosting Expression = Subquery scalar-subquery#3, [id=#139]
+* HashAggregate (44)
++- Exchange (43)
+   +- * HashAggregate (42)
+      +- * Project (41)
+         +- * Filter (40)
+            +- * ColumnarToRow (39)
+               +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (38)
+
+
+(38) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [4]: [ss_addr_sk#113L, ss_store_sk#114L, ss_net_profit#129, ss_sold_date_sk#130L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales]
+PushedFilters: [IsNotNull(ss_store_sk), EqualTo(ss_store_sk,4), IsNull(ss_addr_sk)]
+ReadSchema: struct<ss_addr_sk:bigint,ss_store_sk:bigint,ss_net_profit:decimal(7,2)>
+
+(39) ColumnarToRow [codegen id : 1]
+Input [4]: [ss_addr_sk#113L, ss_store_sk#114L, ss_net_profit#129, ss_sold_date_sk#130L]
+
+(40) Filter [codegen id : 1]
+Input [4]: [ss_addr_sk#113L, ss_store_sk#114L, ss_net_profit#129, ss_sold_date_sk#130L]
+Condition : ((isnotnull(ss_store_sk#114L) AND (ss_store_sk#114L = 4)) AND isnull(ss_addr_sk#113L))
+
+(41) Project [codegen id : 1]
+Output [2]: [ss_store_sk#114L, ss_net_profit#129]
+Input [4]: [ss_addr_sk#113L, ss_store_sk#114L, ss_net_profit#129, ss_sold_date_sk#130L]
+
+(42) HashAggregate [codegen id : 1]
+Input [2]: [ss_store_sk#114L, ss_net_profit#129]
+Keys [1]: [ss_store_sk#114L]
+Functions [1]: [partial_avg(UnscaledValue(ss_net_profit#129))]
+Aggregate Attributes [2]: [sum#242, count#243L]
+Results [3]: [ss_store_sk#114L, sum#244, count#245L]
+
+(43) Exchange
+Input [3]: [ss_store_sk#114L, sum#244, count#245L]
+Arguments: hashpartitioning(ss_store_sk#114L, 200), ENSURE_REQUIREMENTS, [id=#135]
+
+(44) HashAggregate [codegen id : 2]
+Input [3]: [ss_store_sk#114L, sum#244, count#245L]
+Keys [1]: [ss_store_sk#114L]
+Functions [1]: [avg(UnscaledValue(ss_net_profit#129))]
+Aggregate Attributes [1]: [avg(UnscaledValue(ss_net_profit#129))#131]
+Results [1]: [cast((avg(UnscaledValue(ss_net_profit#129))#131 / 100.0) as decimal(11,6)) AS rank_col#2]
+
+Subquery:2 Hosting operator id = 18 Hosting Expression = ReusedSubquery Subquery scalar-subquery#3, [id=#139]
+
+

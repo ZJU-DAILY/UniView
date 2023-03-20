@@ -1,0 +1,93 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 0.43,
+    "Total Cost": 391114.41,
+    "Plan Rows": 1,
+    "Plan Width": 25,
+    "Actual Startup Time": 844.642,
+    "Actual Total Time": 3173.746,
+    "Actual Rows": 6,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Plans": [
+      {
+        "Node Type": "Nested Loop",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Join Type": "Inner",
+        "Startup Cost": 0.0,
+        "Total Cost": 388190.35,
+        "Plan Rows": 1374,
+        "Plan Width": 4,
+        "Actual Startup Time": 771.992,
+        "Actual Total Time": 2789.937,
+        "Actual Rows": 69478,
+        "Actual Loops": 1,
+        "Inner Unique": false,
+        "Join Filter": "(it.id = mi.info_type_id)",
+        "Rows Removed by Join Filter": 0,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "info_type",
+            "Alias": "it",
+            "Startup Cost": 0.0,
+            "Total Cost": 2.41,
+            "Plan Rows": 1,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.018,
+            "Actual Total Time": 0.028,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((info)::text = 'release dates'::text)",
+            "Rows Removed by Filter": 112
+          },
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Inner",
+            "Parallel Aware": false,
+            "Relation Name": "movie_info",
+            "Alias": "mi",
+            "Startup Cost": 0.0,
+            "Total Cost": 386247.28,
+            "Plan Rows": 155253,
+            "Plan Width": 8,
+            "Actual Startup Time": 771.971,
+            "Actual Total Time": 2779.562,
+            "Actual Rows": 69478,
+            "Actual Loops": 1,
+            "Filter": "((info IS NOT NULL) AND (((info)::text ~~ 'Japan:%2007%'::text) OR ((info)::text ~~ 'USA:%2008%'::text)))",
+            "Rows Removed by Filter": 14766242
+          }
+        ]
+      },
+      {
+        "Node Type": "Index Scan",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Scan Direction": "Forward",
+        "Index Name": "title_pkey",
+        "Relation Name": "title",
+        "Alias": "t",
+        "Startup Cost": 0.43,
+        "Total Cost": 2.13,
+        "Plan Rows": 1,
+        "Plan Width": 21,
+        "Actual Startup Time": 0.005,
+        "Actual Total Time": 0.005,
+        "Actual Rows": 0,
+        "Actual Loops": 69478,
+        "Index Cond": "(id = mi.movie_id)",
+        "Rows Removed by Index Recheck": 0,
+        "Filter": "((production_year >= 2007) AND (production_year <= 2008) AND ((title)::text ~~ '%Kung%Fu%Panda%'::text))",
+        "Rows Removed by Filter": 1
+      }
+    ]
+  }
+}

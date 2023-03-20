@@ -1,0 +1,3 @@
+select movie_info.info AS info, title.id AS title_id_1, movie_keyword.movie_id AS movie_keyword_movie_id_2, keyword.id AS keyword_id_3, keyword.keyword AS keyword, movie_info.movie_id AS movie_info_movie_id_5, title.production_year AS production_year, title.title AS title
+ from movie_keyword,movie_info,keyword,title
+ where title.id = movie_keyword.movie_id  And  movie_keyword.movie_id = movie_info.movie_id And (keyword.id = movie_keyword.keyword_id) And ((movie_info.info = 'Bulgaria')) And title.id = movie_info.movie_id  And ((keyword.keyword like '%sequel%')) And (title.production_year > 2010)

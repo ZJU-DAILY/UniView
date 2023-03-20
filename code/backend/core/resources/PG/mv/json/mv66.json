@@ -1,0 +1,70 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 0.0,
+    "Total Cost": 710534.23,
+    "Plan Rows": 463,
+    "Plan Width": 8,
+    "Actual Startup Time": 811.931,
+    "Actual Total Time": 3841.559,
+    "Actual Rows": 34848,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Join Filter": "(ci.role_id = rt.id)",
+    "Rows Removed by Join Filter": 58247,
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "cast_info",
+        "Alias": "ci",
+        "Startup Cost": 0.0,
+        "Total Cost": 705591.9,
+        "Plan Rows": 82127,
+        "Plan Width": 12,
+        "Actual Startup Time": 0.107,
+        "Actual Total Time": 3809.472,
+        "Actual Rows": 93095,
+        "Actual Loops": 1,
+        "Filter": "((note)::text = '(voice: English version)'::text)",
+        "Rows Removed by Filter": 36151249
+      },
+      {
+        "Node Type": "Materialize",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 0.0,
+        "Total Cost": 18.89,
+        "Plan Rows": 4,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.0,
+        "Actual Total Time": 0.0,
+        "Actual Rows": 1,
+        "Actual Loops": 93095,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "role_type",
+            "Alias": "rt",
+            "Startup Cost": 0.0,
+            "Total Cost": 18.88,
+            "Plan Rows": 4,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.014,
+            "Actual Total Time": 0.016,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((role)::text = 'actress'::text)",
+            "Rows Removed by Filter": 11
+          }
+        ]
+      }
+    ]
+  }
+}

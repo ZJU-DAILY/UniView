@@ -1,0 +1,72 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 2.43,
+    "Total Cost": 25496.24,
+    "Plan Rows": 12213,
+    "Plan Width": 9,
+    "Actual Startup Time": 0.051,
+    "Actual Total Time": 362.055,
+    "Actual Rows": 459925,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Hash Cond": "(miidx.info_type_id = it.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_info_idx",
+        "Alias": "miidx",
+        "Startup Cost": 0.0,
+        "Total Cost": 21735.35,
+        "Plan Rows": 1380035,
+        "Plan Width": 13,
+        "Actual Startup Time": 0.022,
+        "Actual Total Time": 142.016,
+        "Actual Rows": 1380035,
+        "Actual Loops": 1
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 2.41,
+        "Total Cost": 2.41,
+        "Plan Rows": 1,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.021,
+        "Actual Total Time": 0.021,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "info_type",
+            "Alias": "it",
+            "Startup Cost": 0.0,
+            "Total Cost": 2.41,
+            "Plan Rows": 1,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.017,
+            "Actual Total Time": 0.019,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((info)::text = 'rating'::text)",
+            "Rows Removed by Filter": 112
+          }
+        ]
+      }
+    ]
+  }
+}

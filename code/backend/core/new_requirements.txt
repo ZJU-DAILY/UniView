@@ -1,0 +1,10 @@
+graphviz==0.19.2
+matplotlib==3.5.1
+numpy==1.22.3
+pandas==1.4.2
+PuLP==2.6.0
+pyspark==3.1.1
+z3-solver==4.8.15.0
+torch==1.11.0
+sql-metadata==2.5.0
+pypred==0.4.0

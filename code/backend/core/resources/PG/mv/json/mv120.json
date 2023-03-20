@@ -1,0 +1,72 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 25.98,
+    "Total Cost": 709414.51,
+    "Plan Rows": 1437755,
+    "Plan Width": 8,
+    "Actual Startup Time": 291.528,
+    "Actual Total Time": 5307.304,
+    "Actual Rows": 1435439,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Hash Cond": "(ci.role_id = rt.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "cast_info",
+        "Alias": "ci",
+        "Startup Cost": 0.0,
+        "Total Cost": 705591.9,
+        "Plan Rows": 1437755,
+        "Plan Width": 12,
+        "Actual Startup Time": 291.493,
+        "Actual Total Time": 4982.903,
+        "Actual Rows": 1435439,
+        "Actual Loops": 1,
+        "Filter": "((note)::text ~~ '%(producer)%'::text)",
+        "Rows Removed by Filter": 34808905
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 17.1,
+        "Total Cost": 17.1,
+        "Plan Rows": 710,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.023,
+        "Actual Total Time": 0.024,
+        "Actual Rows": 12,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "role_type",
+            "Alias": "rt",
+            "Startup Cost": 0.0,
+            "Total Cost": 17.1,
+            "Plan Rows": 710,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.01,
+            "Actual Total Time": 0.012,
+            "Actual Rows": 12,
+            "Actual Loops": 1
+          }
+        ]
+      }
+    ]
+  }
+}

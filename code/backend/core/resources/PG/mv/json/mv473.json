@@ -1,0 +1,127 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 37.85,
+    "Total Cost": 2478.43,
+    "Plan Rows": 4,
+    "Plan Width": 4,
+    "Actual Startup Time": 0.057,
+    "Actual Total Time": 35.193,
+    "Actual Rows": 17879,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Hash Cond": "(cc.subject_id = cct1.id)",
+    "Plans": [
+      {
+        "Node Type": "Hash Join",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Join Type": "Inner",
+        "Startup Cost": 18.93,
+        "Total Cost": 2457.5,
+        "Plan Rows": 761,
+        "Plan Width": 8,
+        "Actual Startup Time": 0.026,
+        "Actual Total Time": 30.619,
+        "Actual Rows": 24592,
+        "Actual Loops": 1,
+        "Inner Unique": true,
+        "Hash Cond": "(cc.status_id = cct2.id)",
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "complete_cast",
+            "Alias": "cc",
+            "Startup Cost": 0.0,
+            "Total Cost": 2081.86,
+            "Plan Rows": 135086,
+            "Plan Width": 12,
+            "Actual Startup Time": 0.011,
+            "Actual Total Time": 12.471,
+            "Actual Rows": 135086,
+            "Actual Loops": 1
+          },
+          {
+            "Node Type": "Hash",
+            "Parent Relationship": "Inner",
+            "Parallel Aware": false,
+            "Startup Cost": 18.88,
+            "Total Cost": 18.88,
+            "Plan Rows": 4,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.006,
+            "Actual Total Time": 0.006,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Hash Buckets": 1024,
+            "Original Hash Buckets": 1024,
+            "Hash Batches": 1,
+            "Original Hash Batches": 1,
+            "Peak Memory Usage": 9,
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Relation Name": "comp_cast_type",
+                "Alias": "cct2",
+                "Startup Cost": 0.0,
+                "Total Cost": 18.88,
+                "Plan Rows": 4,
+                "Plan Width": 4,
+                "Actual Startup Time": 0.004,
+                "Actual Total Time": 0.004,
+                "Actual Rows": 1,
+                "Actual Loops": 1,
+                "Filter": "((kind)::text = 'complete+verified'::text)",
+                "Rows Removed by Filter": 3
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 18.88,
+        "Total Cost": 18.88,
+        "Plan Rows": 4,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.025,
+        "Actual Total Time": 0.025,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "comp_cast_type",
+            "Alias": "cct1",
+            "Startup Cost": 0.0,
+            "Total Cost": 18.88,
+            "Plan Rows": 4,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.012,
+            "Actual Total Time": 0.014,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((kind)::text = 'cast'::text)",
+            "Rows Removed by Filter": 3
+          }
+        ]
+      }
+    ]
+  }
+}

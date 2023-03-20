@@ -1,0 +1,70 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 0.0,
+    "Total Cost": 58114.64,
+    "Plan Rows": 16,
+    "Plan Width": 4,
+    "Actual Startup Time": 466.083,
+    "Actual Total Time": 466.084,
+    "Actual Rows": 0,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Join Filter": "(ct.id = mc.company_type_id)",
+    "Rows Removed by Join Filter": 24025,
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_companies",
+        "Alias": "mc",
+        "Startup Cost": 0.0,
+        "Total Cost": 57926.93,
+        "Plan Rows": 2816,
+        "Plan Width": 8,
+        "Actual Startup Time": 0.041,
+        "Actual Total Time": 458.155,
+        "Actual Rows": 24025,
+        "Actual Loops": 1,
+        "Filter": "(((note)::text ~~ '%(theatrical)%'::text) AND ((note)::text ~~ '%(France)%'::text))",
+        "Rows Removed by Filter": 2585104
+      },
+      {
+        "Node Type": "Materialize",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 0.0,
+        "Total Cost": 18.89,
+        "Plan Rows": 4,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.0,
+        "Actual Total Time": 0.0,
+        "Actual Rows": 1,
+        "Actual Loops": 24025,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "company_type",
+            "Alias": "ct",
+            "Startup Cost": 0.0,
+            "Total Cost": 18.88,
+            "Plan Rows": 4,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.025,
+            "Actual Total Time": 0.026,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((kind)::text = 'production companies'::text)",
+            "Rows Removed by Filter": 3
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,155 @@
+== Physical Plan ==
+TakeOrderedAndProject (27)
++- * HashAggregate (26)
+   +- Exchange (25)
+      +- * HashAggregate (24)
+         +- * Expand (23)
+            +- * Project (22)
+               +- * BroadcastHashJoin Inner BuildRight (21)
+                  :- * Project (16)
+                  :  +- * BroadcastHashJoin Inner BuildRight (15)
+                  :     :- * Project (10)
+                  :     :  +- * BroadcastHashJoin Inner BuildRight (9)
+                  :     :     :- * Filter (3)
+                  :     :     :  +- * ColumnarToRow (2)
+                  :     :     :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.inventory (1)
+                  :     :     +- BroadcastExchange (8)
+                  :     :        +- * Project (7)
+                  :     :           +- * Filter (6)
+                  :     :              +- * ColumnarToRow (5)
+                  :     :                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (4)
+                  :     +- BroadcastExchange (14)
+                  :        +- * Filter (13)
+                  :           +- * ColumnarToRow (12)
+                  :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.item (11)
+                  +- BroadcastExchange (20)
+                     +- * Filter (19)
+                        +- * ColumnarToRow (18)
+                           +- Scan orc tpcds_bin_partitioned_decimal_orc_2.warehouse (17)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.inventory
+Output [4]: [inv_date_sk#1L, inv_item_sk#2L, inv_warehouse_sk#3L, inv_quantity_on_hand#4]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/inventory]
+PushedFilters: [IsNotNull(inv_date_sk), IsNotNull(inv_item_sk), IsNotNull(inv_warehouse_sk)]
+ReadSchema: struct<inv_date_sk:bigint,inv_item_sk:bigint,inv_warehouse_sk:bigint,inv_quantity_on_hand:int>
+
+(2) ColumnarToRow [codegen id : 4]
+Input [4]: [inv_date_sk#1L, inv_item_sk#2L, inv_warehouse_sk#3L, inv_quantity_on_hand#4]
+
+(3) Filter [codegen id : 4]
+Input [4]: [inv_date_sk#1L, inv_item_sk#2L, inv_warehouse_sk#3L, inv_quantity_on_hand#4]
+Condition : ((isnotnull(inv_date_sk#1L) AND isnotnull(inv_item_sk#2L)) AND isnotnull(inv_warehouse_sk#3L))
+
+(4) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [2]: [d_date_sk#5L, d_month_seq#8]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_month_seq), GreaterThanOrEqual(d_month_seq,1200), LessThanOrEqual(d_month_seq,1211), IsNotNull(d_date_sk)]
+ReadSchema: struct<d_date_sk:bigint,d_month_seq:int>
+
+(5) ColumnarToRow [codegen id : 1]
+Input [2]: [d_date_sk#5L, d_month_seq#8]
+
+(6) Filter [codegen id : 1]
+Input [2]: [d_date_sk#5L, d_month_seq#8]
+Condition : (((isnotnull(d_month_seq#8) AND (d_month_seq#8 >= 1200)) AND (d_month_seq#8 <= 1211)) AND isnotnull(d_date_sk#5L))
+
+(7) Project [codegen id : 1]
+Output [1]: [d_date_sk#5L]
+Input [2]: [d_date_sk#5L, d_month_seq#8]
+
+(8) BroadcastExchange
+Input [1]: [d_date_sk#5L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#127]
+
+(9) BroadcastHashJoin [codegen id : 4]
+Left keys [1]: [inv_date_sk#1L]
+Right keys [1]: [d_date_sk#5L]
+Join condition: None
+
+(10) Project [codegen id : 4]
+Output [3]: [inv_item_sk#2L, inv_warehouse_sk#3L, inv_quantity_on_hand#4]
+Input [5]: [inv_date_sk#1L, inv_item_sk#2L, inv_warehouse_sk#3L, inv_quantity_on_hand#4, d_date_sk#5L]
+
+(11) Scan orc tpcds_bin_partitioned_decimal_orc_2.item
+Output [5]: [i_item_sk#33L, i_brand#41, i_class#43, i_category#45, i_product_name#54]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/item]
+PushedFilters: [IsNotNull(i_item_sk)]
+ReadSchema: struct<i_item_sk:bigint,i_brand:string,i_class:string,i_category:string,i_product_name:string>
+
+(12) ColumnarToRow [codegen id : 2]
+Input [5]: [i_item_sk#33L, i_brand#41, i_class#43, i_category#45, i_product_name#54]
+
+(13) Filter [codegen id : 2]
+Input [5]: [i_item_sk#33L, i_brand#41, i_class#43, i_category#45, i_product_name#54]
+Condition : isnotnull(i_item_sk#33L)
+
+(14) BroadcastExchange
+Input [5]: [i_item_sk#33L, i_brand#41, i_class#43, i_category#45, i_product_name#54]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#135]
+
+(15) BroadcastHashJoin [codegen id : 4]
+Left keys [1]: [inv_item_sk#2L]
+Right keys [1]: [i_item_sk#33L]
+Join condition: None
+
+(16) Project [codegen id : 4]
+Output [6]: [inv_warehouse_sk#3L, inv_quantity_on_hand#4, i_brand#41, i_class#43, i_category#45, i_product_name#54]
+Input [8]: [inv_item_sk#2L, inv_warehouse_sk#3L, inv_quantity_on_hand#4, i_item_sk#33L, i_brand#41, i_class#43, i_category#45, i_product_name#54]
+
+(17) Scan orc tpcds_bin_partitioned_decimal_orc_2.warehouse
+Output [1]: [w_warehouse_sk#55L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/warehouse]
+PushedFilters: [IsNotNull(w_warehouse_sk)]
+ReadSchema: struct<w_warehouse_sk:bigint>
+
+(18) ColumnarToRow [codegen id : 3]
+Input [1]: [w_warehouse_sk#55L]
+
+(19) Filter [codegen id : 3]
+Input [1]: [w_warehouse_sk#55L]
+Condition : isnotnull(w_warehouse_sk#55L)
+
+(20) BroadcastExchange
+Input [1]: [w_warehouse_sk#55L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#143]
+
+(21) BroadcastHashJoin [codegen id : 4]
+Left keys [1]: [inv_warehouse_sk#3L]
+Right keys [1]: [w_warehouse_sk#55L]
+Join condition: None
+
+(22) Project [codegen id : 4]
+Output [5]: [inv_quantity_on_hand#4, i_product_name#54, i_brand#41, i_class#43, i_category#45]
+Input [7]: [inv_warehouse_sk#3L, inv_quantity_on_hand#4, i_brand#41, i_class#43, i_category#45, i_product_name#54, w_warehouse_sk#55L]
+
+(23) Expand [codegen id : 4]
+Input [5]: [inv_quantity_on_hand#4, i_product_name#54, i_brand#41, i_class#43, i_category#45]
+Arguments: [List(inv_quantity_on_hand#4, i_product_name#54, i_brand#41, i_class#43, i_category#45, 0), List(inv_quantity_on_hand#4, i_product_name#54, i_brand#41, i_class#43, null, 1), List(inv_quantity_on_hand#4, i_product_name#54, i_brand#41, null, null, 3), List(inv_quantity_on_hand#4, i_product_name#54, null, null, null, 7), List(inv_quantity_on_hand#4, null, null, null, null, 15)], [inv_quantity_on_hand#4, i_product_name#75, i_brand#76, i_class#77, i_category#78, spark_grouping_id#74L]
+
+(24) HashAggregate [codegen id : 4]
+Input [6]: [inv_quantity_on_hand#4, i_product_name#75, i_brand#76, i_class#77, i_category#78, spark_grouping_id#74L]
+Keys [5]: [i_product_name#75, i_brand#76, i_class#77, i_category#78, spark_grouping_id#74L]
+Functions [1]: [partial_avg(cast(inv_quantity_on_hand#4 as bigint))]
+Aggregate Attributes [2]: [sum#157, count#158L]
+Results [7]: [i_product_name#75, i_brand#76, i_class#77, i_category#78, spark_grouping_id#74L, sum#159, count#160L]
+
+(25) Exchange
+Input [7]: [i_product_name#75, i_brand#76, i_class#77, i_category#78, spark_grouping_id#74L, sum#159, count#160L]
+Arguments: hashpartitioning(i_product_name#75, i_brand#76, i_class#77, i_category#78, spark_grouping_id#74L, 200), ENSURE_REQUIREMENTS, [id=#150]
+
+(26) HashAggregate [codegen id : 5]
+Input [7]: [i_product_name#75, i_brand#76, i_class#77, i_category#78, spark_grouping_id#74L, sum#159, count#160L]
+Keys [5]: [i_product_name#75, i_brand#76, i_class#77, i_category#78, spark_grouping_id#74L]
+Functions [1]: [avg(cast(inv_quantity_on_hand#4 as bigint))]
+Aggregate Attributes [1]: [avg(cast(inv_quantity_on_hand#4 as bigint))#69]
+Results [5]: [i_product_name#75, i_brand#76, i_class#77, i_category#78, avg(cast(inv_quantity_on_hand#4 as bigint))#69 AS qoh#0]
+
+(27) TakeOrderedAndProject
+Input [5]: [i_product_name#75, i_brand#76, i_class#77, i_category#78, qoh#0]
+Arguments: 100, [qoh#0 ASC NULLS FIRST, i_product_name#75 ASC NULLS FIRST, i_brand#76 ASC NULLS FIRST, i_class#77 ASC NULLS FIRST, i_category#78 ASC NULLS FIRST], [i_product_name#75, i_brand#76, i_class#77, i_category#78, qoh#0]
+

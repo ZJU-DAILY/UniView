@@ -1,0 +1,55 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 0.0,
+    "Total Cost": 426179.41,
+    "Plan Rows": 1808,
+    "Plan Width": 46,
+    "Actual Startup Time": 0.031,
+    "Actual Total Time": 3207.1,
+    "Actual Rows": 186594,
+    "Actual Loops": 1,
+    "Inner Unique": false,
+    "Join Filter": "(it1.id = mi.info_type_id)",
+    "Rows Removed by Join Filter": 2377,
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "info_type",
+        "Alias": "it1",
+        "Startup Cost": 0.0,
+        "Total Cost": 2.41,
+        "Plan Rows": 1,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.014,
+        "Actual Total Time": 0.023,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Filter": "((info)::text = 'genres'::text)",
+        "Rows Removed by Filter": 112
+      },
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Relation Name": "movie_info",
+        "Alias": "mi",
+        "Startup Cost": 0.0,
+        "Total Cost": 423622.99,
+        "Plan Rows": 204321,
+        "Plan Width": 50,
+        "Actual Startup Time": 0.013,
+        "Actual Total Time": 3177.158,
+        "Actual Rows": 188971,
+        "Actual Loops": 1,
+        "Filter": "((info)::text = ANY ('{Horror,Action,Sci-Fi,Thriller,Crime,War}'::text[]))",
+        "Rows Removed by Filter": 14646749
+      }
+    ]
+  }
+}

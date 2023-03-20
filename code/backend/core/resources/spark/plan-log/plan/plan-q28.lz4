@@ -1,0 +1,437 @@
+== Physical Plan ==
+CollectLimit (71)
++- BroadcastNestedLoopJoin Inner BuildRight (70)
+   :- BroadcastNestedLoopJoin Inner BuildRight (58)
+   :  :- BroadcastNestedLoopJoin Inner BuildRight (46)
+   :  :  :- BroadcastNestedLoopJoin Inner BuildRight (34)
+   :  :  :  :- BroadcastNestedLoopJoin Inner BuildRight (22)
+   :  :  :  :  :- * HashAggregate (10)
+   :  :  :  :  :  +- Exchange (9)
+   :  :  :  :  :     +- * HashAggregate (8)
+   :  :  :  :  :        +- * HashAggregate (7)
+   :  :  :  :  :           +- Exchange (6)
+   :  :  :  :  :              +- * HashAggregate (5)
+   :  :  :  :  :                 +- * Project (4)
+   :  :  :  :  :                    +- * Filter (3)
+   :  :  :  :  :                       +- * ColumnarToRow (2)
+   :  :  :  :  :                          +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (1)
+   :  :  :  :  +- BroadcastExchange (21)
+   :  :  :  :     +- * HashAggregate (20)
+   :  :  :  :        +- Exchange (19)
+   :  :  :  :           +- * HashAggregate (18)
+   :  :  :  :              +- * HashAggregate (17)
+   :  :  :  :                 +- Exchange (16)
+   :  :  :  :                    +- * HashAggregate (15)
+   :  :  :  :                       +- * Project (14)
+   :  :  :  :                          +- * Filter (13)
+   :  :  :  :                             +- * ColumnarToRow (12)
+   :  :  :  :                                +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (11)
+   :  :  :  +- BroadcastExchange (33)
+   :  :  :     +- * HashAggregate (32)
+   :  :  :        +- Exchange (31)
+   :  :  :           +- * HashAggregate (30)
+   :  :  :              +- * HashAggregate (29)
+   :  :  :                 +- Exchange (28)
+   :  :  :                    +- * HashAggregate (27)
+   :  :  :                       +- * Project (26)
+   :  :  :                          +- * Filter (25)
+   :  :  :                             +- * ColumnarToRow (24)
+   :  :  :                                +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (23)
+   :  :  +- BroadcastExchange (45)
+   :  :     +- * HashAggregate (44)
+   :  :        +- Exchange (43)
+   :  :           +- * HashAggregate (42)
+   :  :              +- * HashAggregate (41)
+   :  :                 +- Exchange (40)
+   :  :                    +- * HashAggregate (39)
+   :  :                       +- * Project (38)
+   :  :                          +- * Filter (37)
+   :  :                             +- * ColumnarToRow (36)
+   :  :                                +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (35)
+   :  +- BroadcastExchange (57)
+   :     +- * HashAggregate (56)
+   :        +- Exchange (55)
+   :           +- * HashAggregate (54)
+   :              +- * HashAggregate (53)
+   :                 +- Exchange (52)
+   :                    +- * HashAggregate (51)
+   :                       +- * Project (50)
+   :                          +- * Filter (49)
+   :                             +- * ColumnarToRow (48)
+   :                                +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (47)
+   +- BroadcastExchange (69)
+      +- * HashAggregate (68)
+         +- Exchange (67)
+            +- * HashAggregate (66)
+               +- * HashAggregate (65)
+                  +- Exchange (64)
+                     +- * HashAggregate (63)
+                        +- * Project (62)
+                           +- * Filter (61)
+                              +- * ColumnarToRow (60)
+                                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (59)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [5]: [ss_quantity#27, ss_wholesale_cost#28, ss_list_price#29, ss_coupon_amt#36, ss_sold_date_sk#40L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales]
+PushedFilters: [IsNotNull(ss_quantity), GreaterThanOrEqual(ss_quantity,0), LessThanOrEqual(ss_quantity,5), Or(Or(And(GreaterThanOrEqual(ss_list_price,8.00),LessThanOrEqual(ss_list_price,18.00)),And(GreaterThanOrEqual(ss_coupon_amt,459.00),LessThanOrEqual(ss_coupon_amt,1459.00))),And(GreaterThanOrEqual(ss_wholesale_cost,57.00),LessThanOrEqual(ss_wholesale_cost,77.00)))]
+ReadSchema: struct<ss_quantity:int,ss_wholesale_cost:decimal(7,2),ss_list_price:decimal(7,2),ss_coupon_amt:decimal(7,2)>
+
+(2) ColumnarToRow [codegen id : 1]
+Input [5]: [ss_quantity#27, ss_wholesale_cost#28, ss_list_price#29, ss_coupon_amt#36, ss_sold_date_sk#40L]
+
+(3) Filter [codegen id : 1]
+Input [5]: [ss_quantity#27, ss_wholesale_cost#28, ss_list_price#29, ss_coupon_amt#36, ss_sold_date_sk#40L]
+Condition : (((isnotnull(ss_quantity#27) AND (ss_quantity#27 >= 0)) AND (ss_quantity#27 <= 5)) AND ((((ss_list_price#29 >= 8.00) AND (ss_list_price#29 <= 18.00)) OR ((ss_coupon_amt#36 >= 459.00) AND (ss_coupon_amt#36 <= 1459.00))) OR ((ss_wholesale_cost#28 >= 57.00) AND (ss_wholesale_cost#28 <= 77.00))))
+
+(4) Project [codegen id : 1]
+Output [1]: [ss_list_price#29]
+Input [5]: [ss_quantity#27, ss_wholesale_cost#28, ss_list_price#29, ss_coupon_amt#36, ss_sold_date_sk#40L]
+
+(5) HashAggregate [codegen id : 1]
+Input [1]: [ss_list_price#29]
+Keys [1]: [ss_list_price#29]
+Functions [2]: [partial_avg(UnscaledValue(ss_list_price#29)), partial_count(ss_list_price#29)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#29))#156, count(ss_list_price#29)#157L]
+Results [4]: [ss_list_price#29, sum#217, count#218L, count#220L]
+
+(6) Exchange
+Input [4]: [ss_list_price#29, sum#217, count#218L, count#220L]
+Arguments: hashpartitioning(ss_list_price#29, 200), ENSURE_REQUIREMENTS, [id=#271]
+
+(7) HashAggregate [codegen id : 2]
+Input [4]: [ss_list_price#29, sum#217, count#218L, count#220L]
+Keys [1]: [ss_list_price#29]
+Functions [2]: [merge_avg(UnscaledValue(ss_list_price#29)), merge_count(ss_list_price#29)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#29))#156, count(ss_list_price#29)#157L]
+Results [4]: [ss_list_price#29, sum#217, count#218L, count#220L]
+
+(8) HashAggregate [codegen id : 2]
+Input [4]: [ss_list_price#29, sum#217, count#218L, count#220L]
+Keys: []
+Functions [3]: [merge_avg(UnscaledValue(ss_list_price#29)), merge_count(ss_list_price#29), partial_count(distinct ss_list_price#29)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#29))#156, count(ss_list_price#29)#157L, count(ss_list_price#29)#158L]
+Results [4]: [sum#217, count#218L, count#220L, count#223L]
+
+(9) Exchange
+Input [4]: [sum#217, count#218L, count#220L, count#223L]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#276]
+
+(10) HashAggregate [codegen id : 3]
+Input [4]: [sum#217, count#218L, count#220L, count#223L]
+Keys: []
+Functions [3]: [avg(UnscaledValue(ss_list_price#29)), count(ss_list_price#29), count(distinct ss_list_price#29)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#29))#156, count(ss_list_price#29)#157L, count(ss_list_price#29)#158L]
+Results [3]: [cast((avg(UnscaledValue(ss_list_price#29))#156 / 100.0) as decimal(11,6)) AS B1_LP#0, count(ss_list_price#29)#157L AS B1_CNT#1L, count(ss_list_price#29)#158L AS B1_CNTD#2L]
+
+(11) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [5]: [ss_quantity#50, ss_wholesale_cost#51, ss_list_price#52, ss_coupon_amt#59, ss_sold_date_sk#63L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales]
+PushedFilters: [IsNotNull(ss_quantity), GreaterThanOrEqual(ss_quantity,6), LessThanOrEqual(ss_quantity,10), Or(Or(And(GreaterThanOrEqual(ss_list_price,90.00),LessThanOrEqual(ss_list_price,100.00)),And(GreaterThanOrEqual(ss_coupon_amt,2323.00),LessThanOrEqual(ss_coupon_amt,3323.00))),And(GreaterThanOrEqual(ss_wholesale_cost,31.00),LessThanOrEqual(ss_wholesale_cost,51.00)))]
+ReadSchema: struct<ss_quantity:int,ss_wholesale_cost:decimal(7,2),ss_list_price:decimal(7,2),ss_coupon_amt:decimal(7,2)>
+
+(12) ColumnarToRow [codegen id : 4]
+Input [5]: [ss_quantity#50, ss_wholesale_cost#51, ss_list_price#52, ss_coupon_amt#59, ss_sold_date_sk#63L]
+
+(13) Filter [codegen id : 4]
+Input [5]: [ss_quantity#50, ss_wholesale_cost#51, ss_list_price#52, ss_coupon_amt#59, ss_sold_date_sk#63L]
+Condition : (((isnotnull(ss_quantity#50) AND (ss_quantity#50 >= 6)) AND (ss_quantity#50 <= 10)) AND ((((ss_list_price#52 >= 90.00) AND (ss_list_price#52 <= 100.00)) OR ((ss_coupon_amt#59 >= 2323.00) AND (ss_coupon_amt#59 <= 3323.00))) OR ((ss_wholesale_cost#51 >= 31.00) AND (ss_wholesale_cost#51 <= 51.00))))
+
+(14) Project [codegen id : 4]
+Output [1]: [ss_list_price#52]
+Input [5]: [ss_quantity#50, ss_wholesale_cost#51, ss_list_price#52, ss_coupon_amt#59, ss_sold_date_sk#63L]
+
+(15) HashAggregate [codegen id : 4]
+Input [1]: [ss_list_price#52]
+Keys [1]: [ss_list_price#52]
+Functions [2]: [partial_avg(UnscaledValue(ss_list_price#52)), partial_count(ss_list_price#52)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#52))#159, count(ss_list_price#52)#160L]
+Results [4]: [ss_list_price#52, sum#227, count#228L, count#230L]
+
+(16) Exchange
+Input [4]: [ss_list_price#52, sum#227, count#228L, count#230L]
+Arguments: hashpartitioning(ss_list_price#52, 200), ENSURE_REQUIREMENTS, [id=#286]
+
+(17) HashAggregate [codegen id : 5]
+Input [4]: [ss_list_price#52, sum#227, count#228L, count#230L]
+Keys [1]: [ss_list_price#52]
+Functions [2]: [merge_avg(UnscaledValue(ss_list_price#52)), merge_count(ss_list_price#52)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#52))#159, count(ss_list_price#52)#160L]
+Results [4]: [ss_list_price#52, sum#227, count#228L, count#230L]
+
+(18) HashAggregate [codegen id : 5]
+Input [4]: [ss_list_price#52, sum#227, count#228L, count#230L]
+Keys: []
+Functions [3]: [merge_avg(UnscaledValue(ss_list_price#52)), merge_count(ss_list_price#52), partial_count(distinct ss_list_price#52)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#52))#159, count(ss_list_price#52)#160L, count(ss_list_price#52)#161L]
+Results [4]: [sum#227, count#228L, count#230L, count#233L]
+
+(19) Exchange
+Input [4]: [sum#227, count#228L, count#230L, count#233L]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#291]
+
+(20) HashAggregate [codegen id : 6]
+Input [4]: [sum#227, count#228L, count#230L, count#233L]
+Keys: []
+Functions [3]: [avg(UnscaledValue(ss_list_price#52)), count(ss_list_price#52), count(distinct ss_list_price#52)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#52))#159, count(ss_list_price#52)#160L, count(ss_list_price#52)#161L]
+Results [3]: [cast((avg(UnscaledValue(ss_list_price#52))#159 / 100.0) as decimal(11,6)) AS B2_LP#3, count(ss_list_price#52)#160L AS B2_CNT#4L, count(ss_list_price#52)#161L AS B2_CNTD#5L]
+
+(21) BroadcastExchange
+Input [3]: [B2_LP#3, B2_CNT#4L, B2_CNTD#5L]
+Arguments: IdentityBroadcastMode, [id=#295]
+
+(22) BroadcastNestedLoopJoin
+Join condition: None
+
+(23) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [5]: [ss_quantity#73, ss_wholesale_cost#74, ss_list_price#75, ss_coupon_amt#82, ss_sold_date_sk#86L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales]
+PushedFilters: [IsNotNull(ss_quantity), GreaterThanOrEqual(ss_quantity,11), LessThanOrEqual(ss_quantity,15), Or(Or(And(GreaterThanOrEqual(ss_list_price,142.00),LessThanOrEqual(ss_list_price,152.00)),And(GreaterThanOrEqual(ss_coupon_amt,12214.00),LessThanOrEqual(ss_coupon_amt,13214.00))),And(GreaterThanOrEqual(ss_wholesale_cost,79.00),LessThanOrEqual(ss_wholesale_cost,99.00)))]
+ReadSchema: struct<ss_quantity:int,ss_wholesale_cost:decimal(7,2),ss_list_price:decimal(7,2),ss_coupon_amt:decimal(7,2)>
+
+(24) ColumnarToRow [codegen id : 7]
+Input [5]: [ss_quantity#73, ss_wholesale_cost#74, ss_list_price#75, ss_coupon_amt#82, ss_sold_date_sk#86L]
+
+(25) Filter [codegen id : 7]
+Input [5]: [ss_quantity#73, ss_wholesale_cost#74, ss_list_price#75, ss_coupon_amt#82, ss_sold_date_sk#86L]
+Condition : (((isnotnull(ss_quantity#73) AND (ss_quantity#73 >= 11)) AND (ss_quantity#73 <= 15)) AND ((((ss_list_price#75 >= 142.00) AND (ss_list_price#75 <= 152.00)) OR ((ss_coupon_amt#82 >= 12214.00) AND (ss_coupon_amt#82 <= 13214.00))) OR ((ss_wholesale_cost#74 >= 79.00) AND (ss_wholesale_cost#74 <= 99.00))))
+
+(26) Project [codegen id : 7]
+Output [1]: [ss_list_price#75]
+Input [5]: [ss_quantity#73, ss_wholesale_cost#74, ss_list_price#75, ss_coupon_amt#82, ss_sold_date_sk#86L]
+
+(27) HashAggregate [codegen id : 7]
+Input [1]: [ss_list_price#75]
+Keys [1]: [ss_list_price#75]
+Functions [2]: [partial_avg(UnscaledValue(ss_list_price#75)), partial_count(ss_list_price#75)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#75))#162, count(ss_list_price#75)#163L]
+Results [4]: [ss_list_price#75, sum#237, count#238L, count#240L]
+
+(28) Exchange
+Input [4]: [ss_list_price#75, sum#237, count#238L, count#240L]
+Arguments: hashpartitioning(ss_list_price#75, 200), ENSURE_REQUIREMENTS, [id=#303]
+
+(29) HashAggregate [codegen id : 8]
+Input [4]: [ss_list_price#75, sum#237, count#238L, count#240L]
+Keys [1]: [ss_list_price#75]
+Functions [2]: [merge_avg(UnscaledValue(ss_list_price#75)), merge_count(ss_list_price#75)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#75))#162, count(ss_list_price#75)#163L]
+Results [4]: [ss_list_price#75, sum#237, count#238L, count#240L]
+
+(30) HashAggregate [codegen id : 8]
+Input [4]: [ss_list_price#75, sum#237, count#238L, count#240L]
+Keys: []
+Functions [3]: [merge_avg(UnscaledValue(ss_list_price#75)), merge_count(ss_list_price#75), partial_count(distinct ss_list_price#75)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#75))#162, count(ss_list_price#75)#163L, count(ss_list_price#75)#164L]
+Results [4]: [sum#237, count#238L, count#240L, count#243L]
+
+(31) Exchange
+Input [4]: [sum#237, count#238L, count#240L, count#243L]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#308]
+
+(32) HashAggregate [codegen id : 9]
+Input [4]: [sum#237, count#238L, count#240L, count#243L]
+Keys: []
+Functions [3]: [avg(UnscaledValue(ss_list_price#75)), count(ss_list_price#75), count(distinct ss_list_price#75)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#75))#162, count(ss_list_price#75)#163L, count(ss_list_price#75)#164L]
+Results [3]: [cast((avg(UnscaledValue(ss_list_price#75))#162 / 100.0) as decimal(11,6)) AS B3_LP#6, count(ss_list_price#75)#163L AS B3_CNT#7L, count(ss_list_price#75)#164L AS B3_CNTD#8L]
+
+(33) BroadcastExchange
+Input [3]: [B3_LP#6, B3_CNT#7L, B3_CNTD#8L]
+Arguments: IdentityBroadcastMode, [id=#312]
+
+(34) BroadcastNestedLoopJoin
+Join condition: None
+
+(35) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [5]: [ss_quantity#96, ss_wholesale_cost#97, ss_list_price#98, ss_coupon_amt#105, ss_sold_date_sk#109L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales]
+PushedFilters: [IsNotNull(ss_quantity), GreaterThanOrEqual(ss_quantity,16), LessThanOrEqual(ss_quantity,20), Or(Or(And(GreaterThanOrEqual(ss_list_price,135.00),LessThanOrEqual(ss_list_price,145.00)),And(GreaterThanOrEqual(ss_coupon_amt,6071.00),LessThanOrEqual(ss_coupon_amt,7071.00))),And(GreaterThanOrEqual(ss_wholesale_cost,38.00),LessThanOrEqual(ss_wholesale_cost,58.00)))]
+ReadSchema: struct<ss_quantity:int,ss_wholesale_cost:decimal(7,2),ss_list_price:decimal(7,2),ss_coupon_amt:decimal(7,2)>
+
+(36) ColumnarToRow [codegen id : 10]
+Input [5]: [ss_quantity#96, ss_wholesale_cost#97, ss_list_price#98, ss_coupon_amt#105, ss_sold_date_sk#109L]
+
+(37) Filter [codegen id : 10]
+Input [5]: [ss_quantity#96, ss_wholesale_cost#97, ss_list_price#98, ss_coupon_amt#105, ss_sold_date_sk#109L]
+Condition : (((isnotnull(ss_quantity#96) AND (ss_quantity#96 >= 16)) AND (ss_quantity#96 <= 20)) AND ((((ss_list_price#98 >= 135.00) AND (ss_list_price#98 <= 145.00)) OR ((ss_coupon_amt#105 >= 6071.00) AND (ss_coupon_amt#105 <= 7071.00))) OR ((ss_wholesale_cost#97 >= 38.00) AND (ss_wholesale_cost#97 <= 58.00))))
+
+(38) Project [codegen id : 10]
+Output [1]: [ss_list_price#98]
+Input [5]: [ss_quantity#96, ss_wholesale_cost#97, ss_list_price#98, ss_coupon_amt#105, ss_sold_date_sk#109L]
+
+(39) HashAggregate [codegen id : 10]
+Input [1]: [ss_list_price#98]
+Keys [1]: [ss_list_price#98]
+Functions [2]: [partial_avg(UnscaledValue(ss_list_price#98)), partial_count(ss_list_price#98)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#98))#165, count(ss_list_price#98)#166L]
+Results [4]: [ss_list_price#98, sum#247, count#248L, count#250L]
+
+(40) Exchange
+Input [4]: [ss_list_price#98, sum#247, count#248L, count#250L]
+Arguments: hashpartitioning(ss_list_price#98, 200), ENSURE_REQUIREMENTS, [id=#320]
+
+(41) HashAggregate [codegen id : 11]
+Input [4]: [ss_list_price#98, sum#247, count#248L, count#250L]
+Keys [1]: [ss_list_price#98]
+Functions [2]: [merge_avg(UnscaledValue(ss_list_price#98)), merge_count(ss_list_price#98)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#98))#165, count(ss_list_price#98)#166L]
+Results [4]: [ss_list_price#98, sum#247, count#248L, count#250L]
+
+(42) HashAggregate [codegen id : 11]
+Input [4]: [ss_list_price#98, sum#247, count#248L, count#250L]
+Keys: []
+Functions [3]: [merge_avg(UnscaledValue(ss_list_price#98)), merge_count(ss_list_price#98), partial_count(distinct ss_list_price#98)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#98))#165, count(ss_list_price#98)#166L, count(ss_list_price#98)#167L]
+Results [4]: [sum#247, count#248L, count#250L, count#253L]
+
+(43) Exchange
+Input [4]: [sum#247, count#248L, count#250L, count#253L]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#325]
+
+(44) HashAggregate [codegen id : 12]
+Input [4]: [sum#247, count#248L, count#250L, count#253L]
+Keys: []
+Functions [3]: [avg(UnscaledValue(ss_list_price#98)), count(ss_list_price#98), count(distinct ss_list_price#98)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#98))#165, count(ss_list_price#98)#166L, count(ss_list_price#98)#167L]
+Results [3]: [cast((avg(UnscaledValue(ss_list_price#98))#165 / 100.0) as decimal(11,6)) AS B4_LP#9, count(ss_list_price#98)#166L AS B4_CNT#10L, count(ss_list_price#98)#167L AS B4_CNTD#11L]
+
+(45) BroadcastExchange
+Input [3]: [B4_LP#9, B4_CNT#10L, B4_CNTD#11L]
+Arguments: IdentityBroadcastMode, [id=#329]
+
+(46) BroadcastNestedLoopJoin
+Join condition: None
+
+(47) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [5]: [ss_quantity#119, ss_wholesale_cost#120, ss_list_price#121, ss_coupon_amt#128, ss_sold_date_sk#132L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales]
+PushedFilters: [IsNotNull(ss_quantity), GreaterThanOrEqual(ss_quantity,21), LessThanOrEqual(ss_quantity,25), Or(Or(And(GreaterThanOrEqual(ss_list_price,122.00),LessThanOrEqual(ss_list_price,132.00)),And(GreaterThanOrEqual(ss_coupon_amt,836.00),LessThanOrEqual(ss_coupon_amt,1836.00))),And(GreaterThanOrEqual(ss_wholesale_cost,17.00),LessThanOrEqual(ss_wholesale_cost,37.00)))]
+ReadSchema: struct<ss_quantity:int,ss_wholesale_cost:decimal(7,2),ss_list_price:decimal(7,2),ss_coupon_amt:decimal(7,2)>
+
+(48) ColumnarToRow [codegen id : 13]
+Input [5]: [ss_quantity#119, ss_wholesale_cost#120, ss_list_price#121, ss_coupon_amt#128, ss_sold_date_sk#132L]
+
+(49) Filter [codegen id : 13]
+Input [5]: [ss_quantity#119, ss_wholesale_cost#120, ss_list_price#121, ss_coupon_amt#128, ss_sold_date_sk#132L]
+Condition : (((isnotnull(ss_quantity#119) AND (ss_quantity#119 >= 21)) AND (ss_quantity#119 <= 25)) AND ((((ss_list_price#121 >= 122.00) AND (ss_list_price#121 <= 132.00)) OR ((ss_coupon_amt#128 >= 836.00) AND (ss_coupon_amt#128 <= 1836.00))) OR ((ss_wholesale_cost#120 >= 17.00) AND (ss_wholesale_cost#120 <= 37.00))))
+
+(50) Project [codegen id : 13]
+Output [1]: [ss_list_price#121]
+Input [5]: [ss_quantity#119, ss_wholesale_cost#120, ss_list_price#121, ss_coupon_amt#128, ss_sold_date_sk#132L]
+
+(51) HashAggregate [codegen id : 13]
+Input [1]: [ss_list_price#121]
+Keys [1]: [ss_list_price#121]
+Functions [2]: [partial_avg(UnscaledValue(ss_list_price#121)), partial_count(ss_list_price#121)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#121))#168, count(ss_list_price#121)#169L]
+Results [4]: [ss_list_price#121, sum#257, count#258L, count#260L]
+
+(52) Exchange
+Input [4]: [ss_list_price#121, sum#257, count#258L, count#260L]
+Arguments: hashpartitioning(ss_list_price#121, 200), ENSURE_REQUIREMENTS, [id=#337]
+
+(53) HashAggregate [codegen id : 14]
+Input [4]: [ss_list_price#121, sum#257, count#258L, count#260L]
+Keys [1]: [ss_list_price#121]
+Functions [2]: [merge_avg(UnscaledValue(ss_list_price#121)), merge_count(ss_list_price#121)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#121))#168, count(ss_list_price#121)#169L]
+Results [4]: [ss_list_price#121, sum#257, count#258L, count#260L]
+
+(54) HashAggregate [codegen id : 14]
+Input [4]: [ss_list_price#121, sum#257, count#258L, count#260L]
+Keys: []
+Functions [3]: [merge_avg(UnscaledValue(ss_list_price#121)), merge_count(ss_list_price#121), partial_count(distinct ss_list_price#121)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#121))#168, count(ss_list_price#121)#169L, count(ss_list_price#121)#170L]
+Results [4]: [sum#257, count#258L, count#260L, count#263L]
+
+(55) Exchange
+Input [4]: [sum#257, count#258L, count#260L, count#263L]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#342]
+
+(56) HashAggregate [codegen id : 15]
+Input [4]: [sum#257, count#258L, count#260L, count#263L]
+Keys: []
+Functions [3]: [avg(UnscaledValue(ss_list_price#121)), count(ss_list_price#121), count(distinct ss_list_price#121)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#121))#168, count(ss_list_price#121)#169L, count(ss_list_price#121)#170L]
+Results [3]: [cast((avg(UnscaledValue(ss_list_price#121))#168 / 100.0) as decimal(11,6)) AS B5_LP#12, count(ss_list_price#121)#169L AS B5_CNT#13L, count(ss_list_price#121)#170L AS B5_CNTD#14L]
+
+(57) BroadcastExchange
+Input [3]: [B5_LP#12, B5_CNT#13L, B5_CNTD#14L]
+Arguments: IdentityBroadcastMode, [id=#346]
+
+(58) BroadcastNestedLoopJoin
+Join condition: None
+
+(59) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [5]: [ss_quantity#142, ss_wholesale_cost#143, ss_list_price#144, ss_coupon_amt#151, ss_sold_date_sk#155L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales]
+PushedFilters: [IsNotNull(ss_quantity), GreaterThanOrEqual(ss_quantity,26), LessThanOrEqual(ss_quantity,30), Or(Or(And(GreaterThanOrEqual(ss_list_price,154.00),LessThanOrEqual(ss_list_price,164.00)),And(GreaterThanOrEqual(ss_coupon_amt,7326.00),LessThanOrEqual(ss_coupon_amt,8326.00))),And(GreaterThanOrEqual(ss_wholesale_cost,7.00),LessThanOrEqual(ss_wholesale_cost,27.00)))]
+ReadSchema: struct<ss_quantity:int,ss_wholesale_cost:decimal(7,2),ss_list_price:decimal(7,2),ss_coupon_amt:decimal(7,2)>
+
+(60) ColumnarToRow [codegen id : 16]
+Input [5]: [ss_quantity#142, ss_wholesale_cost#143, ss_list_price#144, ss_coupon_amt#151, ss_sold_date_sk#155L]
+
+(61) Filter [codegen id : 16]
+Input [5]: [ss_quantity#142, ss_wholesale_cost#143, ss_list_price#144, ss_coupon_amt#151, ss_sold_date_sk#155L]
+Condition : (((isnotnull(ss_quantity#142) AND (ss_quantity#142 >= 26)) AND (ss_quantity#142 <= 30)) AND ((((ss_list_price#144 >= 154.00) AND (ss_list_price#144 <= 164.00)) OR ((ss_coupon_amt#151 >= 7326.00) AND (ss_coupon_amt#151 <= 8326.00))) OR ((ss_wholesale_cost#143 >= 7.00) AND (ss_wholesale_cost#143 <= 27.00))))
+
+(62) Project [codegen id : 16]
+Output [1]: [ss_list_price#144]
+Input [5]: [ss_quantity#142, ss_wholesale_cost#143, ss_list_price#144, ss_coupon_amt#151, ss_sold_date_sk#155L]
+
+(63) HashAggregate [codegen id : 16]
+Input [1]: [ss_list_price#144]
+Keys [1]: [ss_list_price#144]
+Functions [2]: [partial_avg(UnscaledValue(ss_list_price#144)), partial_count(ss_list_price#144)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#144))#171, count(ss_list_price#144)#172L]
+Results [4]: [ss_list_price#144, sum#267, count#268L, count#270L]
+
+(64) Exchange
+Input [4]: [ss_list_price#144, sum#267, count#268L, count#270L]
+Arguments: hashpartitioning(ss_list_price#144, 200), ENSURE_REQUIREMENTS, [id=#354]
+
+(65) HashAggregate [codegen id : 17]
+Input [4]: [ss_list_price#144, sum#267, count#268L, count#270L]
+Keys [1]: [ss_list_price#144]
+Functions [2]: [merge_avg(UnscaledValue(ss_list_price#144)), merge_count(ss_list_price#144)]
+Aggregate Attributes [2]: [avg(UnscaledValue(ss_list_price#144))#171, count(ss_list_price#144)#172L]
+Results [4]: [ss_list_price#144, sum#267, count#268L, count#270L]
+
+(66) HashAggregate [codegen id : 17]
+Input [4]: [ss_list_price#144, sum#267, count#268L, count#270L]
+Keys: []
+Functions [3]: [merge_avg(UnscaledValue(ss_list_price#144)), merge_count(ss_list_price#144), partial_count(distinct ss_list_price#144)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#144))#171, count(ss_list_price#144)#172L, count(ss_list_price#144)#173L]
+Results [4]: [sum#267, count#268L, count#270L, count#273L]
+
+(67) Exchange
+Input [4]: [sum#267, count#268L, count#270L, count#273L]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#359]
+
+(68) HashAggregate [codegen id : 18]
+Input [4]: [sum#267, count#268L, count#270L, count#273L]
+Keys: []
+Functions [3]: [avg(UnscaledValue(ss_list_price#144)), count(ss_list_price#144), count(distinct ss_list_price#144)]
+Aggregate Attributes [3]: [avg(UnscaledValue(ss_list_price#144))#171, count(ss_list_price#144)#172L, count(ss_list_price#144)#173L]
+Results [3]: [cast((avg(UnscaledValue(ss_list_price#144))#171 / 100.0) as decimal(11,6)) AS B6_LP#15, count(ss_list_price#144)#172L AS B6_CNT#16L, count(ss_list_price#144)#173L AS B6_CNTD#17L]
+
+(69) BroadcastExchange
+Input [3]: [B6_LP#15, B6_CNT#16L, B6_CNTD#17L]
+Arguments: IdentityBroadcastMode, [id=#363]
+
+(70) BroadcastNestedLoopJoin
+Join condition: None
+
+(71) CollectLimit
+Input [18]: [B1_LP#0, B1_CNT#1L, B1_CNTD#2L, B2_LP#3, B2_CNT#4L, B2_CNTD#5L, B3_LP#6, B3_CNT#7L, B3_CNTD#8L, B4_LP#9, B4_CNT#10L, B4_CNTD#11L, B5_LP#12, B5_CNT#13L, B5_CNTD#14L, B6_LP#15, B6_CNT#16L, B6_CNTD#17L]
+Arguments: 100
+

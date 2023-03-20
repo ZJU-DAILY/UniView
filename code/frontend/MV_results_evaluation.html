@@ -11,10 +11,6 @@
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.js"></script>
-    <!--    <link href="https://unpkg.com/bootstrap@4.5.0/dist/css/bootstrap.min.css" rel="stylesheet"/>-->
-    <!--    <link rel="stylesheet" href="https://unpkg.com/pev2/dist/style.css"/>-->
-    <!--    <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>-->
-    <!--    <script src="https://unpkg.com/pev2/dist/pev2.umd.js"></script>-->
 
     <style>
         .wrap {
@@ -164,7 +160,7 @@
                 <div class="nav nav-pills navbar-right">
                     <li><a href="parameter_configuration.html">Parameter
                         Configuration</a></li>
-                    <li><a href="MV_process_tracking_MV_generation.html">MV Process Tracking</a></li>
+                    <li><a href="MV_process_tracking.html">MV Process Tracking</a></li>
                     <li role="presentation" class="nav-item active"><a href="#.html">MV Results
                         Evaluation</a></li>
                     <li><a href="MV_history.html">MV History</a></li>
@@ -258,7 +254,8 @@
                         <div class="col-lg-12">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">Query plan</div>
-                                <iframe src="./多组件模式.html" frameborder="0" style="height: 400px; width: 340px"></iframe>
+                                <div id="visualization"></div>
+                                <!-- <iframe src="./Visualization.html" frameborder="0" style="height: 400px; width: 340px"></iframe> -->
                             </div>
 
                         </div>
@@ -290,15 +287,10 @@
 </body>
 
 <script>
-    var data = document.getElementById("sqleditor");
-    var saveParameters = document.getElementById("saveParameters");
-    var defaultParameters = document.getElementById("defaultParameters");
-    var ip = 'http://10.77.110.234:5002/';
     var submit_num = "0";
 
-
     $("#evaluate").click(function () {
-        // 同文件夹下的json文件路径
+        // 同文件夹下的json文件路径，直接改为后端URL即可
         var url = "时间性能测试结果PG.json"
         // 申明一个XMLHttpRequest
         var request = new XMLHttpRequest();
@@ -332,220 +324,12 @@
                 coverage.innerHTML =
                     "<li style='margin-top:10px; margin-left: 5px;font-size: 16px;'>There are <span style='color:red'>113</span> original queries. <span style='color:mediumseagreen'>30</span> views are recommended, and <span style='color:mediumseagreen'>43</span> queries are covered by these views." +
                     "<br><li style='margin-left: 5px;font-size: 16px;'>Coverage is <span style='color:mediumseagreen'>38.05%</span>."
-
+                visualization.innerHTML = 
+                    "<iframe src='./Visualization.html' frameborder='0' style='height: 400px; width: 340px'></iframe>";
                 $("#graph").load('test.html');
             }
         };
-
-        // 绘制树状图
-        // var myChart = echarts.init(document.getElementById('graph'));
-
-        // 指定图表的配置项和数据
-        var option = {
-            series: [{
-                type: "tree",
-                data: [{
-                    name: "root",
-                    children: [{
-                        name: "Child A",
-                        children: [{
-                            name: "Leaf C"
-                        }, {
-                            name: "Leaf D"
-                        }, {
-                            name: "Leaf E"
-                        }, {
-                            name: "Leaf F"
-                        }]
-                    }, {
-                        name: "Child B",
-                        children: [{
-                            name: "Leaf G"
-                        }, {
-                            name: "Leaf H"
-                        }]
-                    }, {
-                        name: "Child D"
-                    }, {
-                        name: "Child F",
-                        children: [{
-                            name: "Leaf J"
-                        }, {
-                            name: "Leaf K"
-                        }]
-                    }]
-                }],
-                label: {
-                    position: "right"
-                },
-                // symbol: "rect",
-                // symbolSize: 20,
-                layout: "orthogonal",
-                orient: "TB",
-                edgeShape: "polyline",
-                symbolSize: [60, 60], // 图片大小
-                itemStyle: {
-                    color: "#3CB371",
-                    padding: [10, 0, 10, 0],
-                    borderWidth: 0
-                },
-                label: {
-                    borderRadius: [5, 5, 5, 5],
-                    // borderColor: '#ffffff',
-                    backgroundColor: '#ffffff',
-                    // shadowColor: 'rgb(0 0 0 / 15%)',
-                    // shadowBlur: 1,
-                    rich: {
-                        first: {
-                            align: 'center',
-                            height: 30,
-                            width: 130,
-                            lineHeight: 30,
-                            // backgroundColor: '#ecf2f6',
-                            borderRadius: [5, 5, 0, 0]
-                        },
-                        second: {
-                            color: '#0e8dcb',
-                            padding: [5, 10, 5, 10],
-                            lineHeight: 26,
-                            align: 'left'
-                        }
-                    }
-                },
-                lineStyle: {
-                    // color: '#D5D5D5',
-                    width: 1,
-                    curveness: 1
-                }
-            }]
-        };
-
-        // 使用刚指定的配置项和数据显示图表。
-        myChart.setOption(option);
     })
-
-    function getValueFromRatios(radios) {
-        var value = 0;
-        for (var i = 0; i < radios.length; i++) {
-            if (radios[i].checked == true) {
-                value = radios[i].value;
-                break;
-            }
-        }
-        return value;
-    }
-
-    function isAvailable(engine, Dataset, single_or_multiple) {
-        if (engine === "Spark" && Dataset != "TPCDS") {
-            alert("Spark engine only supports TPCDS datasets!");
-            return false;
-        } else if (engine === "PostgreSQL" && Dataset != "JOB") {
-            alert("PostgreSQL engine only supports JOB datasets!");
-            return false;
-        } else if (engine === "ClickHouse" && !((Dataset === "SSB" && single_or_multiple === "single")
-            || (Dataset === "JOB") && (single_or_multiple === "multiple"))) {
-            alert("ClickHouse engine only supports SSB datasets in single table mode or JOB datasets in multiple mode!");
-            return false;
-        }
-
-        return true;
-    }
-
-    saveParameters.onclick = function () {
-        var radios_engine = document.getElementsByName("engine");
-        var engine = getValueFromRatios(radios_engine);
-
-        var radios_DataSet = document.getElementsByName("DataSet");
-        var DataSet = getValueFromRatios(radios_DataSet);
-
-        var radios_recommend_method = document.getElementsByName("radios_recommend_method");
-        var recommend_method = getValueFromRatios(radios_recommend_method);
-
-        var radios_single_or_multiple = document.getElementsByName("single_or_multiple");
-        var single_or_multiple = getValueFromRatios(radios_single_or_multiple);
-
-        var epoch = window.document.getElementById("epoch");
-        var num_train = window.document.getElementById("num_train");
-        var cnt_limit = window.document.getElementById("cnt_limit");
-        var space_limit = window.document.getElementById("space_limit");
-        var refer_threshold = window.document.getElementById("refer_threshold");
-        var table_size_upper_bound = window.document.getElementById("table_size_upper_bound");
-        var table_size_lower_bound = window.document.getElementById("table_size_lower_bound");
-        if (isAvailable(engine, DataSet, single_or_multiple)) {
-            // ajax与后端连接
-        }
-    }
-
-    defaultParameters.onclick = function () {
-        var info = {
-            "sql": data.value,
-        };
-        console.log(info);
-        $.post(ip + "deepo_optimize", info,
-            function (res) {
-                var arm = res.info_arm;   //第一个data代表json,第二个data代表json里的数组或对象
-                var cost = res.info_cost;
-                var confidence = res.info_confidence;
-                var str1 = "";   //声明str1，防止产生undefined
-                for (var i = 0; i < arm.length; i++) {   //遍历
-                    str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
-                        "<td>" + i + "</td>" +
-                        "<td>" + arm[i] + "</td>" +
-                        "<td>" + cost[i] + "</td>" +
-                        "<td>" + confidence[i] + "</td>";
-                }
-                form.innerHTML = str1;
-            });
-    }
-    btn_3.onclick = function () {
-        var info = {
-            "selection": 0,
-        };
-        info["selection"] = submit_num;
-
-        $.ajax({
-            url: ip + "submit",
-            type: 'post',
-            data: info,
-            dataType: 'json',
-            beforeSend: function () {
-                showResult.innerHTML = "";
-                $("#loading").html("<img src='/static/loading.gif' />");
-
-            },
-            success: function (res) {
-                $("#loading").empty();
-                showResult.innerHTML = res.data;
-            },
-            error: function () {
-                alert("server error");
-            }
-        });
-    }
-
-    btn_4.onclick = function () {
-        var info = {
-            "selection": "default",
-        };
-        $.ajax({
-            url: ip + "default",
-            type: 'post',
-            data: info,
-            dataType: 'json',
-            beforeSend: function () {
-                showResult.innerHTML = "";
-                $("#loading").html("<img src='/static/loading.gif' />");
-
-            },
-            success: function (res) {
-                $("#loading").empty();
-                showResult.innerHTML = res.data;
-            },
-            error: function () {
-                alert("server error");
-            }
-        });
-    }
 
 
     function change(change) {

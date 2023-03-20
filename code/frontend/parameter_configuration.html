@@ -107,7 +107,7 @@
                 <div class="nav nav-pills navbar-right">
                     <li role="presentation" class="nav-item active"><a href="#">Parameter
                         Configuration</a></li>
-                    <li><a href="MV_process_tracking_MV_generation.html">MV Process Tracking</a></li>
+                    <li><a href="MV_process_tracking.html">MV Process Tracking</a></li>
                     <li><a href="MV_results_evaluation.html">MV Results Evaluation</a></li>
                     <li><a href="MV_history.html">MV History</a></li>
                 </div>
@@ -233,97 +233,10 @@
 
                             </div>
 
-                            <!--                                <div class="my_tooltip" style=" margin-top: 20px;">-->
-                            <!--                                    Engine-->
-                            <!--                                    <span class="tooltiptext">Select a database engine</span>-->
-                            <!--                                </div>-->
-                            <!--                                <input type="radio" id="engine1" name="engine" value="Spark"/>Spark-->
-                            <!--                                <label style="width: 45px"></label>-->
-                            <!--                                <input type="radio" id="engine2" name="engine" value="PostgreSQL"/>PostgreSQL-->
-                            <!--                                <label style="width: 40px"></label>-->
-                            <!--                                <input type="radio" id="engine3" name="engine" value="ClickHouse"/>ClickHouse-->
-
-
-                            <!--                                <div class="my_tooltip" style=" margin-top: 20px;">-->
-                            <!--                                    Recommend method-->
-                            <!--                                    <span class="tooltiptext">Select a recommend method</span>-->
-                            <!--                                </div>-->
-                            <!--                                <input type="radio" id="recommend_method1" name="recommend_method" value="greedy"/>Greedy-->
-                            <!--                                <label style="width: 40px"></label>-->
-                            <!--                                <input type="radio" id="recommend_method2" name="recommend_method" value="RL"/>RL-->
-                            <!--                                <br><br>-->
-
-                            <!--                                <div class="my_tooltip">-->
-                            <!--                                    Single or multiple-->
-                            <!--                                    <span class="tooltiptext">Select table mode</span>-->
-                            <!--                                </div>-->
-                            <!--                                <input type="radio" id="single_or_multiple1" name="single_or_multiple" value="single"/>Single-->
-                            <!--                                <label style="width: 45px"></label>-->
-                            <!--                                <input type="radio" id="single_or_multiple2" name="single_or_multiple"-->
-                            <!--                                       value="multiple"/>Multiple-->
-
-                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
-                            <!--                                    Num of epoch-->
-                            <!--                                    <span class="tooltiptext">Number of training rounds</span>-->
-                            <!--                                </div>-->
-                            <!--                                <input type="text" id="epoch" name="epoch"-->
-                            <!--                                       placeholder="default:5">-->
-
-                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
-                            <!--                                    Num of train-->
-                            <!--                                    <span class="tooltiptext">Number of training samples</span>-->
-                            <!--                                </div>-->
-                            <!--                                <input type="text" id="num_train" name="num_train"-->
-                            <!--                                       placeholder="default:100">-->
-
-                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
-                            <!--                                    Cnt limit-->
-                            <!--                                    <span class="tooltiptext">The limit of topN's MV</span>-->
-                            <!--                                </div>-->
-                            <!--                                <input type="text" id="cnt_limit" name="cnt_limit"-->
-                            <!--                                       placeholder="default:30">-->
-
-                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
-                            <!--                                    Space limit-->
-                            <!--                                    <span class="tooltiptext">Space limit M</span>-->
-                            <!--                                </div>-->
-                            <!--                                <input type="text" id="space_limit" name="space_limit"-->
-                            <!--                                       placeholder="default:1024">-->
-
-                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
-                            <!--                                    Refer threshold-->
-                            <!--                                    <span class="tooltiptext">Subtrees whose reference count is less than ref_threshold will not be used as candidate views</span>-->
-                            <!--                                </div>-->
-                            <!--                                <input type="text" id="refer_threshold" name="refer_threshold"-->
-                            <!--                                       placeholder="default:1">-->
-
-                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
-                            <!--                                    Table size upper bound-->
-                            <!--                                    <span class="tooltiptext">The threshold for distinguishing between large and small tables. A table with a size of more than 1G is a large table, and a table with a size of less than 10M is a small table.</span>-->
-                            <!--                                </div>-->
-                            <!--                                <input type="text" id="table_size_upper_bound"-->
-                            <!--                                       name="table_size_upper_bound"-->
-                            <!--                                       placeholder="default:50000000">-->
-
-                            <!--                                <div class="my_tooltip" style="margin-top: 20px;">-->
-                            <!--                                    Table size lower bound-->
-                            <!--                                    <span class="tooltiptext">The threshold for distinguishing between large and small tables. A table with a size of more than 1G is a large table, and a table with a size of less than 10M is a small table.</span>-->
-                            <!--                                </div>-->
-                            <!--                                <input type="text" id="table_size_lower_bound"-->
-                            <!--                                       name="table_size_lower_bound"-->
-                            <!--                                       placeholder="default:10485760">-->
-
                         </div>
 
                     </div>
                 </div>
-                <!--                    <textarea id="sqleditor" name="query" class="form-control" rows="5"-->
-                <!--                              placeholder="Enter your Query"></textarea>-->
-
-                <!--                    <label style="margin-left: 150px" title="选择引擎">-->
-                <!--                        engine-->
-                <!--                    </label>-->
-
             </div>
         </div>
         <div class="btn-toolbar">
@@ -358,11 +271,8 @@
 </body>
 
 <script>
-    var data = document.getElementById("sqleditor");
     var saveParameters = document.getElementById("saveParameters");
     var defaultParameters = document.getElementById("defaultParameters");
-    var ip = 'http://10.77.110.234:5002/';
-    var submit_num = "0";
 
     function getValueFromRatios(radios) {
         var value = 0;
@@ -375,95 +285,86 @@
         return value;
     }
 
-    function isAvailable(engine, Dataset, single_or_multiple) {
-        if (engine === "Spark" && Dataset != "TPCDS") {
-            alert("Spark engine only supports TPCDS datasets!");
-            return false;
-        } else if (engine === "PostgreSQL" && Dataset != "JOB") {
-            alert("PostgreSQL engine only supports JOB datasets!");
-            return false;
-        } else if (engine === "ClickHouse" && !((Dataset === "SSB" && single_or_multiple === "single")
-            || (Dataset === "JOB" && single_or_multiple === "multiple")
-            || (Dataset === "CBG" && single_or_multiple === "single"))) {
-            alert("ClickHouse engine only supports SSB datasets in single table mode " +
-                "or JOB datasets in multiple mode or CBG datasets in single table mode!");
-            return false;
+    function chooseRatio(radios, value) {
+        for (var i = 0; i < radios.length; i++){
+            if (radios[i].value == value){
+                radios[i].checked = true;
+                break;
+            }
         }
-
-        return true;
     }
 
     saveParameters.onclick = function () {
         var radios_engine = document.getElementsByName("engine");
         var engine = getValueFromRatios(radios_engine);
 
-        // var radios_DataSet = document.getElementsByName("DataSet");
-        // var DataSet = getValueFromRatios(radios_DataSet);
-
-        var radios_recommend_method = document.getElementsByName("radios_recommend_method");
+        var radios_recommend_method = document.getElementsByName("recommend_method");
         var recommend_method = getValueFromRatios(radios_recommend_method);
 
         var radios_single_or_multiple = document.getElementsByName("single_or_multiple");
         var single_or_multiple = getValueFromRatios(radios_single_or_multiple);
 
-        var epoch = window.document.getElementById("epoch");
-        var num_train = window.document.getElementById("num_train");
-        var cnt_limit = window.document.getElementById("cnt_limit");
-        var space_limit = window.document.getElementById("space_limit");
-        var refer_threshold = window.document.getElementById("refer_threshold");
-        var table_size_upper_bound = window.document.getElementById("table_size_upper_bound");
-        var table_size_lower_bound = window.document.getElementById("table_size_lower_bound");
-        // if (isAvailable(engine, DataSet, single_or_multiple)) {
-        //     // ajax与后端连接
-        // }
+        var epoch = window.document.getElementById("epoch").value;
+        var num_train = window.document.getElementById("num_train").value;
+        var cnt_limit = window.document.getElementById("cnt_limit").value;
+        var space_limit = window.document.getElementById("space_limit").value;
+        var refer_threshold = window.document.getElementById("refer_threshold").value;
+        var table_size_upper_bound = window.document.getElementById("table_size_upper_bound").value;
+        var table_size_lower_bound = window.document.getElementById("table_size_lower_bound").value;
+
+        alert("save parameters success!");
+
+        // $.ajax({
+        //     // 替换url
+        //     url: "http://110.42.138.127:5000/save_parameters",
+        //     type: 'POST',
+        //     dataType: 'json',
+        //     crossDomain: true,
+        //     contentType: 'application/json;charset=UTF-8',
+        //     data: JSON.stringify({
+        //         "engine": engine, 
+        //         "recommend_method": recommend_method, 
+        //         "single_or_multiple": single_or_multiple,
+        //         "epoch": parseInt(epoch), 
+        //         "num_train": parseInt(num_train), 
+        //         "cnt_limit": parseInt(cnt_limit), 
+        //         "space_limit": parseInt(space_limit),
+        //         "refer_threshold": parseInt(refer_threshold), 
+        //         "table_size_upper_bound": parseInt(table_size_upper_bound),
+        //         "table_size_lower_bound": parseInt(table_size_lower_bound)
+        //     }),
+        //     success: function (res) {
+        //         // 根据res返回值判断何种状态
+        //         if(res.code === 200){
+        //             alert(res.msg);
+        //             console.log(res)
+        //         }
+        //         else if(res.code === 401){
+        //             alert(res.msg);
+        //         }
+        //     },
+        //     error: function (e) {
+        //         alert("server error");
+        //         console.log(e.responseText);
+        //     }
+        // });
     }
-    // var result=document.getElementById("showResult");
-    // var form=document.getElementById("form")
-    // saveParameters.onclick = function () {
-    //     var info = {
-    //         "sql": data.value,
-    //     };
-    //     console.log(info);
-    //     $.ajax({
-    //         url_current: ip + "pg_run",
-    //         type: 'post',
-    //         data: info,
-    //         dataType: 'json',
-    //         beforeSend: function () {
-    //             showResult.innerHTML = "";
-    //             $("#loading").html("<img src='/static/loading.gif' />");
-    //
-    //         },
-    //         success: function (res) {
-    //             $("#loading").empty();
-    //             showResult.innerHTML = res.data;
-    //         },
-    //         error: function () {
-    //             alert("server error");
-    //         }
-    //     });
-    // }
 
     defaultParameters.onclick = function () {
-        var info = {
-            "sql": data.value,
-        };
-        console.log(info);
-        $.post(ip + "deepo_optimize", info,
-            function (res) {
-                var arm = res.info_arm;   //第一个data代表json,第二个data代表json里的数组或对象
-                var cost = res.info_cost;
-                var confidence = res.info_confidence;
-                var str1 = "";   //声明str1，防止产生undefined
-                for (var i = 0; i < arm.length; i++) {   //遍历
-                    str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
-                        "<td>" + i + "</td>" +
-                        "<td>" + arm[i] + "</td>" +
-                        "<td>" + cost[i] + "</td>" +
-                        "<td>" + confidence[i] + "</td>";
-                }
-                form.innerHTML = str1;
-            });
+        var radios_engine = document.getElementsByName("engine");
+        var radios_recommend_method = document.getElementsByName("recommend_method");
+        var radios_single_or_multiple = document.getElementsByName("single_or_multiple");
+
+        chooseRatio(radios_engine, "PostgreSQL");
+        chooseRatio(radios_recommend_method, "RL");
+        chooseRatio(radios_single_or_multiple, "multiple");
+        window.document.getElementById("epoch").value = 5;
+        window.document.getElementById("num_train").value = 100;
+        window.document.getElementById("cnt_limit").value = 30;
+        window.document.getElementById("space_limit").value = 1024;
+        window.document.getElementById("refer_threshold").value = 1;
+        window.document.getElementById("table_size_upper_bound").value = 50000000;
+        window.document.getElementById("table_size_lower_bound").value = 10485760;
     }
 
 

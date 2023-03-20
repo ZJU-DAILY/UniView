@@ -1,0 +1,3 @@
+select info_type.info AS info, movie_companies.company_type_id AS company_type_id, movie_info_idx.movie_id AS movie_id, info_type.id AS id, movie_companies.note AS note, company_type.kind AS kind
+ from movie_info_idx,info_type,company_type,movie_companies
+ where (movie_companies.movie_id = movie_info_idx.movie_id) And (info_type.id = movie_info_idx.info_type_id) And (info_type.info = 'top 250 rank') And (company_type.id = movie_companies.company_type_id) And (company_type.kind = 'production companies') And (movie_companies.note like '%(co-production)%')  And  Not (((movie_companies.note like '%(as Metro-Goldwyn-Mayer Pictures)%')))

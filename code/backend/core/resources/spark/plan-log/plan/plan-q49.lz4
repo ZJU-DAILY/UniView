@@ -1,0 +1,510 @@
+== Physical Plan ==
+TakeOrderedAndProject (90)
++- * HashAggregate (89)
+   +- Exchange (88)
+      +- * HashAggregate (87)
+         +- Union (86)
+            :- * Project (31)
+            :  +- * Filter (30)
+            :     +- Window (29)
+            :        +- * Sort (28)
+            :           +- Window (27)
+            :              +- * Sort (26)
+            :                 +- Exchange (25)
+            :                    +- * HashAggregate (24)
+            :                       +- Exchange (23)
+            :                          +- * HashAggregate (22)
+            :                             +- * Project (21)
+            :                                +- * BroadcastHashJoin Inner BuildRight (20)
+            :                                   :- * Project (14)
+            :                                   :  +- * SortMergeJoin Inner (13)
+            :                                   :     :- * Sort (6)
+            :                                   :     :  +- Exchange (5)
+            :                                   :     :     +- * Project (4)
+            :                                   :     :        +- * Filter (3)
+            :                                   :     :           +- * ColumnarToRow (2)
+            :                                   :     :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales (1)
+            :                                   :     +- * Sort (12)
+            :                                   :        +- Exchange (11)
+            :                                   :           +- * Project (10)
+            :                                   :              +- * Filter (9)
+            :                                   :                 +- * ColumnarToRow (8)
+            :                                   :                    +- Scan orc tpcds_bin_partitioned_decimal_orc_2.web_returns (7)
+            :                                   +- BroadcastExchange (19)
+            :                                      +- * Project (18)
+            :                                         +- * Filter (17)
+            :                                            +- * ColumnarToRow (16)
+            :                                               +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (15)
+            :- * Project (58)
+            :  +- * Filter (57)
+            :     +- Window (56)
+            :        +- * Sort (55)
+            :           +- Window (54)
+            :              +- * Sort (53)
+            :                 +- Exchange (52)
+            :                    +- * HashAggregate (51)
+            :                       +- Exchange (50)
+            :                          +- * HashAggregate (49)
+            :                             +- * Project (48)
+            :                                +- * BroadcastHashJoin Inner BuildRight (47)
+            :                                   :- * Project (45)
+            :                                   :  +- * SortMergeJoin Inner (44)
+            :                                   :     :- * Sort (37)
+            :                                   :     :  +- Exchange (36)
+            :                                   :     :     +- * Project (35)
+            :                                   :     :        +- * Filter (34)
+            :                                   :     :           +- * ColumnarToRow (33)
+            :                                   :     :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales (32)
+            :                                   :     +- * Sort (43)
+            :                                   :        +- Exchange (42)
+            :                                   :           +- * Project (41)
+            :                                   :              +- * Filter (40)
+            :                                   :                 +- * ColumnarToRow (39)
+            :                                   :                    +- Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_returns (38)
+            :                                   +- ReusedExchange (46)
+            +- * Project (85)
+               +- * Filter (84)
+                  +- Window (83)
+                     +- * Sort (82)
+                        +- Window (81)
+                           +- * Sort (80)
+                              +- Exchange (79)
+                                 +- * HashAggregate (78)
+                                    +- Exchange (77)
+                                       +- * HashAggregate (76)
+                                          +- * Project (75)
+                                             +- * BroadcastHashJoin Inner BuildRight (74)
+                                                :- * Project (72)
+                                                :  +- * SortMergeJoin Inner (71)
+                                                :     :- * Sort (64)
+                                                :     :  +- Exchange (63)
+                                                :     :     +- * Project (62)
+                                                :     :        +- * Filter (61)
+                                                :     :           +- * ColumnarToRow (60)
+                                                :     :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (59)
+                                                :     +- * Sort (70)
+                                                :        +- Exchange (69)
+                                                :           +- * Project (68)
+                                                :              +- * Filter (67)
+                                                :                 +- * ColumnarToRow (66)
+                                                :                    +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_returns (65)
+                                                +- ReusedExchange (73)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales
+Output [6]: [ws_item_sk#32L, ws_order_number#46L, ws_quantity#47, ws_net_paid#58, ws_net_profit#62, ws_sold_date_sk#63L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/web_sales/ws_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ws_sold_date_sk#63L), dynamicpruningexpression(ws_sold_date_sk#63L IN dynamicpruning#537)]
+PushedFilters: [IsNotNull(ws_net_profit), IsNotNull(ws_net_paid), IsNotNull(ws_quantity), GreaterThan(ws_net_profit,1.00), GreaterThan(ws_net_paid,0.00), GreaterThan(ws_quantity,0), IsNotNull(ws_order_number), IsNotNull(ws_item_sk)]
+ReadSchema: struct<ws_item_sk:bigint,ws_order_number:bigint,ws_quantity:int,ws_net_paid:decimal(7,2),ws_net_profit:decimal(7,2)>
+
+(2) ColumnarToRow [codegen id : 1]
+Input [6]: [ws_item_sk#32L, ws_order_number#46L, ws_quantity#47, ws_net_paid#58, ws_net_profit#62, ws_sold_date_sk#63L]
+
+(3) Filter [codegen id : 1]
+Input [6]: [ws_item_sk#32L, ws_order_number#46L, ws_quantity#47, ws_net_paid#58, ws_net_profit#62, ws_sold_date_sk#63L]
+Condition : (((((((isnotnull(ws_net_profit#62) AND isnotnull(ws_net_paid#58)) AND isnotnull(ws_quantity#47)) AND (ws_net_profit#62 > 1.00)) AND (ws_net_paid#58 > 0.00)) AND (ws_quantity#47 > 0)) AND isnotnull(ws_order_number#46L)) AND isnotnull(ws_item_sk#32L))
+
+(4) Project [codegen id : 1]
+Output [5]: [ws_item_sk#32L, ws_order_number#46L, ws_quantity#47, ws_net_paid#58, ws_sold_date_sk#63L]
+Input [6]: [ws_item_sk#32L, ws_order_number#46L, ws_quantity#47, ws_net_paid#58, ws_net_profit#62, ws_sold_date_sk#63L]
+
+(5) Exchange
+Input [5]: [ws_item_sk#32L, ws_order_number#46L, ws_quantity#47, ws_net_paid#58, ws_sold_date_sk#63L]
+Arguments: hashpartitioning(ws_order_number#46L, ws_item_sk#32L, 200), ENSURE_REQUIREMENTS, [id=#896]
+
+(6) Sort [codegen id : 2]
+Input [5]: [ws_item_sk#32L, ws_order_number#46L, ws_quantity#47, ws_net_paid#58, ws_sold_date_sk#63L]
+Arguments: [ws_order_number#46L ASC NULLS FIRST, ws_item_sk#32L ASC NULLS FIRST], false, 0
+
+(7) Scan orc tpcds_bin_partitioned_decimal_orc_2.web_returns
+Output [5]: [wr_item_sk#65L, wr_order_number#76L, wr_return_quantity#77, wr_return_amt#78, wr_returned_date_sk#87L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/web_returns]
+PushedFilters: [IsNotNull(wr_return_amt), GreaterThan(wr_return_amt,10000.00), IsNotNull(wr_order_number), IsNotNull(wr_item_sk)]
+ReadSchema: struct<wr_item_sk:bigint,wr_order_number:bigint,wr_return_quantity:int,wr_return_amt:decimal(7,2)>
+
+(8) ColumnarToRow [codegen id : 3]
+Input [5]: [wr_item_sk#65L, wr_order_number#76L, wr_return_quantity#77, wr_return_amt#78, wr_returned_date_sk#87L]
+
+(9) Filter [codegen id : 3]
+Input [5]: [wr_item_sk#65L, wr_order_number#76L, wr_return_quantity#77, wr_return_amt#78, wr_returned_date_sk#87L]
+Condition : (((isnotnull(wr_return_amt#78) AND (wr_return_amt#78 > 10000.00)) AND isnotnull(wr_order_number#76L)) AND isnotnull(wr_item_sk#65L))
+
+(10) Project [codegen id : 3]
+Output [4]: [wr_item_sk#65L, wr_order_number#76L, wr_return_quantity#77, wr_return_amt#78]
+Input [5]: [wr_item_sk#65L, wr_order_number#76L, wr_return_quantity#77, wr_return_amt#78, wr_returned_date_sk#87L]
+
+(11) Exchange
+Input [4]: [wr_item_sk#65L, wr_order_number#76L, wr_return_quantity#77, wr_return_amt#78]
+Arguments: hashpartitioning(wr_order_number#76L, wr_item_sk#65L, 200), ENSURE_REQUIREMENTS, [id=#489]
+
+(12) Sort [codegen id : 4]
+Input [4]: [wr_item_sk#65L, wr_order_number#76L, wr_return_quantity#77, wr_return_amt#78]
+Arguments: [wr_order_number#76L ASC NULLS FIRST, wr_item_sk#65L ASC NULLS FIRST], false, 0
+
+(13) SortMergeJoin [codegen id : 6]
+Left keys [2]: [ws_order_number#46L, ws_item_sk#32L]
+Right keys [2]: [wr_order_number#76L, wr_item_sk#65L]
+Join condition: None
+
+(14) Project [codegen id : 6]
+Output [6]: [ws_item_sk#32L, ws_quantity#47, ws_net_paid#58, ws_sold_date_sk#63L, wr_return_quantity#77, wr_return_amt#78]
+Input [9]: [ws_item_sk#32L, ws_order_number#46L, ws_quantity#47, ws_net_paid#58, ws_sold_date_sk#63L, wr_item_sk#65L, wr_order_number#76L, wr_return_quantity#77, wr_return_amt#78]
+
+(15) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [3]: [d_date_sk#88L, d_year#94, d_moy#96]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_year), IsNotNull(d_moy), EqualTo(d_year,2001), EqualTo(d_moy,12), IsNotNull(d_date_sk)]
+ReadSchema: struct<d_date_sk:bigint,d_year:int,d_moy:int>
+
+(16) ColumnarToRow [codegen id : 5]
+Input [3]: [d_date_sk#88L, d_year#94, d_moy#96]
+
+(17) Filter [codegen id : 5]
+Input [3]: [d_date_sk#88L, d_year#94, d_moy#96]
+Condition : ((((isnotnull(d_year#94) AND isnotnull(d_moy#96)) AND (d_year#94 = 2001)) AND (d_moy#96 = 12)) AND isnotnull(d_date_sk#88L))
+
+(18) Project [codegen id : 5]
+Output [1]: [d_date_sk#88L]
+Input [3]: [d_date_sk#88L, d_year#94, d_moy#96]
+
+(19) BroadcastExchange
+Input [1]: [d_date_sk#88L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#501]
+
+(20) BroadcastHashJoin [codegen id : 6]
+Left keys [1]: [ws_sold_date_sk#63L]
+Right keys [1]: [d_date_sk#88L]
+Join condition: None
+
+(21) Project [codegen id : 6]
+Output [5]: [ws_item_sk#32L, ws_quantity#47, ws_net_paid#58, wr_return_quantity#77, wr_return_amt#78]
+Input [7]: [ws_item_sk#32L, ws_quantity#47, ws_net_paid#58, ws_sold_date_sk#63L, wr_return_quantity#77, wr_return_amt#78, d_date_sk#88L]
+
+(22) HashAggregate [codegen id : 6]
+Input [5]: [ws_item_sk#32L, ws_quantity#47, ws_net_paid#58, wr_return_quantity#77, wr_return_amt#78]
+Keys [1]: [ws_item_sk#32L]
+Functions [4]: [partial_sum(cast(coalesce(wr_return_quantity#77, 0) as bigint)), partial_sum(cast(coalesce(ws_quantity#47, 0) as bigint)), partial_sum(coalesce(cast(wr_return_amt#78 as decimal(12,2)), 0.00)), partial_sum(coalesce(cast(ws_net_paid#58 as decimal(12,2)), 0.00))]
+Aggregate Attributes [6]: [sum#540L, sum#541L, sum#542, isEmpty#543, sum#544, isEmpty#545]
+Results [7]: [ws_item_sk#32L, sum#546L, sum#547L, sum#548, isEmpty#549, sum#550, isEmpty#551]
+
+(23) Exchange
+Input [7]: [ws_item_sk#32L, sum#546L, sum#547L, sum#548, isEmpty#549, sum#550, isEmpty#551]
+Arguments: hashpartitioning(ws_item_sk#32L, 200), ENSURE_REQUIREMENTS, [id=#907]
+
+(24) HashAggregate [codegen id : 7]
+Input [7]: [ws_item_sk#32L, sum#546L, sum#547L, sum#548, isEmpty#549, sum#550, isEmpty#551]
+Keys [1]: [ws_item_sk#32L]
+Functions [4]: [sum(cast(coalesce(wr_return_quantity#77, 0) as bigint)), sum(cast(coalesce(ws_quantity#47, 0) as bigint)), sum(coalesce(cast(wr_return_amt#78 as decimal(12,2)), 0.00)), sum(coalesce(cast(ws_net_paid#58 as decimal(12,2)), 0.00))]
+Aggregate Attributes [4]: [sum(cast(coalesce(wr_return_quantity#77, 0) as bigint))#276L, sum(cast(coalesce(ws_quantity#47, 0) as bigint))#277L, sum(coalesce(cast(wr_return_amt#78 as decimal(12,2)), 0.00))#278, sum(coalesce(cast(ws_net_paid#58 as decimal(12,2)), 0.00))#279]
+Results [3]: [ws_item_sk#32L AS item#0L, CheckOverflow((promote_precision(cast(sum(cast(coalesce(wr_return_quantity#77, 0) as bigint))#276L as decimal(15,4))) / promote_precision(cast(sum(cast(coalesce(ws_quantity#47, 0) as bigint))#277L as decimal(15,4)))), DecimalType(35,20), true) AS return_ratio#1, CheckOverflow((promote_precision(cast(sum(coalesce(cast(wr_return_amt#78 as decimal(12,2)), 0.00))#278 as decimal(15,4))) / promote_precision(cast(sum(coalesce(cast(ws_net_paid#58 as decimal(12,2)), 0.00))#279 as decimal(15,4)))), DecimalType(35,20), true) AS currency_ratio#2]
+
+(25) Exchange
+Input [3]: [item#0L, return_ratio#1, currency_ratio#2]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#911]
+
+(26) Sort [codegen id : 8]
+Input [3]: [item#0L, return_ratio#1, currency_ratio#2]
+Arguments: [return_ratio#1 ASC NULLS FIRST], false, 0
+
+(27) Window
+Input [3]: [item#0L, return_ratio#1, currency_ratio#2]
+Arguments: [rank(return_ratio#1) windowspecdefinition(return_ratio#1 ASC NULLS FIRST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS return_rank#3], [return_ratio#1 ASC NULLS FIRST]
+
+(28) Sort [codegen id : 9]
+Input [4]: [item#0L, return_ratio#1, currency_ratio#2, return_rank#3]
+Arguments: [currency_ratio#2 ASC NULLS FIRST], false, 0
+
+(29) Window
+Input [4]: [item#0L, return_ratio#1, currency_ratio#2, return_rank#3]
+Arguments: [rank(currency_ratio#2) windowspecdefinition(currency_ratio#2 ASC NULLS FIRST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS currency_rank#4], [currency_ratio#2 ASC NULLS FIRST]
+
+(30) Filter [codegen id : 10]
+Input [5]: [item#0L, return_ratio#1, currency_ratio#2, return_rank#3, currency_rank#4]
+Condition : ((return_rank#3 <= 10) OR (currency_rank#4 <= 10))
+
+(31) Project [codegen id : 10]
+Output [5]: [web AS channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4]
+Input [5]: [item#0L, return_ratio#1, currency_ratio#2, return_rank#3, currency_rank#4]
+
+(32) Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales
+Output [6]: [cs_item_sk#130L, cs_order_number#132L, cs_quantity#133, cs_net_paid#144, cs_net_profit#148, cs_sold_date_sk#149L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/catalog_sales/cs_sold_date_sk=2450815, ... 1838 entries]
+PartitionFilters: [isnotnull(cs_sold_date_sk#149L), dynamicpruningexpression(cs_sold_date_sk#149L IN dynamicpruning#537)]
+PushedFilters: [IsNotNull(cs_net_profit), IsNotNull(cs_net_paid), IsNotNull(cs_quantity), GreaterThan(cs_net_profit,1.00), GreaterThan(cs_net_paid,0.00), GreaterThan(cs_quantity,0), IsNotNull(cs_order_number), IsNotNull(cs_item_sk)]
+ReadSchema: struct<cs_item_sk:bigint,cs_order_number:bigint,cs_quantity:int,cs_net_paid:decimal(7,2),cs_net_profit:decimal(7,2)>
+
+(33) ColumnarToRow [codegen id : 11]
+Input [6]: [cs_item_sk#130L, cs_order_number#132L, cs_quantity#133, cs_net_paid#144, cs_net_profit#148, cs_sold_date_sk#149L]
+
+(34) Filter [codegen id : 11]
+Input [6]: [cs_item_sk#130L, cs_order_number#132L, cs_quantity#133, cs_net_paid#144, cs_net_profit#148, cs_sold_date_sk#149L]
+Condition : (((((((isnotnull(cs_net_profit#148) AND isnotnull(cs_net_paid#144)) AND isnotnull(cs_quantity#133)) AND (cs_net_profit#148 > 1.00)) AND (cs_net_paid#144 > 0.00)) AND (cs_quantity#133 > 0)) AND isnotnull(cs_order_number#132L)) AND isnotnull(cs_item_sk#130L))
+
+(35) Project [codegen id : 11]
+Output [5]: [cs_item_sk#130L, cs_order_number#132L, cs_quantity#133, cs_net_paid#144, cs_sold_date_sk#149L]
+Input [6]: [cs_item_sk#130L, cs_order_number#132L, cs_quantity#133, cs_net_paid#144, cs_net_profit#148, cs_sold_date_sk#149L]
+
+(36) Exchange
+Input [5]: [cs_item_sk#130L, cs_order_number#132L, cs_quantity#133, cs_net_paid#144, cs_sold_date_sk#149L]
+Arguments: hashpartitioning(cs_order_number#132L, cs_item_sk#130L, 200), ENSURE_REQUIREMENTS, [id=#1014]
+
+(37) Sort [codegen id : 12]
+Input [5]: [cs_item_sk#130L, cs_order_number#132L, cs_quantity#133, cs_net_paid#144, cs_sold_date_sk#149L]
+Arguments: [cs_order_number#132L ASC NULLS FIRST, cs_item_sk#130L ASC NULLS FIRST], false, 0
+
+(38) Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_returns
+Output [5]: [cr_item_sk#151L, cr_order_number#165L, cr_return_quantity#166, cr_return_amount#167, cr_returned_date_sk#176L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/catalog_returns]
+PushedFilters: [IsNotNull(cr_return_amount), GreaterThan(cr_return_amount,10000.00), IsNotNull(cr_order_number), IsNotNull(cr_item_sk)]
+ReadSchema: struct<cr_item_sk:bigint,cr_order_number:bigint,cr_return_quantity:int,cr_return_amount:decimal(7,2)>
+
+(39) ColumnarToRow [codegen id : 13]
+Input [5]: [cr_item_sk#151L, cr_order_number#165L, cr_return_quantity#166, cr_return_amount#167, cr_returned_date_sk#176L]
+
+(40) Filter [codegen id : 13]
+Input [5]: [cr_item_sk#151L, cr_order_number#165L, cr_return_quantity#166, cr_return_amount#167, cr_returned_date_sk#176L]
+Condition : (((isnotnull(cr_return_amount#167) AND (cr_return_amount#167 > 10000.00)) AND isnotnull(cr_order_number#165L)) AND isnotnull(cr_item_sk#151L))
+
+(41) Project [codegen id : 13]
+Output [4]: [cr_item_sk#151L, cr_order_number#165L, cr_return_quantity#166, cr_return_amount#167]
+Input [5]: [cr_item_sk#151L, cr_order_number#165L, cr_return_quantity#166, cr_return_amount#167, cr_returned_date_sk#176L]
+
+(42) Exchange
+Input [4]: [cr_item_sk#151L, cr_order_number#165L, cr_return_quantity#166, cr_return_amount#167]
+Arguments: hashpartitioning(cr_order_number#165L, cr_item_sk#151L, 200), ENSURE_REQUIREMENTS, [id=#539]
+
+(43) Sort [codegen id : 14]
+Input [4]: [cr_item_sk#151L, cr_order_number#165L, cr_return_quantity#166, cr_return_amount#167]
+Arguments: [cr_order_number#165L ASC NULLS FIRST, cr_item_sk#151L ASC NULLS FIRST], false, 0
+
+(44) SortMergeJoin [codegen id : 16]
+Left keys [2]: [cs_order_number#132L, cs_item_sk#130L]
+Right keys [2]: [cr_order_number#165L, cr_item_sk#151L]
+Join condition: None
+
+(45) Project [codegen id : 16]
+Output [6]: [cs_item_sk#130L, cs_quantity#133, cs_net_paid#144, cs_sold_date_sk#149L, cr_return_quantity#166, cr_return_amount#167]
+Input [9]: [cs_item_sk#130L, cs_order_number#132L, cs_quantity#133, cs_net_paid#144, cs_sold_date_sk#149L, cr_item_sk#151L, cr_order_number#165L, cr_return_quantity#166, cr_return_amount#167]
+
+(46) ReusedExchange [Reuses operator id: 19]
+Output [1]: [d_date_sk#177L]
+
+(47) BroadcastHashJoin [codegen id : 16]
+Left keys [1]: [cs_sold_date_sk#149L]
+Right keys [1]: [d_date_sk#177L]
+Join condition: None
+
+(48) Project [codegen id : 16]
+Output [5]: [cs_item_sk#130L, cs_quantity#133, cs_net_paid#144, cr_return_quantity#166, cr_return_amount#167]
+Input [7]: [cs_item_sk#130L, cs_quantity#133, cs_net_paid#144, cs_sold_date_sk#149L, cr_return_quantity#166, cr_return_amount#167, d_date_sk#177L]
+
+(49) HashAggregate [codegen id : 16]
+Input [5]: [cs_item_sk#130L, cs_quantity#133, cs_net_paid#144, cr_return_quantity#166, cr_return_amount#167]
+Keys [1]: [cs_item_sk#130L]
+Functions [4]: [partial_sum(cast(coalesce(cr_return_quantity#166, 0) as bigint)), partial_sum(cast(coalesce(cs_quantity#133, 0) as bigint)), partial_sum(coalesce(cast(cr_return_amount#167 as decimal(12,2)), 0.00)), partial_sum(coalesce(cast(cs_net_paid#144 as decimal(12,2)), 0.00))]
+Aggregate Attributes [6]: [sum#552L, sum#553L, sum#554, isEmpty#555, sum#556, isEmpty#557]
+Results [7]: [cs_item_sk#130L, sum#558L, sum#559L, sum#560, isEmpty#561, sum#562, isEmpty#563]
+
+(50) Exchange
+Input [7]: [cs_item_sk#130L, sum#558L, sum#559L, sum#560, isEmpty#561, sum#562, isEmpty#563]
+Arguments: hashpartitioning(cs_item_sk#130L, 200), ENSURE_REQUIREMENTS, [id=#1025]
+
+(51) HashAggregate [codegen id : 17]
+Input [7]: [cs_item_sk#130L, sum#558L, sum#559L, sum#560, isEmpty#561, sum#562, isEmpty#563]
+Keys [1]: [cs_item_sk#130L]
+Functions [4]: [sum(cast(coalesce(cr_return_quantity#166, 0) as bigint)), sum(cast(coalesce(cs_quantity#133, 0) as bigint)), sum(coalesce(cast(cr_return_amount#167 as decimal(12,2)), 0.00)), sum(coalesce(cast(cs_net_paid#144 as decimal(12,2)), 0.00))]
+Aggregate Attributes [4]: [sum(cast(coalesce(cr_return_quantity#166, 0) as bigint))#280L, sum(cast(coalesce(cs_quantity#133, 0) as bigint))#281L, sum(coalesce(cast(cr_return_amount#167 as decimal(12,2)), 0.00))#282, sum(coalesce(cast(cs_net_paid#144 as decimal(12,2)), 0.00))#283]
+Results [3]: [cs_item_sk#130L AS item#6L, CheckOverflow((promote_precision(cast(sum(cast(coalesce(cr_return_quantity#166, 0) as bigint))#280L as decimal(15,4))) / promote_precision(cast(sum(cast(coalesce(cs_quantity#133, 0) as bigint))#281L as decimal(15,4)))), DecimalType(35,20), true) AS return_ratio#7, CheckOverflow((promote_precision(cast(sum(coalesce(cast(cr_return_amount#167 as decimal(12,2)), 0.00))#282 as decimal(15,4))) / promote_precision(cast(sum(coalesce(cast(cs_net_paid#144 as decimal(12,2)), 0.00))#283 as decimal(15,4)))), DecimalType(35,20), true) AS currency_ratio#8]
+
+(52) Exchange
+Input [3]: [item#6L, return_ratio#7, currency_ratio#8]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#1029]
+
+(53) Sort [codegen id : 18]
+Input [3]: [item#6L, return_ratio#7, currency_ratio#8]
+Arguments: [return_ratio#7 ASC NULLS FIRST], false, 0
+
+(54) Window
+Input [3]: [item#6L, return_ratio#7, currency_ratio#8]
+Arguments: [rank(return_ratio#7) windowspecdefinition(return_ratio#7 ASC NULLS FIRST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS return_rank#9], [return_ratio#7 ASC NULLS FIRST]
+
+(55) Sort [codegen id : 19]
+Input [4]: [item#6L, return_ratio#7, currency_ratio#8, return_rank#9]
+Arguments: [currency_ratio#8 ASC NULLS FIRST], false, 0
+
+(56) Window
+Input [4]: [item#6L, return_ratio#7, currency_ratio#8, return_rank#9]
+Arguments: [rank(currency_ratio#8) windowspecdefinition(currency_ratio#8 ASC NULLS FIRST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS currency_rank#10], [currency_ratio#8 ASC NULLS FIRST]
+
+(57) Filter [codegen id : 20]
+Input [5]: [item#6L, return_ratio#7, currency_ratio#8, return_rank#9, currency_rank#10]
+Condition : ((return_rank#9 <= 10) OR (currency_rank#10 <= 10))
+
+(58) Project [codegen id : 20]
+Output [5]: [catalog AS channel#11, item#6L, return_ratio#7, return_rank#9, currency_rank#10]
+Input [5]: [item#6L, return_ratio#7, currency_ratio#8, return_rank#9, currency_rank#10]
+
+(59) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [6]: [ss_item_sk#206L, ss_ticket_number#213L, ss_quantity#214, ss_net_paid#224, ss_net_profit#226, ss_sold_date_sk#227L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales/ss_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ss_sold_date_sk#227L), dynamicpruningexpression(ss_sold_date_sk#227L IN dynamicpruning#537)]
+PushedFilters: [IsNotNull(ss_net_profit), IsNotNull(ss_net_paid), IsNotNull(ss_quantity), GreaterThan(ss_net_profit,1.00), GreaterThan(ss_net_paid,0.00), GreaterThan(ss_quantity,0), IsNotNull(ss_ticket_number), IsNotNull(ss_item_sk)]
+ReadSchema: struct<ss_item_sk:bigint,ss_ticket_number:bigint,ss_quantity:int,ss_net_paid:decimal(7,2),ss_net_profit:decimal(7,2)>
+
+(60) ColumnarToRow [codegen id : 21]
+Input [6]: [ss_item_sk#206L, ss_ticket_number#213L, ss_quantity#214, ss_net_paid#224, ss_net_profit#226, ss_sold_date_sk#227L]
+
+(61) Filter [codegen id : 21]
+Input [6]: [ss_item_sk#206L, ss_ticket_number#213L, ss_quantity#214, ss_net_paid#224, ss_net_profit#226, ss_sold_date_sk#227L]
+Condition : (((((((isnotnull(ss_net_profit#226) AND isnotnull(ss_net_paid#224)) AND isnotnull(ss_quantity#214)) AND (ss_net_profit#226 > 1.00)) AND (ss_net_paid#224 > 0.00)) AND (ss_quantity#214 > 0)) AND isnotnull(ss_ticket_number#213L)) AND isnotnull(ss_item_sk#206L))
+
+(62) Project [codegen id : 21]
+Output [5]: [ss_item_sk#206L, ss_ticket_number#213L, ss_quantity#214, ss_net_paid#224, ss_sold_date_sk#227L]
+Input [6]: [ss_item_sk#206L, ss_ticket_number#213L, ss_quantity#214, ss_net_paid#224, ss_net_profit#226, ss_sold_date_sk#227L]
+
+(63) Exchange
+Input [5]: [ss_item_sk#206L, ss_ticket_number#213L, ss_quantity#214, ss_net_paid#224, ss_sold_date_sk#227L]
+Arguments: hashpartitioning(ss_ticket_number#213L, ss_item_sk#206L, 200), ENSURE_REQUIREMENTS, [id=#1050]
+
+(64) Sort [codegen id : 22]
+Input [5]: [ss_item_sk#206L, ss_ticket_number#213L, ss_quantity#214, ss_net_paid#224, ss_sold_date_sk#227L]
+Arguments: [ss_ticket_number#213L ASC NULLS FIRST, ss_item_sk#206L ASC NULLS FIRST], false, 0
+
+(65) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_returns
+Output [5]: [sr_item_sk#229L, sr_ticket_number#236L, sr_return_quantity#237, sr_return_amt#238, sr_returned_date_sk#247L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_returns]
+PushedFilters: [IsNotNull(sr_return_amt), GreaterThan(sr_return_amt,10000.00), IsNotNull(sr_ticket_number), IsNotNull(sr_item_sk)]
+ReadSchema: struct<sr_item_sk:bigint,sr_ticket_number:bigint,sr_return_quantity:int,sr_return_amt:decimal(7,2)>
+
+(66) ColumnarToRow [codegen id : 23]
+Input [5]: [sr_item_sk#229L, sr_ticket_number#236L, sr_return_quantity#237, sr_return_amt#238, sr_returned_date_sk#247L]
+
+(67) Filter [codegen id : 23]
+Input [5]: [sr_item_sk#229L, sr_ticket_number#236L, sr_return_quantity#237, sr_return_amt#238, sr_returned_date_sk#247L]
+Condition : (((isnotnull(sr_return_amt#238) AND (sr_return_amt#238 > 10000.00)) AND isnotnull(sr_ticket_number#236L)) AND isnotnull(sr_item_sk#229L))
+
+(68) Project [codegen id : 23]
+Output [4]: [sr_item_sk#229L, sr_ticket_number#236L, sr_return_quantity#237, sr_return_amt#238]
+Input [5]: [sr_item_sk#229L, sr_ticket_number#236L, sr_return_quantity#237, sr_return_amt#238, sr_returned_date_sk#247L]
+
+(69) Exchange
+Input [4]: [sr_item_sk#229L, sr_ticket_number#236L, sr_return_quantity#237, sr_return_amt#238]
+Arguments: hashpartitioning(sr_ticket_number#236L, sr_item_sk#229L, 200), ENSURE_REQUIREMENTS, [id=#589]
+
+(70) Sort [codegen id : 24]
+Input [4]: [sr_item_sk#229L, sr_ticket_number#236L, sr_return_quantity#237, sr_return_amt#238]
+Arguments: [sr_ticket_number#236L ASC NULLS FIRST, sr_item_sk#229L ASC NULLS FIRST], false, 0
+
+(71) SortMergeJoin [codegen id : 26]
+Left keys [2]: [ss_ticket_number#213L, ss_item_sk#206L]
+Right keys [2]: [sr_ticket_number#236L, sr_item_sk#229L]
+Join condition: None
+
+(72) Project [codegen id : 26]
+Output [6]: [ss_item_sk#206L, ss_quantity#214, ss_net_paid#224, ss_sold_date_sk#227L, sr_return_quantity#237, sr_return_amt#238]
+Input [9]: [ss_item_sk#206L, ss_ticket_number#213L, ss_quantity#214, ss_net_paid#224, ss_sold_date_sk#227L, sr_item_sk#229L, sr_ticket_number#236L, sr_return_quantity#237, sr_return_amt#238]
+
+(73) ReusedExchange [Reuses operator id: 19]
+Output [1]: [d_date_sk#248L]
+
+(74) BroadcastHashJoin [codegen id : 26]
+Left keys [1]: [ss_sold_date_sk#227L]
+Right keys [1]: [d_date_sk#248L]
+Join condition: None
+
+(75) Project [codegen id : 26]
+Output [5]: [ss_item_sk#206L, ss_quantity#214, ss_net_paid#224, sr_return_quantity#237, sr_return_amt#238]
+Input [7]: [ss_item_sk#206L, ss_quantity#214, ss_net_paid#224, ss_sold_date_sk#227L, sr_return_quantity#237, sr_return_amt#238, d_date_sk#248L]
+
+(76) HashAggregate [codegen id : 26]
+Input [5]: [ss_item_sk#206L, ss_quantity#214, ss_net_paid#224, sr_return_quantity#237, sr_return_amt#238]
+Keys [1]: [ss_item_sk#206L]
+Functions [4]: [partial_sum(cast(coalesce(sr_return_quantity#237, 0) as bigint)), partial_sum(cast(coalesce(ss_quantity#214, 0) as bigint)), partial_sum(coalesce(cast(sr_return_amt#238 as decimal(12,2)), 0.00)), partial_sum(coalesce(cast(ss_net_paid#224 as decimal(12,2)), 0.00))]
+Aggregate Attributes [6]: [sum#564L, sum#565L, sum#566, isEmpty#567, sum#568, isEmpty#569]
+Results [7]: [ss_item_sk#206L, sum#570L, sum#571L, sum#572, isEmpty#573, sum#574, isEmpty#575]
+
+(77) Exchange
+Input [7]: [ss_item_sk#206L, sum#570L, sum#571L, sum#572, isEmpty#573, sum#574, isEmpty#575]
+Arguments: hashpartitioning(ss_item_sk#206L, 200), ENSURE_REQUIREMENTS, [id=#1061]
+
+(78) HashAggregate [codegen id : 27]
+Input [7]: [ss_item_sk#206L, sum#570L, sum#571L, sum#572, isEmpty#573, sum#574, isEmpty#575]
+Keys [1]: [ss_item_sk#206L]
+Functions [4]: [sum(cast(coalesce(sr_return_quantity#237, 0) as bigint)), sum(cast(coalesce(ss_quantity#214, 0) as bigint)), sum(coalesce(cast(sr_return_amt#238 as decimal(12,2)), 0.00)), sum(coalesce(cast(ss_net_paid#224 as decimal(12,2)), 0.00))]
+Aggregate Attributes [4]: [sum(cast(coalesce(sr_return_quantity#237, 0) as bigint))#284L, sum(cast(coalesce(ss_quantity#214, 0) as bigint))#285L, sum(coalesce(cast(sr_return_amt#238 as decimal(12,2)), 0.00))#286, sum(coalesce(cast(ss_net_paid#224 as decimal(12,2)), 0.00))#287]
+Results [3]: [ss_item_sk#206L AS item#12L, CheckOverflow((promote_precision(cast(sum(cast(coalesce(sr_return_quantity#237, 0) as bigint))#284L as decimal(15,4))) / promote_precision(cast(sum(cast(coalesce(ss_quantity#214, 0) as bigint))#285L as decimal(15,4)))), DecimalType(35,20), true) AS return_ratio#13, CheckOverflow((promote_precision(cast(sum(coalesce(cast(sr_return_amt#238 as decimal(12,2)), 0.00))#286 as decimal(15,4))) / promote_precision(cast(sum(coalesce(cast(ss_net_paid#224 as decimal(12,2)), 0.00))#287 as decimal(15,4)))), DecimalType(35,20), true) AS currency_ratio#14]
+
+(79) Exchange
+Input [3]: [item#12L, return_ratio#13, currency_ratio#14]
+Arguments: SinglePartition, ENSURE_REQUIREMENTS, [id=#1065]
+
+(80) Sort [codegen id : 28]
+Input [3]: [item#12L, return_ratio#13, currency_ratio#14]
+Arguments: [return_ratio#13 ASC NULLS FIRST], false, 0
+
+(81) Window
+Input [3]: [item#12L, return_ratio#13, currency_ratio#14]
+Arguments: [rank(return_ratio#13) windowspecdefinition(return_ratio#13 ASC NULLS FIRST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS return_rank#15], [return_ratio#13 ASC NULLS FIRST]
+
+(82) Sort [codegen id : 29]
+Input [4]: [item#12L, return_ratio#13, currency_ratio#14, return_rank#15]
+Arguments: [currency_ratio#14 ASC NULLS FIRST], false, 0
+
+(83) Window
+Input [4]: [item#12L, return_ratio#13, currency_ratio#14, return_rank#15]
+Arguments: [rank(currency_ratio#14) windowspecdefinition(currency_ratio#14 ASC NULLS FIRST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS currency_rank#16], [currency_ratio#14 ASC NULLS FIRST]
+
+(84) Filter [codegen id : 30]
+Input [5]: [item#12L, return_ratio#13, currency_ratio#14, return_rank#15, currency_rank#16]
+Condition : ((return_rank#15 <= 10) OR (currency_rank#16 <= 10))
+
+(85) Project [codegen id : 30]
+Output [5]: [store AS channel#17, item#12L, return_ratio#13, return_rank#15, currency_rank#16]
+Input [5]: [item#12L, return_ratio#13, currency_ratio#14, return_rank#15, currency_rank#16]
+
+(86) Union
+
+(87) HashAggregate [codegen id : 31]
+Input [5]: [channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4]
+Keys [5]: [channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4]
+Functions: []
+Aggregate Attributes: []
+Results [5]: [channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4]
+
+(88) Exchange
+Input [5]: [channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4]
+Arguments: hashpartitioning(channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4, 200), ENSURE_REQUIREMENTS, [id=#1082]
+
+(89) HashAggregate [codegen id : 32]
+Input [5]: [channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4]
+Keys [5]: [channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4]
+Functions: []
+Aggregate Attributes: []
+Results [5]: [channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4]
+
+(90) TakeOrderedAndProject
+Input [5]: [channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4]
+Arguments: 100, [channel#5 ASC NULLS FIRST, return_rank#3 ASC NULLS FIRST, currency_rank#4 ASC NULLS FIRST], [channel#5, item#0L, return_ratio#1, return_rank#3, currency_rank#4]
+
+===== Subqueries =====
+
+Subquery:1 Hosting operator id = 1 Hosting Expression = ws_sold_date_sk#63L IN dynamicpruning#537
+ReusedExchange (91)
+
+
+(91) ReusedExchange [Reuses operator id: 19]
+Output [1]: [d_date_sk#88L]
+
+Subquery:2 Hosting operator id = 32 Hosting Expression = cs_sold_date_sk#149L IN dynamicpruning#537
+
+Subquery:3 Hosting operator id = 59 Hosting Expression = ss_sold_date_sk#227L IN dynamicpruning#537
+
+

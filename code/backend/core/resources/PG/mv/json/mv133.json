@@ -1,0 +1,72 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 18.89,
+    "Total Cost": 561.07,
+    "Plan Rows": 42,
+    "Plan Width": 86,
+    "Actual Startup Time": 0.058,
+    "Actual Total Time": 6.523,
+    "Actual Rows": 1158,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Hash Cond": "(ml.link_type_id = lt.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_link",
+        "Alias": "ml",
+        "Startup Cost": 0.0,
+        "Total Cost": 462.97,
+        "Plan Rows": 29997,
+        "Plan Width": 8,
+        "Actual Startup Time": 0.013,
+        "Actual Total Time": 2.914,
+        "Actual Rows": 29997,
+        "Actual Loops": 1
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 18.88,
+        "Total Cost": 18.88,
+        "Plan Rows": 1,
+        "Plan Width": 86,
+        "Actual Startup Time": 0.012,
+        "Actual Total Time": 0.013,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "link_type",
+            "Alias": "lt",
+            "Startup Cost": 0.0,
+            "Total Cost": 18.88,
+            "Plan Rows": 1,
+            "Plan Width": 86,
+            "Actual Startup Time": 0.006,
+            "Actual Total Time": 0.01,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((link)::text ~~ '%follows%'::text)",
+            "Rows Removed by Filter": 17
+          }
+        ]
+      }
+    ]
+  }
+}

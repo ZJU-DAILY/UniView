@@ -1,0 +1,80 @@
+CREATE MATERIALIZED VIEW IF NOT EXISTS mv219
+PARTITIONED BY (ss_sold_date_sk)
+AS
+SELECT
+	customer_address.ca_location_type,
+	item.i_brand,
+	date_dim.d_month_seq,
+	store_sales.ss_hdemo_sk,
+	customer_address.ca_street_type,
+	store_sales.ss_ext_sales_price,
+	item.i_brand_id,
+	date_dim.d_date_sk,
+	date_dim.d_qoy,
+	customer_address.ca_county,
+	store_sales.ss_ticket_number,
+	customer_address.ca_city,
+	store_sales.ss_cdemo_sk,
+	date_dim.d_date,
+	store_sales.ss_list_price,
+	item.i_manager_id,
+	item.i_class_id,
+	store_sales.ss_store_sk,
+	customer_address.ca_street_name,
+	item.i_item_desc,
+	item.i_class,
+	store_sales.ss_ext_wholesale_cost,
+	item.i_category,
+	item.i_size,
+	customer_address.ca_zip,
+	item.i_item_id,
+	date_dim.d_moy,
+	item.i_current_price,
+	store_sales.ss_customer_sk,
+	date_dim.d_week_seq,
+	store_sales.ss_ext_list_price,
+	date_dim.d_year,
+	customer_address.ca_address_sk,
+	item.i_manufact,
+	store_sales.ss_net_profit,
+	item.i_units,
+	store_sales.ss_sold_date_sk,
+	store_sales.ss_addr_sk,
+	date_dim.d_quarter_name,
+	store_sales.ss_sales_price,
+	store_sales.ss_item_sk,
+	store_sales.ss_coupon_amt,
+	customer_address.ca_street_number,
+	item.i_item_sk,
+	store_sales.ss_sold_time_sk,
+	customer_address.ca_state,
+	item.i_product_name,
+	item.i_wholesale_cost,
+	customer_address.ca_gmt_offset,
+	store_sales.ss_ext_discount_amt,
+	store_sales.ss_promo_sk,
+	item.i_color,
+	store_sales.ss_wholesale_cost,
+	customer_address.ca_country,
+	customer_address.ca_suite_number,
+	date_dim.d_day_name,
+	item.i_category_id,
+	date_dim.d_dom,
+	store_sales.ss_ext_tax,
+	item.i_manufact_id,
+	store_sales.ss_net_paid,
+	store_sales.ss_quantity,
+	date_dim.d_dow
+FROM
+	date_dim,
+	store_sales,
+	customer_address,
+	item
+WHERE
+	item.i_category = 'Music'
+	AND store_sales.ss_item_sk = item.i_item_sk
+	AND store_sales.ss_sold_date_sk = date_dim.d_date_sk
+	AND store_sales.ss_addr_sk = customer_address.ca_address_sk
+	AND date_dim.d_year = 1998
+	AND date_dim.d_moy = 9
+DISTRIBUTE BY ss_sold_date_sk;

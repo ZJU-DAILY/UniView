@@ -1,0 +1,153 @@
+== Physical Plan ==
+TakeOrderedAndProject (25)
++- * Project (24)
+   +- Window (23)
+      +- * Sort (22)
+         +- Exchange (21)
+            +- * HashAggregate (20)
+               +- Exchange (19)
+                  +- * HashAggregate (18)
+                     +- * Expand (17)
+                        +- * Project (16)
+                           +- * BroadcastHashJoin Inner BuildRight (15)
+                              :- * Project (10)
+                              :  +- * BroadcastHashJoin Inner BuildRight (9)
+                              :     :- * Filter (3)
+                              :     :  +- * ColumnarToRow (2)
+                              :     :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales (1)
+                              :     +- BroadcastExchange (8)
+                              :        +- * Project (7)
+                              :           +- * Filter (6)
+                              :              +- * ColumnarToRow (5)
+                              :                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (4)
+                              +- BroadcastExchange (14)
+                                 +- * Filter (13)
+                                    +- * ColumnarToRow (12)
+                                       +- Scan orc tpcds_bin_partitioned_decimal_orc_2.item (11)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales
+Output [3]: [ws_item_sk#7L, ws_net_paid#33, ws_sold_date_sk#38L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/web_sales/ws_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ws_sold_date_sk#38L), dynamicpruningexpression(ws_sold_date_sk#38L IN dynamicpruning#209)]
+PushedFilters: [IsNotNull(ws_item_sk)]
+ReadSchema: struct<ws_item_sk:bigint,ws_net_paid:decimal(7,2)>
+
+(2) ColumnarToRow [codegen id : 3]
+Input [3]: [ws_item_sk#7L, ws_net_paid#33, ws_sold_date_sk#38L]
+
+(3) Filter [codegen id : 3]
+Input [3]: [ws_item_sk#7L, ws_net_paid#33, ws_sold_date_sk#38L]
+Condition : isnotnull(ws_item_sk#7L)
+
+(4) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [2]: [d_date_sk#39L, d_month_seq#42]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_month_seq), GreaterThanOrEqual(d_month_seq,1200), LessThanOrEqual(d_month_seq,1211), IsNotNull(d_date_sk)]
+ReadSchema: struct<d_date_sk:bigint,d_month_seq:int>
+
+(5) ColumnarToRow [codegen id : 1]
+Input [2]: [d_date_sk#39L, d_month_seq#42]
+
+(6) Filter [codegen id : 1]
+Input [2]: [d_date_sk#39L, d_month_seq#42]
+Condition : (((isnotnull(d_month_seq#42) AND (d_month_seq#42 >= 1200)) AND (d_month_seq#42 <= 1211)) AND isnotnull(d_date_sk#39L))
+
+(7) Project [codegen id : 1]
+Output [1]: [d_date_sk#39L]
+Input [2]: [d_date_sk#39L, d_month_seq#42]
+
+(8) BroadcastExchange
+Input [1]: [d_date_sk#39L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#161]
+
+(9) BroadcastHashJoin [codegen id : 3]
+Left keys [1]: [ws_sold_date_sk#38L]
+Right keys [1]: [d_date_sk#39L]
+Join condition: None
+
+(10) Project [codegen id : 3]
+Output [2]: [ws_item_sk#7L, ws_net_paid#33]
+Input [4]: [ws_item_sk#7L, ws_net_paid#33, ws_sold_date_sk#38L, d_date_sk#39L]
+
+(11) Scan orc tpcds_bin_partitioned_decimal_orc_2.item
+Output [3]: [i_item_sk#67L, i_class#77, i_category#79]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/item]
+PushedFilters: [IsNotNull(i_item_sk)]
+ReadSchema: struct<i_item_sk:bigint,i_class:string,i_category:string>
+
+(12) ColumnarToRow [codegen id : 2]
+Input [3]: [i_item_sk#67L, i_class#77, i_category#79]
+
+(13) Filter [codegen id : 2]
+Input [3]: [i_item_sk#67L, i_class#77, i_category#79]
+Condition : isnotnull(i_item_sk#67L)
+
+(14) BroadcastExchange
+Input [3]: [i_item_sk#67L, i_class#77, i_category#79]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#169]
+
+(15) BroadcastHashJoin [codegen id : 3]
+Left keys [1]: [ws_item_sk#7L]
+Right keys [1]: [i_item_sk#67L]
+Join condition: None
+
+(16) Project [codegen id : 3]
+Output [3]: [ws_net_paid#33, i_category#79, i_class#77]
+Input [5]: [ws_item_sk#7L, ws_net_paid#33, i_item_sk#67L, i_class#77, i_category#79]
+
+(17) Expand [codegen id : 3]
+Input [3]: [ws_net_paid#33, i_category#79, i_class#77]
+Arguments: [List(ws_net_paid#33, i_category#79, i_class#77, 0), List(ws_net_paid#33, i_category#79, null, 1), List(ws_net_paid#33, null, null, 3)], [ws_net_paid#33, i_category#94, i_class#95, spark_grouping_id#93L]
+
+(18) HashAggregate [codegen id : 3]
+Input [4]: [ws_net_paid#33, i_category#94, i_class#95, spark_grouping_id#93L]
+Keys [3]: [i_category#94, i_class#95, spark_grouping_id#93L]
+Functions [1]: [partial_sum(UnscaledValue(ws_net_paid#33))]
+Aggregate Attributes [1]: [sum#210L]
+Results [4]: [i_category#94, i_class#95, spark_grouping_id#93L, sum#211L]
+
+(19) Exchange
+Input [4]: [i_category#94, i_class#95, spark_grouping_id#93L, sum#211L]
+Arguments: hashpartitioning(i_category#94, i_class#95, spark_grouping_id#93L, 200), ENSURE_REQUIREMENTS, [id=#218]
+
+(20) HashAggregate [codegen id : 4]
+Input [4]: [i_category#94, i_class#95, spark_grouping_id#93L, sum#211L]
+Keys [3]: [i_category#94, i_class#95, spark_grouping_id#93L]
+Functions [1]: [sum(UnscaledValue(ws_net_paid#33))]
+Aggregate Attributes [1]: [sum(UnscaledValue(ws_net_paid#33))#89L]
+Results [7]: [MakeDecimal(sum(UnscaledValue(ws_net_paid#33))#89L,17,2) AS total_sum#0, i_category#94, i_class#95, (cast((shiftright(spark_grouping_id#93L, 1) & 1) as tinyint) + cast((shiftright(spark_grouping_id#93L, 0) & 1) as tinyint)) AS lochierarchy#1, (cast((shiftright(spark_grouping_id#93L, 1) & 1) as tinyint) + cast((shiftright(spark_grouping_id#93L, 0) & 1) as tinyint)) AS _w1#108, CASE WHEN (cast((shiftright(spark_grouping_id#93L, 0) & 1) as tinyint) = 0) THEN i_category#94 END AS _w2#109, MakeDecimal(sum(UnscaledValue(ws_net_paid#33))#89L,17,2) AS _w3#110]
+
+(21) Exchange
+Input [7]: [total_sum#0, i_category#94, i_class#95, lochierarchy#1, _w1#108, _w2#109, _w3#110]
+Arguments: hashpartitioning(_w1#108, _w2#109, 200), ENSURE_REQUIREMENTS, [id=#222]
+
+(22) Sort [codegen id : 5]
+Input [7]: [total_sum#0, i_category#94, i_class#95, lochierarchy#1, _w1#108, _w2#109, _w3#110]
+Arguments: [_w1#108 ASC NULLS FIRST, _w2#109 ASC NULLS FIRST, _w3#110 DESC NULLS LAST], false, 0
+
+(23) Window
+Input [7]: [total_sum#0, i_category#94, i_class#95, lochierarchy#1, _w1#108, _w2#109, _w3#110]
+Arguments: [rank(_w3#110) windowspecdefinition(_w1#108, _w2#109, _w3#110 DESC NULLS LAST, specifiedwindowframe(RowFrame, unboundedpreceding$(), currentrow$())) AS rank_within_parent#2], [_w1#108, _w2#109], [_w3#110 DESC NULLS LAST]
+
+(24) Project [codegen id : 6]
+Output [5]: [total_sum#0, i_category#94, i_class#95, lochierarchy#1, rank_within_parent#2]
+Input [8]: [total_sum#0, i_category#94, i_class#95, lochierarchy#1, _w1#108, _w2#109, _w3#110, rank_within_parent#2]
+
+(25) TakeOrderedAndProject
+Input [5]: [total_sum#0, i_category#94, i_class#95, lochierarchy#1, rank_within_parent#2]
+Arguments: 100, [lochierarchy#1 DESC NULLS LAST, CASE WHEN (lochierarchy#1 = 0) THEN i_category#94 END ASC NULLS FIRST, rank_within_parent#2 ASC NULLS FIRST], [total_sum#0, i_category#94, i_class#95, lochierarchy#1, rank_within_parent#2]
+
+===== Subqueries =====
+
+Subquery:1 Hosting operator id = 1 Hosting Expression = ws_sold_date_sk#38L IN dynamicpruning#209
+ReusedExchange (26)
+
+
+(26) ReusedExchange [Reuses operator id: 8]
+Output [1]: [d_date_sk#39L]
+
+

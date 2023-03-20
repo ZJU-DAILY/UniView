@@ -1,0 +1,83 @@
+SELECT
+	date_dim.d_dow,
+	item.i_manufact,
+	item.i_category_id,
+	store_sales.ss_promo_sk,
+	promotion.p_channel_dmail,
+	date_dim.d_quarter_name,
+	store_sales.ss_ext_discount_amt,
+	date_dim.d_day_name,
+	store_sales.ss_store_sk,
+	customer_demographics.cd_education_status,
+	item.i_manager_id,
+	store_sales.ss_item_sk,
+	store_sales.ss_customer_sk,
+	customer_demographics.cd_dep_employed_count,
+	item.i_class_id,
+	date_dim.d_qoy,
+	date_dim.d_dom,
+	item.i_color,
+	customer_demographics.cd_dep_college_count,
+	customer_demographics.cd_demo_sk,
+	store_sales.ss_sold_date_sk,
+	store_sales.ss_cdemo_sk,
+	store_sales.ss_coupon_amt,
+	item.i_size,
+	store_sales.ss_addr_sk,
+	item.i_units,
+	customer_demographics.cd_credit_rating,
+	promotion.p_channel_tv,
+	date_dim.d_week_seq,
+	date_dim.d_year,
+	item.i_item_sk,
+	item.i_brand_id,
+	item.i_product_name,
+	promotion.p_promo_sk,
+	item.i_brand,
+	store_sales.ss_list_price,
+	store_sales.ss_ext_sales_price,
+	store_sales.ss_ticket_number,
+	item.i_current_price,
+	date_dim.d_month_seq,
+	item.i_wholesale_cost,
+	item.i_item_id,
+	store_sales.ss_quantity,
+	store_sales.ss_ext_tax,
+	store_sales.ss_wholesale_cost,
+	promotion.p_channel_event,
+	customer_demographics.cd_purchase_estimate,
+	store_sales.ss_ext_wholesale_cost,
+	item.i_manufact_id,
+	customer_demographics.cd_marital_status,
+	promotion.p_channel_email,
+	customer_demographics.cd_dep_count,
+	store_sales.ss_ext_list_price,
+	store_sales.ss_sales_price,
+	item.i_item_desc,
+	item.i_class,
+	date_dim.d_moy,
+	store_sales.ss_sold_time_sk,
+	date_dim.d_date,
+	item.i_category,
+	store_sales.ss_net_profit,
+	customer_demographics.cd_gender,
+	store_sales.ss_hdemo_sk,
+	date_dim.d_date_sk,
+	store_sales.ss_net_paid
+FROM
+	item,
+	customer_demographics,
+	date_dim,
+	store_sales,
+	promotion
+WHERE
+	customer_demographics.cd_gender = 'M'
+	AND customer_demographics.cd_education_status = 'College'
+	AND customer_demographics.cd_marital_status = 'S'
+	AND store_sales.ss_cdemo_sk = customer_demographics.cd_demo_sk
+	AND store_sales.ss_item_sk = item.i_item_sk
+	AND store_sales.ss_promo_sk = promotion.p_promo_sk
+	AND store_sales.ss_sold_date_sk = date_dim.d_date_sk
+	AND promotion.p_channel_event = 'N'
+	AND promotion.p_channel_email = 'N'
+	AND date_dim.d_year = 2000

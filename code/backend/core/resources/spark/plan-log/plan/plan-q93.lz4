@@ -1,0 +1,136 @@
+== Physical Plan ==
+TakeOrderedAndProject (24)
++- * HashAggregate (23)
+   +- Exchange (22)
+      +- * HashAggregate (21)
+         +- * Project (20)
+            +- * BroadcastHashJoin Inner BuildRight (19)
+               :- * Project (13)
+               :  +- * SortMergeJoin Inner (12)
+               :     :- * Sort (5)
+               :     :  +- Exchange (4)
+               :     :     +- * Project (3)
+               :     :        +- * ColumnarToRow (2)
+               :     :           +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (1)
+               :     +- * Sort (11)
+               :        +- Exchange (10)
+               :           +- * Project (9)
+               :              +- * Filter (8)
+               :                 +- * ColumnarToRow (7)
+               :                    +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_returns (6)
+               +- BroadcastExchange (18)
+                  +- * Project (17)
+                     +- * Filter (16)
+                        +- * ColumnarToRow (15)
+                           +- Scan orc tpcds_bin_partitioned_decimal_orc_2.reason (14)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [6]: [ss_item_sk#3L, ss_customer_sk#4L, ss_ticket_number#10L, ss_quantity#11, ss_sales_price#14, ss_sold_date_sk#24L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales]
+ReadSchema: struct<ss_item_sk:bigint,ss_customer_sk:bigint,ss_ticket_number:bigint,ss_quantity:int,ss_sales_price:decimal(7,2)>
+
+(2) ColumnarToRow [codegen id : 1]
+Input [6]: [ss_item_sk#3L, ss_customer_sk#4L, ss_ticket_number#10L, ss_quantity#11, ss_sales_price#14, ss_sold_date_sk#24L]
+
+(3) Project [codegen id : 1]
+Output [5]: [ss_item_sk#3L, ss_customer_sk#4L, ss_ticket_number#10L, ss_quantity#11, ss_sales_price#14]
+Input [6]: [ss_item_sk#3L, ss_customer_sk#4L, ss_ticket_number#10L, ss_quantity#11, ss_sales_price#14, ss_sold_date_sk#24L]
+
+(4) Exchange
+Input [5]: [ss_item_sk#3L, ss_customer_sk#4L, ss_ticket_number#10L, ss_quantity#11, ss_sales_price#14]
+Arguments: hashpartitioning(ss_item_sk#3L, ss_ticket_number#10L, 200), ENSURE_REQUIREMENTS, [id=#88]
+
+(5) Sort [codegen id : 2]
+Input [5]: [ss_item_sk#3L, ss_customer_sk#4L, ss_ticket_number#10L, ss_quantity#11, ss_sales_price#14]
+Arguments: [ss_item_sk#3L ASC NULLS FIRST, ss_ticket_number#10L ASC NULLS FIRST], false, 0
+
+(6) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_returns
+Output [5]: [sr_item_sk#26L, sr_reason_sk#32L, sr_ticket_number#33L, sr_return_quantity#34, sr_returned_date_sk#44L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_returns]
+PushedFilters: [IsNotNull(sr_item_sk), IsNotNull(sr_ticket_number), IsNotNull(sr_reason_sk)]
+ReadSchema: struct<sr_item_sk:bigint,sr_reason_sk:bigint,sr_ticket_number:bigint,sr_return_quantity:int>
+
+(7) ColumnarToRow [codegen id : 3]
+Input [5]: [sr_item_sk#26L, sr_reason_sk#32L, sr_ticket_number#33L, sr_return_quantity#34, sr_returned_date_sk#44L]
+
+(8) Filter [codegen id : 3]
+Input [5]: [sr_item_sk#26L, sr_reason_sk#32L, sr_ticket_number#33L, sr_return_quantity#34, sr_returned_date_sk#44L]
+Condition : ((isnotnull(sr_item_sk#26L) AND isnotnull(sr_ticket_number#33L)) AND isnotnull(sr_reason_sk#32L))
+
+(9) Project [codegen id : 3]
+Output [4]: [sr_item_sk#26L, sr_reason_sk#32L, sr_ticket_number#33L, sr_return_quantity#34]
+Input [5]: [sr_item_sk#26L, sr_reason_sk#32L, sr_ticket_number#33L, sr_return_quantity#34, sr_returned_date_sk#44L]
+
+(10) Exchange
+Input [4]: [sr_item_sk#26L, sr_reason_sk#32L, sr_ticket_number#33L, sr_return_quantity#34]
+Arguments: hashpartitioning(sr_item_sk#26L, sr_ticket_number#33L, 200), ENSURE_REQUIREMENTS, [id=#98]
+
+(11) Sort [codegen id : 4]
+Input [4]: [sr_item_sk#26L, sr_reason_sk#32L, sr_ticket_number#33L, sr_return_quantity#34]
+Arguments: [sr_item_sk#26L ASC NULLS FIRST, sr_ticket_number#33L ASC NULLS FIRST], false, 0
+
+(12) SortMergeJoin [codegen id : 6]
+Left keys [2]: [ss_item_sk#3L, ss_ticket_number#10L]
+Right keys [2]: [sr_item_sk#26L, sr_ticket_number#33L]
+Join condition: None
+
+(13) Project [codegen id : 6]
+Output [5]: [ss_customer_sk#4L, ss_quantity#11, ss_sales_price#14, sr_reason_sk#32L, sr_return_quantity#34]
+Input [9]: [ss_item_sk#3L, ss_customer_sk#4L, ss_ticket_number#10L, ss_quantity#11, ss_sales_price#14, sr_item_sk#26L, sr_reason_sk#32L, sr_ticket_number#33L, sr_return_quantity#34]
+
+(14) Scan orc tpcds_bin_partitioned_decimal_orc_2.reason
+Output [2]: [r_reason_sk#45L, r_reason_desc#47]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/reason]
+PushedFilters: [IsNotNull(r_reason_desc), EqualTo(r_reason_desc,reason 28), IsNotNull(r_reason_sk)]
+ReadSchema: struct<r_reason_sk:bigint,r_reason_desc:string>
+
+(15) ColumnarToRow [codegen id : 5]
+Input [2]: [r_reason_sk#45L, r_reason_desc#47]
+
+(16) Filter [codegen id : 5]
+Input [2]: [r_reason_sk#45L, r_reason_desc#47]
+Condition : ((isnotnull(r_reason_desc#47) AND (r_reason_desc#47 = reason 28)) AND isnotnull(r_reason_sk#45L))
+
+(17) Project [codegen id : 5]
+Output [1]: [r_reason_sk#45L]
+Input [2]: [r_reason_sk#45L, r_reason_desc#47]
+
+(18) BroadcastExchange
+Input [1]: [r_reason_sk#45L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#110]
+
+(19) BroadcastHashJoin [codegen id : 6]
+Left keys [1]: [sr_reason_sk#32L]
+Right keys [1]: [r_reason_sk#45L]
+Join condition: None
+
+(20) Project [codegen id : 6]
+Output [2]: [ss_customer_sk#4L, CASE WHEN isnotnull(sr_return_quantity#34) THEN CheckOverflow((promote_precision(cast(cast((ss_quantity#11 - sr_return_quantity#34) as decimal(10,0)) as decimal(12,2))) * promote_precision(cast(ss_sales_price#14 as decimal(12,2)))), DecimalType(18,2), true) ELSE CheckOverflow((promote_precision(cast(cast(ss_quantity#11 as decimal(10,0)) as decimal(12,2))) * promote_precision(cast(ss_sales_price#14 as decimal(12,2)))), DecimalType(18,2), true) END AS act_sales#0]
+Input [6]: [ss_customer_sk#4L, ss_quantity#11, ss_sales_price#14, sr_reason_sk#32L, sr_return_quantity#34, r_reason_sk#45L]
+
+(21) HashAggregate [codegen id : 6]
+Input [2]: [ss_customer_sk#4L, act_sales#0]
+Keys [1]: [ss_customer_sk#4L]
+Functions [1]: [partial_sum(act_sales#0)]
+Aggregate Attributes [2]: [sum#99, isEmpty#100]
+Results [3]: [ss_customer_sk#4L, sum#101, isEmpty#102]
+
+(22) Exchange
+Input [3]: [ss_customer_sk#4L, sum#101, isEmpty#102]
+Arguments: hashpartitioning(ss_customer_sk#4L, 200), ENSURE_REQUIREMENTS, [id=#116]
+
+(23) HashAggregate [codegen id : 7]
+Input [3]: [ss_customer_sk#4L, sum#101, isEmpty#102]
+Keys [1]: [ss_customer_sk#4L]
+Functions [1]: [sum(act_sales#0)]
+Aggregate Attributes [1]: [sum(act_sales#0)#48]
+Results [2]: [ss_customer_sk#4L, sum(act_sales#0)#48 AS sumsales#1]
+
+(24) TakeOrderedAndProject
+Input [2]: [ss_customer_sk#4L, sumsales#1]
+Arguments: 100, [sumsales#1 ASC NULLS FIRST, ss_customer_sk#4L ASC NULLS FIRST], [ss_customer_sk#4L, sumsales#1]
+

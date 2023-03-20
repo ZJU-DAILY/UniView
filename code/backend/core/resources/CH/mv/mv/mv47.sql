@@ -1,0 +1,4 @@
+create materialized view if not exists mv47 engine = MergeTree() order by tuple() POPULATE as 
+select movie_info.info AS movie_info_info_0, company_name.country_code AS country_code, info_type.info AS info_type_info_2, company_name.id AS id, movie_info.movie_id AS movie_id, movie_companies.company_type_id AS company_type_id, company_type.kind AS kind
+ from info_type,company_type,company_name,movie_info,movie_companies
+ where (movie_info.info_type_id = info_type.id) And info_type.info = 'release dates'  And  info_type.info = 'rating' And (company_type.id = movie_companies.company_type_id) And (company_type.kind = 'production companies') And (company_name.id = movie_companies.company_id) And (company_name.country_code = '[de]') And (movie_info.movie_id = movie_companies.movie_id) And (info_type.id = movie_info.info_type_id)

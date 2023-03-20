@@ -1,0 +1,59 @@
+digraph
+{
+  rankdir="LR";
+  { node [shape = rect]
+    n140434086026264[label="MergeTreeInOrder(2 jobs, execution time: 0.000284855 sec., preparation time: 0.000004017 sec.) (Finished)"];
+    n140437487786328[label="ExpressionTransform(1 jobs, execution time: 0.000007389 sec., preparation time: 0.000004227 sec.) (Finished)"];
+    n140437487794968[label="JoiningTransform(2 jobs, execution time: 0.021416735 sec., preparation time: 0.000008205 sec.) (Finished)"];
+    n140434081222680[label="MergeTreeThread(7 jobs, execution time: 0.011209733 sec., preparation time: 0.000012822 sec.) (Finished)"];
+    n140434081223960[label="MergeTreeThread(7 jobs, execution time: 0.011474157 sec., preparation time: 0.000012183 sec.) (Finished)"];
+    n140434081226520[label="MergeTreeThread(1 jobs, execution time: 0.00004889 sec., preparation time: 0.000001223 sec.) (Finished)"];
+    n140434081229080[label="MergeTreeThread(7 jobs, execution time: 0.011391957 sec., preparation time: 0.000009766 sec.) (Finished)"];
+    n140434081230360[label="MergeTreeThread(7 jobs, execution time: 0.011894709 sec., preparation time: 0.000009456 sec.) (Finished)"];
+    n140434081227800[label="MergeTreeThread(9 jobs, execution time: 0.017164513 sec., preparation time: 0.00001433 sec.) (Finished)"];
+    n140434081232920[label="MergeTreeThread(7 jobs, execution time: 0.011757807 sec., preparation time: 0.000010574 sec.) (Finished)"];
+    n140434081234200[label="MergeTreeThread(5 jobs, execution time: 0.008606647 sec., preparation time: 0.000007462 sec.) (Finished)"];
+    n140437487792088[label="ExpressionTransform(6 jobs, execution time: 0.000039493 sec., preparation time: 0.00001864 sec.) (Finished)"];
+    n140437487792408[label="ExpressionTransform(6 jobs, execution time: 0.000034467 sec., preparation time: 0.00001515 sec.) (Finished)"];
+    n140437487792728[label="ExpressionTransform(0 jobs, execution time: 0 sec., preparation time: 0.000004208 sec.) (Finished)"];
+    n140437487793048[label="ExpressionTransform(6 jobs, execution time: 0.00004055 sec., preparation time: 0.00001669 sec.) (Finished)"];
+    n140437487793368[label="ExpressionTransform(6 jobs, execution time: 0.000030659 sec., preparation time: 0.000015752 sec.) (Finished)"];
+    n140437487793688[label="ExpressionTransform(8 jobs, execution time: 0.000058436 sec., preparation time: 0.000022817 sec.) (Finished)"];
+    n140437487794008[label="ExpressionTransform(6 jobs, execution time: 0.000036881 sec., preparation time: 0.000016493 sec.) (Finished)"];
+    n140437487794328[label="ExpressionTransform(4 jobs, execution time: 0.000022528 sec., preparation time: 0.000013568 sec.) (Finished)"];
+    n140437487794648[label="Resize(0 jobs, execution time: 0 sec., preparation time: 0.000196014 sec.) (Finished)"];
+    n140443514523512[label="FillingRightJoinSide(43 jobs, execution time: 0.020422396 sec., preparation time: 0.000045532 sec.) (Finished)"];
+    n140443514922968[label="FilterTransform(1 jobs, execution time: 0.005618577 sec., preparation time: 0.00001015 sec.) (Finished)"];
+    n140437487795928[label="ExpressionTransform(1 jobs, execution time: 0.000010209 sec., preparation time: 0.000004009 sec.) (Finished)"];
+    n140443514922520[label="LimitsCheckingTransform(1 jobs, execution time: 0.000001502 sec., preparation time: 0.000005762 sec.) (Finished)"];
+    n140443514520824[label="NullSource(1 jobs, execution time: 7.72e-7 sec., preparation time: 0.000001116 sec.) (Finished)"];
+    n140443514523288[label="NullSource(1 jobs, execution time: 2.9e-8 sec., preparation time: 7.8e-7 sec.) (Finished)"];
+    n140437487570712[label="LazyOutputFormat(2 jobs, execution time: 0.000009456 sec., preparation time: 0.00000782 sec.) (Finished)"];
+  }
+  n140434086026264 -> n140437487786328;
+  n140437487786328 -> n140437487794968;
+  n140437487794968 -> n140443514922968;
+  n140434081222680 -> n140437487792088;
+  n140434081223960 -> n140437487792408;
+  n140434081226520 -> n140437487792728;
+  n140434081229080 -> n140437487793048;
+  n140434081230360 -> n140437487793368;
+  n140434081227800 -> n140437487793688;
+  n140434081232920 -> n140437487794008;
+  n140434081234200 -> n140437487794328;
+  n140437487792088 -> n140437487794648;
+  n140437487792408 -> n140437487794648;
+  n140437487792728 -> n140437487794648;
+  n140437487793048 -> n140437487794648;
+  n140437487793368 -> n140437487794648;
+  n140437487793688 -> n140437487794648;
+  n140437487794008 -> n140437487794648;
+  n140437487794328 -> n140437487794648;
+  n140437487794648 -> n140443514523512;
+  n140443514523512 -> n140437487794968;
+  n140443514922968 -> n140437487795928;
+  n140437487795928 -> n140443514922520;
+  n140443514922520 -> n140437487570712;
+  n140443514520824 -> n140437487570712;
+  n140443514523288 -> n140437487570712;
+}

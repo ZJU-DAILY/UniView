@@ -1,0 +1,54 @@
+ [
+   {
+     "Plan": {
+       "Node Type": "Aggregate",
+       "Strategy": "Plain",
+       "Partial Mode": "Finalize",
+       "Parallel Aware": false,
+       "Startup Cost": 29091.37,
+       "Total Cost": 29091.38,
+       "Plan Rows": 1,
+       "Plan Width": 96,
+       "Plans": [
+         {
+           "Node Type": "Gather",
+           "Parent Relationship": "Outer",
+           "Parallel Aware": false,
+           "Startup Cost": 29091.15,
+           "Total Cost": 29091.36,
+           "Plan Rows": 2,
+           "Plan Width": 96,
+           "Workers Planned": 2,
+           "Single Copy": false,
+           "Plans": [
+             {
+               "Node Type": "Aggregate",
+               "Strategy": "Plain",
+               "Partial Mode": "Partial",
+               "Parent Relationship": "Outer",
+               "Parallel Aware": false,
+               "Startup Cost": 28091.15,
+               "Total Cost": 28091.16,
+               "Plan Rows": 1,
+               "Plan Width": 96,
+               "Plans": [
+                 {
+                   "Node Type": "Seq Scan",
+                   "Parent Relationship": "Outer",
+                   "Parallel Aware": true,
+                   "Relation Name": "mv475",
+                   "Alias": "mv475",
+                   "Startup Cost": 0.00,
+                   "Total Cost": 28090.91,
+                   "Plan Rows": 32,
+                   "Plan Width": 43,
+                   "Filter": "(((name)::text ~~ '%Downey%Robert%'::text) AND (production_year > 2000))"
+                 }
+               ]
+             }
+           ]
+         }
+       ]
+     }
+   }
+ ]

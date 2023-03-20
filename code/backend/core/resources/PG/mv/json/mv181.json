@@ -1,0 +1,110 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 2962.03,
+    "Total Cost": 84596.71,
+    "Plan Rows": 21,
+    "Plan Width": 29,
+    "Actual Startup Time": 27.578,
+    "Actual Total Time": 1326.007,
+    "Actual Rows": 2582,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Plans": [
+      {
+        "Node Type": "Hash Join",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Join Type": "Inner",
+        "Startup Cost": 2961.6,
+        "Total Cost": 84530.59,
+        "Plan Rows": 135,
+        "Plan Width": 4,
+        "Actual Startup Time": 24.178,
+        "Actual Total Time": 1066.648,
+        "Actual Rows": 37091,
+        "Actual Loops": 1,
+        "Inner Unique": true,
+        "Hash Cond": "(mk.keyword_id = k.id)",
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "movie_keyword",
+            "Alias": "mk",
+            "Startup Cost": 0.0,
+            "Total Cost": 69693.3,
+            "Plan Rows": 4523930,
+            "Plan Width": 8,
+            "Actual Startup Time": 0.023,
+            "Actual Total Time": 523.908,
+            "Actual Rows": 4523930,
+            "Actual Loops": 1
+          },
+          {
+            "Node Type": "Hash",
+            "Parent Relationship": "Inner",
+            "Parallel Aware": false,
+            "Startup Cost": 2961.55,
+            "Total Cost": 2961.55,
+            "Plan Rows": 4,
+            "Plan Width": 4,
+            "Actual Startup Time": 24.101,
+            "Actual Total Time": 24.101,
+            "Actual Rows": 3,
+            "Actual Loops": 1,
+            "Hash Buckets": 1024,
+            "Original Hash Buckets": 1024,
+            "Hash Batches": 1,
+            "Original Hash Batches": 1,
+            "Peak Memory Usage": 9,
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Relation Name": "keyword",
+                "Alias": "k",
+                "Startup Cost": 0.0,
+                "Total Cost": 2961.55,
+                "Plan Rows": 4,
+                "Plan Width": 4,
+                "Actual Startup Time": 1.134,
+                "Actual Total Time": 24.096,
+                "Actual Rows": 3,
+                "Actual Loops": 1,
+                "Filter": "((keyword)::text = ANY ('{murder,murder-in-title,blood,violence}'::text[]))",
+                "Rows Removed by Filter": 134167
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Node Type": "Index Scan",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Scan Direction": "Forward",
+        "Index Name": "title_pkey",
+        "Relation Name": "title",
+        "Alias": "t",
+        "Startup Cost": 0.43,
+        "Total Cost": 0.49,
+        "Plan Rows": 1,
+        "Plan Width": 25,
+        "Actual Startup Time": 0.006,
+        "Actual Total Time": 0.006,
+        "Actual Rows": 0,
+        "Actual Loops": 37091,
+        "Index Cond": "(id = mk.movie_id)",
+        "Rows Removed by Index Recheck": 0,
+        "Filter": "(production_year > 2010)",
+        "Rows Removed by Filter": 1
+      }
+    ]
+  }
+}

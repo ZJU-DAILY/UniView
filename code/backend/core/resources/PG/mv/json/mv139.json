@@ -1,0 +1,110 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 2794.3,
+    "Total Cost": 84412.34,
+    "Plan Rows": 91,
+    "Plan Width": 25,
+    "Actual Startup Time": 23.155,
+    "Actual Total Time": 1215.844,
+    "Actual Rows": 36063,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Plans": [
+      {
+        "Node Type": "Hash Join",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Join Type": "Inner",
+        "Startup Cost": 2793.88,
+        "Total Cost": 84362.87,
+        "Plan Rows": 101,
+        "Plan Width": 4,
+        "Actual Startup Time": 23.112,
+        "Actual Total Time": 984.319,
+        "Actual Rows": 47403,
+        "Actual Loops": 1,
+        "Inner Unique": true,
+        "Hash Cond": "(mk.keyword_id = k.id)",
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "movie_keyword",
+            "Alias": "mk",
+            "Startup Cost": 0.0,
+            "Total Cost": 69693.3,
+            "Plan Rows": 4523930,
+            "Plan Width": 8,
+            "Actual Startup Time": 0.014,
+            "Actual Total Time": 464.318,
+            "Actual Rows": 4523930,
+            "Actual Loops": 1
+          },
+          {
+            "Node Type": "Hash",
+            "Parent Relationship": "Inner",
+            "Parallel Aware": false,
+            "Startup Cost": 2793.84,
+            "Total Cost": 2793.84,
+            "Plan Rows": 3,
+            "Plan Width": 4,
+            "Actual Startup Time": 22.992,
+            "Actual Total Time": 22.992,
+            "Actual Rows": 3,
+            "Actual Loops": 1,
+            "Hash Buckets": 1024,
+            "Original Hash Buckets": 1024,
+            "Hash Batches": 1,
+            "Original Hash Batches": 1,
+            "Peak Memory Usage": 9,
+            "Plans": [
+              {
+                "Node Type": "Seq Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Relation Name": "keyword",
+                "Alias": "k",
+                "Startup Cost": 0.0,
+                "Total Cost": 2793.84,
+                "Plan Rows": 3,
+                "Plan Width": 4,
+                "Actual Startup Time": 0.908,
+                "Actual Total Time": 22.989,
+                "Actual Rows": 3,
+                "Actual Loops": 1,
+                "Filter": "((keyword)::text = ANY ('{sequel,revenge,based-on-novel}'::text[]))",
+                "Rows Removed by Filter": 134167
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "Node Type": "Index Scan",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Scan Direction": "Forward",
+        "Index Name": "title_pkey",
+        "Relation Name": "title",
+        "Alias": "t",
+        "Startup Cost": 0.43,
+        "Total Cost": 0.49,
+        "Plan Rows": 1,
+        "Plan Width": 21,
+        "Actual Startup Time": 0.005,
+        "Actual Total Time": 0.005,
+        "Actual Rows": 1,
+        "Actual Loops": 47403,
+        "Index Cond": "(id = mk.movie_id)",
+        "Rows Removed by Index Recheck": 0,
+        "Filter": "(production_year > 1950)",
+        "Rows Removed by Filter": 0
+      }
+    ]
+  }
+}

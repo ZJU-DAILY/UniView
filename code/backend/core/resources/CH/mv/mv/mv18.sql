@@ -1,0 +1,4 @@
+create materialized view if not exists mv18 engine = MergeTree() order by tuple() POPULATE as 
+select movie_info_idx.info AS movie_info_idx_info_0, movie_keyword.movie_id AS movie_id, keyword.id AS keyword_id_2, info_type.info AS info_type_info_3, keyword.keyword AS keyword, info_type.id AS info_type_id_5
+ from movie_info_idx,info_type,movie_keyword,keyword
+ where (movie_keyword.movie_id = movie_info_idx.movie_id) And (info_type.id = movie_info_idx.info_type_id) And (movie_info_idx.info > '5.0') And (info_type.info = 'rating') And (keyword.id = movie_keyword.keyword_id) And ((keyword.keyword like '%sequel%'))

@@ -1,0 +1,38 @@
+SELECT
+	item.i_product_name,
+	catalog_returns.cr_returning_customer_sk,
+	item.i_category_id,
+	item.i_brand,
+	catalog_returns.cr_return_amount,
+	item.i_manufact,
+	item.i_current_price,
+	item.i_wholesale_cost,
+	item.i_item_id,
+	item.i_manager_id,
+	catalog_returns.cr_returned_date_sk,
+	item.i_class_id,
+	item.i_manufact_id,
+	item.i_color,
+	catalog_returns.cr_item_sk,
+	catalog_returns.cr_refunded_cash,
+	catalog_returns.cr_order_number,
+	catalog_returns.cr_return_amt_inc_tax,
+	catalog_returns.cr_call_center_sk,
+	catalog_returns.cr_net_loss,
+	item.i_size,
+	catalog_returns.cr_return_quantity,
+	item.i_item_desc,
+	item.i_class,
+	item.i_units,
+	item.i_category,
+	catalog_returns.cr_catalog_page_sk,
+	catalog_returns.cr_returning_addr_sk,
+	catalog_returns.cr_store_credit,
+	catalog_returns.cr_reversed_charge,
+	item.i_item_sk,
+	item.i_brand_id
+FROM
+	catalog_returns,
+	item
+WHERE
+	catalog_returns.cr_item_sk = item.i_item_sk

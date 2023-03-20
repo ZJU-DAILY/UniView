@@ -1,0 +1,232 @@
+== Physical Plan ==
+TakeOrderedAndProject (39)
++- * HashAggregate (38)
+   +- Exchange (37)
+      +- * HashAggregate (36)
+         +- * Project (35)
+            +- * BroadcastHashJoin Inner BuildRight (34)
+               :- * Project (29)
+               :  +- * BroadcastHashJoin Inner BuildRight (28)
+               :     :- * Project (23)
+               :     :  +- * BroadcastHashJoin Inner BuildRight (22)
+               :     :     :- * Project (17)
+               :     :     :  +- * BroadcastHashJoin Inner BuildRight (16)
+               :     :     :     :- * Project (10)
+               :     :     :     :  +- * BroadcastHashJoin Inner BuildLeft (9)
+               :     :     :     :     :- BroadcastExchange (5)
+               :     :     :     :     :  +- * Project (4)
+               :     :     :     :     :     +- * Filter (3)
+               :     :     :     :     :        +- * ColumnarToRow (2)
+               :     :     :     :     :           +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (1)
+               :     :     :     :     +- * Filter (8)
+               :     :     :     :        +- * ColumnarToRow (7)
+               :     :     :     :           +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (6)
+               :     :     :     +- BroadcastExchange (15)
+               :     :     :        +- * Project (14)
+               :     :     :           +- * Filter (13)
+               :     :     :              +- * ColumnarToRow (12)
+               :     :     :                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.item (11)
+               :     :     +- BroadcastExchange (21)
+               :     :        +- * Filter (20)
+               :     :           +- * ColumnarToRow (19)
+               :     :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.customer (18)
+               :     +- BroadcastExchange (27)
+               :        +- * Filter (26)
+               :           +- * ColumnarToRow (25)
+               :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_address (24)
+               +- BroadcastExchange (33)
+                  +- * Filter (32)
+                     +- * ColumnarToRow (31)
+                        +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store (30)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [3]: [d_date_sk#3L, d_year#9, d_moy#11]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_moy), IsNotNull(d_year), EqualTo(d_moy,11), EqualTo(d_year,1998), IsNotNull(d_date_sk)]
+ReadSchema: struct<d_date_sk:bigint,d_year:int,d_moy:int>
+
+(2) ColumnarToRow [codegen id : 1]
+Input [3]: [d_date_sk#3L, d_year#9, d_moy#11]
+
+(3) Filter [codegen id : 1]
+Input [3]: [d_date_sk#3L, d_year#9, d_moy#11]
+Condition : ((((isnotnull(d_moy#11) AND isnotnull(d_year#9)) AND (d_moy#11 = 11)) AND (d_year#9 = 1998)) AND isnotnull(d_date_sk#3L))
+
+(4) Project [codegen id : 1]
+Output [1]: [d_date_sk#3L]
+Input [3]: [d_date_sk#3L, d_year#9, d_moy#11]
+
+(5) BroadcastExchange
+Input [1]: [d_date_sk#3L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#232]
+
+(6) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [5]: [ss_item_sk#32L, ss_customer_sk#33L, ss_store_sk#37L, ss_ext_sales_price#45, ss_sold_date_sk#53L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales/ss_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ss_sold_date_sk#53L), dynamicpruningexpression(ss_sold_date_sk#53L IN dynamicpruning#280)]
+PushedFilters: [IsNotNull(ss_item_sk), IsNotNull(ss_customer_sk), IsNotNull(ss_store_sk)]
+ReadSchema: struct<ss_item_sk:bigint,ss_customer_sk:bigint,ss_store_sk:bigint,ss_ext_sales_price:decimal(7,2)>
+
+(7) ColumnarToRow
+Input [5]: [ss_item_sk#32L, ss_customer_sk#33L, ss_store_sk#37L, ss_ext_sales_price#45, ss_sold_date_sk#53L]
+
+(8) Filter
+Input [5]: [ss_item_sk#32L, ss_customer_sk#33L, ss_store_sk#37L, ss_ext_sales_price#45, ss_sold_date_sk#53L]
+Condition : ((isnotnull(ss_item_sk#32L) AND isnotnull(ss_customer_sk#33L)) AND isnotnull(ss_store_sk#37L))
+
+(9) BroadcastHashJoin [codegen id : 6]
+Left keys [1]: [d_date_sk#3L]
+Right keys [1]: [ss_sold_date_sk#53L]
+Join condition: None
+
+(10) Project [codegen id : 6]
+Output [4]: [ss_item_sk#32L, ss_customer_sk#33L, ss_store_sk#37L, ss_ext_sales_price#45]
+Input [6]: [d_date_sk#3L, ss_item_sk#32L, ss_customer_sk#33L, ss_store_sk#37L, ss_ext_sales_price#45, ss_sold_date_sk#53L]
+
+(11) Scan orc tpcds_bin_partitioned_decimal_orc_2.item
+Output [6]: [i_item_sk#54L, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68, i_manager_id#74]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/item]
+PushedFilters: [IsNotNull(i_manager_id), EqualTo(i_manager_id,8), IsNotNull(i_item_sk)]
+ReadSchema: struct<i_item_sk:bigint,i_brand_id:int,i_brand:string,i_manufact_id:int,i_manufact:string,i_manager_id:int>
+
+(12) ColumnarToRow [codegen id : 2]
+Input [6]: [i_item_sk#54L, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68, i_manager_id#74]
+
+(13) Filter [codegen id : 2]
+Input [6]: [i_item_sk#54L, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68, i_manager_id#74]
+Condition : ((isnotnull(i_manager_id#74) AND (i_manager_id#74 = 8)) AND isnotnull(i_item_sk#54L))
+
+(14) Project [codegen id : 2]
+Output [5]: [i_item_sk#54L, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68]
+Input [6]: [i_item_sk#54L, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68, i_manager_id#74]
+
+(15) BroadcastExchange
+Input [5]: [i_item_sk#54L, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#244]
+
+(16) BroadcastHashJoin [codegen id : 6]
+Left keys [1]: [ss_item_sk#32L]
+Right keys [1]: [i_item_sk#54L]
+Join condition: None
+
+(17) Project [codegen id : 6]
+Output [7]: [ss_customer_sk#33L, ss_store_sk#37L, ss_ext_sales_price#45, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68]
+Input [9]: [ss_item_sk#32L, ss_customer_sk#33L, ss_store_sk#37L, ss_ext_sales_price#45, i_item_sk#54L, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68]
+
+(18) Scan orc tpcds_bin_partitioned_decimal_orc_2.customer
+Output [2]: [c_customer_sk#76L, c_current_addr_sk#80L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/customer]
+PushedFilters: [IsNotNull(c_customer_sk), IsNotNull(c_current_addr_sk)]
+ReadSchema: struct<c_customer_sk:bigint,c_current_addr_sk:bigint>
+
+(19) ColumnarToRow [codegen id : 3]
+Input [2]: [c_customer_sk#76L, c_current_addr_sk#80L]
+
+(20) Filter [codegen id : 3]
+Input [2]: [c_customer_sk#76L, c_current_addr_sk#80L]
+Condition : (isnotnull(c_customer_sk#76L) AND isnotnull(c_current_addr_sk#80L))
+
+(21) BroadcastExchange
+Input [2]: [c_customer_sk#76L, c_current_addr_sk#80L]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#252]
+
+(22) BroadcastHashJoin [codegen id : 6]
+Left keys [1]: [ss_customer_sk#33L]
+Right keys [1]: [c_customer_sk#76L]
+Join condition: None
+
+(23) Project [codegen id : 6]
+Output [7]: [ss_store_sk#37L, ss_ext_sales_price#45, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68, c_current_addr_sk#80L]
+Input [9]: [ss_customer_sk#33L, ss_store_sk#37L, ss_ext_sales_price#45, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68, c_customer_sk#76L, c_current_addr_sk#80L]
+
+(24) Scan orc tpcds_bin_partitioned_decimal_orc_2.customer_address
+Output [2]: [ca_address_sk#94L, ca_zip#103]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/customer_address]
+PushedFilters: [IsNotNull(ca_address_sk), IsNotNull(ca_zip)]
+ReadSchema: struct<ca_address_sk:bigint,ca_zip:string>
+
+(25) ColumnarToRow [codegen id : 4]
+Input [2]: [ca_address_sk#94L, ca_zip#103]
+
+(26) Filter [codegen id : 4]
+Input [2]: [ca_address_sk#94L, ca_zip#103]
+Condition : (isnotnull(ca_address_sk#94L) AND isnotnull(ca_zip#103))
+
+(27) BroadcastExchange
+Input [2]: [ca_address_sk#94L, ca_zip#103]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#260]
+
+(28) BroadcastHashJoin [codegen id : 6]
+Left keys [1]: [c_current_addr_sk#80L]
+Right keys [1]: [ca_address_sk#94L]
+Join condition: None
+
+(29) Project [codegen id : 6]
+Output [7]: [ss_store_sk#37L, ss_ext_sales_price#45, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68, ca_zip#103]
+Input [9]: [ss_store_sk#37L, ss_ext_sales_price#45, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68, c_current_addr_sk#80L, ca_address_sk#94L, ca_zip#103]
+
+(30) Scan orc tpcds_bin_partitioned_decimal_orc_2.store
+Output [2]: [s_store_sk#107L, s_zip#132]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store]
+PushedFilters: [IsNotNull(s_zip), IsNotNull(s_store_sk)]
+ReadSchema: struct<s_store_sk:bigint,s_zip:string>
+
+(31) ColumnarToRow [codegen id : 5]
+Input [2]: [s_store_sk#107L, s_zip#132]
+
+(32) Filter [codegen id : 5]
+Input [2]: [s_store_sk#107L, s_zip#132]
+Condition : (isnotnull(s_zip#132) AND isnotnull(s_store_sk#107L))
+
+(33) BroadcastExchange
+Input [2]: [s_store_sk#107L, s_zip#132]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#268]
+
+(34) BroadcastHashJoin [codegen id : 6]
+Left keys [1]: [ss_store_sk#37L]
+Right keys [1]: [s_store_sk#107L]
+Join condition: NOT (substr(ca_zip#103, 1, 5) = substr(s_zip#132, 1, 5))
+
+(35) Project [codegen id : 6]
+Output [5]: [ss_ext_sales_price#45, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68]
+Input [9]: [ss_store_sk#37L, ss_ext_sales_price#45, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68, ca_zip#103, s_store_sk#107L, s_zip#132]
+
+(36) HashAggregate [codegen id : 6]
+Input [5]: [ss_ext_sales_price#45, i_brand_id#61, i_brand#62, i_manufact_id#67, i_manufact#68]
+Keys [4]: [i_brand#62, i_brand_id#61, i_manufact_id#67, i_manufact#68]
+Functions [1]: [partial_sum(UnscaledValue(ss_ext_sales_price#45))]
+Aggregate Attributes [1]: [sum#281L]
+Results [5]: [i_brand#62, i_brand_id#61, i_manufact_id#67, i_manufact#68, sum#282L]
+
+(37) Exchange
+Input [5]: [i_brand#62, i_brand_id#61, i_manufact_id#67, i_manufact#68, sum#282L]
+Arguments: hashpartitioning(i_brand#62, i_brand_id#61, i_manufact_id#67, i_manufact#68, 200), ENSURE_REQUIREMENTS, [id=#313]
+
+(38) HashAggregate [codegen id : 7]
+Input [5]: [i_brand#62, i_brand_id#61, i_manufact_id#67, i_manufact#68, sum#282L]
+Keys [4]: [i_brand#62, i_brand_id#61, i_manufact_id#67, i_manufact#68]
+Functions [1]: [sum(UnscaledValue(ss_ext_sales_price#45))]
+Aggregate Attributes [1]: [sum(UnscaledValue(ss_ext_sales_price#45))#136L]
+Results [5]: [i_brand_id#61 AS brand_id#0, i_brand#62 AS brand#1, i_manufact_id#67, i_manufact#68, MakeDecimal(sum(UnscaledValue(ss_ext_sales_price#45))#136L,17,2) AS ext_price#2]
+
+(39) TakeOrderedAndProject
+Input [5]: [brand_id#0, brand#1, i_manufact_id#67, i_manufact#68, ext_price#2]
+Arguments: 100, [ext_price#2 DESC NULLS LAST, brand#1 ASC NULLS FIRST, brand_id#0 ASC NULLS FIRST, i_manufact_id#67 ASC NULLS FIRST, i_manufact#68 ASC NULLS FIRST], [brand_id#0, brand#1, i_manufact_id#67, i_manufact#68, ext_price#2]
+
+===== Subqueries =====
+
+Subquery:1 Hosting operator id = 6 Hosting Expression = ss_sold_date_sk#53L IN dynamicpruning#280
+ReusedExchange (40)
+
+
+(40) ReusedExchange [Reuses operator id: 5]
+Output [1]: [d_date_sk#3L]
+
+

@@ -1,0 +1,3 @@
+create materialized view if not exists mv357 as select complete_cast.movie_id AS movie_id, complete_cast.status_id AS status_id, complete_cast.subject_id AS subject_id, keyword.id AS id, keyword.keyword AS keyword, movie_info.info AS info, movie_link.link_type_id AS link_type_id
+ from movie_keyword,keyword,complete_cast,movie_info,movie_link
+ where (complete_cast.movie_id = movie_keyword.movie_id) And (movie_info.movie_id = movie_keyword.movie_id) And (movie_keyword.movie_id = movie_link.movie_id) And (movie_keyword.keyword_id = keyword.id) And (keyword.keyword = 'sequel') And (movie_info.info in ('Sweden', 'Germany', 'Swedish', 'German'))

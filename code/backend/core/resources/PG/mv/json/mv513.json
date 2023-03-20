@@ -1,0 +1,72 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 19.9,
+    "Total Cost": 562.08,
+    "Plan Rows": 465,
+    "Plan Width": 8,
+    "Actual Startup Time": 0.037,
+    "Actual Total Time": 7.015,
+    "Actual Rows": 2315,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Hash Cond": "(ml.link_type_id = lt.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_link",
+        "Alias": "ml",
+        "Startup Cost": 0.0,
+        "Total Cost": 462.97,
+        "Plan Rows": 29997,
+        "Plan Width": 12,
+        "Actual Startup Time": 0.012,
+        "Actual Total Time": 3.31,
+        "Actual Rows": 29997,
+        "Actual Loops": 1
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 19.76,
+        "Total Cost": 19.76,
+        "Plan Rows": 11,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.012,
+        "Actual Total Time": 0.013,
+        "Actual Rows": 2,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "link_type",
+            "Alias": "lt",
+            "Startup Cost": 0.0,
+            "Total Cost": 19.76,
+            "Plan Rows": 11,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.006,
+            "Actual Total Time": 0.01,
+            "Actual Rows": 2,
+            "Actual Loops": 1,
+            "Filter": "((link)::text = ANY ('{sequel,follows,\"followed by\"}'::text[]))",
+            "Rows Removed by Filter": 16
+          }
+        ]
+      }
+    ]
+  }
+}

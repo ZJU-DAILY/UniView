@@ -1,0 +1,3 @@
+create materialized view if not exists mv250 as select aka_name.person_id AS person_id, cast_info.movie_id AS movie_id, cast_info.note AS note, cast_info.role_id AS role_id, char_name.id AS id, name.gender AS gender, name.name AS name, role_type.role AS role
+ from aka_name,cast_info,name,role_type,char_name
+ where (aka_name.person_id = name.id) And (cast_info.role_id = role_type.id) And (cast_info.note = '(voice)') And (name.id = cast_info.person_id) And (char_name.id = cast_info.person_role_id) And (role_type.role = 'actress')

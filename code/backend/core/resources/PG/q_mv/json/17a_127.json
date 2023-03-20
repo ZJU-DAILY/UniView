@@ -1,0 +1,127 @@
+ [
+   {
+     "Plan": {
+       "Node Type": "Aggregate",
+       "Strategy": "Plain",
+       "Partial Mode": "Finalize",
+       "Parallel Aware": false,
+       "Startup Cost": 676053.62,
+       "Total Cost": 676053.63,
+       "Plan Rows": 1,
+       "Plan Width": 64,
+       "Plans": [
+         {
+           "Node Type": "Gather",
+           "Parent Relationship": "Outer",
+           "Parallel Aware": false,
+           "Startup Cost": 676053.51,
+           "Total Cost": 676053.62,
+           "Plan Rows": 1,
+           "Plan Width": 32,
+           "Workers Planned": 1,
+           "Single Copy": false,
+           "Plans": [
+             {
+               "Node Type": "Aggregate",
+               "Strategy": "Plain",
+               "Partial Mode": "Partial",
+               "Parent Relationship": "Outer",
+               "Parallel Aware": false,
+               "Startup Cost": 675053.51,
+               "Total Cost": 675053.52,
+               "Plan Rows": 1,
+               "Plan Width": 32,
+               "Plans": [
+                 {
+                   "Node Type": "Hash Join",
+                   "Parent Relationship": "Outer",
+                   "Parallel Aware": true,
+                   "Join Type": "Inner",
+                   "Startup Cost": 664812.08,
+                   "Total Cost": 675052.03,
+                   "Plan Rows": 589,
+                   "Plan Width": 15,
+                   "Inner Unique": false,
+                   "Hash Cond": "(mv127.id = ci.movie_id)",
+                   "Plans": [
+                     {
+                       "Node Type": "Seq Scan",
+                       "Parent Relationship": "Outer",
+                       "Parallel Aware": true,
+                       "Relation Name": "mv127",
+                       "Alias": "mv127",
+                       "Startup Cost": 0.00,
+                       "Total Cost": 3075.75,
+                       "Plan Rows": 200,
+                       "Plan Width": 8,
+                       "Filter": "(((country_code)::text = '[us]'::text) AND (id = movie_id))"
+                     },
+                     {
+                       "Node Type": "Hash",
+                       "Parent Relationship": "Inner",
+                       "Parallel Aware": true,
+                       "Startup Cost": 642382.24,
+                       "Total Cost": 642382.24,
+                       "Plan Rows": 1221667,
+                       "Plan Width": 19,
+                       "Plans": [
+                         {
+                           "Node Type": "Hash Join",
+                           "Parent Relationship": "Outer",
+                           "Parallel Aware": true,
+                           "Join Type": "Inner",
+                           "Startup Cost": 79893.56,
+                           "Total Cost": 642382.24,
+                           "Plan Rows": 1221667,
+                           "Plan Width": 19,
+                           "Inner Unique": true,
+                           "Hash Cond": "(ci.person_id = n.id)",
+                           "Plans": [
+                             {
+                               "Node Type": "Seq Scan",
+                               "Parent Relationship": "Outer",
+                               "Parallel Aware": true,
+                               "Relation Name": "cast_info",
+                               "Alias": "ci",
+                               "Startup Cost": 0.00,
+                               "Total Cost": 403868.50,
+                               "Plan Rows": 15118150,
+                               "Plan Width": 8
+                             },
+                             {
+                               "Node Type": "Hash",
+                               "Parent Relationship": "Inner",
+                               "Parallel Aware": true,
+                               "Startup Cost": 77316.72,
+                               "Total Cost": 77316.72,
+                               "Plan Rows": 140307,
+                               "Plan Width": 19,
+                               "Plans": [
+                                 {
+                                   "Node Type": "Seq Scan",
+                                   "Parent Relationship": "Outer",
+                                   "Parallel Aware": true,
+                                   "Relation Name": "name",
+                                   "Alias": "n",
+                                   "Startup Cost": 0.00,
+                                   "Total Cost": 77316.72,
+                                   "Plan Rows": 140307,
+                                   "Plan Width": 19,
+                                   "Filter": "((name)::text ~~ 'B%'::text)"
+                                 }
+                               ]
+                             }
+                           ]
+                         }
+                       ]
+                     }
+                   ]
+                 }
+               ]
+             }
+           ]
+         }
+       ]
+     }
+   }
+ ]

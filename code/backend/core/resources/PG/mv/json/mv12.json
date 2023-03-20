@@ -1,0 +1,72 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 2626.14,
+    "Total Cost": 84195.13,
+    "Plan Rows": 34,
+    "Plan Width": 4,
+    "Actual Startup Time": 12.756,
+    "Actual Total Time": 971.097,
+    "Actual Rows": 41840,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Hash Cond": "(mk.keyword_id = k.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_keyword",
+        "Alias": "mk",
+        "Startup Cost": 0.0,
+        "Total Cost": 69693.3,
+        "Plan Rows": 4523930,
+        "Plan Width": 8,
+        "Actual Startup Time": 0.027,
+        "Actual Total Time": 462.024,
+        "Actual Rows": 4523930,
+        "Actual Loops": 1
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 2626.12,
+        "Total Cost": 2626.12,
+        "Plan Rows": 1,
+        "Plan Width": 4,
+        "Actual Startup Time": 12.695,
+        "Actual Total Time": 12.695,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "keyword",
+            "Alias": "k",
+            "Startup Cost": 0.0,
+            "Total Cost": 2626.12,
+            "Plan Rows": 1,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.581,
+            "Actual Total Time": 12.691,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((keyword)::text = 'character-name-in-title'::text)",
+            "Rows Removed by Filter": 134169
+          }
+        ]
+      }
+    ]
+  }
+}

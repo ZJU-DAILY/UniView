@@ -1,0 +1,70 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 0.43,
+    "Total Cost": 546080.62,
+    "Plan Rows": 7,
+    "Plan Width": 29,
+    "Actual Startup Time": 144.552,
+    "Actual Total Time": 15914.265,
+    "Actual Rows": 5,
+    "Actual Loops": 1,
+    "Inner Unique": false,
+    "Join Filter": "(mk.movie_id = t.id)",
+    "Rows Removed by Join Filter": 68454786,
+    "Plans": [
+      {
+        "Node Type": "Index Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Scan Direction": "Forward",
+        "Index Name": "title_pkey",
+        "Relation Name": "title",
+        "Alias": "t",
+        "Startup Cost": 0.43,
+        "Total Cost": 122953.7,
+        "Plan Rows": 4,
+        "Plan Width": 21,
+        "Actual Startup Time": 117.525,
+        "Actual Total Time": 958.767,
+        "Actual Rows": 16,
+        "Actual Loops": 1,
+        "Filter": "(((title)::text ~~ '%Money%'::text) AND (production_year = 1998))",
+        "Rows Removed by Filter": 1191935
+      },
+      {
+        "Node Type": "Materialize",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 0.0,
+        "Total Cost": 109984.95,
+        "Plan Rows": 4523930,
+        "Plan Width": 8,
+        "Actual Startup Time": 0.01,
+        "Actual Total Time": 549.77,
+        "Actual Rows": 4278424,
+        "Actual Loops": 16,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "movie_keyword",
+            "Alias": "mk",
+            "Startup Cost": 0.0,
+            "Total Cost": 69693.3,
+            "Plan Rows": 4523930,
+            "Plan Width": 8,
+            "Actual Startup Time": 0.023,
+            "Actual Total Time": 648.398,
+            "Actual Rows": 4523930,
+            "Actual Loops": 1
+          }
+        ]
+      }
+    ]
+  }
+}

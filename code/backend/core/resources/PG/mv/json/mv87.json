@@ -1,0 +1,74 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 18.93,
+    "Total Cost": 798465.75,
+    "Plan Rows": 4851,
+    "Plan Width": 12,
+    "Actual Startup Time": 984.089,
+    "Actual Total Time": 5170.857,
+    "Actual Rows": 276166,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Hash Cond": "(ci.role_id = rt.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "cast_info",
+        "Alias": "ci",
+        "Startup Cost": 0.0,
+        "Total Cost": 796172.88,
+        "Plan Rows": 861123,
+        "Plan Width": 16,
+        "Actual Startup Time": 0.019,
+        "Actual Total Time": 5028.93,
+        "Actual Rows": 867477,
+        "Actual Loops": 1,
+        "Filter": "((note)::text = ANY ('{(voice),\"(voice: Japanese version)\",\"(voice) (uncredited)\",\"(voice: English version)\"}'::text[]))",
+        "Rows Removed by Filter": 35376867
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 18.88,
+        "Total Cost": 18.88,
+        "Plan Rows": 4,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.015,
+        "Actual Total Time": 0.016,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "role_type",
+            "Alias": "rt",
+            "Startup Cost": 0.0,
+            "Total Cost": 18.88,
+            "Plan Rows": 4,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.012,
+            "Actual Total Time": 0.014,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((role)::text = 'actress'::text)",
+            "Rows Removed by Filter": 11
+          }
+        ]
+      }
+    ]
+  }
+}

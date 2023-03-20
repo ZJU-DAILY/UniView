@@ -1,0 +1,3 @@
+select kind_type.id AS kind_type_id_0, kind_type.kind AS kind, link_type.id AS link_type_id_2, link_type.link AS link, movie_link.linked_movie_id AS linked_movie_id, movie_link.movie_id AS movie_id, title.production_year AS production_year, title.title AS title
+ from kind_type,link_type,title,movie_link
+ where (kind_type.id = title.kind_id) And (movie_link.link_type_id = link_type.id) And (link_type.link in ('sequel', 'follows', 'followed by')) And (title.id = movie_link.linked_movie_id)

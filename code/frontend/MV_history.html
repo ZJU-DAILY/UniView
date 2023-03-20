@@ -157,7 +157,7 @@
                 <div class="nav nav-pills navbar-right">
                     <li><a href="parameter_configuration.html">Parameter
                         Configuration</a></li>
-                    <li><a href="MV_process_tracking_MV_generation.html">MV Process Tracking</a></li>
+                    <li><a href="MV_process_tracking.html">MV Process Tracking</a></li>
                     <li><a href="MV_results_evaluation.html">MV Results
                         Evaluation</a></li>
                     <li role="presentation" class="nav-item active"><a href="#.html">MV History</a></li>
@@ -278,7 +278,7 @@
     var ip = 'http://10.77.110.234:5002/';
     var submit_num = "0";
 
-    // 同文件夹下的json文件路径
+    // 同文件夹下的json文件路径，改为url即可
     var url_current = "./exam_result/MV_history_PG_v2.json"
     // 申明一个XMLHttpRequest
     var request_current = new XMLHttpRequest();
@@ -342,7 +342,7 @@
         }
     }
 
-    // 同文件夹下的json文件路径
+    // 同文件夹下的json文件路径，改为url即可
     var url_history = "./exam_result/MV_history_v2.json"
     // 申明一个XMLHttpRequest
     var request_history = new XMLHttpRequest();
@@ -405,23 +405,6 @@
                     "<span class='tooltiptext' style='z-index: 1000;'>" + data_history[i].mv_list_all + "</span></div></td>" + "</tr>"
             }
             historical_result.innerHTML = str2;
-        }
-    }
-
-
-    function change(change) {
-        var oObj = window.event.srcElement;
-        //alert(change.tagName.toLowerCase());
-        if (oObj.tagName.toLowerCase() == "td") {
-            var oTr = oObj.parentNode;
-            for (var i = 0; i < document.all.form.rows.length; i++) {
-                document.all.form.rows[i].style.backgroundColor = "";
-                document.all.form.rows[i].tag = false;
-            }
-            submit_num = oObj.parentElement.rowIndex;
-            console.log(submit_num);
-            oTr.style.backgroundColor = "#CCCCFF";
-            oTr.tag = true;
         }
     }
 

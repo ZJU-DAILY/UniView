@@ -1,0 +1,750 @@
+== Physical Plan ==
+TakeOrderedAndProject (133)
++- * Project (132)
+   +- * SortMergeJoin Inner (131)
+      :- * Sort (73)
+      :  +- Exchange (72)
+      :     +- * HashAggregate (71)
+      :        +- Exchange (70)
+      :           +- * HashAggregate (69)
+      :              +- * HashAggregate (68)
+      :                 +- Exchange (67)
+      :                    +- * HashAggregate (66)
+      :                       +- Union (65)
+      :                          :- * Project (26)
+      :                          :  +- SortMergeJoin LeftOuter (25)
+      :                          :     :- * Sort (18)
+      :                          :     :  +- Exchange (17)
+      :                          :     :     +- * Project (16)
+      :                          :     :        +- * BroadcastHashJoin Inner BuildRight (15)
+      :                          :     :           :- * Project (10)
+      :                          :     :           :  +- * BroadcastHashJoin Inner BuildRight (9)
+      :                          :     :           :     :- * Filter (3)
+      :                          :     :           :     :  +- * ColumnarToRow (2)
+      :                          :     :           :     :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales (1)
+      :                          :     :           :     +- BroadcastExchange (8)
+      :                          :     :           :        +- * Project (7)
+      :                          :     :           :           +- * Filter (6)
+      :                          :     :           :              +- * ColumnarToRow (5)
+      :                          :     :           :                 +- Scan orc tpcds_bin_partitioned_decimal_orc_2.item (4)
+      :                          :     :           +- BroadcastExchange (14)
+      :                          :     :              +- * Filter (13)
+      :                          :     :                 +- * ColumnarToRow (12)
+      :                          :     :                    +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (11)
+      :                          :     +- * Sort (24)
+      :                          :        +- Exchange (23)
+      :                          :           +- * Project (22)
+      :                          :              +- * Filter (21)
+      :                          :                 +- * ColumnarToRow (20)
+      :                          :                    +- Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_returns (19)
+      :                          :- * Project (45)
+      :                          :  +- SortMergeJoin LeftOuter (44)
+      :                          :     :- * Sort (37)
+      :                          :     :  +- Exchange (36)
+      :                          :     :     +- * Project (35)
+      :                          :     :        +- * BroadcastHashJoin Inner BuildRight (34)
+      :                          :     :           :- * Project (32)
+      :                          :     :           :  +- * BroadcastHashJoin Inner BuildRight (31)
+      :                          :     :           :     :- * Filter (29)
+      :                          :     :           :     :  +- * ColumnarToRow (28)
+      :                          :     :           :     :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (27)
+      :                          :     :           :     +- ReusedExchange (30)
+      :                          :     :           +- ReusedExchange (33)
+      :                          :     +- * Sort (43)
+      :                          :        +- Exchange (42)
+      :                          :           +- * Project (41)
+      :                          :              +- * Filter (40)
+      :                          :                 +- * ColumnarToRow (39)
+      :                          :                    +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_returns (38)
+      :                          +- * Project (64)
+      :                             +- SortMergeJoin LeftOuter (63)
+      :                                :- * Sort (56)
+      :                                :  +- Exchange (55)
+      :                                :     +- * Project (54)
+      :                                :        +- * BroadcastHashJoin Inner BuildRight (53)
+      :                                :           :- * Project (51)
+      :                                :           :  +- * BroadcastHashJoin Inner BuildRight (50)
+      :                                :           :     :- * Filter (48)
+      :                                :           :     :  +- * ColumnarToRow (47)
+      :                                :           :     :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales (46)
+      :                                :           :     +- ReusedExchange (49)
+      :                                :           +- ReusedExchange (52)
+      :                                +- * Sort (62)
+      :                                   +- Exchange (61)
+      :                                      +- * Project (60)
+      :                                         +- * Filter (59)
+      :                                            +- * ColumnarToRow (58)
+      :                                               +- Scan orc tpcds_bin_partitioned_decimal_orc_2.web_returns (57)
+      +- * Sort (130)
+         +- Exchange (129)
+            +- * HashAggregate (128)
+               +- Exchange (127)
+                  +- * HashAggregate (126)
+                     +- * HashAggregate (125)
+                        +- Exchange (124)
+                           +- * HashAggregate (123)
+                              +- Union (122)
+                                 :- * Project (91)
+                                 :  +- SortMergeJoin LeftOuter (90)
+                                 :     :- * Sort (87)
+                                 :     :  +- Exchange (86)
+                                 :     :     +- * Project (85)
+                                 :     :        +- * BroadcastHashJoin Inner BuildRight (84)
+                                 :     :           :- * Project (79)
+                                 :     :           :  +- * BroadcastHashJoin Inner BuildRight (78)
+                                 :     :           :     :- * Filter (76)
+                                 :     :           :     :  +- * ColumnarToRow (75)
+                                 :     :           :     :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales (74)
+                                 :     :           :     +- ReusedExchange (77)
+                                 :     :           +- BroadcastExchange (83)
+                                 :     :              +- * Filter (82)
+                                 :     :                 +- * ColumnarToRow (81)
+                                 :     :                    +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (80)
+                                 :     +- * Sort (89)
+                                 :        +- ReusedExchange (88)
+                                 :- * Project (106)
+                                 :  +- SortMergeJoin LeftOuter (105)
+                                 :     :- * Sort (102)
+                                 :     :  +- Exchange (101)
+                                 :     :     +- * Project (100)
+                                 :     :        +- * BroadcastHashJoin Inner BuildRight (99)
+                                 :     :           :- * Project (97)
+                                 :     :           :  +- * BroadcastHashJoin Inner BuildRight (96)
+                                 :     :           :     :- * Filter (94)
+                                 :     :           :     :  +- * ColumnarToRow (93)
+                                 :     :           :     :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (92)
+                                 :     :           :     +- ReusedExchange (95)
+                                 :     :           +- ReusedExchange (98)
+                                 :     +- * Sort (104)
+                                 :        +- ReusedExchange (103)
+                                 +- * Project (121)
+                                    +- SortMergeJoin LeftOuter (120)
+                                       :- * Sort (117)
+                                       :  +- Exchange (116)
+                                       :     +- * Project (115)
+                                       :        +- * BroadcastHashJoin Inner BuildRight (114)
+                                       :           :- * Project (112)
+                                       :           :  +- * BroadcastHashJoin Inner BuildRight (111)
+                                       :           :     :- * Filter (109)
+                                       :           :     :  +- * ColumnarToRow (108)
+                                       :           :     :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales (107)
+                                       :           :     +- ReusedExchange (110)
+                                       :           +- ReusedExchange (113)
+                                       +- * Sort (119)
+                                          +- ReusedExchange (118)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales
+Output [5]: [cs_item_sk#28L, cs_order_number#30L, cs_quantity#31, cs_ext_sales_price#36, cs_sold_date_sk#47L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/catalog_sales/cs_sold_date_sk=2450815, ... 1838 entries]
+PartitionFilters: [isnotnull(cs_sold_date_sk#47L), dynamicpruningexpression(cs_sold_date_sk#47L IN dynamicpruning#866)]
+PushedFilters: [IsNotNull(cs_item_sk)]
+ReadSchema: struct<cs_item_sk:bigint,cs_order_number:bigint,cs_quantity:int,cs_ext_sales_price:decimal(7,2)>
+
+(2) ColumnarToRow [codegen id : 3]
+Input [5]: [cs_item_sk#28L, cs_order_number#30L, cs_quantity#31, cs_ext_sales_price#36, cs_sold_date_sk#47L]
+
+(3) Filter [codegen id : 3]
+Input [5]: [cs_item_sk#28L, cs_order_number#30L, cs_quantity#31, cs_ext_sales_price#36, cs_sold_date_sk#47L]
+Condition : isnotnull(cs_item_sk#28L)
+
+(4) Scan orc tpcds_bin_partitioned_decimal_orc_2.item
+Output [6]: [i_item_sk#48L, i_brand_id#55, i_class_id#57, i_category_id#59, i_category#60, i_manufact_id#61]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/item]
+PushedFilters: [IsNotNull(i_category), EqualTo(i_category,Books), IsNotNull(i_item_sk), IsNotNull(i_brand_id), IsNotNull(i_class_id), IsNotNull(i_category_id), IsNotNull(i_manufact_id)]
+ReadSchema: struct<i_item_sk:bigint,i_brand_id:int,i_class_id:int,i_category_id:int,i_category:string,i_manufact_id:int>
+
+(5) ColumnarToRow [codegen id : 1]
+Input [6]: [i_item_sk#48L, i_brand_id#55, i_class_id#57, i_category_id#59, i_category#60, i_manufact_id#61]
+
+(6) Filter [codegen id : 1]
+Input [6]: [i_item_sk#48L, i_brand_id#55, i_class_id#57, i_category_id#59, i_category#60, i_manufact_id#61]
+Condition : ((((((isnotnull(i_category#60) AND (i_category#60 = Books)) AND isnotnull(i_item_sk#48L)) AND isnotnull(i_brand_id#55)) AND isnotnull(i_class_id#57)) AND isnotnull(i_category_id#59)) AND isnotnull(i_manufact_id#61))
+
+(7) Project [codegen id : 1]
+Output [5]: [i_item_sk#48L, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61]
+Input [6]: [i_item_sk#48L, i_brand_id#55, i_class_id#57, i_category_id#59, i_category#60, i_manufact_id#61]
+
+(8) BroadcastExchange
+Input [5]: [i_item_sk#48L, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, true]),false), [id=#913]
+
+(9) BroadcastHashJoin [codegen id : 3]
+Left keys [1]: [cs_item_sk#28L]
+Right keys [1]: [i_item_sk#48L]
+Join condition: None
+
+(10) Project [codegen id : 3]
+Output [9]: [cs_item_sk#28L, cs_order_number#30L, cs_quantity#31, cs_ext_sales_price#36, cs_sold_date_sk#47L, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61]
+Input [10]: [cs_item_sk#28L, cs_order_number#30L, cs_quantity#31, cs_ext_sales_price#36, cs_sold_date_sk#47L, i_item_sk#48L, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61]
+
+(11) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [2]: [d_date_sk#70L, d_year#76]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_year), EqualTo(d_year,2002), IsNotNull(d_date_sk)]
+ReadSchema: struct<d_date_sk:bigint,d_year:int>
+
+(12) ColumnarToRow [codegen id : 2]
+Input [2]: [d_date_sk#70L, d_year#76]
+
+(13) Filter [codegen id : 2]
+Input [2]: [d_date_sk#70L, d_year#76]
+Condition : ((isnotnull(d_year#76) AND (d_year#76 = 2002)) AND isnotnull(d_date_sk#70L))
+
+(14) BroadcastExchange
+Input [2]: [d_date_sk#70L, d_year#76]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#921]
+
+(15) BroadcastHashJoin [codegen id : 3]
+Left keys [1]: [cs_sold_date_sk#47L]
+Right keys [1]: [d_date_sk#70L]
+Join condition: None
+
+(16) Project [codegen id : 3]
+Output [9]: [cs_item_sk#28L, cs_order_number#30L, cs_quantity#31, cs_ext_sales_price#36, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, d_year#76]
+Input [11]: [cs_item_sk#28L, cs_order_number#30L, cs_quantity#31, cs_ext_sales_price#36, cs_sold_date_sk#47L, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, d_date_sk#70L, d_year#76]
+
+(17) Exchange
+Input [9]: [cs_item_sk#28L, cs_order_number#30L, cs_quantity#31, cs_ext_sales_price#36, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, d_year#76]
+Arguments: hashpartitioning(cs_order_number#30L, cs_item_sk#28L, 200), ENSURE_REQUIREMENTS, [id=#1744]
+
+(18) Sort [codegen id : 4]
+Input [9]: [cs_item_sk#28L, cs_order_number#30L, cs_quantity#31, cs_ext_sales_price#36, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, d_year#76]
+Arguments: [cs_order_number#30L ASC NULLS FIRST, cs_item_sk#28L ASC NULLS FIRST], false, 0
+
+(19) Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_returns
+Output [5]: [cr_item_sk#99L, cr_order_number#113L, cr_return_quantity#114, cr_return_amount#115, cr_returned_date_sk#124L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/catalog_returns]
+PushedFilters: [IsNotNull(cr_order_number), IsNotNull(cr_item_sk)]
+ReadSchema: struct<cr_item_sk:bigint,cr_order_number:bigint,cr_return_quantity:int,cr_return_amount:decimal(7,2)>
+
+(20) ColumnarToRow [codegen id : 5]
+Input [5]: [cr_item_sk#99L, cr_order_number#113L, cr_return_quantity#114, cr_return_amount#115, cr_returned_date_sk#124L]
+
+(21) Filter [codegen id : 5]
+Input [5]: [cr_item_sk#99L, cr_order_number#113L, cr_return_quantity#114, cr_return_amount#115, cr_returned_date_sk#124L]
+Condition : (isnotnull(cr_order_number#113L) AND isnotnull(cr_item_sk#99L))
+
+(22) Project [codegen id : 5]
+Output [4]: [cr_item_sk#99L, cr_order_number#113L, cr_return_quantity#114, cr_return_amount#115]
+Input [5]: [cr_item_sk#99L, cr_order_number#113L, cr_return_quantity#114, cr_return_amount#115, cr_returned_date_sk#124L]
+
+(23) Exchange
+Input [4]: [cr_item_sk#99L, cr_order_number#113L, cr_return_quantity#114, cr_return_amount#115]
+Arguments: hashpartitioning(cr_order_number#113L, cr_item_sk#99L, 200), ENSURE_REQUIREMENTS, [id=#935]
+
+(24) Sort [codegen id : 6]
+Input [4]: [cr_item_sk#99L, cr_order_number#113L, cr_return_quantity#114, cr_return_amount#115]
+Arguments: [cr_order_number#113L ASC NULLS FIRST, cr_item_sk#99L ASC NULLS FIRST], false, 0
+
+(25) SortMergeJoin
+Left keys [2]: [cs_order_number#30L, cs_item_sk#28L]
+Right keys [2]: [cr_order_number#113L, cr_item_sk#99L]
+Join condition: None
+
+(26) Project [codegen id : 7]
+Output [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, (cs_quantity#31 - coalesce(cr_return_quantity#114, 0)) AS sales_cnt#6, CheckOverflow((promote_precision(cast(cs_ext_sales_price#36 as decimal(8,2))) - promote_precision(cast(coalesce(cr_return_amount#115, 0.00) as decimal(8,2)))), DecimalType(8,2), true) AS sales_amt#7]
+Input [13]: [cs_item_sk#28L, cs_order_number#30L, cs_quantity#31, cs_ext_sales_price#36, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, d_year#76, cr_item_sk#99L, cr_order_number#113L, cr_return_quantity#114, cr_return_amount#115]
+
+(27) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [5]: [ss_item_sk#126L, ss_ticket_number#133L, ss_quantity#134, ss_ext_sales_price#139, ss_sold_date_sk#147L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales/ss_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ss_sold_date_sk#147L), dynamicpruningexpression(ss_sold_date_sk#147L IN dynamicpruning#866)]
+PushedFilters: [IsNotNull(ss_item_sk)]
+ReadSchema: struct<ss_item_sk:bigint,ss_ticket_number:bigint,ss_quantity:int,ss_ext_sales_price:decimal(7,2)>
+
+(28) ColumnarToRow [codegen id : 10]
+Input [5]: [ss_item_sk#126L, ss_ticket_number#133L, ss_quantity#134, ss_ext_sales_price#139, ss_sold_date_sk#147L]
+
+(29) Filter [codegen id : 10]
+Input [5]: [ss_item_sk#126L, ss_ticket_number#133L, ss_quantity#134, ss_ext_sales_price#139, ss_sold_date_sk#147L]
+Condition : isnotnull(ss_item_sk#126L)
+
+(30) ReusedExchange [Reuses operator id: 8]
+Output [5]: [i_item_sk#148L, i_brand_id#155, i_class_id#157, i_category_id#159, i_manufact_id#161]
+
+(31) BroadcastHashJoin [codegen id : 10]
+Left keys [1]: [ss_item_sk#126L]
+Right keys [1]: [i_item_sk#148L]
+Join condition: None
+
+(32) Project [codegen id : 10]
+Output [9]: [ss_item_sk#126L, ss_ticket_number#133L, ss_quantity#134, ss_ext_sales_price#139, ss_sold_date_sk#147L, i_brand_id#155, i_class_id#157, i_category_id#159, i_manufact_id#161]
+Input [10]: [ss_item_sk#126L, ss_ticket_number#133L, ss_quantity#134, ss_ext_sales_price#139, ss_sold_date_sk#147L, i_item_sk#148L, i_brand_id#155, i_class_id#157, i_category_id#159, i_manufact_id#161]
+
+(33) ReusedExchange [Reuses operator id: 14]
+Output [2]: [d_date_sk#170L, d_year#176]
+
+(34) BroadcastHashJoin [codegen id : 10]
+Left keys [1]: [ss_sold_date_sk#147L]
+Right keys [1]: [d_date_sk#170L]
+Join condition: None
+
+(35) Project [codegen id : 10]
+Output [9]: [ss_item_sk#126L, ss_ticket_number#133L, ss_quantity#134, ss_ext_sales_price#139, i_brand_id#155, i_class_id#157, i_category_id#159, i_manufact_id#161, d_year#176]
+Input [11]: [ss_item_sk#126L, ss_ticket_number#133L, ss_quantity#134, ss_ext_sales_price#139, ss_sold_date_sk#147L, i_brand_id#155, i_class_id#157, i_category_id#159, i_manufact_id#161, d_date_sk#170L, d_year#176]
+
+(36) Exchange
+Input [9]: [ss_item_sk#126L, ss_ticket_number#133L, ss_quantity#134, ss_ext_sales_price#139, i_brand_id#155, i_class_id#157, i_category_id#159, i_manufact_id#161, d_year#176]
+Arguments: hashpartitioning(ss_ticket_number#133L, ss_item_sk#126L, 200), ENSURE_REQUIREMENTS, [id=#1899]
+
+(37) Sort [codegen id : 11]
+Input [9]: [ss_item_sk#126L, ss_ticket_number#133L, ss_quantity#134, ss_ext_sales_price#139, i_brand_id#155, i_class_id#157, i_category_id#159, i_manufact_id#161, d_year#176]
+Arguments: [ss_ticket_number#133L ASC NULLS FIRST, ss_item_sk#126L ASC NULLS FIRST], false, 0
+
+(38) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_returns
+Output [5]: [sr_item_sk#199L, sr_ticket_number#206L, sr_return_quantity#207, sr_return_amt#208, sr_returned_date_sk#217L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_returns]
+PushedFilters: [IsNotNull(sr_ticket_number), IsNotNull(sr_item_sk)]
+ReadSchema: struct<sr_item_sk:bigint,sr_ticket_number:bigint,sr_return_quantity:int,sr_return_amt:decimal(7,2)>
+
+(39) ColumnarToRow [codegen id : 12]
+Input [5]: [sr_item_sk#199L, sr_ticket_number#206L, sr_return_quantity#207, sr_return_amt#208, sr_returned_date_sk#217L]
+
+(40) Filter [codegen id : 12]
+Input [5]: [sr_item_sk#199L, sr_ticket_number#206L, sr_return_quantity#207, sr_return_amt#208, sr_returned_date_sk#217L]
+Condition : (isnotnull(sr_ticket_number#206L) AND isnotnull(sr_item_sk#199L))
+
+(41) Project [codegen id : 12]
+Output [4]: [sr_item_sk#199L, sr_ticket_number#206L, sr_return_quantity#207, sr_return_amt#208]
+Input [5]: [sr_item_sk#199L, sr_ticket_number#206L, sr_return_quantity#207, sr_return_amt#208, sr_returned_date_sk#217L]
+
+(42) Exchange
+Input [4]: [sr_item_sk#199L, sr_ticket_number#206L, sr_return_quantity#207, sr_return_amt#208]
+Arguments: hashpartitioning(sr_ticket_number#206L, sr_item_sk#199L, 200), ENSURE_REQUIREMENTS, [id=#973]
+
+(43) Sort [codegen id : 13]
+Input [4]: [sr_item_sk#199L, sr_ticket_number#206L, sr_return_quantity#207, sr_return_amt#208]
+Arguments: [sr_ticket_number#206L ASC NULLS FIRST, sr_item_sk#199L ASC NULLS FIRST], false, 0
+
+(44) SortMergeJoin
+Left keys [2]: [ss_ticket_number#133L, ss_item_sk#126L]
+Right keys [2]: [sr_ticket_number#206L, sr_item_sk#199L]
+Join condition: None
+
+(45) Project [codegen id : 14]
+Output [7]: [d_year#176, i_brand_id#155, i_class_id#157, i_category_id#159, i_manufact_id#161, (ss_quantity#134 - coalesce(sr_return_quantity#207, 0)) AS sales_cnt#8, CheckOverflow((promote_precision(cast(ss_ext_sales_price#139 as decimal(8,2))) - promote_precision(cast(coalesce(sr_return_amt#208, 0.00) as decimal(8,2)))), DecimalType(8,2), true) AS sales_amt#9]
+Input [13]: [ss_item_sk#126L, ss_ticket_number#133L, ss_quantity#134, ss_ext_sales_price#139, i_brand_id#155, i_class_id#157, i_category_id#159, i_manufact_id#161, d_year#176, sr_item_sk#199L, sr_ticket_number#206L, sr_return_quantity#207, sr_return_amt#208]
+
+(46) Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales
+Output [5]: [ws_item_sk#220L, ws_order_number#234L, ws_quantity#235, ws_ext_sales_price#240, ws_sold_date_sk#251L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/web_sales/ws_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ws_sold_date_sk#251L), dynamicpruningexpression(ws_sold_date_sk#251L IN dynamicpruning#866)]
+PushedFilters: [IsNotNull(ws_item_sk)]
+ReadSchema: struct<ws_item_sk:bigint,ws_order_number:bigint,ws_quantity:int,ws_ext_sales_price:decimal(7,2)>
+
+(47) ColumnarToRow [codegen id : 17]
+Input [5]: [ws_item_sk#220L, ws_order_number#234L, ws_quantity#235, ws_ext_sales_price#240, ws_sold_date_sk#251L]
+
+(48) Filter [codegen id : 17]
+Input [5]: [ws_item_sk#220L, ws_order_number#234L, ws_quantity#235, ws_ext_sales_price#240, ws_sold_date_sk#251L]
+Condition : isnotnull(ws_item_sk#220L)
+
+(49) ReusedExchange [Reuses operator id: 8]
+Output [5]: [i_item_sk#252L, i_brand_id#259, i_class_id#261, i_category_id#263, i_manufact_id#265]
+
+(50) BroadcastHashJoin [codegen id : 17]
+Left keys [1]: [ws_item_sk#220L]
+Right keys [1]: [i_item_sk#252L]
+Join condition: None
+
+(51) Project [codegen id : 17]
+Output [9]: [ws_item_sk#220L, ws_order_number#234L, ws_quantity#235, ws_ext_sales_price#240, ws_sold_date_sk#251L, i_brand_id#259, i_class_id#261, i_category_id#263, i_manufact_id#265]
+Input [10]: [ws_item_sk#220L, ws_order_number#234L, ws_quantity#235, ws_ext_sales_price#240, ws_sold_date_sk#251L, i_item_sk#252L, i_brand_id#259, i_class_id#261, i_category_id#263, i_manufact_id#265]
+
+(52) ReusedExchange [Reuses operator id: 14]
+Output [2]: [d_date_sk#274L, d_year#280]
+
+(53) BroadcastHashJoin [codegen id : 17]
+Left keys [1]: [ws_sold_date_sk#251L]
+Right keys [1]: [d_date_sk#274L]
+Join condition: None
+
+(54) Project [codegen id : 17]
+Output [9]: [ws_item_sk#220L, ws_order_number#234L, ws_quantity#235, ws_ext_sales_price#240, i_brand_id#259, i_class_id#261, i_category_id#263, i_manufact_id#265, d_year#280]
+Input [11]: [ws_item_sk#220L, ws_order_number#234L, ws_quantity#235, ws_ext_sales_price#240, ws_sold_date_sk#251L, i_brand_id#259, i_class_id#261, i_category_id#263, i_manufact_id#265, d_date_sk#274L, d_year#280]
+
+(55) Exchange
+Input [9]: [ws_item_sk#220L, ws_order_number#234L, ws_quantity#235, ws_ext_sales_price#240, i_brand_id#259, i_class_id#261, i_category_id#263, i_manufact_id#265, d_year#280]
+Arguments: hashpartitioning(ws_order_number#234L, ws_item_sk#220L, 200), ENSURE_REQUIREMENTS, [id=#1918]
+
+(56) Sort [codegen id : 18]
+Input [9]: [ws_item_sk#220L, ws_order_number#234L, ws_quantity#235, ws_ext_sales_price#240, i_brand_id#259, i_class_id#261, i_category_id#263, i_manufact_id#265, d_year#280]
+Arguments: [ws_order_number#234L ASC NULLS FIRST, ws_item_sk#220L ASC NULLS FIRST], false, 0
+
+(57) Scan orc tpcds_bin_partitioned_decimal_orc_2.web_returns
+Output [5]: [wr_item_sk#303L, wr_order_number#314L, wr_return_quantity#315, wr_return_amt#316, wr_returned_date_sk#325L]
+Batched: true
+Location: CatalogFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/web_returns]
+PushedFilters: [IsNotNull(wr_order_number), IsNotNull(wr_item_sk)]
+ReadSchema: struct<wr_item_sk:bigint,wr_order_number:bigint,wr_return_quantity:int,wr_return_amt:decimal(7,2)>
+
+(58) ColumnarToRow [codegen id : 19]
+Input [5]: [wr_item_sk#303L, wr_order_number#314L, wr_return_quantity#315, wr_return_amt#316, wr_returned_date_sk#325L]
+
+(59) Filter [codegen id : 19]
+Input [5]: [wr_item_sk#303L, wr_order_number#314L, wr_return_quantity#315, wr_return_amt#316, wr_returned_date_sk#325L]
+Condition : (isnotnull(wr_order_number#314L) AND isnotnull(wr_item_sk#303L))
+
+(60) Project [codegen id : 19]
+Output [4]: [wr_item_sk#303L, wr_order_number#314L, wr_return_quantity#315, wr_return_amt#316]
+Input [5]: [wr_item_sk#303L, wr_order_number#314L, wr_return_quantity#315, wr_return_amt#316, wr_returned_date_sk#325L]
+
+(61) Exchange
+Input [4]: [wr_item_sk#303L, wr_order_number#314L, wr_return_quantity#315, wr_return_amt#316]
+Arguments: hashpartitioning(wr_order_number#314L, wr_item_sk#303L, 200), ENSURE_REQUIREMENTS, [id=#1011]
+
+(62) Sort [codegen id : 20]
+Input [4]: [wr_item_sk#303L, wr_order_number#314L, wr_return_quantity#315, wr_return_amt#316]
+Arguments: [wr_order_number#314L ASC NULLS FIRST, wr_item_sk#303L ASC NULLS FIRST], false, 0
+
+(63) SortMergeJoin
+Left keys [2]: [ws_order_number#234L, ws_item_sk#220L]
+Right keys [2]: [wr_order_number#314L, wr_item_sk#303L]
+Join condition: None
+
+(64) Project [codegen id : 21]
+Output [7]: [d_year#280, i_brand_id#259, i_class_id#261, i_category_id#263, i_manufact_id#265, (ws_quantity#235 - coalesce(wr_return_quantity#315, 0)) AS sales_cnt#10, CheckOverflow((promote_precision(cast(ws_ext_sales_price#240 as decimal(8,2))) - promote_precision(cast(coalesce(wr_return_amt#316, 0.00) as decimal(8,2)))), DecimalType(8,2), true) AS sales_amt#11]
+Input [13]: [ws_item_sk#220L, ws_order_number#234L, ws_quantity#235, ws_ext_sales_price#240, i_brand_id#259, i_class_id#261, i_category_id#263, i_manufact_id#265, d_year#280, wr_item_sk#303L, wr_order_number#314L, wr_return_quantity#315, wr_return_amt#316]
+
+(65) Union
+
+(66) HashAggregate [codegen id : 22]
+Input [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#6, sales_amt#7]
+Keys [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#6, sales_amt#7]
+Functions: []
+Aggregate Attributes: []
+Results [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#6, sales_amt#7]
+
+(67) Exchange
+Input [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#6, sales_amt#7]
+Arguments: hashpartitioning(d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#6, sales_amt#7, 200), ENSURE_REQUIREMENTS, [id=#1930]
+
+(68) HashAggregate [codegen id : 23]
+Input [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#6, sales_amt#7]
+Keys [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#6, sales_amt#7]
+Functions: []
+Aggregate Attributes: []
+Results [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#6, sales_amt#7]
+
+(69) HashAggregate [codegen id : 23]
+Input [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#6, sales_amt#7]
+Keys [5]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61]
+Functions [2]: [partial_sum(cast(sales_cnt#6 as bigint)), partial_sum(UnscaledValue(sales_amt#7))]
+Aggregate Attributes [2]: [sum#872L, sum#873L]
+Results [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sum#874L, sum#875L]
+
+(70) Exchange
+Input [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sum#874L, sum#875L]
+Arguments: hashpartitioning(d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, 200), ENSURE_REQUIREMENTS, [id=#1935]
+
+(71) HashAggregate [codegen id : 24]
+Input [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sum#874L, sum#875L]
+Keys [5]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61]
+Functions [2]: [sum(cast(sales_cnt#6 as bigint)), sum(UnscaledValue(sales_amt#7))]
+Aggregate Attributes [2]: [sum(cast(sales_cnt#6 as bigint))#638L, sum(UnscaledValue(sales_amt#7))#639L]
+Results [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sum(cast(sales_cnt#6 as bigint))#638L AS sales_cnt#12L, MakeDecimal(sum(UnscaledValue(sales_amt#7))#639L,18,2) AS sales_amt#13]
+
+(72) Exchange
+Input [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#12L, sales_amt#13]
+Arguments: hashpartitioning(i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, 200), ENSURE_REQUIREMENTS, [id=#1939]
+
+(73) Sort [codegen id : 25]
+Input [7]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#12L, sales_amt#13]
+Arguments: [i_brand_id#55 ASC NULLS FIRST, i_class_id#57 ASC NULLS FIRST, i_category_id#59 ASC NULLS FIRST, i_manufact_id#61 ASC NULLS FIRST], false, 0
+
+(74) Scan orc tpcds_bin_partitioned_decimal_orc_2.catalog_sales
+Output [5]: [cs_item_sk#340L, cs_order_number#342L, cs_quantity#343, cs_ext_sales_price#348, cs_sold_date_sk#359L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/catalog_sales/cs_sold_date_sk=2450815, ... 1838 entries]
+PartitionFilters: [isnotnull(cs_sold_date_sk#359L), dynamicpruningexpression(cs_sold_date_sk#359L IN dynamicpruning#869)]
+PushedFilters: [IsNotNull(cs_item_sk)]
+ReadSchema: struct<cs_item_sk:bigint,cs_order_number:bigint,cs_quantity:int,cs_ext_sales_price:decimal(7,2)>
+
+(75) ColumnarToRow [codegen id : 28]
+Input [5]: [cs_item_sk#340L, cs_order_number#342L, cs_quantity#343, cs_ext_sales_price#348, cs_sold_date_sk#359L]
+
+(76) Filter [codegen id : 28]
+Input [5]: [cs_item_sk#340L, cs_order_number#342L, cs_quantity#343, cs_ext_sales_price#348, cs_sold_date_sk#359L]
+Condition : isnotnull(cs_item_sk#340L)
+
+(77) ReusedExchange [Reuses operator id: 8]
+Output [5]: [i_item_sk#360L, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373]
+
+(78) BroadcastHashJoin [codegen id : 28]
+Left keys [1]: [cs_item_sk#340L]
+Right keys [1]: [i_item_sk#360L]
+Join condition: None
+
+(79) Project [codegen id : 28]
+Output [9]: [cs_item_sk#340L, cs_order_number#342L, cs_quantity#343, cs_ext_sales_price#348, cs_sold_date_sk#359L, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373]
+Input [10]: [cs_item_sk#340L, cs_order_number#342L, cs_quantity#343, cs_ext_sales_price#348, cs_sold_date_sk#359L, i_item_sk#360L, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373]
+
+(80) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [2]: [d_date_sk#382L, d_year#388]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_year), EqualTo(d_year,2001), IsNotNull(d_date_sk)]
+ReadSchema: struct<d_date_sk:bigint,d_year:int>
+
+(81) ColumnarToRow [codegen id : 27]
+Input [2]: [d_date_sk#382L, d_year#388]
+
+(82) Filter [codegen id : 27]
+Input [2]: [d_date_sk#382L, d_year#388]
+Condition : ((isnotnull(d_year#388) AND (d_year#388 = 2001)) AND isnotnull(d_date_sk#382L))
+
+(83) BroadcastExchange
+Input [2]: [d_date_sk#382L, d_year#388]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#1053]
+
+(84) BroadcastHashJoin [codegen id : 28]
+Left keys [1]: [cs_sold_date_sk#359L]
+Right keys [1]: [d_date_sk#382L]
+Join condition: None
+
+(85) Project [codegen id : 28]
+Output [9]: [cs_item_sk#340L, cs_order_number#342L, cs_quantity#343, cs_ext_sales_price#348, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, d_year#388]
+Input [11]: [cs_item_sk#340L, cs_order_number#342L, cs_quantity#343, cs_ext_sales_price#348, cs_sold_date_sk#359L, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, d_date_sk#382L, d_year#388]
+
+(86) Exchange
+Input [9]: [cs_item_sk#340L, cs_order_number#342L, cs_quantity#343, cs_ext_sales_price#348, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, d_year#388]
+Arguments: hashpartitioning(cs_order_number#342L, cs_item_sk#340L, 200), ENSURE_REQUIREMENTS, [id=#1819]
+
+(87) Sort [codegen id : 29]
+Input [9]: [cs_item_sk#340L, cs_order_number#342L, cs_quantity#343, cs_ext_sales_price#348, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, d_year#388]
+Arguments: [cs_order_number#342L ASC NULLS FIRST, cs_item_sk#340L ASC NULLS FIRST], false, 0
+
+(88) ReusedExchange [Reuses operator id: 23]
+Output [4]: [cr_item_sk#411L, cr_order_number#425L, cr_return_quantity#426, cr_return_amount#427]
+
+(89) Sort [codegen id : 31]
+Input [4]: [cr_item_sk#411L, cr_order_number#425L, cr_return_quantity#426, cr_return_amount#427]
+Arguments: [cr_order_number#425L ASC NULLS FIRST, cr_item_sk#411L ASC NULLS FIRST], false, 0
+
+(90) SortMergeJoin
+Left keys [2]: [cs_order_number#342L, cs_item_sk#340L]
+Right keys [2]: [cr_order_number#425L, cr_item_sk#411L]
+Join condition: None
+
+(91) Project [codegen id : 32]
+Output [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, (cs_quantity#343 - coalesce(cr_return_quantity#426, 0)) AS sales_cnt#6, CheckOverflow((promote_precision(cast(cs_ext_sales_price#348 as decimal(8,2))) - promote_precision(cast(coalesce(cr_return_amount#427, 0.00) as decimal(8,2)))), DecimalType(8,2), true) AS sales_amt#7]
+Input [13]: [cs_item_sk#340L, cs_order_number#342L, cs_quantity#343, cs_ext_sales_price#348, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, d_year#388, cr_item_sk#411L, cr_order_number#425L, cr_return_quantity#426, cr_return_amount#427]
+
+(92) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [5]: [ss_item_sk#438L, ss_ticket_number#445L, ss_quantity#446, ss_ext_sales_price#451, ss_sold_date_sk#459L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales/ss_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ss_sold_date_sk#459L), dynamicpruningexpression(ss_sold_date_sk#459L IN dynamicpruning#869)]
+PushedFilters: [IsNotNull(ss_item_sk)]
+ReadSchema: struct<ss_item_sk:bigint,ss_ticket_number:bigint,ss_quantity:int,ss_ext_sales_price:decimal(7,2)>
+
+(93) ColumnarToRow [codegen id : 35]
+Input [5]: [ss_item_sk#438L, ss_ticket_number#445L, ss_quantity#446, ss_ext_sales_price#451, ss_sold_date_sk#459L]
+
+(94) Filter [codegen id : 35]
+Input [5]: [ss_item_sk#438L, ss_ticket_number#445L, ss_quantity#446, ss_ext_sales_price#451, ss_sold_date_sk#459L]
+Condition : isnotnull(ss_item_sk#438L)
+
+(95) ReusedExchange [Reuses operator id: 8]
+Output [5]: [i_item_sk#460L, i_brand_id#467, i_class_id#469, i_category_id#471, i_manufact_id#473]
+
+(96) BroadcastHashJoin [codegen id : 35]
+Left keys [1]: [ss_item_sk#438L]
+Right keys [1]: [i_item_sk#460L]
+Join condition: None
+
+(97) Project [codegen id : 35]
+Output [9]: [ss_item_sk#438L, ss_ticket_number#445L, ss_quantity#446, ss_ext_sales_price#451, ss_sold_date_sk#459L, i_brand_id#467, i_class_id#469, i_category_id#471, i_manufact_id#473]
+Input [10]: [ss_item_sk#438L, ss_ticket_number#445L, ss_quantity#446, ss_ext_sales_price#451, ss_sold_date_sk#459L, i_item_sk#460L, i_brand_id#467, i_class_id#469, i_category_id#471, i_manufact_id#473]
+
+(98) ReusedExchange [Reuses operator id: 83]
+Output [2]: [d_date_sk#482L, d_year#488]
+
+(99) BroadcastHashJoin [codegen id : 35]
+Left keys [1]: [ss_sold_date_sk#459L]
+Right keys [1]: [d_date_sk#482L]
+Join condition: None
+
+(100) Project [codegen id : 35]
+Output [9]: [ss_item_sk#438L, ss_ticket_number#445L, ss_quantity#446, ss_ext_sales_price#451, i_brand_id#467, i_class_id#469, i_category_id#471, i_manufact_id#473, d_year#488]
+Input [11]: [ss_item_sk#438L, ss_ticket_number#445L, ss_quantity#446, ss_ext_sales_price#451, ss_sold_date_sk#459L, i_brand_id#467, i_class_id#469, i_category_id#471, i_manufact_id#473, d_date_sk#482L, d_year#488]
+
+(101) Exchange
+Input [9]: [ss_item_sk#438L, ss_ticket_number#445L, ss_quantity#446, ss_ext_sales_price#451, i_brand_id#467, i_class_id#469, i_category_id#471, i_manufact_id#473, d_year#488]
+Arguments: hashpartitioning(ss_ticket_number#445L, ss_item_sk#438L, 200), ENSURE_REQUIREMENTS, [id=#1956]
+
+(102) Sort [codegen id : 36]
+Input [9]: [ss_item_sk#438L, ss_ticket_number#445L, ss_quantity#446, ss_ext_sales_price#451, i_brand_id#467, i_class_id#469, i_category_id#471, i_manufact_id#473, d_year#488]
+Arguments: [ss_ticket_number#445L ASC NULLS FIRST, ss_item_sk#438L ASC NULLS FIRST], false, 0
+
+(103) ReusedExchange [Reuses operator id: 42]
+Output [4]: [sr_item_sk#511L, sr_ticket_number#518L, sr_return_quantity#519, sr_return_amt#520]
+
+(104) Sort [codegen id : 38]
+Input [4]: [sr_item_sk#511L, sr_ticket_number#518L, sr_return_quantity#519, sr_return_amt#520]
+Arguments: [sr_ticket_number#518L ASC NULLS FIRST, sr_item_sk#511L ASC NULLS FIRST], false, 0
+
+(105) SortMergeJoin
+Left keys [2]: [ss_ticket_number#445L, ss_item_sk#438L]
+Right keys [2]: [sr_ticket_number#518L, sr_item_sk#511L]
+Join condition: None
+
+(106) Project [codegen id : 39]
+Output [7]: [d_year#488, i_brand_id#467, i_class_id#469, i_category_id#471, i_manufact_id#473, (ss_quantity#446 - coalesce(sr_return_quantity#519, 0)) AS sales_cnt#8, CheckOverflow((promote_precision(cast(ss_ext_sales_price#451 as decimal(8,2))) - promote_precision(cast(coalesce(sr_return_amt#520, 0.00) as decimal(8,2)))), DecimalType(8,2), true) AS sales_amt#9]
+Input [13]: [ss_item_sk#438L, ss_ticket_number#445L, ss_quantity#446, ss_ext_sales_price#451, i_brand_id#467, i_class_id#469, i_category_id#471, i_manufact_id#473, d_year#488, sr_item_sk#511L, sr_ticket_number#518L, sr_return_quantity#519, sr_return_amt#520]
+
+(107) Scan orc tpcds_bin_partitioned_decimal_orc_2.web_sales
+Output [5]: [ws_item_sk#532L, ws_order_number#546L, ws_quantity#547, ws_ext_sales_price#552, ws_sold_date_sk#563L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/web_sales/ws_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ws_sold_date_sk#563L), dynamicpruningexpression(ws_sold_date_sk#563L IN dynamicpruning#869)]
+PushedFilters: [IsNotNull(ws_item_sk)]
+ReadSchema: struct<ws_item_sk:bigint,ws_order_number:bigint,ws_quantity:int,ws_ext_sales_price:decimal(7,2)>
+
+(108) ColumnarToRow [codegen id : 42]
+Input [5]: [ws_item_sk#532L, ws_order_number#546L, ws_quantity#547, ws_ext_sales_price#552, ws_sold_date_sk#563L]
+
+(109) Filter [codegen id : 42]
+Input [5]: [ws_item_sk#532L, ws_order_number#546L, ws_quantity#547, ws_ext_sales_price#552, ws_sold_date_sk#563L]
+Condition : isnotnull(ws_item_sk#532L)
+
+(110) ReusedExchange [Reuses operator id: 8]
+Output [5]: [i_item_sk#564L, i_brand_id#571, i_class_id#573, i_category_id#575, i_manufact_id#577]
+
+(111) BroadcastHashJoin [codegen id : 42]
+Left keys [1]: [ws_item_sk#532L]
+Right keys [1]: [i_item_sk#564L]
+Join condition: None
+
+(112) Project [codegen id : 42]
+Output [9]: [ws_item_sk#532L, ws_order_number#546L, ws_quantity#547, ws_ext_sales_price#552, ws_sold_date_sk#563L, i_brand_id#571, i_class_id#573, i_category_id#575, i_manufact_id#577]
+Input [10]: [ws_item_sk#532L, ws_order_number#546L, ws_quantity#547, ws_ext_sales_price#552, ws_sold_date_sk#563L, i_item_sk#564L, i_brand_id#571, i_class_id#573, i_category_id#575, i_manufact_id#577]
+
+(113) ReusedExchange [Reuses operator id: 83]
+Output [2]: [d_date_sk#586L, d_year#592]
+
+(114) BroadcastHashJoin [codegen id : 42]
+Left keys [1]: [ws_sold_date_sk#563L]
+Right keys [1]: [d_date_sk#586L]
+Join condition: None
+
+(115) Project [codegen id : 42]
+Output [9]: [ws_item_sk#532L, ws_order_number#546L, ws_quantity#547, ws_ext_sales_price#552, i_brand_id#571, i_class_id#573, i_category_id#575, i_manufact_id#577, d_year#592]
+Input [11]: [ws_item_sk#532L, ws_order_number#546L, ws_quantity#547, ws_ext_sales_price#552, ws_sold_date_sk#563L, i_brand_id#571, i_class_id#573, i_category_id#575, i_manufact_id#577, d_date_sk#586L, d_year#592]
+
+(116) Exchange
+Input [9]: [ws_item_sk#532L, ws_order_number#546L, ws_quantity#547, ws_ext_sales_price#552, i_brand_id#571, i_class_id#573, i_category_id#575, i_manufact_id#577, d_year#592]
+Arguments: hashpartitioning(ws_order_number#546L, ws_item_sk#532L, 200), ENSURE_REQUIREMENTS, [id=#1975]
+
+(117) Sort [codegen id : 43]
+Input [9]: [ws_item_sk#532L, ws_order_number#546L, ws_quantity#547, ws_ext_sales_price#552, i_brand_id#571, i_class_id#573, i_category_id#575, i_manufact_id#577, d_year#592]
+Arguments: [ws_order_number#546L ASC NULLS FIRST, ws_item_sk#532L ASC NULLS FIRST], false, 0
+
+(118) ReusedExchange [Reuses operator id: 61]
+Output [4]: [wr_item_sk#615L, wr_order_number#626L, wr_return_quantity#627, wr_return_amt#628]
+
+(119) Sort [codegen id : 45]
+Input [4]: [wr_item_sk#615L, wr_order_number#626L, wr_return_quantity#627, wr_return_amt#628]
+Arguments: [wr_order_number#626L ASC NULLS FIRST, wr_item_sk#615L ASC NULLS FIRST], false, 0
+
+(120) SortMergeJoin
+Left keys [2]: [ws_order_number#546L, ws_item_sk#532L]
+Right keys [2]: [wr_order_number#626L, wr_item_sk#615L]
+Join condition: None
+
+(121) Project [codegen id : 46]
+Output [7]: [d_year#592, i_brand_id#571, i_class_id#573, i_category_id#575, i_manufact_id#577, (ws_quantity#547 - coalesce(wr_return_quantity#627, 0)) AS sales_cnt#10, CheckOverflow((promote_precision(cast(ws_ext_sales_price#552 as decimal(8,2))) - promote_precision(cast(coalesce(wr_return_amt#628, 0.00) as decimal(8,2)))), DecimalType(8,2), true) AS sales_amt#11]
+Input [13]: [ws_item_sk#532L, ws_order_number#546L, ws_quantity#547, ws_ext_sales_price#552, i_brand_id#571, i_class_id#573, i_category_id#575, i_manufact_id#577, d_year#592, wr_item_sk#615L, wr_order_number#626L, wr_return_quantity#627, wr_return_amt#628]
+
+(122) Union
+
+(123) HashAggregate [codegen id : 47]
+Input [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#6, sales_amt#7]
+Keys [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#6, sales_amt#7]
+Functions: []
+Aggregate Attributes: []
+Results [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#6, sales_amt#7]
+
+(124) Exchange
+Input [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#6, sales_amt#7]
+Arguments: hashpartitioning(d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#6, sales_amt#7, 200), ENSURE_REQUIREMENTS, [id=#1987]
+
+(125) HashAggregate [codegen id : 48]
+Input [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#6, sales_amt#7]
+Keys [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#6, sales_amt#7]
+Functions: []
+Aggregate Attributes: []
+Results [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#6, sales_amt#7]
+
+(126) HashAggregate [codegen id : 48]
+Input [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#6, sales_amt#7]
+Keys [5]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373]
+Functions [2]: [partial_sum(cast(sales_cnt#6 as bigint)), partial_sum(UnscaledValue(sales_amt#7))]
+Aggregate Attributes [2]: [sum#876L, sum#877L]
+Results [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sum#878L, sum#879L]
+
+(127) Exchange
+Input [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sum#878L, sum#879L]
+Arguments: hashpartitioning(d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, 200), ENSURE_REQUIREMENTS, [id=#1992]
+
+(128) HashAggregate [codegen id : 49]
+Input [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sum#878L, sum#879L]
+Keys [5]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373]
+Functions [2]: [sum(cast(sales_cnt#6 as bigint)), sum(UnscaledValue(sales_amt#7))]
+Aggregate Attributes [2]: [sum(cast(sales_cnt#6 as bigint))#640L, sum(UnscaledValue(sales_amt#7))#641L]
+Results [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sum(cast(sales_cnt#6 as bigint))#640L AS sales_cnt#642L, MakeDecimal(sum(UnscaledValue(sales_amt#7))#641L,18,2) AS sales_amt#643]
+
+(129) Exchange
+Input [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#642L, sales_amt#643]
+Arguments: hashpartitioning(i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, 200), ENSURE_REQUIREMENTS, [id=#1996]
+
+(130) Sort [codegen id : 50]
+Input [7]: [d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#642L, sales_amt#643]
+Arguments: [i_brand_id#367 ASC NULLS FIRST, i_class_id#369 ASC NULLS FIRST, i_category_id#371 ASC NULLS FIRST, i_manufact_id#373 ASC NULLS FIRST], false, 0
+
+(131) SortMergeJoin [codegen id : 51]
+Left keys [4]: [i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61]
+Right keys [4]: [i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373]
+Join condition: (CheckOverflow((promote_precision(cast(sales_cnt#12L as decimal(17,2))) / promote_precision(cast(sales_cnt#642L as decimal(17,2)))), DecimalType(37,20), true) < 0.90000000000000000000)
+
+(132) Project [codegen id : 51]
+Output [10]: [d_year#388 AS prev_year#0, d_year#76 AS year#1, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#642L AS prev_yr_cnt#2L, sales_cnt#12L AS curr_yr_cnt#3L, (sales_cnt#12L - sales_cnt#642L) AS sales_cnt_diff#4L, CheckOverflow((promote_precision(cast(sales_amt#13 as decimal(19,2))) - promote_precision(cast(sales_amt#643 as decimal(19,2)))), DecimalType(19,2), true) AS sales_amt_diff#5]
+Input [14]: [d_year#76, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, sales_cnt#12L, sales_amt#13, d_year#388, i_brand_id#367, i_class_id#369, i_category_id#371, i_manufact_id#373, sales_cnt#642L, sales_amt#643]
+
+(133) TakeOrderedAndProject
+Input [10]: [prev_year#0, year#1, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, prev_yr_cnt#2L, curr_yr_cnt#3L, sales_cnt_diff#4L, sales_amt_diff#5]
+Arguments: 100, [sales_cnt_diff#4L ASC NULLS FIRST], [prev_year#0, year#1, i_brand_id#55, i_class_id#57, i_category_id#59, i_manufact_id#61, prev_yr_cnt#2L, curr_yr_cnt#3L, sales_cnt_diff#4L, sales_amt_diff#5]
+
+===== Subqueries =====
+
+Subquery:1 Hosting operator id = 1 Hosting Expression = cs_sold_date_sk#47L IN dynamicpruning#866
+ReusedExchange (134)
+
+
+(134) ReusedExchange [Reuses operator id: 14]
+Output [2]: [d_date_sk#70L, d_year#76]
+
+Subquery:2 Hosting operator id = 27 Hosting Expression = ss_sold_date_sk#147L IN dynamicpruning#866
+
+Subquery:3 Hosting operator id = 46 Hosting Expression = ws_sold_date_sk#251L IN dynamicpruning#866
+
+Subquery:4 Hosting operator id = 74 Hosting Expression = cs_sold_date_sk#359L IN dynamicpruning#869
+ReusedExchange (135)
+
+
+(135) ReusedExchange [Reuses operator id: 83]
+Output [2]: [d_date_sk#382L, d_year#388]
+
+Subquery:5 Hosting operator id = 92 Hosting Expression = ss_sold_date_sk#459L IN dynamicpruning#869
+
+Subquery:6 Hosting operator id = 107 Hosting Expression = ws_sold_date_sk#563L IN dynamicpruning#869
+
+

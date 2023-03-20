@@ -1,0 +1,3 @@
+select cast_info.note AS note, cast_info.movie_id AS movie_id, char_name.name AS name, cast_info.person_role_id AS person_role_id, company_name.country_code AS country_code, company_name.id AS id, movie_companies.company_type_id AS company_type_id, cast_info.role_id AS role_id
+ from cast_info,company_type,company_name,char_name,movie_companies
+ where (char_name.id = cast_info.person_role_id) And (cast_info.movie_id = movie_companies.movie_id) And ((cast_info.note like '%(producer)%')) And (company_type.id = movie_companies.company_type_id) And (company_name.id = movie_companies.company_id) And (company_name.country_code = '[ru]')

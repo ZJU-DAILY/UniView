@@ -1,0 +1,68 @@
+CREATE MATERIALIZED VIEW IF NOT EXISTS mv349
+AS
+SELECT
+	web_returns.wr_returning_customer_sk,
+	customer_demographics.cd_purchase_estimate,
+	web_sales.ws_ship_date_sk,
+	web_sales.ws_ship_mode_sk,
+	web_returns.wr_item_sk,
+	customer_demographics.cd_dep_college_count,
+	web_page.wp_char_count,
+	web_sales.ws_order_number,
+	web_returns.wr_refunded_cdemo_sk,
+	web_sales.ws_promo_sk,
+	customer_demographics.cd_dep_count,
+	web_sales.ws_ship_hdemo_sk,
+	web_returns.wr_refunded_addr_sk,
+	web_sales.ws_web_site_sk,
+	web_sales.ws_sold_time_sk,
+	web_page.wp_web_page_sk,
+	customer_demographics.cd_education_status,
+	web_sales.ws_sales_price,
+	web_sales.ws_ext_list_price,
+	customer_demographics.cd_demo_sk,
+	web_sales.ws_warehouse_sk,
+	web_sales.ws_quantity,
+	web_sales.ws_bill_addr_sk,
+	web_returns.wr_return_quantity,
+	web_returns.wr_returning_addr_sk,
+	web_sales.ws_web_page_sk,
+	web_sales.ws_net_paid,
+	web_sales.ws_ext_ship_cost,
+	web_returns.wr_fee,
+	web_returns.wr_refunded_cash,
+	web_sales.ws_ship_customer_sk,
+	customer_demographics.cd_gender,
+	web_sales.ws_ext_discount_amt,
+	web_returns.wr_return_amt,
+	web_sales.ws_ext_wholesale_cost,
+	web_returns.wr_net_loss,
+	web_sales.ws_wholesale_cost,
+	web_returns.wr_web_page_sk,
+	customer_demographics.cd_marital_status,
+	web_returns.wr_reason_sk,
+	customer_demographics.cd_dep_employed_count,
+	web_sales.ws_list_price,
+	customer_demographics.cd_credit_rating,
+	web_sales.ws_sold_date_sk,
+	web_sales.ws_ext_sales_price,
+	web_sales.ws_ship_addr_sk,
+	web_returns.wr_returned_date_sk,
+	web_returns.wr_returning_cdemo_sk,
+	web_returns.wr_order_number,
+	web_sales.ws_bill_customer_sk,
+	web_sales.ws_net_profit,
+	web_sales.ws_item_sk
+FROM
+	web_sales,
+	web_returns,
+	customer_demographics,
+	web_page
+WHERE
+	(((customer_demographics.cd_marital_status = 'M') OR (customer_demographics.cd_marital_status = 'S') OR (customer_demographics.cd_marital_status = 'W')))
+	AND (((customer_demographics.cd_education_status = 'Advanced Degree') OR (customer_demographics.cd_education_status = 'College') OR (customer_demographics.cd_education_status = '2 yr Degree')))
+	AND web_returns.wr_refunded_cdemo_sk = customer_demographics.cd_demo_sk
+	AND web_returns.wr_returning_cdemo_sk = customer_demographics.cd_demo_sk
+	AND web_sales.ws_item_sk = web_returns.wr_item_sk
+	AND web_sales.ws_web_page_sk = web_page.wp_web_page_sk
+	AND web_sales.ws_order_number = web_returns.wr_order_number;

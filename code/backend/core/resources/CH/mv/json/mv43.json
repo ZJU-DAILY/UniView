@@ -1,0 +1,4426 @@
+{
+  "Plan": {
+    "Node Type": "Filter",
+    "Description": "( + (Before JOIN + (Projection + Before ORDER BY)))",
+    "Header": [
+      {
+        "Name": "country_code",
+        "Type": "String"
+      },
+      {
+        "Name": "name",
+        "Type": "String"
+      },
+      {
+        "Name": "--cn.id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "kind",
+        "Type": "String"
+      },
+      {
+        "Name": "--ct.id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "--it1.id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "--it1.info",
+        "Type": "String"
+      },
+      {
+        "Name": "--it2.id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "--it2.info",
+        "Type": "String"
+      },
+      {
+        "Name": "company_id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "company_type_id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "--mc.movie_id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "--mi.info_type_id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "--mi.movie_id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "--mi.info",
+        "Type": "String"
+      }
+    ],
+    "Filter Column": "equals(--mc.movie_id, --mi.movie_id)",
+    "Removes Filter": true,
+    "Expression": {
+      "Inputs": [
+        {
+          "Name": "country_code",
+          "Type": "String"
+        },
+        {
+          "Name": "name",
+          "Type": "String"
+        },
+        {
+          "Name": "--cn.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "kind",
+          "Type": "String"
+        },
+        {
+          "Name": "--ct.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--it1.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--it1.info",
+          "Type": "String"
+        },
+        {
+          "Name": "--it2.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--it2.info",
+          "Type": "String"
+        },
+        {
+          "Name": "company_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "company_type_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--mc.movie_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "movie_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "info_type_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "info",
+          "Type": "String"
+        }
+      ],
+      "Actions": [
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            0
+          ],
+          "Removed Arguments": [
+            0
+          ],
+          "Result": 0
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            1
+          ],
+          "Removed Arguments": [
+            1
+          ],
+          "Result": 1
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            2
+          ],
+          "Removed Arguments": [
+            2
+          ],
+          "Result": 2
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            3
+          ],
+          "Removed Arguments": [
+            3
+          ],
+          "Result": 3
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            4
+          ],
+          "Removed Arguments": [
+            4
+          ],
+          "Result": 4
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            5
+          ],
+          "Removed Arguments": [
+            5
+          ],
+          "Result": 5
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            6
+          ],
+          "Removed Arguments": [
+            6
+          ],
+          "Result": 6
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            7
+          ],
+          "Removed Arguments": [
+            7
+          ],
+          "Result": 7
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            8
+          ],
+          "Removed Arguments": [
+            8
+          ],
+          "Result": 8
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            9
+          ],
+          "Removed Arguments": [
+            9
+          ],
+          "Result": 9
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            10
+          ],
+          "Removed Arguments": [
+            10
+          ],
+          "Result": 10
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            11
+          ],
+          "Removed Arguments": [],
+          "Result": 11
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            12
+          ],
+          "Removed Arguments": [],
+          "Result": 12
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            13
+          ],
+          "Removed Arguments": [],
+          "Result": 13
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            14
+          ],
+          "Removed Arguments": [],
+          "Result": 14
+        },
+        {
+          "Node Type": "ALIAS",
+          "Result Type": "ALIAS",
+          "Arguments": [
+            12
+          ],
+          "Removed Arguments": [
+            12
+          ],
+          "Result": 15
+        },
+        {
+          "Node Type": "ALIAS",
+          "Result Type": "ALIAS",
+          "Arguments": [
+            13
+          ],
+          "Removed Arguments": [
+            13
+          ],
+          "Result": 12
+        },
+        {
+          "Node Type": "ALIAS",
+          "Result Type": "ALIAS",
+          "Arguments": [
+            14
+          ],
+          "Removed Arguments": [
+            14
+          ],
+          "Result": 13
+        },
+        {
+          "Node Type": "FUNCTION",
+          "Result Type": "FUNCTION",
+          "Function": "equals",
+          "Compiled": false,
+          "Arguments": [
+            11,
+            15
+          ],
+          "Removed Arguments": [],
+          "Result": 14
+        }
+      ],
+      "Outputs": [
+        {
+          "Name": "equals(--mc.movie_id, --mi.movie_id)",
+          "Type": "UInt8"
+        },
+        {
+          "Name": "country_code",
+          "Type": "String"
+        },
+        {
+          "Name": "name",
+          "Type": "String"
+        },
+        {
+          "Name": "--cn.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "kind",
+          "Type": "String"
+        },
+        {
+          "Name": "--ct.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--it1.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--it1.info",
+          "Type": "String"
+        },
+        {
+          "Name": "--it2.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--it2.info",
+          "Type": "String"
+        },
+        {
+          "Name": "company_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "company_type_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--mc.movie_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--mi.info_type_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--mi.movie_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--mi.info",
+          "Type": "String"
+        }
+      ],
+      "Positions": [
+        14,
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        15,
+        13
+      ],
+      "Project Input": true
+    },
+    "Plans": [
+      {
+        "Node Type": "Filter",
+        "Description": "WHERE",
+        "Header": [
+          {
+            "Name": "country_code",
+            "Type": "String"
+          },
+          {
+            "Name": "name",
+            "Type": "String"
+          },
+          {
+            "Name": "--cn.id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "kind",
+            "Type": "String"
+          },
+          {
+            "Name": "--ct.id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "--it1.id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "--it1.info",
+            "Type": "String"
+          },
+          {
+            "Name": "--it2.id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "--it2.info",
+            "Type": "String"
+          },
+          {
+            "Name": "company_id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "company_type_id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "--mc.movie_id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "movie_id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "info_type_id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "info",
+            "Type": "String"
+          }
+        ],
+        "Filter Column": "and(and(and(and(and(and(and(and(equals(--mc.movie_id, movie_id), equals(--cn.id, company_id)), equals(--ct.id, company_type_id)), equals(info_type_id, --it1.id)), in(info, ('Drama', 'Horror', 'Western', 'Family'))), equals(--it2.info, 'rating')), equals(--it1.info, 'genres')), equals(kind, 'production companies')), equals(country_code, '[us]'))",
+        "Removes Filter": true,
+        "Expression": {
+          "Inputs": [
+            {
+              "Name": "country_code",
+              "Type": "String"
+            },
+            {
+              "Name": "name",
+              "Type": "String"
+            },
+            {
+              "Name": "--cn.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "kind",
+              "Type": "String"
+            },
+            {
+              "Name": "--ct.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "--it1.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "--it1.info",
+              "Type": "String"
+            },
+            {
+              "Name": "--it2.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "--it2.info",
+              "Type": "String"
+            },
+            {
+              "Name": "company_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "company_type_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "--mc.movie_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "movie_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "info_type_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "info",
+              "Type": "String"
+            }
+          ],
+          "Actions": [
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                0
+              ],
+              "Removed Arguments": [],
+              "Result": 0
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                1
+              ],
+              "Removed Arguments": [
+                1
+              ],
+              "Result": 1
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                2
+              ],
+              "Removed Arguments": [],
+              "Result": 2
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                3
+              ],
+              "Removed Arguments": [],
+              "Result": 3
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                4
+              ],
+              "Removed Arguments": [],
+              "Result": 4
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                5
+              ],
+              "Removed Arguments": [],
+              "Result": 5
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                6
+              ],
+              "Removed Arguments": [],
+              "Result": 6
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                7
+              ],
+              "Removed Arguments": [
+                7
+              ],
+              "Result": 7
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                8
+              ],
+              "Removed Arguments": [],
+              "Result": 8
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                9
+              ],
+              "Removed Arguments": [],
+              "Result": 9
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                10
+              ],
+              "Removed Arguments": [],
+              "Result": 10
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                11
+              ],
+              "Removed Arguments": [],
+              "Result": 11
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                12
+              ],
+              "Removed Arguments": [],
+              "Result": 12
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                13
+              ],
+              "Removed Arguments": [],
+              "Result": 13
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                14
+              ],
+              "Removed Arguments": [],
+              "Result": 14
+            },
+            {
+              "Node Type": "COLUMN",
+              "Result Type": "COLUMN",
+              "Column": "Const(Set)",
+              "Arguments": [],
+              "Removed Arguments": [],
+              "Result": 15
+            },
+            {
+              "Node Type": "COLUMN",
+              "Result Type": "COLUMN",
+              "Column": "Const(String)",
+              "Arguments": [],
+              "Removed Arguments": [],
+              "Result": 16
+            },
+            {
+              "Node Type": "COLUMN",
+              "Result Type": "COLUMN",
+              "Column": "Const(String)",
+              "Arguments": [],
+              "Removed Arguments": [],
+              "Result": 17
+            },
+            {
+              "Node Type": "COLUMN",
+              "Result Type": "COLUMN",
+              "Column": "Const(String)",
+              "Arguments": [],
+              "Removed Arguments": [],
+              "Result": 18
+            },
+            {
+              "Node Type": "COLUMN",
+              "Result Type": "COLUMN",
+              "Column": "Const(String)",
+              "Arguments": [],
+              "Removed Arguments": [],
+              "Result": 19
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                2,
+                9
+              ],
+              "Removed Arguments": [],
+              "Result": 20
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                4,
+                10
+              ],
+              "Removed Arguments": [],
+              "Result": 21
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                11,
+                12
+              ],
+              "Removed Arguments": [],
+              "Result": 22
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                13,
+                5
+              ],
+              "Removed Arguments": [],
+              "Result": 23
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "in",
+              "Compiled": false,
+              "Arguments": [
+                14,
+                15
+              ],
+              "Removed Arguments": [
+                15
+              ],
+              "Result": 24
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                8,
+                16
+              ],
+              "Removed Arguments": [
+                16
+              ],
+              "Result": 15
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                6,
+                17
+              ],
+              "Removed Arguments": [
+                17
+              ],
+              "Result": 16
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                3,
+                18
+              ],
+              "Removed Arguments": [
+                18
+              ],
+              "Result": 17
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                0,
+                19
+              ],
+              "Removed Arguments": [
+                19
+              ],
+              "Result": 18
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "and",
+              "Compiled": false,
+              "Arguments": [
+                22,
+                20
+              ],
+              "Removed Arguments": [
+                22,
+                20
+              ],
+              "Result": 19
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "and",
+              "Compiled": false,
+              "Arguments": [
+                19,
+                21
+              ],
+              "Removed Arguments": [
+                19,
+                21
+              ],
+              "Result": 20
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "and",
+              "Compiled": false,
+              "Arguments": [
+                20,
+                23
+              ],
+              "Removed Arguments": [
+                20,
+                23
+              ],
+              "Result": 21
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "and",
+              "Compiled": false,
+              "Arguments": [
+                21,
+                24
+              ],
+              "Removed Arguments": [
+                21,
+                24
+              ],
+              "Result": 23
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "and",
+              "Compiled": false,
+              "Arguments": [
+                23,
+                15
+              ],
+              "Removed Arguments": [
+                23,
+                15
+              ],
+              "Result": 24
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "and",
+              "Compiled": false,
+              "Arguments": [
+                24,
+                16
+              ],
+              "Removed Arguments": [
+                24,
+                16
+              ],
+              "Result": 15
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "and",
+              "Compiled": false,
+              "Arguments": [
+                15,
+                17
+              ],
+              "Removed Arguments": [
+                15,
+                17
+              ],
+              "Result": 16
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "and",
+              "Compiled": false,
+              "Arguments": [
+                16,
+                18
+              ],
+              "Removed Arguments": [
+                16,
+                18
+              ],
+              "Result": 17
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "country_code",
+              "Type": "String"
+            },
+            {
+              "Name": "name",
+              "Type": "String"
+            },
+            {
+              "Name": "--cn.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "kind",
+              "Type": "String"
+            },
+            {
+              "Name": "--ct.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "--it1.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "--it1.info",
+              "Type": "String"
+            },
+            {
+              "Name": "--it2.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "--it2.info",
+              "Type": "String"
+            },
+            {
+              "Name": "company_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "company_type_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "--mc.movie_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "movie_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "info_type_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "info",
+              "Type": "String"
+            },
+            {
+              "Name": "and(and(and(and(and(and(and(and(equals(--mc.movie_id, movie_id), equals(--cn.id, company_id)), equals(--ct.id, company_type_id)), equals(info_type_id, --it1.id)), in(info, ('Drama', 'Horror', 'Western', 'Family'))), equals(--it2.info, 'rating')), equals(--it1.info, 'genres')), equals(kind, 'production companies')), equals(country_code, '[us]'))",
+              "Type": "UInt8"
+            }
+          ],
+          "Positions": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            17
+          ],
+          "Project Input": true
+        },
+        "Plans": [
+          {
+            "Node Type": "Join",
+            "Description": "JOIN",
+            "Header": [
+              {
+                "Name": "country_code",
+                "Type": "String"
+              },
+              {
+                "Name": "name",
+                "Type": "String"
+              },
+              {
+                "Name": "--cn.id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "kind",
+                "Type": "String"
+              },
+              {
+                "Name": "--ct.id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "--it1.id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "--it1.info",
+                "Type": "String"
+              },
+              {
+                "Name": "--it2.id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "--it2.info",
+                "Type": "String"
+              },
+              {
+                "Name": "company_id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "company_type_id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "--mc.movie_id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "movie_id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "info_type_id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "info",
+                "Type": "String"
+              }
+            ],
+            "Plans": [
+              {
+                "Node Type": "Expression",
+                "Description": "(Before JOIN + (Projection + Before ORDER BY))",
+                "Header": [
+                  {
+                    "Name": "country_code",
+                    "Type": "String"
+                  },
+                  {
+                    "Name": "name",
+                    "Type": "String"
+                  },
+                  {
+                    "Name": "--cn.id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "kind",
+                    "Type": "String"
+                  },
+                  {
+                    "Name": "--ct.id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "--it1.id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "--it1.info",
+                    "Type": "String"
+                  },
+                  {
+                    "Name": "--it2.id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "--it2.info",
+                    "Type": "String"
+                  },
+                  {
+                    "Name": "company_id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "company_type_id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "--mc.movie_id",
+                    "Type": "Int64"
+                  }
+                ],
+                "Expression": {
+                  "Inputs": [
+                    {
+                      "Name": "country_code",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "name",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "--cn.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "kind",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "--ct.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "--it1.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "--it1.info",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "--it2.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "--it2.info",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "movie_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "company_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "company_type_id",
+                      "Type": "Int64"
+                    }
+                  ],
+                  "Actions": [
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        0
+                      ],
+                      "Removed Arguments": [
+                        0
+                      ],
+                      "Result": 0
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        1
+                      ],
+                      "Removed Arguments": [
+                        1
+                      ],
+                      "Result": 1
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        2
+                      ],
+                      "Removed Arguments": [
+                        2
+                      ],
+                      "Result": 2
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        3
+                      ],
+                      "Removed Arguments": [
+                        3
+                      ],
+                      "Result": 3
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        4
+                      ],
+                      "Removed Arguments": [
+                        4
+                      ],
+                      "Result": 4
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        5
+                      ],
+                      "Removed Arguments": [
+                        5
+                      ],
+                      "Result": 5
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        6
+                      ],
+                      "Removed Arguments": [
+                        6
+                      ],
+                      "Result": 6
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        7
+                      ],
+                      "Removed Arguments": [
+                        7
+                      ],
+                      "Result": 7
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        8
+                      ],
+                      "Removed Arguments": [
+                        8
+                      ],
+                      "Result": 8
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        9
+                      ],
+                      "Removed Arguments": [],
+                      "Result": 9
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        10
+                      ],
+                      "Removed Arguments": [
+                        10
+                      ],
+                      "Result": 10
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        11
+                      ],
+                      "Removed Arguments": [
+                        11
+                      ],
+                      "Result": 11
+                    },
+                    {
+                      "Node Type": "ALIAS",
+                      "Result Type": "ALIAS",
+                      "Arguments": [
+                        9
+                      ],
+                      "Removed Arguments": [
+                        9
+                      ],
+                      "Result": 12
+                    }
+                  ],
+                  "Outputs": [
+                    {
+                      "Name": "country_code",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "name",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "--cn.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "kind",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "--ct.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "--it1.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "--it1.info",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "--it2.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "--it2.info",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "company_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "company_type_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "--mc.movie_id",
+                      "Type": "Int64"
+                    }
+                  ],
+                  "Positions": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    10,
+                    11,
+                    12
+                  ],
+                  "Project Input": true
+                },
+                "Plans": [
+                  {
+                    "Node Type": "Filter",
+                    "Description": "WHERE",
+                    "Header": [
+                      {
+                        "Name": "country_code",
+                        "Type": "String"
+                      },
+                      {
+                        "Name": "name",
+                        "Type": "String"
+                      },
+                      {
+                        "Name": "--cn.id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "kind",
+                        "Type": "String"
+                      },
+                      {
+                        "Name": "--ct.id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "--it1.id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "--it1.info",
+                        "Type": "String"
+                      },
+                      {
+                        "Name": "--it2.id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "--it2.info",
+                        "Type": "String"
+                      },
+                      {
+                        "Name": "movie_id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "company_id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "company_type_id",
+                        "Type": "Int64"
+                      }
+                    ],
+                    "Filter Column": "and(and(and(and(and(equals(--cn.id, company_id), equals(--ct.id, company_type_id)), equals(--it2.info, 'rating')), equals(--it1.info, 'genres')), equals(kind, 'production companies')), equals(country_code, '[us]'))",
+                    "Removes Filter": true,
+                    "Expression": {
+                      "Inputs": [
+                        {
+                          "Name": "country_code",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "name",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "--cn.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "kind",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "--ct.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "--it1.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "--it1.info",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "--it2.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "--it2.info",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "movie_id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "company_id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "company_type_id",
+                          "Type": "Int64"
+                        }
+                      ],
+                      "Actions": [
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            0
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 0
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            1
+                          ],
+                          "Removed Arguments": [
+                            1
+                          ],
+                          "Result": 1
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            2
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 2
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            3
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 3
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            4
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 4
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            5
+                          ],
+                          "Removed Arguments": [
+                            5
+                          ],
+                          "Result": 5
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            6
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 6
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            7
+                          ],
+                          "Removed Arguments": [
+                            7
+                          ],
+                          "Result": 7
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            8
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 8
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            9
+                          ],
+                          "Removed Arguments": [
+                            9
+                          ],
+                          "Result": 9
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            10
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 10
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            11
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 11
+                        },
+                        {
+                          "Node Type": "COLUMN",
+                          "Result Type": "COLUMN",
+                          "Column": "Const(String)",
+                          "Arguments": [],
+                          "Removed Arguments": [],
+                          "Result": 12
+                        },
+                        {
+                          "Node Type": "COLUMN",
+                          "Result Type": "COLUMN",
+                          "Column": "Const(String)",
+                          "Arguments": [],
+                          "Removed Arguments": [],
+                          "Result": 13
+                        },
+                        {
+                          "Node Type": "COLUMN",
+                          "Result Type": "COLUMN",
+                          "Column": "Const(String)",
+                          "Arguments": [],
+                          "Removed Arguments": [],
+                          "Result": 14
+                        },
+                        {
+                          "Node Type": "COLUMN",
+                          "Result Type": "COLUMN",
+                          "Column": "Const(String)",
+                          "Arguments": [],
+                          "Removed Arguments": [],
+                          "Result": 15
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "equals",
+                          "Compiled": false,
+                          "Arguments": [
+                            2,
+                            10
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 16
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "equals",
+                          "Compiled": false,
+                          "Arguments": [
+                            4,
+                            11
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 17
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "equals",
+                          "Compiled": false,
+                          "Arguments": [
+                            8,
+                            12
+                          ],
+                          "Removed Arguments": [
+                            12
+                          ],
+                          "Result": 18
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "equals",
+                          "Compiled": false,
+                          "Arguments": [
+                            6,
+                            13
+                          ],
+                          "Removed Arguments": [
+                            13
+                          ],
+                          "Result": 12
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "equals",
+                          "Compiled": false,
+                          "Arguments": [
+                            3,
+                            14
+                          ],
+                          "Removed Arguments": [
+                            14
+                          ],
+                          "Result": 13
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "equals",
+                          "Compiled": false,
+                          "Arguments": [
+                            0,
+                            15
+                          ],
+                          "Removed Arguments": [
+                            15
+                          ],
+                          "Result": 14
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "and",
+                          "Compiled": false,
+                          "Arguments": [
+                            16,
+                            17
+                          ],
+                          "Removed Arguments": [
+                            16,
+                            17
+                          ],
+                          "Result": 15
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "and",
+                          "Compiled": false,
+                          "Arguments": [
+                            15,
+                            18
+                          ],
+                          "Removed Arguments": [
+                            15,
+                            18
+                          ],
+                          "Result": 17
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "and",
+                          "Compiled": false,
+                          "Arguments": [
+                            17,
+                            12
+                          ],
+                          "Removed Arguments": [
+                            17,
+                            12
+                          ],
+                          "Result": 18
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "and",
+                          "Compiled": false,
+                          "Arguments": [
+                            18,
+                            13
+                          ],
+                          "Removed Arguments": [
+                            18,
+                            13
+                          ],
+                          "Result": 12
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "and",
+                          "Compiled": false,
+                          "Arguments": [
+                            12,
+                            14
+                          ],
+                          "Removed Arguments": [
+                            12,
+                            14
+                          ],
+                          "Result": 13
+                        }
+                      ],
+                      "Outputs": [
+                        {
+                          "Name": "country_code",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "name",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "--cn.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "kind",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "--ct.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "--it1.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "--it1.info",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "--it2.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "--it2.info",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "movie_id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "company_id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "company_type_id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "and(and(and(and(and(equals(--cn.id, company_id), equals(--ct.id, company_type_id)), equals(--it2.info, 'rating')), equals(--it1.info, 'genres')), equals(kind, 'production companies')), equals(country_code, '[us]'))",
+                          "Type": "UInt8"
+                        }
+                      ],
+                      "Positions": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6,
+                        7,
+                        8,
+                        9,
+                        10,
+                        11,
+                        13
+                      ],
+                      "Project Input": true
+                    },
+                    "Plans": [
+                      {
+                        "Node Type": "Join",
+                        "Description": "JOIN",
+                        "Header": [
+                          {
+                            "Name": "country_code",
+                            "Type": "String"
+                          },
+                          {
+                            "Name": "name",
+                            "Type": "String"
+                          },
+                          {
+                            "Name": "--cn.id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "kind",
+                            "Type": "String"
+                          },
+                          {
+                            "Name": "--ct.id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "--it1.id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "--it1.info",
+                            "Type": "String"
+                          },
+                          {
+                            "Name": "--it2.id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "--it2.info",
+                            "Type": "String"
+                          },
+                          {
+                            "Name": "movie_id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "company_type_id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "company_id",
+                            "Type": "Int64"
+                          }
+                        ],
+                        "Plans": [
+                          {
+                            "Node Type": "Expression",
+                            "Description": "(Before JOIN + (Projection + Before ORDER BY))",
+                            "Header": [
+                              {
+                                "Name": "country_code",
+                                "Type": "String"
+                              },
+                              {
+                                "Name": "name",
+                                "Type": "String"
+                              },
+                              {
+                                "Name": "--cn.id",
+                                "Type": "Int64"
+                              },
+                              {
+                                "Name": "kind",
+                                "Type": "String"
+                              },
+                              {
+                                "Name": "--ct.id",
+                                "Type": "Int64"
+                              },
+                              {
+                                "Name": "--it1.id",
+                                "Type": "Int64"
+                              },
+                              {
+                                "Name": "--it1.info",
+                                "Type": "String"
+                              },
+                              {
+                                "Name": "--it2.id",
+                                "Type": "Int64"
+                              },
+                              {
+                                "Name": "--it2.info",
+                                "Type": "String"
+                              }
+                            ],
+                            "Expression": {
+                              "Inputs": [
+                                {
+                                  "Name": "country_code",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "name",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "--cn.id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "kind",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "--ct.id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "--it1.id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "--it1.info",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "info",
+                                  "Type": "String"
+                                }
+                              ],
+                              "Actions": [
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    0
+                                  ],
+                                  "Removed Arguments": [
+                                    0
+                                  ],
+                                  "Result": 0
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    1
+                                  ],
+                                  "Removed Arguments": [
+                                    1
+                                  ],
+                                  "Result": 1
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    2
+                                  ],
+                                  "Removed Arguments": [
+                                    2
+                                  ],
+                                  "Result": 2
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    3
+                                  ],
+                                  "Removed Arguments": [
+                                    3
+                                  ],
+                                  "Result": 3
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    4
+                                  ],
+                                  "Removed Arguments": [
+                                    4
+                                  ],
+                                  "Result": 4
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    5
+                                  ],
+                                  "Removed Arguments": [
+                                    5
+                                  ],
+                                  "Result": 5
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    6
+                                  ],
+                                  "Removed Arguments": [
+                                    6
+                                  ],
+                                  "Result": 6
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    7
+                                  ],
+                                  "Removed Arguments": [],
+                                  "Result": 7
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    8
+                                  ],
+                                  "Removed Arguments": [],
+                                  "Result": 8
+                                },
+                                {
+                                  "Node Type": "ALIAS",
+                                  "Result Type": "ALIAS",
+                                  "Arguments": [
+                                    7
+                                  ],
+                                  "Removed Arguments": [
+                                    7
+                                  ],
+                                  "Result": 9
+                                },
+                                {
+                                  "Node Type": "ALIAS",
+                                  "Result Type": "ALIAS",
+                                  "Arguments": [
+                                    8
+                                  ],
+                                  "Removed Arguments": [
+                                    8
+                                  ],
+                                  "Result": 7
+                                }
+                              ],
+                              "Outputs": [
+                                {
+                                  "Name": "country_code",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "name",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "--cn.id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "kind",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "--ct.id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "--it1.id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "--it1.info",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "--it2.id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "--it2.info",
+                                  "Type": "String"
+                                }
+                              ],
+                              "Positions": [
+                                0,
+                                1,
+                                2,
+                                3,
+                                4,
+                                5,
+                                6,
+                                9,
+                                7
+                              ],
+                              "Project Input": true
+                            },
+                            "Plans": [
+                              {
+                                "Node Type": "Filter",
+                                "Description": "WHERE",
+                                "Header": [
+                                  {
+                                    "Name": "country_code",
+                                    "Type": "String"
+                                  },
+                                  {
+                                    "Name": "name",
+                                    "Type": "String"
+                                  },
+                                  {
+                                    "Name": "--cn.id",
+                                    "Type": "Int64"
+                                  },
+                                  {
+                                    "Name": "kind",
+                                    "Type": "String"
+                                  },
+                                  {
+                                    "Name": "--ct.id",
+                                    "Type": "Int64"
+                                  },
+                                  {
+                                    "Name": "--it1.id",
+                                    "Type": "Int64"
+                                  },
+                                  {
+                                    "Name": "--it1.info",
+                                    "Type": "String"
+                                  },
+                                  {
+                                    "Name": "id",
+                                    "Type": "Int64"
+                                  },
+                                  {
+                                    "Name": "info",
+                                    "Type": "String"
+                                  }
+                                ],
+                                "Filter Column": "and(and(and(equals(info, 'rating'), equals(--it1.info, 'genres')), equals(kind, 'production companies')), equals(country_code, '[us]'))",
+                                "Removes Filter": true,
+                                "Expression": {
+                                  "Inputs": [
+                                    {
+                                      "Name": "country_code",
+                                      "Type": "String"
+                                    },
+                                    {
+                                      "Name": "name",
+                                      "Type": "String"
+                                    },
+                                    {
+                                      "Name": "--cn.id",
+                                      "Type": "Int64"
+                                    },
+                                    {
+                                      "Name": "kind",
+                                      "Type": "String"
+                                    },
+                                    {
+                                      "Name": "--ct.id",
+                                      "Type": "Int64"
+                                    },
+                                    {
+                                      "Name": "--it1.id",
+                                      "Type": "Int64"
+                                    },
+                                    {
+                                      "Name": "--it1.info",
+                                      "Type": "String"
+                                    },
+                                    {
+                                      "Name": "id",
+                                      "Type": "Int64"
+                                    },
+                                    {
+                                      "Name": "info",
+                                      "Type": "String"
+                                    }
+                                  ],
+                                  "Actions": [
+                                    {
+                                      "Node Type": "INPUT",
+                                      "Result Type": "INPUT",
+                                      "Arguments": [
+                                        0
+                                      ],
+                                      "Removed Arguments": [],
+                                      "Result": 0
+                                    },
+                                    {
+                                      "Node Type": "INPUT",
+                                      "Result Type": "INPUT",
+                                      "Arguments": [
+                                        1
+                                      ],
+                                      "Removed Arguments": [
+                                        1
+                                      ],
+                                      "Result": 1
+                                    },
+                                    {
+                                      "Node Type": "INPUT",
+                                      "Result Type": "INPUT",
+                                      "Arguments": [
+                                        2
+                                      ],
+                                      "Removed Arguments": [
+                                        2
+                                      ],
+                                      "Result": 2
+                                    },
+                                    {
+                                      "Node Type": "INPUT",
+                                      "Result Type": "INPUT",
+                                      "Arguments": [
+                                        3
+                                      ],
+                                      "Removed Arguments": [],
+                                      "Result": 3
+                                    },
+                                    {
+                                      "Node Type": "INPUT",
+                                      "Result Type": "INPUT",
+                                      "Arguments": [
+                                        4
+                                      ],
+                                      "Removed Arguments": [
+                                        4
+                                      ],
+                                      "Result": 4
+                                    },
+                                    {
+                                      "Node Type": "INPUT",
+                                      "Result Type": "INPUT",
+                                      "Arguments": [
+                                        5
+                                      ],
+                                      "Removed Arguments": [
+                                        5
+                                      ],
+                                      "Result": 5
+                                    },
+                                    {
+                                      "Node Type": "INPUT",
+                                      "Result Type": "INPUT",
+                                      "Arguments": [
+                                        6
+                                      ],
+                                      "Removed Arguments": [],
+                                      "Result": 6
+                                    },
+                                    {
+                                      "Node Type": "INPUT",
+                                      "Result Type": "INPUT",
+                                      "Arguments": [
+                                        7
+                                      ],
+                                      "Removed Arguments": [
+                                        7
+                                      ],
+                                      "Result": 7
+                                    },
+                                    {
+                                      "Node Type": "INPUT",
+                                      "Result Type": "INPUT",
+                                      "Arguments": [
+                                        8
+                                      ],
+                                      "Removed Arguments": [],
+                                      "Result": 8
+                                    },
+                                    {
+                                      "Node Type": "COLUMN",
+                                      "Result Type": "COLUMN",
+                                      "Column": "Const(String)",
+                                      "Arguments": [],
+                                      "Removed Arguments": [],
+                                      "Result": 9
+                                    },
+                                    {
+                                      "Node Type": "COLUMN",
+                                      "Result Type": "COLUMN",
+                                      "Column": "Const(String)",
+                                      "Arguments": [],
+                                      "Removed Arguments": [],
+                                      "Result": 10
+                                    },
+                                    {
+                                      "Node Type": "COLUMN",
+                                      "Result Type": "COLUMN",
+                                      "Column": "Const(String)",
+                                      "Arguments": [],
+                                      "Removed Arguments": [],
+                                      "Result": 11
+                                    },
+                                    {
+                                      "Node Type": "COLUMN",
+                                      "Result Type": "COLUMN",
+                                      "Column": "Const(String)",
+                                      "Arguments": [],
+                                      "Removed Arguments": [],
+                                      "Result": 12
+                                    },
+                                    {
+                                      "Node Type": "FUNCTION",
+                                      "Result Type": "FUNCTION",
+                                      "Function": "equals",
+                                      "Compiled": false,
+                                      "Arguments": [
+                                        8,
+                                        9
+                                      ],
+                                      "Removed Arguments": [
+                                        9
+                                      ],
+                                      "Result": 13
+                                    },
+                                    {
+                                      "Node Type": "FUNCTION",
+                                      "Result Type": "FUNCTION",
+                                      "Function": "equals",
+                                      "Compiled": false,
+                                      "Arguments": [
+                                        6,
+                                        10
+                                      ],
+                                      "Removed Arguments": [
+                                        10
+                                      ],
+                                      "Result": 9
+                                    },
+                                    {
+                                      "Node Type": "FUNCTION",
+                                      "Result Type": "FUNCTION",
+                                      "Function": "equals",
+                                      "Compiled": false,
+                                      "Arguments": [
+                                        3,
+                                        11
+                                      ],
+                                      "Removed Arguments": [
+                                        11
+                                      ],
+                                      "Result": 10
+                                    },
+                                    {
+                                      "Node Type": "FUNCTION",
+                                      "Result Type": "FUNCTION",
+                                      "Function": "equals",
+                                      "Compiled": false,
+                                      "Arguments": [
+                                        0,
+                                        12
+                                      ],
+                                      "Removed Arguments": [
+                                        12
+                                      ],
+                                      "Result": 11
+                                    },
+                                    {
+                                      "Node Type": "FUNCTION",
+                                      "Result Type": "FUNCTION",
+                                      "Function": "and",
+                                      "Compiled": false,
+                                      "Arguments": [
+                                        13,
+                                        9
+                                      ],
+                                      "Removed Arguments": [
+                                        13,
+                                        9
+                                      ],
+                                      "Result": 12
+                                    },
+                                    {
+                                      "Node Type": "FUNCTION",
+                                      "Result Type": "FUNCTION",
+                                      "Function": "and",
+                                      "Compiled": false,
+                                      "Arguments": [
+                                        12,
+                                        10
+                                      ],
+                                      "Removed Arguments": [
+                                        12,
+                                        10
+                                      ],
+                                      "Result": 9
+                                    },
+                                    {
+                                      "Node Type": "FUNCTION",
+                                      "Result Type": "FUNCTION",
+                                      "Function": "and",
+                                      "Compiled": false,
+                                      "Arguments": [
+                                        9,
+                                        11
+                                      ],
+                                      "Removed Arguments": [
+                                        9,
+                                        11
+                                      ],
+                                      "Result": 10
+                                    }
+                                  ],
+                                  "Outputs": [
+                                    {
+                                      "Name": "country_code",
+                                      "Type": "String"
+                                    },
+                                    {
+                                      "Name": "name",
+                                      "Type": "String"
+                                    },
+                                    {
+                                      "Name": "--cn.id",
+                                      "Type": "Int64"
+                                    },
+                                    {
+                                      "Name": "kind",
+                                      "Type": "String"
+                                    },
+                                    {
+                                      "Name": "--ct.id",
+                                      "Type": "Int64"
+                                    },
+                                    {
+                                      "Name": "--it1.id",
+                                      "Type": "Int64"
+                                    },
+                                    {
+                                      "Name": "--it1.info",
+                                      "Type": "String"
+                                    },
+                                    {
+                                      "Name": "id",
+                                      "Type": "Int64"
+                                    },
+                                    {
+                                      "Name": "info",
+                                      "Type": "String"
+                                    },
+                                    {
+                                      "Name": "and(and(and(equals(info, 'rating'), equals(--it1.info, 'genres')), equals(kind, 'production companies')), equals(country_code, '[us]'))",
+                                      "Type": "UInt8"
+                                    }
+                                  ],
+                                  "Positions": [
+                                    0,
+                                    1,
+                                    2,
+                                    3,
+                                    4,
+                                    5,
+                                    6,
+                                    7,
+                                    8,
+                                    10
+                                  ],
+                                  "Project Input": true
+                                },
+                                "Plans": [
+                                  {
+                                    "Node Type": "Join",
+                                    "Description": "JOIN",
+                                    "Header": [
+                                      {
+                                        "Name": "country_code",
+                                        "Type": "String"
+                                      },
+                                      {
+                                        "Name": "name",
+                                        "Type": "String"
+                                      },
+                                      {
+                                        "Name": "--cn.id",
+                                        "Type": "Int64"
+                                      },
+                                      {
+                                        "Name": "kind",
+                                        "Type": "String"
+                                      },
+                                      {
+                                        "Name": "--ct.id",
+                                        "Type": "Int64"
+                                      },
+                                      {
+                                        "Name": "--it1.id",
+                                        "Type": "Int64"
+                                      },
+                                      {
+                                        "Name": "--it1.info",
+                                        "Type": "String"
+                                      },
+                                      {
+                                        "Name": "id",
+                                        "Type": "Int64"
+                                      },
+                                      {
+                                        "Name": "info",
+                                        "Type": "String"
+                                      }
+                                    ],
+                                    "Plans": [
+                                      {
+                                        "Node Type": "Expression",
+                                        "Description": "(Before JOIN + (Projection + Before ORDER BY))",
+                                        "Header": [
+                                          {
+                                            "Name": "country_code",
+                                            "Type": "String"
+                                          },
+                                          {
+                                            "Name": "name",
+                                            "Type": "String"
+                                          },
+                                          {
+                                            "Name": "--cn.id",
+                                            "Type": "Int64"
+                                          },
+                                          {
+                                            "Name": "kind",
+                                            "Type": "String"
+                                          },
+                                          {
+                                            "Name": "--ct.id",
+                                            "Type": "Int64"
+                                          },
+                                          {
+                                            "Name": "--it1.id",
+                                            "Type": "Int64"
+                                          },
+                                          {
+                                            "Name": "--it1.info",
+                                            "Type": "String"
+                                          }
+                                        ],
+                                        "Expression": {
+                                          "Inputs": [
+                                            {
+                                              "Name": "country_code",
+                                              "Type": "String"
+                                            },
+                                            {
+                                              "Name": "name",
+                                              "Type": "String"
+                                            },
+                                            {
+                                              "Name": "--cn.id",
+                                              "Type": "Int64"
+                                            },
+                                            {
+                                              "Name": "kind",
+                                              "Type": "String"
+                                            },
+                                            {
+                                              "Name": "--ct.id",
+                                              "Type": "Int64"
+                                            },
+                                            {
+                                              "Name": "id",
+                                              "Type": "Int64"
+                                            },
+                                            {
+                                              "Name": "info",
+                                              "Type": "String"
+                                            }
+                                          ],
+                                          "Actions": [
+                                            {
+                                              "Node Type": "INPUT",
+                                              "Result Type": "INPUT",
+                                              "Arguments": [
+                                                0
+                                              ],
+                                              "Removed Arguments": [
+                                                0
+                                              ],
+                                              "Result": 0
+                                            },
+                                            {
+                                              "Node Type": "INPUT",
+                                              "Result Type": "INPUT",
+                                              "Arguments": [
+                                                1
+                                              ],
+                                              "Removed Arguments": [
+                                                1
+                                              ],
+                                              "Result": 1
+                                            },
+                                            {
+                                              "Node Type": "INPUT",
+                                              "Result Type": "INPUT",
+                                              "Arguments": [
+                                                2
+                                              ],
+                                              "Removed Arguments": [
+                                                2
+                                              ],
+                                              "Result": 2
+                                            },
+                                            {
+                                              "Node Type": "INPUT",
+                                              "Result Type": "INPUT",
+                                              "Arguments": [
+                                                3
+                                              ],
+                                              "Removed Arguments": [
+                                                3
+                                              ],
+                                              "Result": 3
+                                            },
+                                            {
+                                              "Node Type": "INPUT",
+                                              "Result Type": "INPUT",
+                                              "Arguments": [
+                                                4
+                                              ],
+                                              "Removed Arguments": [
+                                                4
+                                              ],
+                                              "Result": 4
+                                            },
+                                            {
+                                              "Node Type": "INPUT",
+                                              "Result Type": "INPUT",
+                                              "Arguments": [
+                                                5
+                                              ],
+                                              "Removed Arguments": [],
+                                              "Result": 5
+                                            },
+                                            {
+                                              "Node Type": "INPUT",
+                                              "Result Type": "INPUT",
+                                              "Arguments": [
+                                                6
+                                              ],
+                                              "Removed Arguments": [],
+                                              "Result": 6
+                                            },
+                                            {
+                                              "Node Type": "ALIAS",
+                                              "Result Type": "ALIAS",
+                                              "Arguments": [
+                                                5
+                                              ],
+                                              "Removed Arguments": [
+                                                5
+                                              ],
+                                              "Result": 7
+                                            },
+                                            {
+                                              "Node Type": "ALIAS",
+                                              "Result Type": "ALIAS",
+                                              "Arguments": [
+                                                6
+                                              ],
+                                              "Removed Arguments": [
+                                                6
+                                              ],
+                                              "Result": 5
+                                            }
+                                          ],
+                                          "Outputs": [
+                                            {
+                                              "Name": "country_code",
+                                              "Type": "String"
+                                            },
+                                            {
+                                              "Name": "name",
+                                              "Type": "String"
+                                            },
+                                            {
+                                              "Name": "--cn.id",
+                                              "Type": "Int64"
+                                            },
+                                            {
+                                              "Name": "kind",
+                                              "Type": "String"
+                                            },
+                                            {
+                                              "Name": "--ct.id",
+                                              "Type": "Int64"
+                                            },
+                                            {
+                                              "Name": "--it1.id",
+                                              "Type": "Int64"
+                                            },
+                                            {
+                                              "Name": "--it1.info",
+                                              "Type": "String"
+                                            }
+                                          ],
+                                          "Positions": [
+                                            0,
+                                            1,
+                                            2,
+                                            3,
+                                            4,
+                                            7,
+                                            5
+                                          ],
+                                          "Project Input": true
+                                        },
+                                        "Plans": [
+                                          {
+                                            "Node Type": "Filter",
+                                            "Description": "WHERE",
+                                            "Header": [
+                                              {
+                                                "Name": "country_code",
+                                                "Type": "String"
+                                              },
+                                              {
+                                                "Name": "name",
+                                                "Type": "String"
+                                              },
+                                              {
+                                                "Name": "--cn.id",
+                                                "Type": "Int64"
+                                              },
+                                              {
+                                                "Name": "kind",
+                                                "Type": "String"
+                                              },
+                                              {
+                                                "Name": "--ct.id",
+                                                "Type": "Int64"
+                                              },
+                                              {
+                                                "Name": "id",
+                                                "Type": "Int64"
+                                              },
+                                              {
+                                                "Name": "info",
+                                                "Type": "String"
+                                              }
+                                            ],
+                                            "Filter Column": "and(and(equals(info, 'genres'), equals(kind, 'production companies')), equals(country_code, '[us]'))",
+                                            "Removes Filter": true,
+                                            "Expression": {
+                                              "Inputs": [
+                                                {
+                                                  "Name": "country_code",
+                                                  "Type": "String"
+                                                },
+                                                {
+                                                  "Name": "name",
+                                                  "Type": "String"
+                                                },
+                                                {
+                                                  "Name": "--cn.id",
+                                                  "Type": "Int64"
+                                                },
+                                                {
+                                                  "Name": "kind",
+                                                  "Type": "String"
+                                                },
+                                                {
+                                                  "Name": "--ct.id",
+                                                  "Type": "Int64"
+                                                },
+                                                {
+                                                  "Name": "id",
+                                                  "Type": "Int64"
+                                                },
+                                                {
+                                                  "Name": "info",
+                                                  "Type": "String"
+                                                }
+                                              ],
+                                              "Actions": [
+                                                {
+                                                  "Node Type": "INPUT",
+                                                  "Result Type": "INPUT",
+                                                  "Arguments": [
+                                                    0
+                                                  ],
+                                                  "Removed Arguments": [],
+                                                  "Result": 0
+                                                },
+                                                {
+                                                  "Node Type": "INPUT",
+                                                  "Result Type": "INPUT",
+                                                  "Arguments": [
+                                                    1
+                                                  ],
+                                                  "Removed Arguments": [
+                                                    1
+                                                  ],
+                                                  "Result": 1
+                                                },
+                                                {
+                                                  "Node Type": "INPUT",
+                                                  "Result Type": "INPUT",
+                                                  "Arguments": [
+                                                    2
+                                                  ],
+                                                  "Removed Arguments": [
+                                                    2
+                                                  ],
+                                                  "Result": 2
+                                                },
+                                                {
+                                                  "Node Type": "INPUT",
+                                                  "Result Type": "INPUT",
+                                                  "Arguments": [
+                                                    3
+                                                  ],
+                                                  "Removed Arguments": [],
+                                                  "Result": 3
+                                                },
+                                                {
+                                                  "Node Type": "INPUT",
+                                                  "Result Type": "INPUT",
+                                                  "Arguments": [
+                                                    4
+                                                  ],
+                                                  "Removed Arguments": [
+                                                    4
+                                                  ],
+                                                  "Result": 4
+                                                },
+                                                {
+                                                  "Node Type": "INPUT",
+                                                  "Result Type": "INPUT",
+                                                  "Arguments": [
+                                                    5
+                                                  ],
+                                                  "Removed Arguments": [
+                                                    5
+                                                  ],
+                                                  "Result": 5
+                                                },
+                                                {
+                                                  "Node Type": "INPUT",
+                                                  "Result Type": "INPUT",
+                                                  "Arguments": [
+                                                    6
+                                                  ],
+                                                  "Removed Arguments": [],
+                                                  "Result": 6
+                                                },
+                                                {
+                                                  "Node Type": "COLUMN",
+                                                  "Result Type": "COLUMN",
+                                                  "Column": "Const(String)",
+                                                  "Arguments": [],
+                                                  "Removed Arguments": [],
+                                                  "Result": 7
+                                                },
+                                                {
+                                                  "Node Type": "COLUMN",
+                                                  "Result Type": "COLUMN",
+                                                  "Column": "Const(String)",
+                                                  "Arguments": [],
+                                                  "Removed Arguments": [],
+                                                  "Result": 8
+                                                },
+                                                {
+                                                  "Node Type": "COLUMN",
+                                                  "Result Type": "COLUMN",
+                                                  "Column": "Const(String)",
+                                                  "Arguments": [],
+                                                  "Removed Arguments": [],
+                                                  "Result": 9
+                                                },
+                                                {
+                                                  "Node Type": "FUNCTION",
+                                                  "Result Type": "FUNCTION",
+                                                  "Function": "equals",
+                                                  "Compiled": false,
+                                                  "Arguments": [
+                                                    6,
+                                                    7
+                                                  ],
+                                                  "Removed Arguments": [
+                                                    7
+                                                  ],
+                                                  "Result": 10
+                                                },
+                                                {
+                                                  "Node Type": "FUNCTION",
+                                                  "Result Type": "FUNCTION",
+                                                  "Function": "equals",
+                                                  "Compiled": false,
+                                                  "Arguments": [
+                                                    3,
+                                                    8
+                                                  ],
+                                                  "Removed Arguments": [
+                                                    8
+                                                  ],
+                                                  "Result": 7
+                                                },
+                                                {
+                                                  "Node Type": "FUNCTION",
+                                                  "Result Type": "FUNCTION",
+                                                  "Function": "equals",
+                                                  "Compiled": false,
+                                                  "Arguments": [
+                                                    0,
+                                                    9
+                                                  ],
+                                                  "Removed Arguments": [
+                                                    9
+                                                  ],
+                                                  "Result": 8
+                                                },
+                                                {
+                                                  "Node Type": "FUNCTION",
+                                                  "Result Type": "FUNCTION",
+                                                  "Function": "and",
+                                                  "Compiled": false,
+                                                  "Arguments": [
+                                                    10,
+                                                    7
+                                                  ],
+                                                  "Removed Arguments": [
+                                                    10,
+                                                    7
+                                                  ],
+                                                  "Result": 9
+                                                },
+                                                {
+                                                  "Node Type": "FUNCTION",
+                                                  "Result Type": "FUNCTION",
+                                                  "Function": "and",
+                                                  "Compiled": false,
+                                                  "Arguments": [
+                                                    9,
+                                                    8
+                                                  ],
+                                                  "Removed Arguments": [
+                                                    9,
+                                                    8
+                                                  ],
+                                                  "Result": 7
+                                                }
+                                              ],
+                                              "Outputs": [
+                                                {
+                                                  "Name": "country_code",
+                                                  "Type": "String"
+                                                },
+                                                {
+                                                  "Name": "name",
+                                                  "Type": "String"
+                                                },
+                                                {
+                                                  "Name": "--cn.id",
+                                                  "Type": "Int64"
+                                                },
+                                                {
+                                                  "Name": "kind",
+                                                  "Type": "String"
+                                                },
+                                                {
+                                                  "Name": "--ct.id",
+                                                  "Type": "Int64"
+                                                },
+                                                {
+                                                  "Name": "id",
+                                                  "Type": "Int64"
+                                                },
+                                                {
+                                                  "Name": "info",
+                                                  "Type": "String"
+                                                },
+                                                {
+                                                  "Name": "and(and(equals(info, 'genres'), equals(kind, 'production companies')), equals(country_code, '[us]'))",
+                                                  "Type": "UInt8"
+                                                }
+                                              ],
+                                              "Positions": [
+                                                0,
+                                                1,
+                                                2,
+                                                3,
+                                                4,
+                                                5,
+                                                6,
+                                                7
+                                              ],
+                                              "Project Input": true
+                                            },
+                                            "Plans": [
+                                              {
+                                                "Node Type": "Join",
+                                                "Description": "JOIN",
+                                                "Header": [
+                                                  {
+                                                    "Name": "country_code",
+                                                    "Type": "String"
+                                                  },
+                                                  {
+                                                    "Name": "name",
+                                                    "Type": "String"
+                                                  },
+                                                  {
+                                                    "Name": "--cn.id",
+                                                    "Type": "Int64"
+                                                  },
+                                                  {
+                                                    "Name": "kind",
+                                                    "Type": "String"
+                                                  },
+                                                  {
+                                                    "Name": "--ct.id",
+                                                    "Type": "Int64"
+                                                  },
+                                                  {
+                                                    "Name": "id",
+                                                    "Type": "Int64"
+                                                  },
+                                                  {
+                                                    "Name": "info",
+                                                    "Type": "String"
+                                                  }
+                                                ],
+                                                "Plans": [
+                                                  {
+                                                    "Node Type": "Expression",
+                                                    "Description": "(Before JOIN + (Projection + Before ORDER BY))",
+                                                    "Header": [
+                                                      {
+                                                        "Name": "country_code",
+                                                        "Type": "String"
+                                                      },
+                                                      {
+                                                        "Name": "name",
+                                                        "Type": "String"
+                                                      },
+                                                      {
+                                                        "Name": "--cn.id",
+                                                        "Type": "Int64"
+                                                      },
+                                                      {
+                                                        "Name": "kind",
+                                                        "Type": "String"
+                                                      },
+                                                      {
+                                                        "Name": "--ct.id",
+                                                        "Type": "Int64"
+                                                      }
+                                                    ],
+                                                    "Expression": {
+                                                      "Inputs": [
+                                                        {
+                                                          "Name": "country_code",
+                                                          "Type": "String"
+                                                        },
+                                                        {
+                                                          "Name": "id",
+                                                          "Type": "Int64"
+                                                        },
+                                                        {
+                                                          "Name": "name",
+                                                          "Type": "String"
+                                                        },
+                                                        {
+                                                          "Name": "ct.id",
+                                                          "Type": "Int64"
+                                                        },
+                                                        {
+                                                          "Name": "kind",
+                                                          "Type": "String"
+                                                        }
+                                                      ],
+                                                      "Actions": [
+                                                        {
+                                                          "Node Type": "INPUT",
+                                                          "Result Type": "INPUT",
+                                                          "Arguments": [
+                                                            0
+                                                          ],
+                                                          "Removed Arguments": [
+                                                            0
+                                                          ],
+                                                          "Result": 0
+                                                        },
+                                                        {
+                                                          "Node Type": "INPUT",
+                                                          "Result Type": "INPUT",
+                                                          "Arguments": [
+                                                            1
+                                                          ],
+                                                          "Removed Arguments": [],
+                                                          "Result": 1
+                                                        },
+                                                        {
+                                                          "Node Type": "INPUT",
+                                                          "Result Type": "INPUT",
+                                                          "Arguments": [
+                                                            2
+                                                          ],
+                                                          "Removed Arguments": [
+                                                            2
+                                                          ],
+                                                          "Result": 2
+                                                        },
+                                                        {
+                                                          "Node Type": "INPUT",
+                                                          "Result Type": "INPUT",
+                                                          "Arguments": [
+                                                            3
+                                                          ],
+                                                          "Removed Arguments": [],
+                                                          "Result": 3
+                                                        },
+                                                        {
+                                                          "Node Type": "INPUT",
+                                                          "Result Type": "INPUT",
+                                                          "Arguments": [
+                                                            4
+                                                          ],
+                                                          "Removed Arguments": [
+                                                            4
+                                                          ],
+                                                          "Result": 4
+                                                        },
+                                                        {
+                                                          "Node Type": "ALIAS",
+                                                          "Result Type": "ALIAS",
+                                                          "Arguments": [
+                                                            1
+                                                          ],
+                                                          "Removed Arguments": [
+                                                            1
+                                                          ],
+                                                          "Result": 5
+                                                        },
+                                                        {
+                                                          "Node Type": "ALIAS",
+                                                          "Result Type": "ALIAS",
+                                                          "Arguments": [
+                                                            3
+                                                          ],
+                                                          "Removed Arguments": [
+                                                            3
+                                                          ],
+                                                          "Result": 1
+                                                        }
+                                                      ],
+                                                      "Outputs": [
+                                                        {
+                                                          "Name": "country_code",
+                                                          "Type": "String"
+                                                        },
+                                                        {
+                                                          "Name": "name",
+                                                          "Type": "String"
+                                                        },
+                                                        {
+                                                          "Name": "--cn.id",
+                                                          "Type": "Int64"
+                                                        },
+                                                        {
+                                                          "Name": "kind",
+                                                          "Type": "String"
+                                                        },
+                                                        {
+                                                          "Name": "--ct.id",
+                                                          "Type": "Int64"
+                                                        }
+                                                      ],
+                                                      "Positions": [
+                                                        0,
+                                                        2,
+                                                        5,
+                                                        4,
+                                                        1
+                                                      ],
+                                                      "Project Input": true
+                                                    },
+                                                    "Plans": [
+                                                      {
+                                                        "Node Type": "Filter",
+                                                        "Description": "WHERE",
+                                                        "Header": [
+                                                          {
+                                                            "Name": "country_code",
+                                                            "Type": "String"
+                                                          },
+                                                          {
+                                                            "Name": "id",
+                                                            "Type": "Int64"
+                                                          },
+                                                          {
+                                                            "Name": "name",
+                                                            "Type": "String"
+                                                          },
+                                                          {
+                                                            "Name": "ct.id",
+                                                            "Type": "Int64"
+                                                          },
+                                                          {
+                                                            "Name": "kind",
+                                                            "Type": "String"
+                                                          }
+                                                        ],
+                                                        "Filter Column": "and(equals(country_code, '[us]'), equals(kind, 'production companies'))",
+                                                        "Removes Filter": true,
+                                                        "Expression": {
+                                                          "Inputs": [
+                                                            {
+                                                              "Name": "equals(country_code, '[us]')",
+                                                              "Type": "UInt8"
+                                                            },
+                                                            {
+                                                              "Name": "country_code",
+                                                              "Type": "String"
+                                                            },
+                                                            {
+                                                              "Name": "id",
+                                                              "Type": "Int64"
+                                                            },
+                                                            {
+                                                              "Name": "name",
+                                                              "Type": "String"
+                                                            },
+                                                            {
+                                                              "Name": "ct.id",
+                                                              "Type": "Int64"
+                                                            },
+                                                            {
+                                                              "Name": "kind",
+                                                              "Type": "String"
+                                                            }
+                                                          ],
+                                                          "Actions": [
+                                                            {
+                                                              "Node Type": "INPUT",
+                                                              "Result Type": "INPUT",
+                                                              "Arguments": [
+                                                                0
+                                                              ],
+                                                              "Removed Arguments": [],
+                                                              "Result": 0
+                                                            },
+                                                            {
+                                                              "Node Type": "INPUT",
+                                                              "Result Type": "INPUT",
+                                                              "Arguments": [
+                                                                1
+                                                              ],
+                                                              "Removed Arguments": [
+                                                                1
+                                                              ],
+                                                              "Result": 1
+                                                            },
+                                                            {
+                                                              "Node Type": "INPUT",
+                                                              "Result Type": "INPUT",
+                                                              "Arguments": [
+                                                                2
+                                                              ],
+                                                              "Removed Arguments": [
+                                                                2
+                                                              ],
+                                                              "Result": 2
+                                                            },
+                                                            {
+                                                              "Node Type": "INPUT",
+                                                              "Result Type": "INPUT",
+                                                              "Arguments": [
+                                                                3
+                                                              ],
+                                                              "Removed Arguments": [
+                                                                3
+                                                              ],
+                                                              "Result": 3
+                                                            },
+                                                            {
+                                                              "Node Type": "INPUT",
+                                                              "Result Type": "INPUT",
+                                                              "Arguments": [
+                                                                4
+                                                              ],
+                                                              "Removed Arguments": [
+                                                                4
+                                                              ],
+                                                              "Result": 4
+                                                            },
+                                                            {
+                                                              "Node Type": "INPUT",
+                                                              "Result Type": "INPUT",
+                                                              "Arguments": [
+                                                                5
+                                                              ],
+                                                              "Removed Arguments": [],
+                                                              "Result": 5
+                                                            },
+                                                            {
+                                                              "Node Type": "COLUMN",
+                                                              "Result Type": "COLUMN",
+                                                              "Column": "Const(String)",
+                                                              "Arguments": [],
+                                                              "Removed Arguments": [],
+                                                              "Result": 6
+                                                            },
+                                                            {
+                                                              "Node Type": "FUNCTION",
+                                                              "Result Type": "FUNCTION",
+                                                              "Function": "equals",
+                                                              "Compiled": false,
+                                                              "Arguments": [
+                                                                5,
+                                                                6
+                                                              ],
+                                                              "Removed Arguments": [
+                                                                6
+                                                              ],
+                                                              "Result": 7
+                                                            },
+                                                            {
+                                                              "Node Type": "FUNCTION",
+                                                              "Result Type": "FUNCTION",
+                                                              "Function": "and",
+                                                              "Compiled": false,
+                                                              "Arguments": [
+                                                                0,
+                                                                7
+                                                              ],
+                                                              "Removed Arguments": [
+                                                                0,
+                                                                7
+                                                              ],
+                                                              "Result": 6
+                                                            }
+                                                          ],
+                                                          "Outputs": [
+                                                            {
+                                                              "Name": "country_code",
+                                                              "Type": "String"
+                                                            },
+                                                            {
+                                                              "Name": "id",
+                                                              "Type": "Int64"
+                                                            },
+                                                            {
+                                                              "Name": "name",
+                                                              "Type": "String"
+                                                            },
+                                                            {
+                                                              "Name": "ct.id",
+                                                              "Type": "Int64"
+                                                            },
+                                                            {
+                                                              "Name": "kind",
+                                                              "Type": "String"
+                                                            },
+                                                            {
+                                                              "Name": "and(equals(country_code, '[us]'), equals(kind, 'production companies'))",
+                                                              "Type": "UInt8"
+                                                            }
+                                                          ],
+                                                          "Positions": [
+                                                            1,
+                                                            2,
+                                                            3,
+                                                            4,
+                                                            5,
+                                                            6
+                                                          ],
+                                                          "Project Input": true
+                                                        },
+                                                        "Plans": [
+                                                          {
+                                                            "Node Type": "Join",
+                                                            "Description": "JOIN",
+                                                            "Header": [
+                                                              {
+                                                                "Name": "equals(country_code, '[us]')",
+                                                                "Type": "UInt8"
+                                                              },
+                                                              {
+                                                                "Name": "country_code",
+                                                                "Type": "String"
+                                                              },
+                                                              {
+                                                                "Name": "id",
+                                                                "Type": "Int64"
+                                                              },
+                                                              {
+                                                                "Name": "name",
+                                                                "Type": "String"
+                                                              },
+                                                              {
+                                                                "Name": "ct.id",
+                                                                "Type": "Int64"
+                                                              },
+                                                              {
+                                                                "Name": "kind",
+                                                                "Type": "String"
+                                                              }
+                                                            ],
+                                                            "Plans": [
+                                                              {
+                                                                "Node Type": "Expression",
+                                                                "Description": "Before JOIN",
+                                                                "Header": [
+                                                                  {
+                                                                    "Name": "equals(country_code, '[us]')",
+                                                                    "Type": "UInt8"
+                                                                  },
+                                                                  {
+                                                                    "Name": "country_code",
+                                                                    "Type": "String"
+                                                                  },
+                                                                  {
+                                                                    "Name": "id",
+                                                                    "Type": "Int64"
+                                                                  },
+                                                                  {
+                                                                    "Name": "name",
+                                                                    "Type": "String"
+                                                                  }
+                                                                ],
+                                                                "Expression": {
+                                                                  "Inputs": [
+                                                                    {
+                                                                      "Name": "equals(country_code, '[us]')",
+                                                                      "Type": "UInt8"
+                                                                    },
+                                                                    {
+                                                                      "Name": "country_code",
+                                                                      "Type": "String"
+                                                                    },
+                                                                    {
+                                                                      "Name": "id",
+                                                                      "Type": "Int64"
+                                                                    },
+                                                                    {
+                                                                      "Name": "name",
+                                                                      "Type": "String"
+                                                                    }
+                                                                  ],
+                                                                  "Actions": [
+                                                                    {
+                                                                      "Node Type": "INPUT",
+                                                                      "Result Type": "INPUT",
+                                                                      "Arguments": [
+                                                                        0
+                                                                      ],
+                                                                      "Removed Arguments": [
+                                                                        0
+                                                                      ],
+                                                                      "Result": 0
+                                                                    },
+                                                                    {
+                                                                      "Node Type": "INPUT",
+                                                                      "Result Type": "INPUT",
+                                                                      "Arguments": [
+                                                                        1
+                                                                      ],
+                                                                      "Removed Arguments": [
+                                                                        1
+                                                                      ],
+                                                                      "Result": 1
+                                                                    },
+                                                                    {
+                                                                      "Node Type": "INPUT",
+                                                                      "Result Type": "INPUT",
+                                                                      "Arguments": [
+                                                                        2
+                                                                      ],
+                                                                      "Removed Arguments": [
+                                                                        2
+                                                                      ],
+                                                                      "Result": 2
+                                                                    },
+                                                                    {
+                                                                      "Node Type": "INPUT",
+                                                                      "Result Type": "INPUT",
+                                                                      "Arguments": [
+                                                                        3
+                                                                      ],
+                                                                      "Removed Arguments": [
+                                                                        3
+                                                                      ],
+                                                                      "Result": 3
+                                                                    }
+                                                                  ],
+                                                                  "Outputs": [
+                                                                    {
+                                                                      "Name": "equals(country_code, '[us]')",
+                                                                      "Type": "UInt8"
+                                                                    },
+                                                                    {
+                                                                      "Name": "country_code",
+                                                                      "Type": "String"
+                                                                    },
+                                                                    {
+                                                                      "Name": "id",
+                                                                      "Type": "Int64"
+                                                                    },
+                                                                    {
+                                                                      "Name": "name",
+                                                                      "Type": "String"
+                                                                    }
+                                                                  ],
+                                                                  "Positions": [
+                                                                    0,
+                                                                    1,
+                                                                    2,
+                                                                    3
+                                                                  ],
+                                                                  "Project Input": false
+                                                                },
+                                                                "Plans": [
+                                                                  {
+                                                                    "Node Type": "SettingQuotaAndLimits",
+                                                                    "Description": "Set limits and quota after reading from storage",
+                                                                    "Header": [
+                                                                      {
+                                                                        "Name": "equals(country_code, '[us]')",
+                                                                        "Type": "UInt8"
+                                                                      },
+                                                                      {
+                                                                        "Name": "country_code",
+                                                                        "Type": "String"
+                                                                      },
+                                                                      {
+                                                                        "Name": "id",
+                                                                        "Type": "Int64"
+                                                                      },
+                                                                      {
+                                                                        "Name": "name",
+                                                                        "Type": "String"
+                                                                      }
+                                                                    ],
+                                                                    "Plans": [
+                                                                      {
+                                                                        "Node Type": "ReadFromMergeTree",
+                                                                        "Header": [
+                                                                          {
+                                                                            "Name": "equals(country_code, '[us]')",
+                                                                            "Type": "UInt8"
+                                                                          },
+                                                                          {
+                                                                            "Name": "country_code",
+                                                                            "Type": "String"
+                                                                          },
+                                                                          {
+                                                                            "Name": "id",
+                                                                            "Type": "Int64"
+                                                                          },
+                                                                          {
+                                                                            "Name": "name",
+                                                                            "Type": "String"
+                                                                          }
+                                                                        ],
+                                                                        "Read Type": "Default",
+                                                                        "Parts": 1,
+                                                                        "Granules": 29
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              },
+                                                              {
+                                                                "Node Type": "Expression",
+                                                                "Description": "(Joined actions + (Rename joined columns + (Projection + Before ORDER BY)))",
+                                                                "Header": [
+                                                                  {
+                                                                    "Name": "ct.id",
+                                                                    "Type": "Int64"
+                                                                  },
+                                                                  {
+                                                                    "Name": "kind",
+                                                                    "Type": "String"
+                                                                  }
+                                                                ],
+                                                                "Expression": {
+                                                                  "Inputs": [
+                                                                    {
+                                                                      "Name": "id",
+                                                                      "Type": "Int64"
+                                                                    },
+                                                                    {
+                                                                      "Name": "kind",
+                                                                      "Type": "String"
+                                                                    }
+                                                                  ],
+                                                                  "Actions": [
+                                                                    {
+                                                                      "Node Type": "INPUT",
+                                                                      "Result Type": "INPUT",
+                                                                      "Arguments": [
+                                                                        0
+                                                                      ],
+                                                                      "Removed Arguments": [],
+                                                                      "Result": 0
+                                                                    },
+                                                                    {
+                                                                      "Node Type": "INPUT",
+                                                                      "Result Type": "INPUT",
+                                                                      "Arguments": [
+                                                                        1
+                                                                      ],
+                                                                      "Removed Arguments": [],
+                                                                      "Result": 1
+                                                                    },
+                                                                    {
+                                                                      "Node Type": "ALIAS",
+                                                                      "Result Type": "ALIAS",
+                                                                      "Arguments": [
+                                                                        0
+                                                                      ],
+                                                                      "Removed Arguments": [
+                                                                        0
+                                                                      ],
+                                                                      "Result": 2
+                                                                    },
+                                                                    {
+                                                                      "Node Type": "ALIAS",
+                                                                      "Result Type": "ALIAS",
+                                                                      "Arguments": [
+                                                                        1
+                                                                      ],
+                                                                      "Removed Arguments": [
+                                                                        1
+                                                                      ],
+                                                                      "Result": 0
+                                                                    }
+                                                                  ],
+                                                                  "Outputs": [
+                                                                    {
+                                                                      "Name": "ct.id",
+                                                                      "Type": "Int64"
+                                                                    },
+                                                                    {
+                                                                      "Name": "kind",
+                                                                      "Type": "String"
+                                                                    }
+                                                                  ],
+                                                                  "Positions": [
+                                                                    2,
+                                                                    0
+                                                                  ],
+                                                                  "Project Input": true
+                                                                },
+                                                                "Plans": [
+                                                                  {
+                                                                    "Node Type": "SettingQuotaAndLimits",
+                                                                    "Description": "Set limits and quota after reading from storage",
+                                                                    "Header": [
+                                                                      {
+                                                                        "Name": "id",
+                                                                        "Type": "Int64"
+                                                                      },
+                                                                      {
+                                                                        "Name": "kind",
+                                                                        "Type": "String"
+                                                                      }
+                                                                    ],
+                                                                    "Plans": [
+                                                                      {
+                                                                        "Node Type": "ReadFromMergeTree",
+                                                                        "Header": [
+                                                                          {
+                                                                            "Name": "id",
+                                                                            "Type": "Int64"
+                                                                          },
+                                                                          {
+                                                                            "Name": "kind",
+                                                                            "Type": "String"
+                                                                          }
+                                                                        ],
+                                                                        "Read Type": "Default",
+                                                                        "Parts": 1,
+                                                                        "Granules": 1
+                                                                      }
+                                                                    ]
+                                                                  }
+                                                                ]
+                                                              }
+                                                            ]
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  },
+                                                  {
+                                                    "Node Type": "Expression",
+                                                    "Description": "(Joined actions + (Rename joined columns + (Projection + Before ORDER BY)))",
+                                                    "Header": [
+                                                      {
+                                                        "Name": "id",
+                                                        "Type": "Int64"
+                                                      },
+                                                      {
+                                                        "Name": "info",
+                                                        "Type": "String"
+                                                      }
+                                                    ],
+                                                    "Expression": {
+                                                      "Inputs": [
+                                                        {
+                                                          "Name": "id",
+                                                          "Type": "Int64"
+                                                        },
+                                                        {
+                                                          "Name": "info",
+                                                          "Type": "String"
+                                                        }
+                                                      ],
+                                                      "Actions": [
+                                                        {
+                                                          "Node Type": "INPUT",
+                                                          "Result Type": "INPUT",
+                                                          "Arguments": [
+                                                            0
+                                                          ],
+                                                          "Removed Arguments": [],
+                                                          "Result": 0
+                                                        },
+                                                        {
+                                                          "Node Type": "INPUT",
+                                                          "Result Type": "INPUT",
+                                                          "Arguments": [
+                                                            1
+                                                          ],
+                                                          "Removed Arguments": [],
+                                                          "Result": 1
+                                                        },
+                                                        {
+                                                          "Node Type": "ALIAS",
+                                                          "Result Type": "ALIAS",
+                                                          "Arguments": [
+                                                            0
+                                                          ],
+                                                          "Removed Arguments": [
+                                                            0
+                                                          ],
+                                                          "Result": 2
+                                                        },
+                                                        {
+                                                          "Node Type": "ALIAS",
+                                                          "Result Type": "ALIAS",
+                                                          "Arguments": [
+                                                            1
+                                                          ],
+                                                          "Removed Arguments": [
+                                                            1
+                                                          ],
+                                                          "Result": 0
+                                                        }
+                                                      ],
+                                                      "Outputs": [
+                                                        {
+                                                          "Name": "id",
+                                                          "Type": "Int64"
+                                                        },
+                                                        {
+                                                          "Name": "info",
+                                                          "Type": "String"
+                                                        }
+                                                      ],
+                                                      "Positions": [
+                                                        2,
+                                                        0
+                                                      ],
+                                                      "Project Input": true
+                                                    },
+                                                    "Plans": [
+                                                      {
+                                                        "Node Type": "SettingQuotaAndLimits",
+                                                        "Description": "Set limits and quota after reading from storage",
+                                                        "Header": [
+                                                          {
+                                                            "Name": "id",
+                                                            "Type": "Int64"
+                                                          },
+                                                          {
+                                                            "Name": "info",
+                                                            "Type": "String"
+                                                          }
+                                                        ],
+                                                        "Plans": [
+                                                          {
+                                                            "Node Type": "ReadFromMergeTree",
+                                                            "Header": [
+                                                              {
+                                                                "Name": "id",
+                                                                "Type": "Int64"
+                                                              },
+                                                              {
+                                                                "Name": "info",
+                                                                "Type": "String"
+                                                              }
+                                                            ],
+                                                            "Read Type": "Default",
+                                                            "Parts": 1,
+                                                            "Granules": 1
+                                                          }
+                                                        ]
+                                                      }
+                                                    ]
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      },
+                                      {
+                                        "Node Type": "Expression",
+                                        "Description": "(Joined actions + (Rename joined columns + (Projection + Before ORDER BY)))",
+                                        "Header": [
+                                          {
+                                            "Name": "id",
+                                            "Type": "Int64"
+                                          },
+                                          {
+                                            "Name": "info",
+                                            "Type": "String"
+                                          }
+                                        ],
+                                        "Expression": {
+                                          "Inputs": [
+                                            {
+                                              "Name": "id",
+                                              "Type": "Int64"
+                                            },
+                                            {
+                                              "Name": "info",
+                                              "Type": "String"
+                                            }
+                                          ],
+                                          "Actions": [
+                                            {
+                                              "Node Type": "INPUT",
+                                              "Result Type": "INPUT",
+                                              "Arguments": [
+                                                0
+                                              ],
+                                              "Removed Arguments": [],
+                                              "Result": 0
+                                            },
+                                            {
+                                              "Node Type": "INPUT",
+                                              "Result Type": "INPUT",
+                                              "Arguments": [
+                                                1
+                                              ],
+                                              "Removed Arguments": [],
+                                              "Result": 1
+                                            },
+                                            {
+                                              "Node Type": "ALIAS",
+                                              "Result Type": "ALIAS",
+                                              "Arguments": [
+                                                0
+                                              ],
+                                              "Removed Arguments": [
+                                                0
+                                              ],
+                                              "Result": 2
+                                            },
+                                            {
+                                              "Node Type": "ALIAS",
+                                              "Result Type": "ALIAS",
+                                              "Arguments": [
+                                                1
+                                              ],
+                                              "Removed Arguments": [
+                                                1
+                                              ],
+                                              "Result": 0
+                                            }
+                                          ],
+                                          "Outputs": [
+                                            {
+                                              "Name": "id",
+                                              "Type": "Int64"
+                                            },
+                                            {
+                                              "Name": "info",
+                                              "Type": "String"
+                                            }
+                                          ],
+                                          "Positions": [
+                                            2,
+                                            0
+                                          ],
+                                          "Project Input": true
+                                        },
+                                        "Plans": [
+                                          {
+                                            "Node Type": "SettingQuotaAndLimits",
+                                            "Description": "Set limits and quota after reading from storage",
+                                            "Header": [
+                                              {
+                                                "Name": "id",
+                                                "Type": "Int64"
+                                              },
+                                              {
+                                                "Name": "info",
+                                                "Type": "String"
+                                              }
+                                            ],
+                                            "Plans": [
+                                              {
+                                                "Node Type": "ReadFromMergeTree",
+                                                "Header": [
+                                                  {
+                                                    "Name": "id",
+                                                    "Type": "Int64"
+                                                  },
+                                                  {
+                                                    "Name": "info",
+                                                    "Type": "String"
+                                                  }
+                                                ],
+                                                "Read Type": "Default",
+                                                "Parts": 1,
+                                                "Granules": 1
+                                              }
+                                            ]
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "Node Type": "Expression",
+                            "Description": "(Joined actions + (Rename joined columns + (Projection + Before ORDER BY)))",
+                            "Header": [
+                              {
+                                "Name": "company_id",
+                                "Type": "Int64"
+                              },
+                              {
+                                "Name": "company_type_id",
+                                "Type": "Int64"
+                              },
+                              {
+                                "Name": "movie_id",
+                                "Type": "Int64"
+                              }
+                            ],
+                            "Expression": {
+                              "Inputs": [
+                                {
+                                  "Name": "movie_id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "company_id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "company_type_id",
+                                  "Type": "Int64"
+                                }
+                              ],
+                              "Actions": [
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    0
+                                  ],
+                                  "Removed Arguments": [],
+                                  "Result": 0
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    1
+                                  ],
+                                  "Removed Arguments": [],
+                                  "Result": 1
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    2
+                                  ],
+                                  "Removed Arguments": [],
+                                  "Result": 2
+                                },
+                                {
+                                  "Node Type": "ALIAS",
+                                  "Result Type": "ALIAS",
+                                  "Arguments": [
+                                    0
+                                  ],
+                                  "Removed Arguments": [
+                                    0
+                                  ],
+                                  "Result": 3
+                                },
+                                {
+                                  "Node Type": "ALIAS",
+                                  "Result Type": "ALIAS",
+                                  "Arguments": [
+                                    1
+                                  ],
+                                  "Removed Arguments": [
+                                    1
+                                  ],
+                                  "Result": 0
+                                },
+                                {
+                                  "Node Type": "ALIAS",
+                                  "Result Type": "ALIAS",
+                                  "Arguments": [
+                                    2
+                                  ],
+                                  "Removed Arguments": [
+                                    2
+                                  ],
+                                  "Result": 1
+                                }
+                              ],
+                              "Outputs": [
+                                {
+                                  "Name": "company_id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "company_type_id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "movie_id",
+                                  "Type": "Int64"
+                                }
+                              ],
+                              "Positions": [
+                                0,
+                                1,
+                                3
+                              ],
+                              "Project Input": true
+                            },
+                            "Plans": [
+                              {
+                                "Node Type": "SettingQuotaAndLimits",
+                                "Description": "Set limits and quota after reading from storage",
+                                "Header": [
+                                  {
+                                    "Name": "movie_id",
+                                    "Type": "Int64"
+                                  },
+                                  {
+                                    "Name": "company_id",
+                                    "Type": "Int64"
+                                  },
+                                  {
+                                    "Name": "company_type_id",
+                                    "Type": "Int64"
+                                  }
+                                ],
+                                "Plans": [
+                                  {
+                                    "Node Type": "ReadFromMergeTree",
+                                    "Header": [
+                                      {
+                                        "Name": "movie_id",
+                                        "Type": "Int64"
+                                      },
+                                      {
+                                        "Name": "company_id",
+                                        "Type": "Int64"
+                                      },
+                                      {
+                                        "Name": "company_type_id",
+                                        "Type": "Int64"
+                                      }
+                                    ],
+                                    "Read Type": "Default",
+                                    "Parts": 1,
+                                    "Granules": 318
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Node Type": "Expression",
+                "Description": "(Joined actions + (Rename joined columns + (Projection + Before ORDER BY)))",
+                "Header": [
+                  {
+                    "Name": "movie_id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "info_type_id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "--mi.info_type_id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "--mi.movie_id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "info",
+                    "Type": "String"
+                  }
+                ],
+                "Expression": {
+                  "Inputs": [
+                    {
+                      "Name": "movie_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "info_type_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "info",
+                      "Type": "String"
+                    }
+                  ],
+                  "Actions": [
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        0
+                      ],
+                      "Removed Arguments": [],
+                      "Result": 0
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        1
+                      ],
+                      "Removed Arguments": [],
+                      "Result": 1
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        2
+                      ],
+                      "Removed Arguments": [],
+                      "Result": 2
+                    },
+                    {
+                      "Node Type": "ALIAS",
+                      "Result Type": "ALIAS",
+                      "Arguments": [
+                        0
+                      ],
+                      "Removed Arguments": [
+                        0
+                      ],
+                      "Result": 3
+                    },
+                    {
+                      "Node Type": "ALIAS",
+                      "Result Type": "ALIAS",
+                      "Arguments": [
+                        1
+                      ],
+                      "Removed Arguments": [
+                        1
+                      ],
+                      "Result": 0
+                    },
+                    {
+                      "Node Type": "ALIAS",
+                      "Result Type": "ALIAS",
+                      "Arguments": [
+                        2
+                      ],
+                      "Removed Arguments": [
+                        2
+                      ],
+                      "Result": 1
+                    },
+                    {
+                      "Node Type": "ALIAS",
+                      "Result Type": "ALIAS",
+                      "Arguments": [
+                        3
+                      ],
+                      "Removed Arguments": [],
+                      "Result": 2
+                    },
+                    {
+                      "Node Type": "ALIAS",
+                      "Result Type": "ALIAS",
+                      "Arguments": [
+                        0
+                      ],
+                      "Removed Arguments": [],
+                      "Result": 4
+                    }
+                  ],
+                  "Outputs": [
+                    {
+                      "Name": "movie_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "info_type_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "--mi.info_type_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "--mi.movie_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "info",
+                      "Type": "String"
+                    }
+                  ],
+                  "Positions": [
+                    3,
+                    0,
+                    4,
+                    2,
+                    1
+                  ],
+                  "Project Input": true
+                },
+                "Plans": [
+                  {
+                    "Node Type": "SettingQuotaAndLimits",
+                    "Description": "Set limits and quota after reading from storage",
+                    "Header": [
+                      {
+                        "Name": "movie_id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "info_type_id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "info",
+                        "Type": "String"
+                      }
+                    ],
+                    "Plans": [
+                      {
+                        "Node Type": "ReadFromMergeTree",
+                        "Header": [
+                          {
+                            "Name": "movie_id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "info_type_id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "info",
+                            "Type": "String"
+                          }
+                        ],
+                        "Read Type": "Default",
+                        "Parts": 2,
+                        "Granules": 1749
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

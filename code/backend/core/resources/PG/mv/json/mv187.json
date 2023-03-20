@@ -1,0 +1,72 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 2626.15,
+    "Total Cost": 84195.14,
+    "Plan Rows": 67,
+    "Plan Width": 4,
+    "Actual Startup Time": 21.806,
+    "Actual Total Time": 994.915,
+    "Actual Rows": 19528,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Hash Cond": "(mk.keyword_id = k.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_keyword",
+        "Alias": "mk",
+        "Startup Cost": 0.0,
+        "Total Cost": 69693.3,
+        "Plan Rows": 4523930,
+        "Plan Width": 8,
+        "Actual Startup Time": 0.026,
+        "Actual Total Time": 479.838,
+        "Actual Rows": 4523930,
+        "Actual Loops": 1
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 2626.12,
+        "Total Cost": 2626.12,
+        "Plan Rows": 2,
+        "Plan Width": 4,
+        "Actual Startup Time": 21.725,
+        "Actual Total Time": 21.726,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "keyword",
+            "Alias": "k",
+            "Startup Cost": 0.0,
+            "Total Cost": 2626.12,
+            "Plan Rows": 2,
+            "Plan Width": 4,
+            "Actual Startup Time": 1.273,
+            "Actual Total Time": 21.714,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((keyword)::text = ANY ('{murder,murder-in-title}'::text[]))",
+            "Rows Removed by Filter": 134169
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "Plan": {
+    "Node Type": "Hash Join",
+    "Parent Relationship": "Inner",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 2.43,
+    "Total Cost": 28851.62,
+    "Plan Rows": 11905,
+    "Plan Width": 9,
+    "Actual Startup Time": 0.012,
+    "Actual Total Time": 524.801,
+    "Actual Rows": 454230,
+    "Actual Loops": 1966,
+    "Inner Unique": true,
+    "Hash Cond": "(mi_idx.info_type_id = it2.id)",
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_info_idx",
+        "Alias": "mi_idx",
+        "Startup Cost": 0.0,
+        "Total Cost": 25185.44,
+        "Plan Rows": 1345264,
+        "Plan Width": 13,
+        "Actual Startup Time": 0.011,
+        "Actual Total Time": 343.694,
+        "Actual Rows": 1342886,
+        "Actual Loops": 1966,
+        "Filter": "((info)::text < '8.5'::text)",
+        "Rows Removed by Filter": 37149
+      },
+      {
+        "Node Type": "Hash",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 2.41,
+        "Total Cost": 2.41,
+        "Plan Rows": 1,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.034,
+        "Actual Total Time": 0.034,
+        "Actual Rows": 1,
+        "Actual Loops": 1,
+        "Hash Buckets": 1024,
+        "Original Hash Buckets": 1024,
+        "Hash Batches": 1,
+        "Original Hash Batches": 1,
+        "Peak Memory Usage": 9,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "info_type",
+            "Alias": "it2",
+            "Startup Cost": 0.0,
+            "Total Cost": 2.41,
+            "Plan Rows": 1,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.014,
+            "Actual Total Time": 0.016,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((info)::text = 'rating'::text)",
+            "Rows Removed by Filter": 112
+          }
+        ]
+      }
+    ]
+  }
+}

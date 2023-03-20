@@ -1,0 +1,70 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Outer",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 0.0,
+    "Total Cost": 797491.27,
+    "Plan Rows": 122,
+    "Plan Width": 8,
+    "Actual Startup Time": 0.21,
+    "Actual Total Time": 6298.63,
+    "Actual Rows": 25874,
+    "Actual Loops": 1,
+    "Inner Unique": true,
+    "Join Filter": "(ci.role_id = rt.id)",
+    "Rows Removed by Join Filter": 6414,
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "cast_info",
+        "Alias": "ci",
+        "Startup Cost": 0.0,
+        "Total Cost": 796172.88,
+        "Plan Rows": 21677,
+        "Plan Width": 12,
+        "Actual Startup Time": 0.193,
+        "Actual Total Time": 6284.879,
+        "Actual Rows": 32288,
+        "Actual Loops": 1,
+        "Filter": "(((note)::text ~~ '%(voice)%'::text) AND ((note)::text ~~ '%(uncredited)%'::text))",
+        "Rows Removed by Filter": 36212056
+      },
+      {
+        "Node Type": "Materialize",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Startup Cost": 0.0,
+        "Total Cost": 18.89,
+        "Plan Rows": 4,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.0,
+        "Actual Total Time": 0.0,
+        "Actual Rows": 1,
+        "Actual Loops": 32288,
+        "Plans": [
+          {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "role_type",
+            "Alias": "rt",
+            "Startup Cost": 0.0,
+            "Total Cost": 18.88,
+            "Plan Rows": 4,
+            "Plan Width": 4,
+            "Actual Startup Time": 0.012,
+            "Actual Total Time": 0.015,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Filter": "((role)::text = 'actor'::text)",
+            "Rows Removed by Filter": 11
+          }
+        ]
+      }
+    ]
+  }
+}

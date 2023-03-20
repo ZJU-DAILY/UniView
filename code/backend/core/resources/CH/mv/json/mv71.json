@@ -1,0 +1,1663 @@
+{
+  "Plan": {
+    "Node Type": "Expression",
+    "Description": "(Before JOIN + (Projection + Before ORDER BY))",
+    "Header": [
+      {
+        "Name": "keyword",
+        "Type": "String"
+      },
+      {
+        "Name": "--k.id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "link",
+        "Type": "String"
+      },
+      {
+        "Name": "--lt.id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "keyword_id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "--mk.movie_id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "link_type_id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "linked_movie_id",
+        "Type": "Int64"
+      },
+      {
+        "Name": "--ml.movie_id",
+        "Type": "Int64"
+      }
+    ],
+    "Expression": {
+      "Inputs": [
+        {
+          "Name": "keyword",
+          "Type": "String"
+        },
+        {
+          "Name": "--k.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "link",
+          "Type": "String"
+        },
+        {
+          "Name": "--lt.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "keyword_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--mk.movie_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "movie_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "linked_movie_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "link_type_id",
+          "Type": "Int64"
+        }
+      ],
+      "Actions": [
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            0
+          ],
+          "Removed Arguments": [
+            0
+          ],
+          "Result": 0
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            1
+          ],
+          "Removed Arguments": [
+            1
+          ],
+          "Result": 1
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            2
+          ],
+          "Removed Arguments": [
+            2
+          ],
+          "Result": 2
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            3
+          ],
+          "Removed Arguments": [
+            3
+          ],
+          "Result": 3
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            4
+          ],
+          "Removed Arguments": [
+            4
+          ],
+          "Result": 4
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            5
+          ],
+          "Removed Arguments": [
+            5
+          ],
+          "Result": 5
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            6
+          ],
+          "Removed Arguments": [],
+          "Result": 6
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            7
+          ],
+          "Removed Arguments": [
+            7
+          ],
+          "Result": 7
+        },
+        {
+          "Node Type": "INPUT",
+          "Result Type": "INPUT",
+          "Arguments": [
+            8
+          ],
+          "Removed Arguments": [
+            8
+          ],
+          "Result": 8
+        },
+        {
+          "Node Type": "ALIAS",
+          "Result Type": "ALIAS",
+          "Arguments": [
+            6
+          ],
+          "Removed Arguments": [
+            6
+          ],
+          "Result": 9
+        }
+      ],
+      "Outputs": [
+        {
+          "Name": "keyword",
+          "Type": "String"
+        },
+        {
+          "Name": "--k.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "link",
+          "Type": "String"
+        },
+        {
+          "Name": "--lt.id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "keyword_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--mk.movie_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "link_type_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "linked_movie_id",
+          "Type": "Int64"
+        },
+        {
+          "Name": "--ml.movie_id",
+          "Type": "Int64"
+        }
+      ],
+      "Positions": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        8,
+        7,
+        9
+      ],
+      "Project Input": true
+    },
+    "Plans": [
+      {
+        "Node Type": "Filter",
+        "Description": "WHERE",
+        "Header": [
+          {
+            "Name": "keyword",
+            "Type": "String"
+          },
+          {
+            "Name": "--k.id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "link",
+            "Type": "String"
+          },
+          {
+            "Name": "--lt.id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "keyword_id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "--mk.movie_id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "movie_id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "linked_movie_id",
+            "Type": "Int64"
+          },
+          {
+            "Name": "link_type_id",
+            "Type": "Int64"
+          }
+        ],
+        "Filter Column": "and(and(equals(--lt.id, link_type_id), equals(keyword_id, --k.id)), equals(keyword, '10,000-mile-club'))",
+        "Removes Filter": true,
+        "Expression": {
+          "Inputs": [
+            {
+              "Name": "keyword",
+              "Type": "String"
+            },
+            {
+              "Name": "--k.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "link",
+              "Type": "String"
+            },
+            {
+              "Name": "--lt.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "keyword_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "--mk.movie_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "movie_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "linked_movie_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "link_type_id",
+              "Type": "Int64"
+            }
+          ],
+          "Actions": [
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                0
+              ],
+              "Removed Arguments": [],
+              "Result": 0
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                1
+              ],
+              "Removed Arguments": [],
+              "Result": 1
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                2
+              ],
+              "Removed Arguments": [
+                2
+              ],
+              "Result": 2
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                3
+              ],
+              "Removed Arguments": [],
+              "Result": 3
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                4
+              ],
+              "Removed Arguments": [],
+              "Result": 4
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                5
+              ],
+              "Removed Arguments": [
+                5
+              ],
+              "Result": 5
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                6
+              ],
+              "Removed Arguments": [
+                6
+              ],
+              "Result": 6
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                7
+              ],
+              "Removed Arguments": [
+                7
+              ],
+              "Result": 7
+            },
+            {
+              "Node Type": "INPUT",
+              "Result Type": "INPUT",
+              "Arguments": [
+                8
+              ],
+              "Removed Arguments": [],
+              "Result": 8
+            },
+            {
+              "Node Type": "COLUMN",
+              "Result Type": "COLUMN",
+              "Column": "Const(String)",
+              "Arguments": [],
+              "Removed Arguments": [],
+              "Result": 9
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                4,
+                1
+              ],
+              "Removed Arguments": [],
+              "Result": 10
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                3,
+                8
+              ],
+              "Removed Arguments": [],
+              "Result": 11
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "equals",
+              "Compiled": false,
+              "Arguments": [
+                0,
+                9
+              ],
+              "Removed Arguments": [
+                9
+              ],
+              "Result": 12
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "and",
+              "Compiled": false,
+              "Arguments": [
+                11,
+                10
+              ],
+              "Removed Arguments": [
+                11,
+                10
+              ],
+              "Result": 9
+            },
+            {
+              "Node Type": "FUNCTION",
+              "Result Type": "FUNCTION",
+              "Function": "and",
+              "Compiled": false,
+              "Arguments": [
+                9,
+                12
+              ],
+              "Removed Arguments": [
+                9,
+                12
+              ],
+              "Result": 10
+            }
+          ],
+          "Outputs": [
+            {
+              "Name": "keyword",
+              "Type": "String"
+            },
+            {
+              "Name": "--k.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "link",
+              "Type": "String"
+            },
+            {
+              "Name": "--lt.id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "keyword_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "--mk.movie_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "movie_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "linked_movie_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "link_type_id",
+              "Type": "Int64"
+            },
+            {
+              "Name": "and(and(equals(--lt.id, link_type_id), equals(keyword_id, --k.id)), equals(keyword, '10,000-mile-club'))",
+              "Type": "UInt8"
+            }
+          ],
+          "Positions": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            10
+          ],
+          "Project Input": true
+        },
+        "Plans": [
+          {
+            "Node Type": "Join",
+            "Description": "JOIN",
+            "Header": [
+              {
+                "Name": "keyword",
+                "Type": "String"
+              },
+              {
+                "Name": "--k.id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "link",
+                "Type": "String"
+              },
+              {
+                "Name": "--lt.id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "keyword_id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "--mk.movie_id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "movie_id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "linked_movie_id",
+                "Type": "Int64"
+              },
+              {
+                "Name": "link_type_id",
+                "Type": "Int64"
+              }
+            ],
+            "Plans": [
+              {
+                "Node Type": "Expression",
+                "Description": "(Before JOIN + (Projection + Before ORDER BY))",
+                "Header": [
+                  {
+                    "Name": "keyword",
+                    "Type": "String"
+                  },
+                  {
+                    "Name": "--k.id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "link",
+                    "Type": "String"
+                  },
+                  {
+                    "Name": "--lt.id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "keyword_id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "--mk.movie_id",
+                    "Type": "Int64"
+                  }
+                ],
+                "Expression": {
+                  "Inputs": [
+                    {
+                      "Name": "keyword",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "--k.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "link",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "--lt.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "movie_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "keyword_id",
+                      "Type": "Int64"
+                    }
+                  ],
+                  "Actions": [
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        0
+                      ],
+                      "Removed Arguments": [
+                        0
+                      ],
+                      "Result": 0
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        1
+                      ],
+                      "Removed Arguments": [
+                        1
+                      ],
+                      "Result": 1
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        2
+                      ],
+                      "Removed Arguments": [
+                        2
+                      ],
+                      "Result": 2
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        3
+                      ],
+                      "Removed Arguments": [
+                        3
+                      ],
+                      "Result": 3
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        4
+                      ],
+                      "Removed Arguments": [],
+                      "Result": 4
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        5
+                      ],
+                      "Removed Arguments": [
+                        5
+                      ],
+                      "Result": 5
+                    },
+                    {
+                      "Node Type": "ALIAS",
+                      "Result Type": "ALIAS",
+                      "Arguments": [
+                        4
+                      ],
+                      "Removed Arguments": [
+                        4
+                      ],
+                      "Result": 6
+                    }
+                  ],
+                  "Outputs": [
+                    {
+                      "Name": "keyword",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "--k.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "link",
+                      "Type": "String"
+                    },
+                    {
+                      "Name": "--lt.id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "keyword_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "--mk.movie_id",
+                      "Type": "Int64"
+                    }
+                  ],
+                  "Positions": [
+                    0,
+                    1,
+                    2,
+                    3,
+                    5,
+                    6
+                  ],
+                  "Project Input": true
+                },
+                "Plans": [
+                  {
+                    "Node Type": "Filter",
+                    "Description": "WHERE",
+                    "Header": [
+                      {
+                        "Name": "keyword",
+                        "Type": "String"
+                      },
+                      {
+                        "Name": "--k.id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "link",
+                        "Type": "String"
+                      },
+                      {
+                        "Name": "--lt.id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "movie_id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "keyword_id",
+                        "Type": "Int64"
+                      }
+                    ],
+                    "Filter Column": "and(equals(keyword_id, --k.id), equals(keyword, '10,000-mile-club'))",
+                    "Removes Filter": true,
+                    "Expression": {
+                      "Inputs": [
+                        {
+                          "Name": "keyword",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "--k.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "link",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "--lt.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "movie_id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "keyword_id",
+                          "Type": "Int64"
+                        }
+                      ],
+                      "Actions": [
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            0
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 0
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            1
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 1
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            2
+                          ],
+                          "Removed Arguments": [
+                            2
+                          ],
+                          "Result": 2
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            3
+                          ],
+                          "Removed Arguments": [
+                            3
+                          ],
+                          "Result": 3
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            4
+                          ],
+                          "Removed Arguments": [
+                            4
+                          ],
+                          "Result": 4
+                        },
+                        {
+                          "Node Type": "INPUT",
+                          "Result Type": "INPUT",
+                          "Arguments": [
+                            5
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 5
+                        },
+                        {
+                          "Node Type": "COLUMN",
+                          "Result Type": "COLUMN",
+                          "Column": "Const(String)",
+                          "Arguments": [],
+                          "Removed Arguments": [],
+                          "Result": 6
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "equals",
+                          "Compiled": false,
+                          "Arguments": [
+                            5,
+                            1
+                          ],
+                          "Removed Arguments": [],
+                          "Result": 7
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "equals",
+                          "Compiled": false,
+                          "Arguments": [
+                            0,
+                            6
+                          ],
+                          "Removed Arguments": [
+                            6
+                          ],
+                          "Result": 8
+                        },
+                        {
+                          "Node Type": "FUNCTION",
+                          "Result Type": "FUNCTION",
+                          "Function": "and",
+                          "Compiled": false,
+                          "Arguments": [
+                            7,
+                            8
+                          ],
+                          "Removed Arguments": [
+                            7,
+                            8
+                          ],
+                          "Result": 6
+                        }
+                      ],
+                      "Outputs": [
+                        {
+                          "Name": "keyword",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "--k.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "link",
+                          "Type": "String"
+                        },
+                        {
+                          "Name": "--lt.id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "movie_id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "keyword_id",
+                          "Type": "Int64"
+                        },
+                        {
+                          "Name": "and(equals(keyword_id, --k.id), equals(keyword, '10,000-mile-club'))",
+                          "Type": "UInt8"
+                        }
+                      ],
+                      "Positions": [
+                        0,
+                        1,
+                        2,
+                        3,
+                        4,
+                        5,
+                        6
+                      ],
+                      "Project Input": true
+                    },
+                    "Plans": [
+                      {
+                        "Node Type": "Join",
+                        "Description": "JOIN",
+                        "Header": [
+                          {
+                            "Name": "keyword",
+                            "Type": "String"
+                          },
+                          {
+                            "Name": "--k.id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "link",
+                            "Type": "String"
+                          },
+                          {
+                            "Name": "--lt.id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "movie_id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "keyword_id",
+                            "Type": "Int64"
+                          }
+                        ],
+                        "Plans": [
+                          {
+                            "Node Type": "Expression",
+                            "Description": "(Before JOIN + (Projection + Before ORDER BY))",
+                            "Header": [
+                              {
+                                "Name": "keyword",
+                                "Type": "String"
+                              },
+                              {
+                                "Name": "--k.id",
+                                "Type": "Int64"
+                              },
+                              {
+                                "Name": "link",
+                                "Type": "String"
+                              },
+                              {
+                                "Name": "--lt.id",
+                                "Type": "Int64"
+                              }
+                            ],
+                            "Expression": {
+                              "Inputs": [
+                                {
+                                  "Name": "keyword",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "lt.id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "link",
+                                  "Type": "String"
+                                }
+                              ],
+                              "Actions": [
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    0
+                                  ],
+                                  "Removed Arguments": [
+                                    0
+                                  ],
+                                  "Result": 0
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    1
+                                  ],
+                                  "Removed Arguments": [],
+                                  "Result": 1
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    2
+                                  ],
+                                  "Removed Arguments": [],
+                                  "Result": 2
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    3
+                                  ],
+                                  "Removed Arguments": [
+                                    3
+                                  ],
+                                  "Result": 3
+                                },
+                                {
+                                  "Node Type": "ALIAS",
+                                  "Result Type": "ALIAS",
+                                  "Arguments": [
+                                    1
+                                  ],
+                                  "Removed Arguments": [
+                                    1
+                                  ],
+                                  "Result": 4
+                                },
+                                {
+                                  "Node Type": "ALIAS",
+                                  "Result Type": "ALIAS",
+                                  "Arguments": [
+                                    2
+                                  ],
+                                  "Removed Arguments": [
+                                    2
+                                  ],
+                                  "Result": 1
+                                }
+                              ],
+                              "Outputs": [
+                                {
+                                  "Name": "keyword",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "--k.id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "link",
+                                  "Type": "String"
+                                },
+                                {
+                                  "Name": "--lt.id",
+                                  "Type": "Int64"
+                                }
+                              ],
+                              "Positions": [
+                                0,
+                                4,
+                                3,
+                                1
+                              ],
+                              "Project Input": true
+                            },
+                            "Plans": [
+                              {
+                                "Node Type": "Join",
+                                "Description": "JOIN",
+                                "Header": [
+                                  {
+                                    "Name": "keyword",
+                                    "Type": "String"
+                                  },
+                                  {
+                                    "Name": "id",
+                                    "Type": "Int64"
+                                  },
+                                  {
+                                    "Name": "lt.id",
+                                    "Type": "Int64"
+                                  },
+                                  {
+                                    "Name": "link",
+                                    "Type": "String"
+                                  }
+                                ],
+                                "Plans": [
+                                  {
+                                    "Node Type": "Expression",
+                                    "Description": "Before JOIN",
+                                    "Header": [
+                                      {
+                                        "Name": "keyword",
+                                        "Type": "String"
+                                      },
+                                      {
+                                        "Name": "id",
+                                        "Type": "Int64"
+                                      }
+                                    ],
+                                    "Expression": {
+                                      "Inputs": [
+                                        {
+                                          "Name": "keyword",
+                                          "Type": "String"
+                                        },
+                                        {
+                                          "Name": "id",
+                                          "Type": "Int64"
+                                        }
+                                      ],
+                                      "Actions": [
+                                        {
+                                          "Node Type": "INPUT",
+                                          "Result Type": "INPUT",
+                                          "Arguments": [
+                                            0
+                                          ],
+                                          "Removed Arguments": [
+                                            0
+                                          ],
+                                          "Result": 0
+                                        },
+                                        {
+                                          "Node Type": "INPUT",
+                                          "Result Type": "INPUT",
+                                          "Arguments": [
+                                            1
+                                          ],
+                                          "Removed Arguments": [
+                                            1
+                                          ],
+                                          "Result": 1
+                                        }
+                                      ],
+                                      "Outputs": [
+                                        {
+                                          "Name": "keyword",
+                                          "Type": "String"
+                                        },
+                                        {
+                                          "Name": "id",
+                                          "Type": "Int64"
+                                        }
+                                      ],
+                                      "Positions": [
+                                        0,
+                                        1
+                                      ],
+                                      "Project Input": false
+                                    },
+                                    "Plans": [
+                                      {
+                                        "Node Type": "SettingQuotaAndLimits",
+                                        "Description": "Set limits and quota after reading from storage",
+                                        "Header": [
+                                          {
+                                            "Name": "keyword",
+                                            "Type": "String"
+                                          },
+                                          {
+                                            "Name": "id",
+                                            "Type": "Int64"
+                                          }
+                                        ],
+                                        "Plans": [
+                                          {
+                                            "Node Type": "ReadFromMergeTree",
+                                            "Header": [
+                                              {
+                                                "Name": "keyword",
+                                                "Type": "String"
+                                              },
+                                              {
+                                                "Name": "id",
+                                                "Type": "Int64"
+                                              }
+                                            ],
+                                            "Read Type": "Default",
+                                            "Parts": 1,
+                                            "Granules": 16
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "Node Type": "Expression",
+                                    "Description": "(Joined actions + (Rename joined columns + (Projection + Before ORDER BY)))",
+                                    "Header": [
+                                      {
+                                        "Name": "lt.id",
+                                        "Type": "Int64"
+                                      },
+                                      {
+                                        "Name": "link",
+                                        "Type": "String"
+                                      }
+                                    ],
+                                    "Expression": {
+                                      "Inputs": [
+                                        {
+                                          "Name": "id",
+                                          "Type": "Int64"
+                                        },
+                                        {
+                                          "Name": "link",
+                                          "Type": "String"
+                                        }
+                                      ],
+                                      "Actions": [
+                                        {
+                                          "Node Type": "INPUT",
+                                          "Result Type": "INPUT",
+                                          "Arguments": [
+                                            0
+                                          ],
+                                          "Removed Arguments": [],
+                                          "Result": 0
+                                        },
+                                        {
+                                          "Node Type": "INPUT",
+                                          "Result Type": "INPUT",
+                                          "Arguments": [
+                                            1
+                                          ],
+                                          "Removed Arguments": [],
+                                          "Result": 1
+                                        },
+                                        {
+                                          "Node Type": "ALIAS",
+                                          "Result Type": "ALIAS",
+                                          "Arguments": [
+                                            0
+                                          ],
+                                          "Removed Arguments": [
+                                            0
+                                          ],
+                                          "Result": 2
+                                        },
+                                        {
+                                          "Node Type": "ALIAS",
+                                          "Result Type": "ALIAS",
+                                          "Arguments": [
+                                            1
+                                          ],
+                                          "Removed Arguments": [
+                                            1
+                                          ],
+                                          "Result": 0
+                                        }
+                                      ],
+                                      "Outputs": [
+                                        {
+                                          "Name": "lt.id",
+                                          "Type": "Int64"
+                                        },
+                                        {
+                                          "Name": "link",
+                                          "Type": "String"
+                                        }
+                                      ],
+                                      "Positions": [
+                                        2,
+                                        0
+                                      ],
+                                      "Project Input": true
+                                    },
+                                    "Plans": [
+                                      {
+                                        "Node Type": "SettingQuotaAndLimits",
+                                        "Description": "Set limits and quota after reading from storage",
+                                        "Header": [
+                                          {
+                                            "Name": "id",
+                                            "Type": "Int64"
+                                          },
+                                          {
+                                            "Name": "link",
+                                            "Type": "String"
+                                          }
+                                        ],
+                                        "Plans": [
+                                          {
+                                            "Node Type": "ReadFromMergeTree",
+                                            "Header": [
+                                              {
+                                                "Name": "id",
+                                                "Type": "Int64"
+                                              },
+                                              {
+                                                "Name": "link",
+                                                "Type": "String"
+                                              }
+                                            ],
+                                            "Read Type": "Default",
+                                            "Parts": 1,
+                                            "Granules": 1
+                                          }
+                                        ]
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            ]
+                          },
+                          {
+                            "Node Type": "Expression",
+                            "Description": "(Joined actions + (Rename joined columns + (Projection + Before ORDER BY)))",
+                            "Header": [
+                              {
+                                "Name": "keyword_id",
+                                "Type": "Int64"
+                              },
+                              {
+                                "Name": "movie_id",
+                                "Type": "Int64"
+                              }
+                            ],
+                            "Expression": {
+                              "Inputs": [
+                                {
+                                  "Name": "movie_id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "keyword_id",
+                                  "Type": "Int64"
+                                }
+                              ],
+                              "Actions": [
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    0
+                                  ],
+                                  "Removed Arguments": [],
+                                  "Result": 0
+                                },
+                                {
+                                  "Node Type": "INPUT",
+                                  "Result Type": "INPUT",
+                                  "Arguments": [
+                                    1
+                                  ],
+                                  "Removed Arguments": [],
+                                  "Result": 1
+                                },
+                                {
+                                  "Node Type": "ALIAS",
+                                  "Result Type": "ALIAS",
+                                  "Arguments": [
+                                    0
+                                  ],
+                                  "Removed Arguments": [
+                                    0
+                                  ],
+                                  "Result": 2
+                                },
+                                {
+                                  "Node Type": "ALIAS",
+                                  "Result Type": "ALIAS",
+                                  "Arguments": [
+                                    1
+                                  ],
+                                  "Removed Arguments": [
+                                    1
+                                  ],
+                                  "Result": 0
+                                }
+                              ],
+                              "Outputs": [
+                                {
+                                  "Name": "keyword_id",
+                                  "Type": "Int64"
+                                },
+                                {
+                                  "Name": "movie_id",
+                                  "Type": "Int64"
+                                }
+                              ],
+                              "Positions": [
+                                0,
+                                2
+                              ],
+                              "Project Input": true
+                            },
+                            "Plans": [
+                              {
+                                "Node Type": "SettingQuotaAndLimits",
+                                "Description": "Set limits and quota after reading from storage",
+                                "Header": [
+                                  {
+                                    "Name": "movie_id",
+                                    "Type": "Int64"
+                                  },
+                                  {
+                                    "Name": "keyword_id",
+                                    "Type": "Int64"
+                                  }
+                                ],
+                                "Plans": [
+                                  {
+                                    "Node Type": "ReadFromMergeTree",
+                                    "Header": [
+                                      {
+                                        "Name": "movie_id",
+                                        "Type": "Int64"
+                                      },
+                                      {
+                                        "Name": "keyword_id",
+                                        "Type": "Int64"
+                                      }
+                                    ],
+                                    "Read Type": "Default",
+                                    "Parts": 1,
+                                    "Granules": 553
+                                  }
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "Node Type": "Expression",
+                "Description": "(Joined actions + (Rename joined columns + (Projection + Before ORDER BY)))",
+                "Header": [
+                  {
+                    "Name": "link_type_id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "movie_id",
+                    "Type": "Int64"
+                  },
+                  {
+                    "Name": "linked_movie_id",
+                    "Type": "Int64"
+                  }
+                ],
+                "Expression": {
+                  "Inputs": [
+                    {
+                      "Name": "movie_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "linked_movie_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "link_type_id",
+                      "Type": "Int64"
+                    }
+                  ],
+                  "Actions": [
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        0
+                      ],
+                      "Removed Arguments": [],
+                      "Result": 0
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        1
+                      ],
+                      "Removed Arguments": [],
+                      "Result": 1
+                    },
+                    {
+                      "Node Type": "INPUT",
+                      "Result Type": "INPUT",
+                      "Arguments": [
+                        2
+                      ],
+                      "Removed Arguments": [],
+                      "Result": 2
+                    },
+                    {
+                      "Node Type": "ALIAS",
+                      "Result Type": "ALIAS",
+                      "Arguments": [
+                        0
+                      ],
+                      "Removed Arguments": [
+                        0
+                      ],
+                      "Result": 3
+                    },
+                    {
+                      "Node Type": "ALIAS",
+                      "Result Type": "ALIAS",
+                      "Arguments": [
+                        1
+                      ],
+                      "Removed Arguments": [
+                        1
+                      ],
+                      "Result": 0
+                    },
+                    {
+                      "Node Type": "ALIAS",
+                      "Result Type": "ALIAS",
+                      "Arguments": [
+                        2
+                      ],
+                      "Removed Arguments": [
+                        2
+                      ],
+                      "Result": 1
+                    }
+                  ],
+                  "Outputs": [
+                    {
+                      "Name": "link_type_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "movie_id",
+                      "Type": "Int64"
+                    },
+                    {
+                      "Name": "linked_movie_id",
+                      "Type": "Int64"
+                    }
+                  ],
+                  "Positions": [
+                    1,
+                    3,
+                    0
+                  ],
+                  "Project Input": true
+                },
+                "Plans": [
+                  {
+                    "Node Type": "SettingQuotaAndLimits",
+                    "Description": "Set limits and quota after reading from storage",
+                    "Header": [
+                      {
+                        "Name": "movie_id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "linked_movie_id",
+                        "Type": "Int64"
+                      },
+                      {
+                        "Name": "link_type_id",
+                        "Type": "Int64"
+                      }
+                    ],
+                    "Plans": [
+                      {
+                        "Node Type": "ReadFromMergeTree",
+                        "Header": [
+                          {
+                            "Name": "movie_id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "linked_movie_id",
+                            "Type": "Int64"
+                          },
+                          {
+                            "Name": "link_type_id",
+                            "Type": "Int64"
+                          }
+                        ],
+                        "Read Type": "Default",
+                        "Parts": 1,
+                        "Granules": 4
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "Plan": {
+    "Node Type": "Nested Loop",
+    "Parent Relationship": "Inner",
+    "Parallel Aware": false,
+    "Join Type": "Inner",
+    "Startup Cost": 0.42,
+    "Total Cost": 73178.86,
+    "Plan Rows": 9,
+    "Plan Width": 4,
+    "Actual Startup Time": 0.182,
+    "Actual Total Time": 469.537,
+    "Actual Rows": 8495,
+    "Actual Loops": 9,
+    "Inner Unique": true,
+    "Plans": [
+      {
+        "Node Type": "Seq Scan",
+        "Parent Relationship": "Outer",
+        "Parallel Aware": false,
+        "Relation Name": "movie_companies",
+        "Alias": "mc",
+        "Startup Cost": 0.0,
+        "Total Cost": 70972.58,
+        "Plan Rows": 287,
+        "Plan Width": 8,
+        "Actual Startup Time": 0.174,
+        "Actual Total Time": 450.337,
+        "Actual Rows": 8569,
+        "Actual Loops": 9,
+        "Filter": "(((note)::text ~~ '%(Japan)%'::text) AND ((note)::text !~~ '%(USA)%'::text) AND (((note)::text ~~ '%(2006)%'::text) OR ((note)::text ~~ '%(2007)%'::text)))",
+        "Rows Removed by Filter": 2600560
+      },
+      {
+        "Node Type": "Index Scan",
+        "Parent Relationship": "Inner",
+        "Parallel Aware": false,
+        "Scan Direction": "Forward",
+        "Index Name": "company_name_pkey",
+        "Relation Name": "company_name",
+        "Alias": "cn",
+        "Startup Cost": 0.42,
+        "Total Cost": 7.69,
+        "Plan Rows": 1,
+        "Plan Width": 4,
+        "Actual Startup Time": 0.002,
+        "Actual Total Time": 0.002,
+        "Actual Rows": 1,
+        "Actual Loops": 77121,
+        "Index Cond": "(id = mc.company_id)",
+        "Rows Removed by Index Recheck": 0,
+        "Filter": "((country_code)::text = '[jp]'::text)",
+        "Rows Removed by Filter": 0
+      }
+    ]
+  }
+}

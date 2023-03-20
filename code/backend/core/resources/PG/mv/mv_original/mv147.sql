@@ -1,0 +1,3 @@
+select keyword.id AS keyword_id_0, keyword.keyword AS keyword, link_type.id AS link_type_id_2, movie_keyword.movie_id AS movie_id, title.production_year AS production_year, title.title AS title
+ from link_type,title,movie_keyword,keyword,movie_link
+ where (link_type.id = movie_link.link_type_id) And (title.id = movie_keyword.movie_id) And (movie_keyword.movie_id = movie_link.movie_id) And (movie_keyword.keyword_id = keyword.id) And (keyword.keyword in ('sequel', 'revenge', 'based-on-novel')) And (movie_link.movie_id = title.id)

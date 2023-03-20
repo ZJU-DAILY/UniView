@@ -1,0 +1,265 @@
+== Physical Plan ==
+TakeOrderedAndProject (47)
++- * Project (46)
+   +- * SortMergeJoin Inner (45)
+      :- * Sort (27)
+      :  +- Exchange (26)
+      :     +- * Project (25)
+      :        +- * BroadcastHashJoin Inner BuildRight (24)
+      :           :- * Project (18)
+      :           :  +- * BroadcastHashJoin Inner BuildRight (17)
+      :           :     :- * HashAggregate (12)
+      :           :     :  +- Exchange (11)
+      :           :     :     +- * HashAggregate (10)
+      :           :     :        +- * Project (9)
+      :           :     :           +- * BroadcastHashJoin Inner BuildRight (8)
+      :           :     :              :- * Filter (3)
+      :           :     :              :  +- * ColumnarToRow (2)
+      :           :     :              :     +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales (1)
+      :           :     :              +- BroadcastExchange (7)
+      :           :     :                 +- * Filter (6)
+      :           :     :                    +- * ColumnarToRow (5)
+      :           :     :                       +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (4)
+      :           :     +- BroadcastExchange (16)
+      :           :        +- * Filter (15)
+      :           :           +- * ColumnarToRow (14)
+      :           :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store (13)
+      :           +- BroadcastExchange (23)
+      :              +- * Project (22)
+      :                 +- * Filter (21)
+      :                    +- * ColumnarToRow (20)
+      :                       +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (19)
+      +- * Sort (44)
+         +- Exchange (43)
+            +- * Project (42)
+               +- * BroadcastHashJoin Inner BuildRight (41)
+                  :- * Project (35)
+                  :  +- * BroadcastHashJoin Inner BuildRight (34)
+                  :     :- * HashAggregate (29)
+                  :     :  +- ReusedExchange (28)
+                  :     +- BroadcastExchange (33)
+                  :        +- * Filter (32)
+                  :           +- * ColumnarToRow (31)
+                  :              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.store (30)
+                  +- BroadcastExchange (40)
+                     +- * Project (39)
+                        +- * Filter (38)
+                           +- * ColumnarToRow (37)
+                              +- Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim (36)
+
+
+(1) Scan orc tpcds_bin_partitioned_decimal_orc_2.store_sales
+Output [3]: [ss_store_sk#33L, ss_sales_price#39, ss_sold_date_sk#49L]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store_sales/ss_sold_date_sk=2450816, ... 1822 entries]
+PartitionFilters: [isnotnull(ss_sold_date_sk#49L)]
+PushedFilters: [IsNotNull(ss_store_sk)]
+ReadSchema: struct<ss_store_sk:bigint,ss_sales_price:decimal(7,2)>
+
+(2) ColumnarToRow [codegen id : 2]
+Input [3]: [ss_store_sk#33L, ss_sales_price#39, ss_sold_date_sk#49L]
+
+(3) Filter [codegen id : 2]
+Input [3]: [ss_store_sk#33L, ss_sales_price#39, ss_sold_date_sk#49L]
+Condition : isnotnull(ss_store_sk#33L)
+
+(4) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [3]: [d_date_sk#50L, d_week_seq#54, d_day_name#64]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_date_sk), IsNotNull(d_week_seq)]
+ReadSchema: struct<d_date_sk:bigint,d_week_seq:int,d_day_name:string>
+
+(5) ColumnarToRow [codegen id : 1]
+Input [3]: [d_date_sk#50L, d_week_seq#54, d_day_name#64]
+
+(6) Filter [codegen id : 1]
+Input [3]: [d_date_sk#50L, d_week_seq#54, d_day_name#64]
+Condition : (isnotnull(d_date_sk#50L) AND isnotnull(d_week_seq#54))
+
+(7) BroadcastExchange
+Input [3]: [d_date_sk#50L, d_week_seq#54, d_day_name#64]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#250]
+
+(8) BroadcastHashJoin [codegen id : 2]
+Left keys [1]: [ss_sold_date_sk#49L]
+Right keys [1]: [d_date_sk#50L]
+Join condition: None
+
+(9) Project [codegen id : 2]
+Output [4]: [ss_store_sk#33L, ss_sales_price#39, d_week_seq#54, d_day_name#64]
+Input [6]: [ss_store_sk#33L, ss_sales_price#39, ss_sold_date_sk#49L, d_date_sk#50L, d_week_seq#54, d_day_name#64]
+
+(10) HashAggregate [codegen id : 2]
+Input [4]: [ss_store_sk#33L, ss_sales_price#39, d_week_seq#54, d_day_name#64]
+Keys [2]: [d_week_seq#54, ss_store_sk#33L]
+Functions [7]: [partial_sum(UnscaledValue(CASE WHEN (d_day_name#64 = Sunday) THEN ss_sales_price#39 ELSE null END)), partial_sum(UnscaledValue(CASE WHEN (d_day_name#64 = Monday) THEN ss_sales_price#39 ELSE null END)), partial_sum(UnscaledValue(CASE WHEN (d_day_name#64 = Tuesday) THEN ss_sales_price#39 ELSE null END)), partial_sum(UnscaledValue(CASE WHEN (d_day_name#64 = Wednesday) THEN ss_sales_price#39 ELSE null END)), partial_sum(UnscaledValue(CASE WHEN (d_day_name#64 = Thursday) THEN ss_sales_price#39 ELSE null END)), partial_sum(UnscaledValue(CASE WHEN (d_day_name#64 = Friday) THEN ss_sales_price#39 ELSE null END)), partial_sum(UnscaledValue(CASE WHEN (d_day_name#64 = Saturday) THEN ss_sales_price#39 ELSE null END))]
+Aggregate Attributes [7]: [sum#354L, sum#355L, sum#356L, sum#357L, sum#358L, sum#359L, sum#360L]
+Results [9]: [d_week_seq#54, ss_store_sk#33L, sum#361L, sum#362L, sum#363L, sum#364L, sum#365L, sum#366L, sum#367L]
+
+(11) Exchange
+Input [9]: [d_week_seq#54, ss_store_sk#33L, sum#361L, sum#362L, sum#363L, sum#364L, sum#365L, sum#366L, sum#367L]
+Arguments: hashpartitioning(d_week_seq#54, ss_store_sk#33L, 200), ENSURE_REQUIREMENTS, [id=#256]
+
+(12) HashAggregate [codegen id : 5]
+Input [9]: [d_week_seq#54, ss_store_sk#33L, sum#361L, sum#362L, sum#363L, sum#364L, sum#365L, sum#366L, sum#367L]
+Keys [2]: [d_week_seq#54, ss_store_sk#33L]
+Functions [7]: [sum(UnscaledValue(CASE WHEN (d_day_name#64 = Sunday) THEN ss_sales_price#39 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#64 = Monday) THEN ss_sales_price#39 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#64 = Tuesday) THEN ss_sales_price#39 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#64 = Wednesday) THEN ss_sales_price#39 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#64 = Thursday) THEN ss_sales_price#39 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#64 = Friday) THEN ss_sales_price#39 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#64 = Saturday) THEN ss_sales_price#39 ELSE null END))]
+Aggregate Attributes [7]: [sum(UnscaledValue(CASE WHEN (d_day_name#64 = Sunday) THEN ss_sales_price#39 ELSE null END))#243L, sum(UnscaledValue(CASE WHEN (d_day_name#64 = Monday) THEN ss_sales_price#39 ELSE null END))#244L, sum(UnscaledValue(CASE WHEN (d_day_name#64 = Tuesday) THEN ss_sales_price#39 ELSE null END))#245L, sum(UnscaledValue(CASE WHEN (d_day_name#64 = Wednesday) THEN ss_sales_price#39 ELSE null END))#246L, sum(UnscaledValue(CASE WHEN (d_day_name#64 = Thursday) THEN ss_sales_price#39 ELSE null END))#247L, sum(UnscaledValue(CASE WHEN (d_day_name#64 = Friday) THEN ss_sales_price#39 ELSE null END))#248L, sum(UnscaledValue(CASE WHEN (d_day_name#64 = Saturday) THEN ss_sales_price#39 ELSE null END))#249L]
+Results [9]: [d_week_seq#54, ss_store_sk#33L, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#64 = Sunday) THEN ss_sales_price#39 ELSE null END))#243L,17,2) AS sun_sales#20, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#64 = Monday) THEN ss_sales_price#39 ELSE null END))#244L,17,2) AS mon_sales#21, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#64 = Tuesday) THEN ss_sales_price#39 ELSE null END))#245L,17,2) AS tue_sales#22, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#64 = Wednesday) THEN ss_sales_price#39 ELSE null END))#246L,17,2) AS wed_sales#23, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#64 = Thursday) THEN ss_sales_price#39 ELSE null END))#247L,17,2) AS thu_sales#24, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#64 = Friday) THEN ss_sales_price#39 ELSE null END))#248L,17,2) AS fri_sales#25, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#64 = Saturday) THEN ss_sales_price#39 ELSE null END))#249L,17,2) AS sat_sales#26]
+
+(13) Scan orc tpcds_bin_partitioned_decimal_orc_2.store
+Output [3]: [s_store_sk#78L, s_store_id#79, s_store_name#83]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store]
+PushedFilters: [IsNotNull(s_store_sk), IsNotNull(s_store_id)]
+ReadSchema: struct<s_store_sk:bigint,s_store_id:string,s_store_name:string>
+
+(14) ColumnarToRow [codegen id : 3]
+Input [3]: [s_store_sk#78L, s_store_id#79, s_store_name#83]
+
+(15) Filter [codegen id : 3]
+Input [3]: [s_store_sk#78L, s_store_id#79, s_store_name#83]
+Condition : (isnotnull(s_store_sk#78L) AND isnotnull(s_store_id#79))
+
+(16) BroadcastExchange
+Input [3]: [s_store_sk#78L, s_store_id#79, s_store_name#83]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#263]
+
+(17) BroadcastHashJoin [codegen id : 5]
+Left keys [1]: [ss_store_sk#33L]
+Right keys [1]: [s_store_sk#78L]
+Join condition: None
+
+(18) Project [codegen id : 5]
+Output [10]: [d_week_seq#54, sun_sales#20, mon_sales#21, tue_sales#22, wed_sales#23, thu_sales#24, fri_sales#25, sat_sales#26, s_store_id#79, s_store_name#83]
+Input [12]: [d_week_seq#54, ss_store_sk#33L, sun_sales#20, mon_sales#21, tue_sales#22, wed_sales#23, thu_sales#24, fri_sales#25, sat_sales#26, s_store_sk#78L, s_store_id#79, s_store_name#83]
+
+(19) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [2]: [d_month_seq#110, d_week_seq#111]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_month_seq), GreaterThanOrEqual(d_month_seq,1212), LessThanOrEqual(d_month_seq,1223), IsNotNull(d_week_seq)]
+ReadSchema: struct<d_month_seq:int,d_week_seq:int>
+
+(20) ColumnarToRow [codegen id : 4]
+Input [2]: [d_month_seq#110, d_week_seq#111]
+
+(21) Filter [codegen id : 4]
+Input [2]: [d_month_seq#110, d_week_seq#111]
+Condition : (((isnotnull(d_month_seq#110) AND (d_month_seq#110 >= 1212)) AND (d_month_seq#110 <= 1223)) AND isnotnull(d_week_seq#111))
+
+(22) Project [codegen id : 4]
+Output [1]: [d_week_seq#111]
+Input [2]: [d_month_seq#110, d_week_seq#111]
+
+(23) BroadcastExchange
+Input [1]: [d_week_seq#111]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [id=#272]
+
+(24) BroadcastHashJoin [codegen id : 5]
+Left keys [1]: [d_week_seq#54]
+Right keys [1]: [d_week_seq#111]
+Join condition: None
+
+(25) Project [codegen id : 5]
+Output [10]: [s_store_name#83 AS s_store_name1#0, d_week_seq#54 AS d_week_seq1#1, s_store_id#79 AS s_store_id1#2, sun_sales#20 AS sun_sales1#3, mon_sales#21 AS mon_sales1#4, tue_sales#22 AS tue_sales1#5, wed_sales#23 AS wed_sales1#6, thu_sales#24 AS thu_sales1#7, fri_sales#25 AS fri_sales1#8, sat_sales#26 AS sat_sales1#9]
+Input [11]: [d_week_seq#54, sun_sales#20, mon_sales#21, tue_sales#22, wed_sales#23, thu_sales#24, fri_sales#25, sat_sales#26, s_store_id#79, s_store_name#83, d_week_seq#111]
+
+(26) Exchange
+Input [10]: [s_store_name1#0, d_week_seq1#1, s_store_id1#2, sun_sales1#3, mon_sales1#4, tue_sales1#5, wed_sales1#6, thu_sales1#7, fri_sales1#8, sat_sales1#9]
+Arguments: hashpartitioning(s_store_id1#2, d_week_seq1#1, 200), ENSURE_REQUIREMENTS, [id=#277]
+
+(27) Sort [codegen id : 6]
+Input [10]: [s_store_name1#0, d_week_seq1#1, s_store_id1#2, sun_sales1#3, mon_sales1#4, tue_sales1#5, wed_sales1#6, thu_sales1#7, fri_sales1#8, sat_sales1#9]
+Arguments: [s_store_id1#2 ASC NULLS FIRST, d_week_seq1#1 ASC NULLS FIRST], false, 0
+
+(28) ReusedExchange [Reuses operator id: 11]
+Output [9]: [d_week_seq#162, ss_store_sk#141L, sum#375L, sum#376L, sum#377L, sum#378L, sum#379L, sum#380L, sum#381L]
+
+(29) HashAggregate [codegen id : 11]
+Input [9]: [d_week_seq#162, ss_store_sk#141L, sum#375L, sum#376L, sum#377L, sum#378L, sum#379L, sum#380L, sum#381L]
+Keys [2]: [d_week_seq#162, ss_store_sk#141L]
+Functions [7]: [sum(UnscaledValue(CASE WHEN (d_day_name#172 = Sunday) THEN ss_sales_price#147 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#172 = Monday) THEN ss_sales_price#147 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#172 = Tuesday) THEN ss_sales_price#147 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#172 = Wednesday) THEN ss_sales_price#147 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#172 = Thursday) THEN ss_sales_price#147 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#172 = Friday) THEN ss_sales_price#147 ELSE null END)), sum(UnscaledValue(CASE WHEN (d_day_name#172 = Saturday) THEN ss_sales_price#147 ELSE null END))]
+Aggregate Attributes [7]: [sum(UnscaledValue(CASE WHEN (d_day_name#172 = Sunday) THEN ss_sales_price#147 ELSE null END))#250L, sum(UnscaledValue(CASE WHEN (d_day_name#172 = Monday) THEN ss_sales_price#147 ELSE null END))#251L, sum(UnscaledValue(CASE WHEN (d_day_name#172 = Tuesday) THEN ss_sales_price#147 ELSE null END))#252L, sum(UnscaledValue(CASE WHEN (d_day_name#172 = Wednesday) THEN ss_sales_price#147 ELSE null END))#253L, sum(UnscaledValue(CASE WHEN (d_day_name#172 = Thursday) THEN ss_sales_price#147 ELSE null END))#254L, sum(UnscaledValue(CASE WHEN (d_day_name#172 = Friday) THEN ss_sales_price#147 ELSE null END))#255L, sum(UnscaledValue(CASE WHEN (d_day_name#172 = Saturday) THEN ss_sales_price#147 ELSE null END))#256L]
+Results [9]: [d_week_seq#162, ss_store_sk#141L, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#172 = Sunday) THEN ss_sales_price#147 ELSE null END))#250L,17,2) AS sun_sales#20, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#172 = Monday) THEN ss_sales_price#147 ELSE null END))#251L,17,2) AS mon_sales#21, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#172 = Tuesday) THEN ss_sales_price#147 ELSE null END))#252L,17,2) AS tue_sales#22, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#172 = Wednesday) THEN ss_sales_price#147 ELSE null END))#253L,17,2) AS wed_sales#23, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#172 = Thursday) THEN ss_sales_price#147 ELSE null END))#254L,17,2) AS thu_sales#24, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#172 = Friday) THEN ss_sales_price#147 ELSE null END))#255L,17,2) AS fri_sales#25, MakeDecimal(sum(UnscaledValue(CASE WHEN (d_day_name#172 = Saturday) THEN ss_sales_price#147 ELSE null END))#256L,17,2) AS sat_sales#26]
+
+(30) Scan orc tpcds_bin_partitioned_decimal_orc_2.store
+Output [2]: [s_store_sk#186L, s_store_id#187]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/store]
+PushedFilters: [IsNotNull(s_store_sk), IsNotNull(s_store_id)]
+ReadSchema: struct<s_store_sk:bigint,s_store_id:string>
+
+(31) ColumnarToRow [codegen id : 9]
+Input [2]: [s_store_sk#186L, s_store_id#187]
+
+(32) Filter [codegen id : 9]
+Input [2]: [s_store_sk#186L, s_store_id#187]
+Condition : (isnotnull(s_store_sk#186L) AND isnotnull(s_store_id#187))
+
+(33) BroadcastExchange
+Input [2]: [s_store_sk#186L, s_store_id#187]
+Arguments: HashedRelationBroadcastMode(List(input[0, bigint, false]),false), [id=#302]
+
+(34) BroadcastHashJoin [codegen id : 11]
+Left keys [1]: [ss_store_sk#141L]
+Right keys [1]: [s_store_sk#186L]
+Join condition: None
+
+(35) Project [codegen id : 11]
+Output [9]: [d_week_seq#162, sun_sales#20, mon_sales#21, tue_sales#22, wed_sales#23, thu_sales#24, fri_sales#25, sat_sales#26, s_store_id#187]
+Input [11]: [d_week_seq#162, ss_store_sk#141L, sun_sales#20, mon_sales#21, tue_sales#22, wed_sales#23, thu_sales#24, fri_sales#25, sat_sales#26, s_store_sk#186L, s_store_id#187]
+
+(36) Scan orc tpcds_bin_partitioned_decimal_orc_2.date_dim
+Output [2]: [d_month_seq#218, d_week_seq#219]
+Batched: true
+Location: InMemoryFileIndex [hdfs://server1:9000/user/hive/warehouse/tpcds_bin_partitioned_decimal_orc_2.db/date_dim]
+PushedFilters: [IsNotNull(d_month_seq), GreaterThanOrEqual(d_month_seq,1224), LessThanOrEqual(d_month_seq,1235), IsNotNull(d_week_seq)]
+ReadSchema: struct<d_month_seq:int,d_week_seq:int>
+
+(37) ColumnarToRow [codegen id : 10]
+Input [2]: [d_month_seq#218, d_week_seq#219]
+
+(38) Filter [codegen id : 10]
+Input [2]: [d_month_seq#218, d_week_seq#219]
+Condition : (((isnotnull(d_month_seq#218) AND (d_month_seq#218 >= 1224)) AND (d_month_seq#218 <= 1235)) AND isnotnull(d_week_seq#219))
+
+(39) Project [codegen id : 10]
+Output [1]: [d_week_seq#219]
+Input [2]: [d_month_seq#218, d_week_seq#219]
+
+(40) BroadcastExchange
+Input [1]: [d_week_seq#219]
+Arguments: HashedRelationBroadcastMode(List(cast(input[0, int, true] as bigint)),false), [id=#311]
+
+(41) BroadcastHashJoin [codegen id : 11]
+Left keys [1]: [d_week_seq#162]
+Right keys [1]: [d_week_seq#219]
+Join condition: None
+
+(42) Project [codegen id : 11]
+Output [9]: [d_week_seq#162 AS d_week_seq2#11, s_store_id#187 AS s_store_id2#12, sun_sales#20 AS sun_sales2#13, mon_sales#21 AS mon_sales2#14, tue_sales#22 AS tue_sales2#15, wed_sales#23 AS wed_sales2#16, thu_sales#24 AS thu_sales2#17, fri_sales#25 AS fri_sales2#18, sat_sales#26 AS sat_sales2#19]
+Input [10]: [d_week_seq#162, sun_sales#20, mon_sales#21, tue_sales#22, wed_sales#23, thu_sales#24, fri_sales#25, sat_sales#26, s_store_id#187, d_week_seq#219]
+
+(43) Exchange
+Input [9]: [d_week_seq2#11, s_store_id2#12, sun_sales2#13, mon_sales2#14, tue_sales2#15, wed_sales2#16, thu_sales2#17, fri_sales2#18, sat_sales2#19]
+Arguments: hashpartitioning(s_store_id2#12, (d_week_seq2#11 - 52), 200), ENSURE_REQUIREMENTS, [id=#402]
+
+(44) Sort [codegen id : 12]
+Input [9]: [d_week_seq2#11, s_store_id2#12, sun_sales2#13, mon_sales2#14, tue_sales2#15, wed_sales2#16, thu_sales2#17, fri_sales2#18, sat_sales2#19]
+Arguments: [s_store_id2#12 ASC NULLS FIRST, (d_week_seq2#11 - 52) ASC NULLS FIRST], false, 0
+
+(45) SortMergeJoin [codegen id : 13]
+Left keys [2]: [s_store_id1#2, d_week_seq1#1]
+Right keys [2]: [s_store_id2#12, (d_week_seq2#11 - 52)]
+Join condition: None
+
+(46) Project [codegen id : 13]
+Output [10]: [s_store_name1#0, s_store_id1#2, d_week_seq1#1, CheckOverflow((promote_precision(sun_sales1#3) / promote_precision(sun_sales2#13)), DecimalType(37,20), true) AS (sun_sales1 / sun_sales2)#257, CheckOverflow((promote_precision(mon_sales1#4) / promote_precision(mon_sales2#14)), DecimalType(37,20), true) AS (mon_sales1 / mon_sales2)#258, CheckOverflow((promote_precision(tue_sales1#5) / promote_precision(tue_sales2#15)), DecimalType(37,20), true) AS (tue_sales1 / tue_sales2)#259, CheckOverflow((promote_precision(wed_sales1#6) / promote_precision(wed_sales2#16)), DecimalType(37,20), true) AS (wed_sales1 / wed_sales2)#260, CheckOverflow((promote_precision(thu_sales1#7) / promote_precision(thu_sales2#17)), DecimalType(37,20), true) AS (thu_sales1 / thu_sales2)#261, CheckOverflow((promote_precision(fri_sales1#8) / promote_precision(fri_sales2#18)), DecimalType(37,20), true) AS (fri_sales1 / fri_sales2)#262, CheckOverflow((promote_precision(sat_sales1#9) / promote_precision(sat_sales2#19)), DecimalType(37,20), true) AS (sat_sales1 / sat_sales2)#263]
+Input [19]: [s_store_name1#0, d_week_seq1#1, s_store_id1#2, sun_sales1#3, mon_sales1#4, tue_sales1#5, wed_sales1#6, thu_sales1#7, fri_sales1#8, sat_sales1#9, d_week_seq2#11, s_store_id2#12, sun_sales2#13, mon_sales2#14, tue_sales2#15, wed_sales2#16, thu_sales2#17, fri_sales2#18, sat_sales2#19]
+
+(47) TakeOrderedAndProject
+Input [10]: [s_store_name1#0, s_store_id1#2, d_week_seq1#1, (sun_sales1 / sun_sales2)#257, (mon_sales1 / mon_sales2)#258, (tue_sales1 / tue_sales2)#259, (wed_sales1 / wed_sales2)#260, (thu_sales1 / thu_sales2)#261, (fri_sales1 / fri_sales2)#262, (sat_sales1 / sat_sales2)#263]
+Arguments: 100, [s_store_name1#0 ASC NULLS FIRST, s_store_id1#2 ASC NULLS FIRST, d_week_seq1#1 ASC NULLS FIRST], [s_store_name1#0, s_store_id1#2, d_week_seq1#1, (sun_sales1 / sun_sales2)#257, (mon_sales1 / mon_sales2)#258, (tue_sales1 / tue_sales2)#259, (wed_sales1 / wed_sales2)#260, (thu_sales1 / thu_sales2)#261, (fri_sales1 / fri_sales2)#262, (sat_sales1 / sat_sales2)#263]
+

@@ -1,0 +1,3 @@
+create materialized view if not exists mv409 as select cast_info.movie_id AS movie_id, cast_info.note AS note, cast_info.person_id AS person_id, cast_info.person_role_id AS person_role_id, cast_info.role_id AS role_id, keyword.id AS id, keyword.keyword AS keyword
+ from keyword,cast_info,movie_keyword
+ where (movie_keyword.keyword_id = keyword.id) And (keyword.keyword = 'computer-animation') And (cast_info.movie_id = movie_keyword.movie_id) And (cast_info.note in ('(voice)', '(voice) (uncredited)', '(voice: English version)'))
