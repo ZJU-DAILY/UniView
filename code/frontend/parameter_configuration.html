@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.6.0/jszip.min.js"></script>
     <style>
         .wrap {
             width: 450px;
@@ -23,15 +24,22 @@
         .first {
             width: 50%;
             float: left;
-            height: 400px;
+            height: 200px;
             /*border: 1px solid #3B6273;*/
         }
 
         .second {
             width: 50%;
             float: left;
-            height: 400px;
+            height: 200px;
             /*border: 1px solid #3B6273;*/
+        }
+
+        .third {
+            width: 100%;
+            float: left;
+            height: 135px;
+            display: flex;
         }
 
         label {
@@ -79,6 +87,51 @@
         .my_tooltip:hover .tooltiptext {
             visibility: visible;
         }
+
+        /* 读取文件进度条 */
+        #progressBar {
+            width: 575px;
+            height: 15px;
+            margin-left: 345px; /* 260px */
+            margin-top: 92px;
+            /* float: left; */
+            display: flex;
+        }
+        
+        /* 表格 */
+        table {
+            border-collapse: collapse;
+            margin-top: 10px;
+            width: 720px;
+            height: 100px;
+            border:0;
+        }
+
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            max-width: 100px; /* 设置单元格的最大宽度 */
+            overflow: hidden; /* 隐藏溢出的文本 */
+            text-overflow: ellipsis; /* 使用省略号表示溢出的内容 */
+            white-space: nowrap; /* 禁止换行 */
+        }
+
+        th {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+            background-color: #f2f2f2;
+        }
+
+        #parentDiv {
+            /* margin-top: 10px; */
+            position: absolute;
+            max-height: 300px; /* 设置最大高度 */
+            overflow: auto; /* 滚动条出现时可以滚动 */
+            height: auto; /* 或设置合适的高度 */
+        }
+
     </style>
 </head>
 
@@ -98,18 +151,18 @@
                 </button>
                 <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
                     <!--                    <img style="max-width:100px; margin-top: -7px;" src="/static/logo_black.png">-->
-                    <h1 style="max-width:100px; margin-top: -7px;">UniView</h1>
+                    <h1 style="max-width:100px; margin-top: -7px; font-size: 40px;">UniView</h1>
                 </a>                    <!-- <a class="navbar-brand" href="#">DeepO</a> -->
             </div>
             <p></p>
             <p></p>
-            <div id="navbar" class="navbar-collapse collapse">
+            <div id="navbar" class="navbar-collapse collapse" style="font-size: 16px;">
                 <div class="nav nav-pills navbar-right">
                     <li role="presentation" class="nav-item active"><a href="#">Parameter
                         Configuration</a></li>
                     <li><a href="MV_process_tracking.html">MV Process Tracking</a></li>
-                    <li><a href="MV_results_evaluation.html">MV Results Evaluation</a></li>
-                    <li><a href="MV_history.html">MV History</a></li>
+                    <li><a href="MV_results_evaluation.html">MV Results Visualization</a></li>
+                    <li><a href="MV_history.html">MV Results Evaluation</a></li>
                 </div>
                 <!-- <form class="navbar-form navbar-right">
             <input type="text" class="form-control" placeholder="Search..."> -->
@@ -124,88 +177,84 @@
                 <div class="row marketing">
                     <div class="col-lg-12">
                         <div class="panel panel-primary" style="height: 470px;">
-                            <div class="panel-heading">Parameter Configuration</div>
+                            <div class="panel-heading" style="font-size: 23px;">Parameter Configuration</div>
+
+                            <!-- 上传文件按钮 -->
+                            <div class="third">
+                                <div class="my_tooltip" style="font-size:22px; margin-top: 55px;">
+                                    Input datasets
+                                    <span class="tooltiptext">upload a dataset</span>
+                                </div>
+                                <!-- <table class="table table-hover">
+                                    <tbody class="x-cate" id="msg"></tbody>
+                                </table> -->
+
+                                <div id="parentDiv" style="position: relative;">
+                                    <input type="file" id="fileInput" directory multiple style="display:none;">
+                                    <button type="button" id="uploadBtn" onclick="openFileExplorer()" class="btn btn-secondary" data-toggle="modal"
+                                    data-target="#exampleModalCenter" style="margin-left: 95px;background-color:#a9dfbf;
+                                        color:white;
+                                        margin-top: 30px;
+                                        width: 550px;
+                                        height: 55px;
+                                        border:0;
+                                        font-size: 28px;
+                                        box-sizing: content-box;
+                                        border-radius: 5px;">
+                                        Submit queries
+                                    </button>
+                                </div>
+                            </div>
+
+                            <progress id="progressBar" value="0" max="100"></progress>
 
                             <div class="first">
-                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                <div class="my_tooltip" style="font-size:22px; margin-top: 30px;">
                                     Engine
                                     <span class="tooltiptext">Select a database engine</span>
                                 </div>
 
                                 <input type="radio" id="engine1" name="engine" value="Spark"/>
-                                <span style="font-size:15px; display:inline-block;width: 50px; height: 20px;margin-right: 20px;">Spark</span>
+                                <span style="font-size:21px; display:inline-block;width: 50px; height: 20px;margin-right: 20px;">Spark</span>
                                 <input type="radio" id="engine2" name="engine" value="PostgreSQL"/>
-                                <span style="font-size:15px; display:inline-block;width: 80px;margin-right: 20px;">PostgreSQL</span>
+                                <span style="font-size:21px; display:inline-block;width: 80px;margin-right: 50px;">PostgreSQL</span>
                                 <input type="radio" id="engine3" name="engine" value="ClickHouse"/>
-                                <span style="font-size:15px; display:inline-block;width: 70px;">ClickHouse</span>
+                                <span style="font-size:21px; display:inline-block; width: 70px;margin-right: -20px;">ClickHouse</span>
                                 <br><br>
 
-                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                <div class="my_tooltip" style="font-size:22px; margin-top: 30px;">
                                     Single or multiple
                                     <span class="tooltiptext">Select table mode</span>
                                 </div>
                                 <input type="radio" id="single_or_multiple1" name="single_or_multiple" value="single"/>
-                                <span style="font-size:15px; display:inline-block;width: 50px; height: 20px;margin-right: 20px;">
+                                <span style="font-size:21px; display:inline-block;width: 50px; height: 20px;margin-right: 20px;">
                                         Single
                                     </span>
                                 <input type="radio" id="single_or_multiple2" name="single_or_multiple"
                                        value="multiple"/>
-                                <span style="font-size:15px; display:inline-block;width: 70px;margin-right: 20px;">
+                                <span style="font-size:21px; display:inline-block;width: 70px;margin-right: 20px;">
                                         Multiple
                                     </span>
                                 <br><br>
 
-                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
-                                    Num of train
-                                    <span class="tooltiptext">Number of training samples</span>
+                                <div class="my_tooltip" style="font-size:22px; margin-top: 30px;">
+                                    Recommend method
+                                    <span class="tooltiptext">Select a recommend method</span>
                                 </div>
-                                <input type="text" id="num_train" name="num_train"
-                                       placeholder="default:100">
-                                <br><br>
-
-                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
-                                    Space limit
-                                    <span class="tooltiptext">Space limit M</span>
-                                </div>
-                                <input type="text" id="space_limit" name="space_limit"
-                                       placeholder="default:1024">
-                                <br><br>
-
-                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
-                                    Table size upper bound
-                                    <span class="tooltiptext">The threshold for distinguishing between large and small tables. A table with a size of more than 1G is a large table, and a table with a size of less than 10M is a small table.</span>
-                                </div>
-                                <input type="text" id="table_size_upper_bound"
-                                       name="table_size_upper_bound"
-                                       placeholder="default:50000000">
+                                <input type="radio" id="recommend_method1" name="recommend_method" value="greedy"/>
+                                    <span style="font-size:21px; display:inline-block;width: 50px; height: 20px;margin-right: 20px;">
+                                        Greedy
+                                    </span>
+                                <input type="radio" id="recommend_method2" name="recommend_method" value="RL"/>
+                                    <span style="font-size:21px; display:inline-block;width: 70px;margin-right: 20px;">
+                                        RL
+                                    </span>
                                 <br><br>
 
                             </div>
 
                             <div class="second">
-                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
-                                    Recommend method
-                                    <span class="tooltiptext">Select a recommend method</span>
-                                </div>
-                                <input type="radio" id="recommend_method1" name="recommend_method" value="greedy"/>
-                                    <span style="font-size:15px; display:inline-block;width: 50px; height: 20px;margin-right: 20px;">
-                                        Greedy
-                                    </span>
-                                <input type="radio" id="recommend_method2" name="recommend_method" value="RL"/>
-                                    <span style="font-size:15px; display:inline-block;width: 70px;margin-right: 20px;">
-                                        RL
-                                    </span>
-                                <br><br>
-
-                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
-                                    Num of epoch
-                                    <span class="tooltiptext">Number of training rounds</span>
-                                </div>
-                                <input type="text" id="epoch" name="epoch"
-                                       placeholder="default:5">
-                                <br><br>
-
-                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                <div class="my_tooltip" style="font-size:22px; margin-top: 30px;">
                                     Cnt limit
                                     <span class="tooltiptext">The limit of topN's MV</span>
                                 </div>
@@ -213,25 +262,41 @@
                                        placeholder="default:30">
                                 <br><br>
 
-                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                <div class="my_tooltip" style="font-size:22px; margin-top: 30px;">
+                                    Num of epoch
+                                    <span class="tooltiptext">Number of training rounds</span>
+                                </div>
+                                <input type="text" id="epoch" name="epoch"
+                                       placeholder="default:5">
+                                <br><br>
+
+                                <div class="my_tooltip" style="font-size:22px; margin-top: 30px;">
+                                    Num of batch_size
+                                    <span class="tooltiptext">Number of training samples</span>
+                                </div>
+                                <input type="text" id="batch_size" name="batch_size"
+                                       placeholder="default:8">
+                                <br><br>
+
+                                <!-- <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
                                     Refer threshold
                                     <span class="tooltiptext">Subtrees whose reference count is less than ref_threshold will not be used as candidate views</span>
                                 </div>
                                 <input type="text" id="refer_threshold" name="refer_threshold"
                                        placeholder="default:1">
-                                <br><br>
+                                <br><br> -->
 
-                                <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
+                                <!-- <div class="my_tooltip" style="font-size:15px; margin-top: 30px;">
                                     Table size lower bound
                                     <span class="tooltiptext">The threshold for distinguishing between large and small tables. A table with a size of more than 1G is a large table, and a table with a size of less than 10M is a small table.</span>
                                 </div>
                                 <input type="text" id="table_size_lower_bound"
                                        name="table_size_lower_bound"
                                        placeholder="default:10485760">
-                                <br><br>
-
-
+                                <br><br> -->
                             </div>
+                            
+
 
                         </div>
 
@@ -260,6 +325,70 @@
 
             <div id="output"></div>
         </div>
+
+        <!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="font-size: 20px; text-align: center; display: flex; justify-content: center;">Message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="color: red; font-size: 25px; text-align: center;">
+                  save parameters success! 
+                </div>
+                <div class="modal-footer" style="justify-content: center; text-align: center;">
+                  <button type="button" class="btn btn-primary" data-dismiss="modal">Yes</button>
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                </div>
+              </div>
+            </div>
+        </div> -->
+
+
+        <div class="modal fade" id="myModal_one" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top: 200px; justify-content: center; align-items: center;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="modalTitle" style="text-align: center;">
+                            Message
+                        </h4>
+                    </div>
+                    <div class="modal-body" id="modal_msg_1" style="color: #00008B; font-size: 35px; text-align: center;">
+                        <string>save parameters success!</string>
+                    </div>
+                    <div class="modal-footer" style="justify-content: center; text-align: center;">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 20px; width: 90px;">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModal_two" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top: 200px; justify-content: center; align-items: center;">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">×</span></button>
+                        <h4 class="modal-title" id="modalTitle" style="text-align: center;">
+                            Message
+                        </h4>
+                    </div>
+                    <div class="modal-body" id="modal_msg_2" style="color: #00008B; font-size: 35px; text-align: center;">
+                        <string>save parameters success!</string>
+                    </div>
+                    <div class="modal-footer" style="justify-content: center; text-align: center;">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 20px; width: 40px;">Yes</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal" style="font-size: 20px; width: 40px;">No</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 
@@ -274,6 +403,13 @@
     var saveParameters = document.getElementById("saveParameters");
     var defaultParameters = document.getElementById("defaultParameters");
 
+
+    function show_modal_one(msg) {
+        var modalBody = document.getElementById('modal_msg_1');
+        modalBody.innerHTML = "<strong>" + msg +"</strong>";
+        $('#myModal_one').modal('show');
+    }
+
     function getValueFromRatios(radios) {
         var value = 0;
         for (var i = 0; i < radios.length; i++) {
@@ -286,13 +422,157 @@
     }
 
     function chooseRatio(radios, value) {
-        for (var i = 0; i < radios.length; i++){
-            if (radios[i].value == value){
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].value == value) {
                 radios[i].checked = true;
                 break;
             }
         }
     }
+
+    
+
+    function readFile(file) {
+        return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                resolve(e.target.result);
+            };
+            reader.onerror = function(e) {
+                reject(e);
+            };
+            reader.readAsText(file);
+        })
+    }
+
+    async function read_upload_file() {
+        var files_datas = {}
+        const fileInput = document.getElementById('fileInput');
+        const files = fileInput.files;
+        const zip_file = files[0];
+
+        const zip = new JSZip();
+
+        // 读取ZIP文件内容并解压缩
+        zip.loadAsync(zip_file).then(function(contents) {
+            // 获取所有非目录文件的Promise数组
+            const promises = Object.keys(contents.files)
+            .filter(function(fileName) {
+                return !contents.files[fileName].dir;
+            })
+            .map(function(fileName) {
+            const file = contents.files[fileName];
+            return file.async('blob').then(function(content) {
+                    return new Promise(function(resolve, reject) {
+                    const fileReader = new FileReader();
+                    fileReader.onload = function(event) {
+                        // 处理文件内容
+                        files_datas[fileName] = event.target.result;
+                        resolve();
+                    };
+                    fileReader.onerror = function(error) {
+                        reject(error);
+                    };
+                    fileReader.readAsText(content);
+                });
+            });
+            });
+
+        // 等待所有文件解压缩完成
+        Promise.all(promises).then(function() {
+            // 所有文件解压缩完成
+            // console.log(files_datas);
+            // 隐藏按钮
+            document.getElementById('uploadBtn').style.display = 'none';
+            document.getElementById('progressBar').style.display = 'none';
+            // 显示表格
+            replaceWithTable(files_datas);
+        }).catch(function(error) {
+            console.error(error);
+        });
+    });
+
+        // const promises = [];
+        // for (let i = 0; i < files.length; i++) {
+        //     const fileName = files[i].name;
+        //     const promise = readFile(files[i])
+        //     .then(fileContent => {
+        //         files_datas[fileName] = fileContent;
+        //     })
+        //     .catch(error => console.log(error));
+        //     promises.push(promise);
+        // }
+
+        // await Promise.all(promises);
+
+    }
+
+    // 固定的进度条效果
+    const progressBar = document.getElementById('progressBar');
+    let progress = 0;
+
+    function simulateFileRead() {
+        const interval = setInterval(() => {
+            progress += 1; // 每次增加10%
+            progressBar.value = progress;
+            if (progress >= 120) {
+                clearInterval(interval); // 读取完成后清除定时器
+                read_upload_file()
+
+            }
+        }, 20); // 每隔20ms更新一次进度条
+    }
+
+    document.getElementById('fileInput').addEventListener('change', function (event) {
+        simulateFileRead();
+    });
+
+    
+
+    // 替换按钮
+    function replaceWithTable(files_datas) {
+        var parentDiv = document.getElementById('parentDiv');
+        parentDiv.style.marginTop = '10px';
+
+        var button = document.getElementById('uploadBtn');
+        var parentDiv = button.parentNode;
+        
+        // 创建表格元素和相关节点
+        var table = document.createElement('table');
+        var tbody = document.createElement('tbody');
+        table.appendChild(tbody);
+        
+        // 创建表头
+        var headerRow = document.createElement('tr');
+        var header1 = document.createElement('th');
+        var header2 = document.createElement('th');
+        header1.textContent = 'file name';
+        header2.textContent = 'file content';
+        headerRow.appendChild(header1);
+        headerRow.appendChild(header2);
+        tbody.appendChild(headerRow);
+        
+        // 创建数据行
+        for (let key in files_datas) {
+            var content = files_datas[key];
+            var dataRow = document.createElement('tr');
+            var data1 = document.createElement('td');
+            var data2 = document.createElement('td');
+            data1.textContent = key;
+            data2.textContent = content;
+            dataRow.appendChild(data1);
+            dataRow.appendChild(data2);
+            tbody.appendChild(dataRow);
+        }
+
+        // 获取具有类名 "third" 的元素
+        var thirdElement = document.querySelector('.third');
+        thirdElement.style.height = '175px';
+
+        // 替换按钮为表格
+        parentDiv.replaceChild(table, button);
+    }
+
 
     saveParameters.onclick = function () {
         var radios_engine = document.getElementsByName("engine");
@@ -305,50 +585,91 @@
         var single_or_multiple = getValueFromRatios(radios_single_or_multiple);
 
         var epoch = window.document.getElementById("epoch").value;
-        var num_train = window.document.getElementById("num_train").value;
+        var batch_size = window.document.getElementById("batch_size").value;
         var cnt_limit = window.document.getElementById("cnt_limit").value;
-        var space_limit = window.document.getElementById("space_limit").value;
-        var refer_threshold = window.document.getElementById("refer_threshold").value;
-        var table_size_upper_bound = window.document.getElementById("table_size_upper_bound").value;
-        var table_size_lower_bound = window.document.getElementById("table_size_lower_bound").value;
+        // var space_limit = window.document.getElementById("space_limit").value;
+        // var refer_threshold = window.document.getElementById("refer_threshold").value;
+        // var table_size_upper_bound = window.document.getElementById("table_size_upper_bound").value;
+        // var table_size_lower_bound = window.document.getElementById("table_size_lower_bound").value;
 
-        alert("save parameters success!");
+        // alert("save parameters success!");
 
-        // $.ajax({
-        //     // 替换url
-        //     url: "http://110.42.138.127:5000/save_parameters",
-        //     type: 'POST',
-        //     dataType: 'json',
-        //     crossDomain: true,
-        //     contentType: 'application/json;charset=UTF-8',
-        //     data: JSON.stringify({
-        //         "engine": engine, 
-        //         "recommend_method": recommend_method, 
-        //         "single_or_multiple": single_or_multiple,
-        //         "epoch": parseInt(epoch), 
-        //         "num_train": parseInt(num_train), 
-        //         "cnt_limit": parseInt(cnt_limit), 
-        //         "space_limit": parseInt(space_limit),
-        //         "refer_threshold": parseInt(refer_threshold), 
-        //         "table_size_upper_bound": parseInt(table_size_upper_bound),
-        //         "table_size_lower_bound": parseInt(table_size_lower_bound)
-        //     }),
-        //     success: function (res) {
-        //         // 根据res返回值判断何种状态
-        //         if(res.code === 200){
-        //             alert(res.msg);
-        //             console.log(res)
-        //         }
-        //         else if(res.code === 401){
-        //             alert(res.msg);
-        //         }
-        //     },
-        //     error: function (e) {
-        //         alert("server error");
-        //         console.log(e.responseText);
-        //     }
-        // });
+        const fileInput = document.getElementById('fileInput');
+        const files = fileInput.files;
+        const file_datas = {};
+
+        function readFile(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    resolve(e.target.result);
+                };
+                reader.onerror = function(e) {
+                    reject(e);
+                };
+                reader.readAsText(file);
+            })
+        }
+
+        async function handleFiles(files, engine, recommend_method, single_or_multiple, epoch, batch_size, cnt_limit) {
+            const file_datas = {};
+            const promises = [];
+            for (let i = 0; i < files.length; i++) {
+                const fileName = files[i].name;
+                const promise = readFile(files[i])
+                .then(fileContent => {
+                    file_datas[fileName] = fileContent;
+                })
+                .catch(error => console.log(error));
+                promises.push(promise);
+            }
+
+            await Promise.all(promises);
+            // console.log(file_datas);
+            // 等待文件读取完成后再发送数据
+            $.ajax({
+                // 替换url
+                url: "http://127.0.0.1:5000/save_parameters",
+                type: 'POST',
+                dataType: 'json',
+                crossDomain: true,
+                processData: false,
+                contentType: 'application/json;charset=UTF-8',
+                data: JSON.stringify({
+                    "engine": engine, 
+                    "recommend_method": recommend_method, 
+                    "single_or_multiple": single_or_multiple,
+                    "epoch": parseInt(epoch), 
+                    "batch_size": parseInt(batch_size), 
+                    "cnt_limit": parseInt(cnt_limit), 
+                    "datasets": file_datas,
+                    // "space_limit": parseInt(space_limit),
+                    // "refer_threshold": parseInt(refer_threshold), 
+                    // "table_size_upper_bound": parseInt(table_size_upper_bound),
+                    // "table_size_lower_bound": parseInt(table_size_lower_bound)
+                }),
+                success: function (res) {
+                    // 根据res返回值判断何种状态
+                    if (res.code === 200) {
+                        // alert(res.msg);
+                        show_modal_one("save parameters success!");
+                        console.log(res)
+                    }
+                    else if(res.code === 401) {
+                        alert(res.msg);
+                    }
+                },
+                error: function (e) {
+                    alert("server error");
+                    console.log(e.responseText);
+                }
+            });
+        }
+
+        handleFiles(files, engine, recommend_method, single_or_multiple, epoch, batch_size, cnt_limit);
+
     }
+
 
     defaultParameters.onclick = function () {
         var radios_engine = document.getElementsByName("engine");
@@ -359,12 +680,12 @@
         chooseRatio(radios_recommend_method, "RL");
         chooseRatio(radios_single_or_multiple, "multiple");
         window.document.getElementById("epoch").value = 5;
-        window.document.getElementById("num_train").value = 100;
+        window.document.getElementById("batch_size").value = 8;
         window.document.getElementById("cnt_limit").value = 30;
-        window.document.getElementById("space_limit").value = 1024;
-        window.document.getElementById("refer_threshold").value = 1;
-        window.document.getElementById("table_size_upper_bound").value = 50000000;
-        window.document.getElementById("table_size_lower_bound").value = 10485760;
+        // window.document.getElementById("space_limit").value = 1024;
+        // window.document.getElementById("refer_threshold").value = 1;
+        // window.document.getElementById("table_size_upper_bound").value = 50000000;
+        // window.document.getElementById("table_size_lower_bound").value = 10485760;
     }
 
 
@@ -400,6 +721,11 @@
             var oTr = oObj.parentNode;
             if (!oTr.tag) oTr.style.backgroundColor = "#E1E9FD";
         }
+    }
+
+    // 打开文件夹脚本
+    function openFileExplorer() {
+        document.getElementById('fileInput').click();
     }
 
 

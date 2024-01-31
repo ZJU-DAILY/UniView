@@ -96,8 +96,8 @@ class Graph(object):
             Z, O_cur, flip_num = self.zOpt(Z, O_cur, B_max, B_cur, t)
             Y, B_cur = self.yOpt(Y, B_cur, Z)
             estimated_utility = self.computotalUtility(Z, Y)
-            print(f"{get_current_time()}: z-y {Z}, {Y}")
-            print(f"{get_current_time()}: f-e {flip_num}, {estimated_utility}")
+            # print(f"{get_current_time()}: z-y {Z}, {Y}")
+            # print(f"{get_current_time()}: f-e {flip_num}, {estimated_utility}")
             all_flip += flip_num
             if estimated_utility > max_estimated:
                 max_estimated = estimated_utility
@@ -214,14 +214,14 @@ class Graph(object):
         prob = pulp.LpProblem('LP1', pulp.LpMaximize)
         prob.solver = pulp.getSolver("GLPK_CMD")
         # prob.solver = pulp.getSolver("COIN_CMD")
-        print(varibales)
+        # print(varibales)
         prob.addVariables(varibales)
         prob += objective
         for cons in constraints:
             prob += cons
         # status = prob.solve()
         # print("end ilp solver........")
-        status = prob.solve()
+        status = prob.solve(pulp.GLPK_CMD(msg=0))
         if status != 1:
             return None
         else:

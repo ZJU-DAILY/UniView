@@ -1,3 +1,3 @@
 select cast_info.movie_id AS cast_info_movie_id_0, cast_info.person_id AS person_id, company_name.country_code AS country_code, company_name.id AS company_name_id_3, keyword.id AS keyword_id_4, keyword.keyword AS keyword, movie_keyword.movie_id AS movie_keyword_movie_id_6, name.name AS name
- from cast_info,title,name,movie_keyword,keyword,movie_companies,company_name
- where (cast_info.movie_id = title.id) And (name.id = cast_info.person_id) And (title.id = movie_keyword.movie_id) And (movie_companies.movie_id = title.id) And (movie_keyword.keyword_id = keyword.id) And (keyword.keyword = 'character-name-in-title') And (company_name.id = movie_companies.company_id)
+ from movie_keyword,name,movie_companies,title,company_name,cast_info,keyword
+ where (movie_keyword.keyword_id = keyword.id) And (title.id = movie_keyword.movie_id) And (name.id = cast_info.person_id) And (movie_companies.movie_id = title.id) And (company_name.id = movie_companies.company_id) And (cast_info.movie_id = title.id) And (keyword.keyword = 'character-name-in-title')

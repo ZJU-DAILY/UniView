@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.js"></script> -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
 
     <style>
         .wrap {
@@ -35,23 +36,23 @@
         }
 
         .first {
-            width: 25%;
+            width: 26%;
             float: left;
-            height: 450px;
+            height: 350px;
             /*border: 1px solid #3B6273;*/
         }
 
         .second {
             width: 43%;
             float: left;
-            height: 450px;
+            height: 470px;
             /*border: 1px solid #3B6273;*/
         }
 
         .third {
             width: 30%;
             float: left;
-            height: 450px;
+            height: 469px;
             border: 1px solid #3B6273;
         }
 
@@ -132,6 +133,11 @@
             -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
         }
 
+        #pie {
+            width: 280px;
+            height: 210px;
+        }
+
     </style>
 </head>
 
@@ -151,23 +157,20 @@
                 </button>
                 <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
                     <!--                    <img style="max-width:100px; margin-top: -7px;" src="/static/logo_black.png">-->
-                    <h1 style="max-width:100px; margin-top: -7px;">UniView</h1>
+                    <h1 style="max-width:100px; margin-top: -7px; font-size: 40px;">UniView</h1>
                 </a>                    <!-- <a class="navbar-brand" href="#">DeepO</a> -->
             </div>
             <p></p>
             <p></p>
-            <div id="navbar" class="navbar-collapse collapse">
+            <div id="navbar" class="navbar-collapse collapse" style="font-size: 16px;">
                 <div class="nav nav-pills navbar-right">
                     <li><a href="parameter_configuration.html">Parameter
                         Configuration</a></li>
                     <li><a href="MV_process_tracking.html">MV Process Tracking</a></li>
                     <li role="presentation" class="nav-item active"><a href="#.html">MV Results
-                        Evaluation</a></li>
-                    <li><a href="MV_history.html">MV History</a></li>
+                        Visualization</a></li>
+                    <li><a href="MV_history.html">MV Results Evaluation</a></li>
                 </div>
-                <!-- <form class="navbar-form navbar-right">
-            <input type="text" class="form-control" placeholder="Search..."> -->
-                <!-- </form> -->
             </div>
         </div>
     </nav>
@@ -184,9 +187,9 @@
                 <div class="row marketing" style="margin-right: 0px">
                     <div class="col-lg-12">
                         <div class="panel panel-primary">
-                            <div class="panel-heading" style="overflow: auto;">Benefit</div>
-                            <table class="table" style="width: 300px; height: 195px">
-                                <tbody class="x-cate" id="benefit"></tbody>
+                            <div class="panel-heading" style="overflow: auto; font-size: 22px;">Benefit</div>
+                            <table class="table" style="width: 300px; height: 130px">
+                                <tbody class="x-cate" id="benefit"></tbody>    
                             </table>
                         </div>
                     </div>
@@ -195,10 +198,11 @@
                 <div class="row marketing" style="margin-right: 0px">
                     <div class="col-lg-12">
                         <div class="panel panel-primary">
-                            <div class="panel-heading" style="overflow: auto;">Coverage</div>
-                            <table class="table" style="width: 300px; height: 150px">
+                            <div class="panel-heading" style="overflow: auto; font-size: 22px;">Coverage</div>
+                            <div id="pie" ,align ="center"></div>
+                            <!-- <table class="table" style="width: 300px; height: 150px">
                                 <tbody class="x-cate" id="coverage"></tbody>
-                            </table>
+                            </table> -->
                         </div>
                     </div>
                 </div>
@@ -210,38 +214,11 @@
                     <div class="row marketing">
                         <div class="col-lg-12">
                             <div class="panel panel-primary">
-                                <div class="panel-heading">Execution time and result
+                                <div class="panel-heading" style="font-size: 22px;">Execution time and result
                                 </div>
-                                <div style="overflow: scroll; height: 408px;">
-                                    <table class="table table-hover">
-                                        <thead>
-                                        <th scope="col" class="col-xs-1"
-                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
-                                            Original SQL ID
-                                        </th>
-                                        <th scope="col" class="col-xs-1"
-                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">MV ID
-                                        </th>
-                                        <th scope="col" class="col-xs-1"
-                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
-                                            Original execution time
-                                        </th>
-                                        <th scope="col" class="col-xs-1"
-                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">New
-                                            execution time
-                                        </th>
-                                        <th scope="col" class="col-xs-1"
-                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
-                                            Benefit time
-                                        </th>
-                                        <th scope="col" class="col-xs-1"
-                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
-                                            Benefit rate
-                                        </th>
-                                        </thead>
-                                        <tbody class="x-cate" id="form"></tbody>
-                                    </table>
-                                </div>
+                                <!-- <div style="overflow: scroll; height: 408px;"> -->
+                                    <div id="query_write_time" style="font-size: 22px; width:100%;height:415px;margin: 0 auto"></div>
+                                <!-- </div> -->
                             </div>
                         </div>
                     </div>
@@ -253,7 +230,7 @@
                     <div class="row marketing">
                         <div class="col-lg-12">
                             <div class="panel panel-primary">
-                                <div class="panel-heading">Query plan</div>
+                                <div class="panel-heading" style="font-size: 22px;">Query plan</div>
                                 <div id="visualization"></div>
                                 <!-- <iframe src="./Visualization.html" frameborder="0" style="height: 400px; width: 340px"></iframe> -->
                             </div>
@@ -264,7 +241,7 @@
             </div>
             <span style="height: 60px"></span>
             <div class="btn-toolbar">
-                <button type="button" id="evaluate" class="btn btn-secondary" style="margin-top:40px; margin-left: 460px;background-color:#337ab7;
+                <button type="button" id="evaluate" class="btn btn-secondary" style="font-size: 22px; margin-top:25px; margin-left: 460px;background-color:#337ab7;
 	            color:white;
 	            width: 200px;
 	            height: 45px;
@@ -291,7 +268,8 @@
 
     $("#evaluate").click(function () {
         // 同文件夹下的json文件路径，直接改为后端URL即可
-        var url = "时间性能测试结果PG.json"
+        // var url = "时间性能测试结果PG.json"
+        var url = "http://127.0.0.1:5000/evaluate_result"
         // 申明一个XMLHttpRequest
         var request = new XMLHttpRequest();
         // 设置请求方法与路径
@@ -305,27 +283,29 @@
                 var data = JSON.parse(request.responseText);
                 console.log(data);
 
-                var str1 = "";   //声明str1，防止产生undefined
-                $.each(data, function (infoIndex, info) {
-                    info["收益时间(ms)"] = info["收益时间(ms)"].toFixed(3)
-                    str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
-                        "<td>" + info["原始sqlID"] + "</td>" +
-                        "<td>" + info["改写视图ID"] + "</td>" +
-                        "<td>" + info["原始执行耗时(ms)"] + "</td>" +
-                        "<td>" + info["改写后执行耗时(ms)"] + "</td>" +
-                        "<td>" + info["收益时间(ms)"] + "</td>" +
-                        "<td>" + info["收益率"] + "</td>" + "</tr>"
-                })
-                form.innerHTML = str1;
-                benefit.innerHTML =
+                // var str1 = "";   //声明str1，防止产生undefined
+                // $.each(data, function (infoIndex, info) {
+                //     info["benefit_time"] = info["benefit_time"].toFixed(3)
+                //     str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                //         "<td>" + info["original_sql_id"] + "</td>" +
+                //         "<td>" + info["rewrite_mv_id"] + "</td>" +
+                //         "<td>" + info["original_execution_time"] + "</td>" +
+                //         "<td>" + info["rewrite_execution_time"] + "</td>" +
+                //         "<td>" + info["benefit_time"] + "</td>" +
+                //         "<td>" + info["benefit_rate"] + "</td>" + "</tr>"
+                // })
+                // form.innerHTML = str1;
+                generate_rewrite_chart(data)
+                generate_pie_1()
+                benefit.innerHTML = 
                     "<li style='margin-top:10px; margin-left: 5px;font-size: 16px;'>The original query takes <span style='color: red'>1071.98s</span>, and the query after using the view takes <span style='color:mediumseagreen'>85.562s</span>." +
-                    "<br><li style='margin-left: 5px;font-size: 16px;'>The total benefit rate is <span style='color:mediumseagreen'>92.02%</span>." +
-                    "<br><li style='margin-left: 5px;font-size: 16px;'>The highest single pick yield is <span style='color:mediumseagreen'>928533.90%</span>, reduced from the original <span style='color:red'>3.2595s</span> to <span style='color:mediumseagreen'>0.000351s</span>.";
-                coverage.innerHTML =
-                    "<li style='margin-top:10px; margin-left: 5px;font-size: 16px;'>There are <span style='color:red'>113</span> original queries. <span style='color:mediumseagreen'>30</span> views are recommended, and <span style='color:mediumseagreen'>43</span> queries are covered by these views." +
-                    "<br><li style='margin-left: 5px;font-size: 16px;'>Coverage is <span style='color:mediumseagreen'>38.05%</span>."
+                    "<br><li style='margin-left: 5px;font-size: 16px;'>The total benefit rate is <span style='color:mediumseagreen'>92.02%</span>.";
+                    // "<br><li style='margin-left: 5px;font-size: 16px;'>The highest single pick yield is <span style='color:mediumseagreen'>928533.90%</span>, reduced from the original <span style='color:red'>3.2595s</span> to <span style='color:mediumseagreen'>0.000351s</span>.";
+                // coverage.innerHTML = 
+                //     "<li style='margin-top:10px; margin-left: 5px;font-size: 16px;'>There are <span style='color:red'>113</span> original queries. <span style='color:mediumseagreen'>30</span> views are recommended, and <span style='color:mediumseagreen'>43</span> queries are covered by these views." +
+                //     "<br><li style='margin-left: 5px;font-size: 16px;'>Coverage is <span style='color:mediumseagreen'>38.05%</span>."
                 visualization.innerHTML = 
-                    "<iframe src='./Visualization.html' frameborder='0' style='height: 400px; width: 340px'></iframe>";
+                    "<iframe src='./Visualization.html' frameborder='0' style='height: 409px; width: 340px'  scrolling='no'></iframe>";
                 $("#graph").load('test.html');
             }
         };
@@ -364,6 +344,222 @@
             var oTr = oObj.parentNode;
             if (!oTr.tag) oTr.style.backgroundColor = "#E1E9FD";
         }
+    }
+
+
+    // 显示query时间图表
+    function generate_rewrite_chart(data) {
+        // 处理data
+        var ori_lst = [];
+        var rew_lst = [];
+        var sql_lst = [];
+        $.each(data, function (infoIndex, info) {
+            ori_lst.push(info['original_execution_time']);
+            rew_lst.push(info['rewrite_execution_time']);
+            sql_lst.push(info['original_sql_id'].slice(0, -4));
+        })
+
+
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // 使用
+        require (
+            [
+                'echarts',
+                'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+                'echarts/chart/line'
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('query_write_time'));
+                
+                var option = {
+                    title: {
+                        text: '',
+                        textStyle: { 
+                            fontSize: 14,
+                            fontStyle: 'normal',
+                            fontWeight: 'bold',
+                        },
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        data: ['Original Query', 'Rewritten Query']
+                    },
+                    toolbox: {
+                        show: true,
+                        feature: {
+                            dataView: {
+                                show: true,
+                                readOnly: false
+                            },
+                            magicType: {
+                                show: true,
+                                type: ['line', 'bar']
+                            },
+                            restore: {
+                                show: true
+                            },
+                            saveAsImage: {
+                                show: true
+                            }
+                        }
+                    },
+                    calculable: true,
+                    xAxis: [{
+                        type: 'category',
+                        data: sql_lst,
+                        name: 'Queries',
+                        position: 'left'
+                    }],
+                    yAxis: [{
+                        type: 'value',
+                        name: 'Latency(ms)',
+                        position: 'left',
+                    }],
+                    dataZoom: { // 设置横向滚动条
+                        show: true,
+                        realtime: true,
+                        x: 80,
+                        y: 360,
+                        height: 20,
+                        start: 0, // 设置显示范围起始位置
+                        end: 17 // 设置显示范围结束位置
+                    },
+                    series: [{
+                            name: 'Original Query',
+                            type: 'bar',
+                            data: ori_lst,
+                            color: '#CC0066'
+                        },
+                        {
+                            name: 'Rewritten Query',
+                            type: 'bar',
+                            data: rew_lst,
+                            color: '#009999' // 设置颜色
+                        }
+                    ]
+                };
+                                
+                // 为echarts对象加载数据 
+                myChart.setOption(option);
+            }
+        );
+    }
+
+
+    function generate_pie_1() {
+        $.ajax({
+            // contentType: "application/json; charset=utf-8",
+            // url替换
+            url: "http://127.0.0.1:5000/get_coverage",
+            type: 'POST',
+            dataType: 'json',
+            crossDomain: true,
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                    "topn": 10
+            }),
+            success: function (data) {
+                if (data.code === 200) {
+                    var mv_coverage_json = data.mv_json;
+                    // 路径配置
+                    require.config({
+                        paths: {
+                            echarts: 'http://echarts.baidu.com/build/dist'
+                        }
+                    });
+
+                    // 使用
+                    require (
+                        [
+                            'echarts',
+                            'echarts/chart/pie'
+                        ],
+                        function (ec) {
+                            // 饼状图
+                            var pie = ec.init(document.getElementById('pie'));
+                            // 指定图表的配置项和数据
+                            pieOption = {
+                                // 标题
+                                title: {
+                                },
+                                // 图例
+                                tooltip: {
+                                    show: true,
+                                    trigger: "item",
+                                    enterable: true, // 允许鼠标进入提示框
+                                    backgroundColor: "#1677FF",
+                                    // {a}（系列名称），{b}（数据项名称），{c}（数值）, {d}（百分比）
+                                    formatter: "{b}<br/>{c} ({d}%)"
+                                },
+                                // 不同区域的颜色
+                                color: ['#3e87ff', '#c0c0c0', '#b9cfec','#191970','#4B0082','#44ff99', '#8B0000',
+                                '#0000ff','#ff1100', '#ff6600'],
+                                series: [
+                                    {
+                                        name: 'mv_id',
+                                        type: 'pie',
+                                        // 数组的第一项是内半径，第二项是外半径；可以设置不同的内外半径显示成圆环图
+                                        radius: '60%',
+                                        // 饼图的中心（圆心）坐标，数组的第一项是横坐标，第二项是纵坐标；设置成百分比时第一项是相对于容器宽度，第二项是相对于容器高度
+                                        center: ['50%', '50%'],
+                                        // data: [
+                                        //     { value: 9795, name: '创业' },
+                                        //     { value: 19840, name: '电子' },
+                                        //     { value: 38911, name: '工程' },
+                                        //     { value: 6609, name: '公共管理' },
+                                        //     { value: 3243, name: '化学' },
+                                        //     { value: 1221, name: '环境' },
+                                        //     { value: 111541, name: '计算机' },
+                                        //     { value: 641, name: '建筑' },
+                                        //     { value: 10783, name: '教育' },
+                                        //     { value: 24394, name: '经管会计' }
+                                        // ],
+                                        data: mv_coverage_json,
+                                        itemStyle: {
+                                            // 显示图例
+                                            normal: {
+                                                label: {
+                                                    show: true
+                                                },
+                                                labelLine: {
+                                                    show: true
+                                                }
+                                            },
+                                            emphasis: {
+                                                // 图形阴影的模糊大小
+                                                shadowBlur: 10,
+                                                // 阴影水平方向上的偏移距离
+                                                shadowOffsetX: 0,
+                                                // 阴影颜色
+                                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                            }
+                                        }
+                                    }
+                                ]
+                            };
+
+                            pie.setOption(pieOption);
+                        }
+                    );
+                }
+            },
+            error: function (e) {
+                isRunning = 0;
+                alert("Request error");
+                console.log(e.responseText);
+            }
+        });
+
+        
     }
 
 

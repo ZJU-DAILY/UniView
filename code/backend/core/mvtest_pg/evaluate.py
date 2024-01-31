@@ -158,7 +158,7 @@ def get_cost_by_plan(plan):
 
 def average_yield(t1, t2):
     '''
-    平均收益率计算
+    平均benefit_rate计算
     :return:
     '''
     time_profit = 0
@@ -185,10 +185,10 @@ def test_report():
 
     mvcost = load_json("./result/mvCOST.json")  # 第2次查询时间
 
-    # 获取改写sql平均收益率
+    # 获取改写sql平均benefit_rate
     time_profit_rate = average_yield(time_taken1, time_taken2)
 
-    df = pd.DataFrame(columns=["原始sqlID","原始执行耗时(ms)","改写sqlID","改写视图ID","改写后执行耗时(ms)","收益时间(ms)","收益率"])
+    df = pd.DataFrame(columns=["original_sql_id","original_execution_time","rewrite_sql_id","rewrite_mv_id","rewrite_execution_time","benefit_time","benefit_rate"])
     for key,val in time_taken2.items():
         if "-" in key:
             sqlID = key.split("-")[0]+".sql"
@@ -197,18 +197,18 @@ def test_report():
             sqlID = key.split("_")[0]+".sql"
             mvID = "mv"+key.split("_")[1][:-4]
         s = {
-            "原始sqlID":sqlID,
-            "原始执行耗时(ms)":time_taken1[sqlID],
-            "改写sqlID":key,
-            "改写视图ID":mvID,
-            "改写后执行耗时(ms)":val,
-            "收益时间(ms)":(time_taken1[sqlID]-val),
-            "收益率":'%.2f%%' % (round((time_taken1[sqlID]-val)/val,4) * 100)
+            "original_sql_id":sqlID,
+            "original_execution_time":time_taken1[sqlID],
+            "rewrite_sql_id":key,
+            "rewrite_mv_id":mvID,
+            "rewrite_execution_time":val,
+            "benefit_time":(time_taken1[sqlID]-val),
+            "benefit_rate":'%.2f%%' % (round((time_taken1[sqlID]-val)/val,4) * 100)
         }
         df = df.append(s, ignore_index=True)
     df.to_excel("./result/时间性能测试结果.xlsx",encoding="utf-8")
 
-    df_ = pd.DataFrame(columns=["原始sqlID","原始执行成本","改写sqlID","改写视图ID","视图创建开销","改写后执行成本"])
+    df_ = pd.DataFrame(columns=["original_sql_id","原始执行成本","rewrite_sql_id","rewrite_mv_id","视图创建开销","改写后执行成本"])
     for key,val in cost2.items():
         if "-" in key:
             sqlID = key.split("-")[0]+".sql"
@@ -217,10 +217,10 @@ def test_report():
             sqlID = key.split("_")[0]+".sql"
             mvID = "mv"+key.split("_")[1][:-4]
         s = {
-            "原始sqlID":sqlID,
+            "original_sql_id":sqlID,
             "原始执行成本":cost1[sqlID],
-            "改写sqlID":key,
-            "改写视图ID": mvID,
+            "rewrite_sql_id":key,
+            "rewrite_mv_id": mvID,
             "视图创建开销":mvcost[mvID+".sql"],
             "改写后执行成本":val,
         }
@@ -231,12 +231,12 @@ def test_report():
         tmp = [i.split("_")[0]+".sql" for i in list(time_taken2.keys())]
         if i not in tmp:
             t2[i] = time_taken1[i]
-    # 获取改写sql平均收益率
+    # 获取改写sql平均benefit_rate
     # time_profit_rate = average_yield(time_taken1, t2,mv_time)
     print("第一次总时间：",sum(time_taken1.values()))
     print("第二次总时间：",sum(t2.values()))
     print("视图创建时间：",sum(mv_time.values()))
-    print("平均收益率为：",(sum(time_taken1.values()) - sum(t2.values()) - sum(mv_time.values()))/sum(t2.values()))
+    print("平均benefit_rate为：",(sum(time_taken1.values()) - sum(t2.values()) - sum(mv_time.values()))/sum(t2.values()))
 
 def save_as_txt(name,string):
     with open('{}.txt'.format(name),'w') as f:

@@ -9,7 +9,7 @@ from jobRL import *
 
 def recommend_dqn():
     n1 = 10
-    n2 = 2
+    n2 = 1
 
     # 将wide deep模型结果作为输入,进行mv选择训练
     queries, mvs, recommend_mvs, q_mvs, mv_edge, overlapping_dict, q_dict, mv_dict, recomend_mv_dict, q_mv_dict = getRawData()

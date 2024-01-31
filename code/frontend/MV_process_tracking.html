@@ -9,9 +9,11 @@
     <!--    <link rel="icon" href="https://jscdn.com.cn/highcharts/images/favicon.ico">-->
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://img.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
-    <script src="https://code.hcharts.cn/highstock/highstock.js"></script>
-    <script src="https://code.hcharts.cn/highcharts/modules/exporting.js"></script>
+    <script src="https://code.hcharts.cn/stock/11.1.0/highstock.js"></script>
+    <script src="https://code.hcharts.cn/11.1.0/modules/exporting.js"></script>
     <script src="https://code.hcharts.cn/plugins/highcharts-zh_CN.js"></script>
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <style>
         .wrap {
@@ -120,6 +122,8 @@
             transform: rotate(135deg);
             right: -20px;
         }
+
+
     </style>
 </head>
 
@@ -139,18 +143,18 @@
                     </button>
                     <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
                         <!--                    <img style="max-width:100px; margin-top: -7px;" src="/static/logo_black.png">-->
-                        <h1 style="max-width:100px; margin-top: -7px;">UniView</h1>
+                        <h1 style="max-width:100px; margin-top: -7px; font-size: 40px;">UniView</h1>
                     </a> <!-- <a class="navbar-brand" href="#">DeepO</a> -->
                 </div>
                 <p></p>
                 <p></p>
-                <div id="navbar" class="navbar-collapse collapse">
+                <div id="navbar" class="navbar-collapse collapse" style="font-size: 16px;">
                     <div class="nav nav-pills navbar-right">
                         <li><a href="parameter_configuration.html">Parameter
                                 Configuration</a></li>
                         <li role="presentation" class="nav-item active"><a href="#.html">MV Process Tracking</a></li>
-                        <li><a href="MV_results_evaluation.html">MV Results Evaluation</a></li>
-                        <li><a href="MV_history.html">MV History</a></li>
+                        <li><a href="MV_results_evaluation.html">MV Results Visualization</a></li>
+                        <li><a href="MV_history.html">MV Results Evaluation</a></li>
                     </div>
                 </div>
             </div>
@@ -159,30 +163,30 @@
         <div class="nav nav-pills navbar-right">
             <li>
                 <button type="button" id="MV_generation" class="btn btn-secondary" data-loading-text="Loading..."
-                    style="background-color: #eeeeee;color:black">
+                    style="background-color: #eeeeee;color:black; font-size: 19px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                     MV generation
                 </button>
             </li>
-            <li><a href="#.html">=====================>></a></li>
+            <li><a href="#.html">===============>></a></li>
             <li role="presentation" class="nav-item active">
                 <button type="button" id="cost_estimation" class="btn btn-secondary" data-loading-text="Loading..."
-                    style="background-color: #eeeeee;color:black">
+                    style="background-color: #eeeeee;color:black; font-size: 19px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>cost
                     estimation
                 </button>
             </li>
-            <li><a href="#.html">=====================>></a></li>
+            <li><a href="#.html">===============>></a></li>
             <li>
                 <button type="button" id="MV_recommend" class="btn btn-secondary" data-loading-text="Loading..."
-                    style="background-color: #eeeeee;color:black">
+                    style="background-color: #eeeeee;color:black; font-size: 19px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>MV recommend
                 </button>
             </li>
-            <li><a href="#.html">=====================>></a></li>
+            <li><a href="#.html">===============>></a></li>
             <li>
                 <button type="button" id="MV_rewriting" class="btn btn-secondary" data-loading-text="Loading..."
-                    style="background-color: #eeeeee;color:black; margin-right: 10px">
+                    style="background-color: #eeeeee;color:black; margin-right: 22px; font-size: 19px;">
                     <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>MV rewriting
                 </button>
             </li>
@@ -197,7 +201,7 @@
                     <div class="row marketing" style="margin-right: 100px">
                         <div class="col-lg-12">
                             <div class="panel panel-primary">
-                                <div class="panel-heading">Monitors</div>
+                                <div class="panel-heading" style="font-size: 22px;">Monitors</div>
                                 <div id="CPU_usage" style="width:340px;height:197px;"></div>
                                 <!--                            <hr class="hr-double-arrow">-->
                                 <hr style="height:3px;border:none;border-top:3px groove skyblue; margin: 3px;" />
@@ -212,7 +216,19 @@
                         <div class="row marketing">
                             <div class="col-lg-12">
                                 <div class="panel panel-primary">
-                                    <div class="panel-heading">Logs</div>
+                                    <div id="title-logs" class="panel-heading" style="font-size: 22px;">Logs</div>
+                                    <button type="button" id="downloadFile" class="btn btn-secondary" data-toggle="modal"
+                                        data-target="#exampleModalCenter" style="margin-top:-42px; margin-left:550px;background-color:#F08080;
+                                        color:white;
+                                        width: 80px;
+                                        height: 15px;
+                                        border:0;
+                                        float: left;
+                                        font-size: 13px;
+                                        box-sizing: content-box;
+                                        border-radius: 5px;">
+                                        Download Files
+                                    </button>
                                     <div style="overflow: scroll; height: 405px;" id="scrollBar">
                                         <table class="table table-hover">
                                             <tbody class="x-cate" id="logs"></tbody>
@@ -228,24 +244,45 @@
                 <br><br><br><br>
                 <div class="btn-toolbar">
                     <button type="button" id="submitQuery" class="btn btn-secondary" data-loading-text="Loading..."
-                        style="margin-top:30px; margin-left: 250px;background-color:#337ab7; color:white; width: 200px;
+                        style="margin-top:18px; margin-left: 250px;background-color:#337ab7; color:white; width: 200px;
 	                    height: 45px; border:0; font-size: 22px; box-sizing: content-box; border-radius: 5px;">
                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                        Submit queries
+                        Start
                     </button>
+
                     <button type="button" id="pauseOrContinue" class="btn btn-secondary" data-toggle="modal"
-                        data-target="#exampleModalCenter" style="margin-top:30px;margin-left: 250px;background-color:#337ab7;
-	            color:white;
-	            width: 200px;
-	            height: 45px;
-	            border:0;
-	            font-size: 22px;
-	            box-sizing: content-box;
-                border-radius: 5px;">
+                        data-target="#exampleModalCenter" style="margin-top:18px;margin-left: 250px;background-color:#337ab7;
+                        color:white;
+                        width: 200px;
+                        height: 45px;
+                        border:0;
+                        font-size: 22px;
+                        box-sizing: content-box;
+                        border-radius: 5px;">
                         Pause or Continue
                     </button>
 
                     <div id="output"></div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="myModal_one" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="margin-top: 200px; justify-content: center; align-items: center;">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">×</span></button>
+                            <h4 class="modal-title" id="modalTitle" style="text-align: center;">
+                                Message
+                            </h4>
+                        </div>
+                        <div class="modal-body" id="modal_msg_1" style="color: #00008B; font-size: 35px; text-align: center;">
+                            <string>save parameters success!</string>
+                        </div>
+                        <div class="modal-footer" style="justify-content: center; text-align: center;">
+                            <button type="button" class="btn btn-primary" data-dismiss="modal" style="font-size: 20px; width: 90px;">OK</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -262,18 +299,67 @@
 
     var submit_num = "0";
     isRunning = 0;
+    click_cnt = 0;
+
+    // 不显示Download Files的按钮
+    var downloadFile = document.getElementById("downloadFile");
+    downloadFile.style.display = "none";
+
+    function show_modal_one(msg) {
+        var modalBody = document.getElementById('modal_msg_1');
+        modalBody.innerHTML = "<strong>" + msg +"</strong>";
+        $('#myModal_one').modal('show');
+    }
+
+    downloadFile.onclick = function () {
+        // const content = "Hello, World!";
+        const filename = "candidate_mv.json";
+        const jsonString = JSON.stringify(generate_mv_json)
+        
+        const blob = new Blob([jsonString], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+
+        if (window.confirm("Are you sure you want to download this file?")) {
+            const anchor = document.createElement("a");
+            anchor.href = url;
+            anchor.download = filename;
+            anchor.click();
+
+            window.alert("Download completed!");
+        }
+
+        URL.revokeObjectURL(url);
+    }
+
 
     submitQuery.onclick = function () {
         $.ajax({
             // contentType: "application/json; charset=utf-8",
             // url替换
-            url: "http://110.42.138.127:5000/submit",
-            type: 'get',
-            // dataType:'jsonp',
+            url: "http://127.0.0.1:5000/submit",
+            type: 'POST',
+            dataType: 'json',
+            crossDomain: true,
+            contentType: 'application/json;charset=UTF-8',
+            data: JSON.stringify({
+                    "click_cnt": click_cnt
+            }),
             success: function (data) {
                 if (data.code === 200) {
                     isRunning = 1;
-                    alert(data.msg);
+                    click_cnt++;
+                    if (click_cnt == 2) {
+                        // 显示logs改变
+                        var titleLogs = document.getElementById("title-logs");
+                        titleLogs.innerHTML = "Logs";
+                        titleLogs.style.textAlign = "left"; // 在JavaScript中设置文本居中
+
+                        // 不显示Download Files
+                        var downloadFile = document.getElementById("downloadFile");
+                        downloadFile.style.display = "none";
+                    }
+                    // alert(data.msg);
+                    show_modal_one('start success!');
                 }
             },
             error: function (e) {
@@ -282,8 +368,6 @@
                 console.log(e.responseText);
             }
         });
-
-
     }
 
     pauseOrContinue.onclick = function () {
@@ -293,10 +377,12 @@
             isRunning = 1;
     }
 
+    is_generate_mv_load = 0
+    generate_mv_json = {}
 
     function logsAndStage() {
         // 同文件夹下的json文件路径，准备改为url
-        var url = "http://110.42.138.127:5000/get_log"
+        var url = "http://127.0.0.1:5000/get_log"
         // 申明一个XMLHttpRequest
         var request = new XMLHttpRequest();
         // 设置请求方法与路径
@@ -308,17 +394,92 @@
             // 返回状态为200，即为数据获取成功
             if (request.status == 200) {
                 var data = JSON.parse(request.responseText);
-                console.log(data);
+                // console.log(data);
 
-                var str1 = "";   //声明str1，防止产生undefined
-                $.each(data, function (infoIndex, info) {
-                    str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
-                        "<td>" + info["info"] + "</td>"
-                })
-                logs.innerHTML = str1;
-                scrollBar.scrollTop = scrollBar.scrollHeight;
+                if (data.msg != 'log') {
+                    // 获取mv_json
+                    if (is_generate_mv_load == 0) {
+                        is_generate_mv_load = 1;
+                        var generate_mv_url = "http://127.0.0.1:5000/get_generate_mv_result"
+                        var generate_mv_request = new XMLHttpRequest();
+                        generate_mv_request.open("get", generate_mv_url);
+                        generate_mv_request.send(null);
+                        generate_mv_request.onload = function () {
+                            // 返回状态200
+                            if (generate_mv_request.status == 200) {
+                                var generate_mv_data = JSON.parse(generate_mv_request.responseText);
+                                generate_mv_json = generate_mv_data.mv_json;
+                                console.log(generate_mv_json);
+                                
+                                // 显示mv
+                                // var str1 = "";
+                                // $.each(generate_mv_json, function(key, value) {
+                                //     // console.log(key + ": " + value);
+                                //     value = value.replace(/\n/g, "<br>");
+
+                                //       // 将 "select"、"where" 和 "from" 加粗
+                                //     value = value.replace(/select/gi, "<strong>select</strong>");
+                                //     value = value.replace(/where/gi, "<strong>where</strong>");
+                                //     value = value.replace(/from/gi, "<strong>from</strong>");
+
+                                //     str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                                //     "<td>" + key + "</td>" + // 添加显示key的<td>元素
+                                //     "<td style='white-space: pre-wrap;'>" + value + "</td>" + // 添加显示value的<td>元素
+                                //     "</tr>"; // 注意要关闭<tr>元素
+                                // });
+                                // logs.innerHTML = str1;
+                                // scrollBar.scrollTop = 0;
+                                // var str1 = "";
+                                var str1 = "<thead><tr>" +
+                                    "<th>mv id</th>" +
+                                    "<th style='text-align: center;'>mv content</th>" +
+                                    "</tr></thead>";
+                                $.each(generate_mv_json, function(key, value) {
+                                    value = value.replace(/\n/g, "<br>");
+
+                                    value = value.replace(/select/gi, "<strong>select</strong>");
+                                    value = value.replace(/where/gi, "<strong>where</strong>");
+                                    value = value.replace(/from/gi, "<strong>from</strong>");
+
+                                    str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                                        "<td style='border: 2px solid #ddd; padding: 8px; vertical-align: middle;'>" + key + "</td>" +
+                                        "<td style='border: 2px solid #ddd; padding: 8px; white-space: pre-wrap; font-size: 20px;'>" + value + "</td>" +
+                                        "</tr>";
+                                });
+                                logs.innerHTML = str1;
+                                scrollBar.scrollTop = 0;
+
+                                // 显示logs改变
+                                var titleLogs = document.getElementById("title-logs");
+                                titleLogs.innerHTML = "Candidate Materialized View";
+                                titleLogs.style.textAlign = "center"; // 在JavaScript中设置文本居中
+
+                                // 显示按钮变化
+                                var submitQuery = document.getElementById("submitQuery");
+                                submitQuery.innerHTML = "start next stage";
+                                // submitQuery.style.textAlign = "center"; // 在JavaScript中设置文本居中
+
+                                // 显示Download Files
+                                var downloadFile = document.getElementById("downloadFile");
+                                downloadFile.style.display = "block";
+                            }
+                        }
+                    }
+                } else {
+                    var str1 = "";   //声明str1，防止产生undefined
+                    $.each(data.data, function (infoIndex, info) {
+                        str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                            "<td style='font-size: 20px;'>" + info["info"] + "</td>"
+                    })
+                    logs.innerHTML = str1;
+                    scrollBar.scrollTop = scrollBar.scrollHeight;
+                }
+
+
             }
         }
+
+        // 通过stage变化切换颜色变化
         var MV_generation = document.getElementById('MV_generation');
         var cost_estimation = document.getElementById('cost_estimation');
         var MV_recommend = document.getElementById('MV_recommend');
@@ -326,34 +487,34 @@
         $.ajax({
             // contentType: "application/json; charset=utf-8",
             // url替换
-            url: "http://110.42.138.127:5000/get_stage",
+            url: "http://127.0.0.1:5000/get_stage",
             type: "get",
             success: function (data) {
                 if(data.code === 200)
                 {
                     if (data.stage === 1) {
-                        MV_generation.setAttribute('style', 'background-color: mediumseagreen; color: white');
-                        cost_estimation.setAttribute('style', 'background-color: #eeeeee; color: black');
-                        MV_recommend.setAttribute('style', 'background-color: #eeeeee; color: black');
-                        MV_rewriting.setAttribute('style', 'background-color: #eeeeee; color: black; margin-right: 10px');
+                        MV_generation.setAttribute('style', 'background-color: mediumseagreen; color: white; font-size: 19px');
+                        cost_estimation.setAttribute('style', 'background-color: #eeeeee; color: black; font-size: 19px');
+                        MV_recommend.setAttribute('style', 'background-color: #eeeeee; color: black; font-size: 19px');
+                        MV_rewriting.setAttribute('style', 'background-color: #eeeeee; color: black; margin-right: 28px; font-size: 19px');
                     } 
                     else if (data.stage === 2) {
-                        MV_generation.setAttribute('style', 'background-color: mediumseagreen; color: white');
-                        cost_estimation.setAttribute('style', 'background-color: mediumseagreen; color: white');
-                        MV_recommend.setAttribute('style', 'background-color: #eeeeee; color: black');
-                        MV_rewriting.setAttribute('style', 'background-color: #eeeeee; color: black; margin-right: 10px');
+                        MV_generation.setAttribute('style', 'background-color: mediumseagreen; color: white; font-size: 19px');
+                        cost_estimation.setAttribute('style', 'background-color: mediumseagreen; color: white; font-size: 19px');
+                        MV_recommend.setAttribute('style', 'background-color: #eeeeee; color: black; font-size: 19px');
+                        MV_rewriting.setAttribute('style', 'background-color: #eeeeee; color: black; margin-right: 28px; font-size: 19px');
                     }
                     else if (data.stage === 3) {
-                        MV_generation.setAttribute('style', 'background-color: mediumseagreen; color: white');
-                        cost_estimation.setAttribute('style', 'background-color: mediumseagreen; color: white');
-                        MV_recommend.setAttribute('style', 'background-color: mediumseagreen; color: white');
-                        MV_rewriting.setAttribute('style', 'background-color: #eeeeee; color: black; margin-right: 10px');
+                        MV_generation.setAttribute('style', 'background-color: mediumseagreen; color: white; font-size: 19px');
+                        cost_estimation.setAttribute('style', 'background-color: mediumseagreen; color: white; font-size: 19px');
+                        MV_recommend.setAttribute('style', 'background-color: mediumseagreen; color: white; font-size: 19px');
+                        MV_rewriting.setAttribute('style', 'background-color: #eeeeee; color: black; margin-right: 28px; font-size: 19px');
                     }
                     else if (data.stage === 4) {
-                        MV_generation.setAttribute('style', 'background-color: mediumseagreen; color: white');
-                        cost_estimation.setAttribute('style', 'background-color: mediumseagreen; color: white');
-                        MV_recommend.setAttribute('style', 'background-color: mediumseagreen; color: white');
-                        MV_rewriting.setAttribute('style', 'background-color: mediumseagreen; color: white; margin-right: 10px');
+                        MV_generation.setAttribute('style', 'background-color: mediumseagreen; color: white; font-size: 19px');
+                        cost_estimation.setAttribute('style', 'background-color: mediumseagreen; color: white; font-size: 19px');
+                        MV_recommend.setAttribute('style', 'background-color: mediumseagreen; color: white; font-size: 19px');
+                        MV_rewriting.setAttribute('style', 'background-color: mediumseagreen; color: white; margin-right: 28px; font-size: 19px');
                     }
                 }
             },
@@ -385,7 +546,7 @@
         }
     }
 
-    //鼠标点击另外一行时关闭已选行变色
+    // 鼠标点击另外一行时关闭已选行变色
     function out() {
         var oObj = event.srcElement;
         if (oObj.tagName.toLowerCase() == "td") {
@@ -394,7 +555,7 @@
         }
     }
 
-    //鼠标移动到选择行上时的行变色
+    // 鼠标移动到选择行上时的行变色
     function over() {
         var oObj = event.srcElement;
         if (oObj.tagName.toLowerCase() == "td") {
@@ -406,6 +567,12 @@
     Highcharts.setOptions({
         global: {
             useUTC: false
+        },
+        // 禁用源映射
+        "debugger": false,
+        // 禁用无障碍模块
+        "accessibility": {
+            "enabled": false
         }
     });
     // Create the chart
@@ -434,7 +601,7 @@
                             $.ajax({
                                 // contentType: "application/json; charset=utf-8",
                                 // url替换
-                                url: "http://110.42.138.127:5000/get_cpu_usage",
+                                url: "http://127.0.0.1:5000/get_cpu_usage",
                                 type: "get",
                                 success: function (data) {
                                     if (data.code === 200)
@@ -462,7 +629,10 @@
             enabled: false
         },
         title: {
-            text: 'CPU Usage(%)'
+            text: 'CPU Usage(%)',
+            style: {
+                fontSize: '20px'
+            }
         },
         tooltip: {
             split: false
@@ -472,6 +642,9 @@
         },
         series: [{
             name: 'CPU Usage',
+            style: {
+                fontSize: '14px'
+            },
             data: (function () {
                 // generate an array of random data
                 var data = [], time = (new Date()).getTime(), i;
@@ -536,7 +709,7 @@
                             $.ajax({
                                 // contentType: "application/json; charset=utf-8",
                                 // url替换
-                                url: "http://110.42.138.127:5000/get_memory_usage",
+                                url: "http://127.0.0.1:5000/get_memory_usage",
                                 type: "get",
                                 success: function (data) {
                                     if (data.code === 200)
@@ -557,7 +730,10 @@
             enabled: false
         },
         title: {
-            text: 'Memory Usage(%)'
+            text: 'Memory Usage(%)',
+            style: {
+                fontSize: '20px'
+            }
         },
         tooltip: {
             split: false

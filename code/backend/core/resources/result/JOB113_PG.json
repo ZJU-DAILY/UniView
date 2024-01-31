@@ -1,0 +1,432 @@
+[
+  {
+    "Column1": 0,
+    "original_sql_id": "1d.sql",
+    "original_execution_time": 350.72,
+    "rewrite_sql_id": "1d_52.sql",
+    "rewrite_mv_id": "mv52",
+    "rewrite_execution_time": 255.825,
+    "benefit_time": 94.89500000000004,
+    "benefit_rate": "37.09%"
+  },
+  {
+    "Column1": 1,
+    "original_sql_id": "1b.sql",
+    "original_execution_time": 352.061,
+    "rewrite_sql_id": "1b_52.sql",
+    "rewrite_mv_id": "mv52",
+    "rewrite_execution_time": 256.401,
+    "benefit_time": 95.65999999999997,
+    "benefit_rate": "37.31%"
+  },
+  {
+    "Column1": 2,
+    "original_sql_id": "8a.sql",
+    "original_execution_time": 1851.628,
+    "rewrite_sql_id": "8a_491.sql",
+    "rewrite_mv_id": "mv491",
+    "rewrite_execution_time": 314.078,
+    "benefit_time": 1537.55,
+    "benefit_rate": "489.54%"
+  },
+  {
+    "Column1": 3,
+    "original_sql_id": "4b.sql",
+    "original_execution_time": 465.702,
+    "rewrite_sql_id": "4b_443.sql",
+    "rewrite_mv_id": "mv443",
+    "rewrite_execution_time": 130.645,
+    "benefit_time": 335.057,
+    "benefit_rate": "256.46%"
+  },
+  {
+    "Column1": 4,
+    "original_sql_id": "6e.sql",
+    "original_execution_time": 3321.519,
+    "rewrite_sql_id": "6e_471.sql",
+    "rewrite_mv_id": "mv471",
+    "rewrite_execution_time": 0.395,
+    "benefit_time": 3321.124,
+    "benefit_rate": "840790.89%"
+  },
+  {
+    "Column1": 5,
+    "original_sql_id": "27b.sql",
+    "original_execution_time": 1716.081,
+    "rewrite_sql_id": "27b_19.sql",
+    "rewrite_mv_id": "mv19",
+    "rewrite_execution_time": 1690.412,
+    "benefit_time": 25.66899999999987,
+    "benefit_rate": "1.52%"
+  },
+  {
+    "Column1": 6,
+    "original_sql_id": "3c.sql",
+    "original_execution_time": 2196.54,
+    "rewrite_sql_id": "3c_443.sql",
+    "rewrite_mv_id": "mv443",
+    "rewrite_execution_time": 1726.664,
+    "benefit_time": 469.876,
+    "benefit_rate": "27.21%"
+  },
+  {
+    "Column1": 7,
+    "original_sql_id": "3a.sql",
+    "original_execution_time": 2030.099,
+    "rewrite_sql_id": "3a_443.sql",
+    "rewrite_mv_id": "mv443",
+    "rewrite_execution_time": 1513.592,
+    "benefit_time": 516.5069999999998,
+    "benefit_rate": "34.12%"
+  },
+  {
+    "Column1": 8,
+    "original_sql_id": "2c.sql",
+    "original_execution_time": 875.325,
+    "rewrite_sql_id": "2c_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 246.438,
+    "benefit_time": 628.8870000000001,
+    "benefit_rate": "255.19%"
+  },
+  {
+    "Column1": 9,
+    "original_sql_id": "12a.sql",
+    "original_execution_time": 1423.068,
+    "rewrite_sql_id": "12a_44.sql",
+    "rewrite_mv_id": "mv44",
+    "rewrite_execution_time": 1240.38,
+    "benefit_time": 182.6879999999999,
+    "benefit_rate": "14.73%"
+  },
+  {
+    "Column1": 10,
+    "original_sql_id": "11b.sql",
+    "original_execution_time": 6636.872,
+    "rewrite_sql_id": "11b_21.sql",
+    "rewrite_mv_id": "mv21",
+    "rewrite_execution_time": 452.568,
+    "benefit_time": 6184.304,
+    "benefit_rate": "1366.49%"
+  },
+  {
+    "Column1": 11,
+    "original_sql_id": "17b.sql",
+    "original_execution_time": 7520.716,
+    "rewrite_sql_id": "17b_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 4817.674,
+    "benefit_time": 2703.042,
+    "benefit_rate": "56.11%"
+  },
+  {
+    "Column1": 12,
+    "original_sql_id": "6c.sql",
+    "original_execution_time": 3259.505,
+    "rewrite_sql_id": "6c_471.sql",
+    "rewrite_mv_id": "mv471",
+    "rewrite_execution_time": 0.351,
+    "benefit_time": 3259.154,
+    "benefit_rate": "928533.90%"
+  },
+  {
+    "Column1": 13,
+    "original_sql_id": "2a.sql",
+    "original_execution_time": 817.689,
+    "rewrite_sql_id": "2a_127.sql",
+    "rewrite_mv_id": "mv127",
+    "rewrite_execution_time": 26.738,
+    "benefit_time": 790.951,
+    "benefit_rate": "2958.15%"
+  },
+  {
+    "Column1": 14,
+    "original_sql_id": "16d.sql",
+    "original_execution_time": 4558.379,
+    "rewrite_sql_id": "16d_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 4473.731,
+    "benefit_time": 84.64800000000014,
+    "benefit_rate": "1.89%"
+  },
+  {
+    "Column1": 15,
+    "original_sql_id": "17e.sql",
+    "original_execution_time": 7458.447,
+    "rewrite_sql_id": "17e_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 5815.778,
+    "benefit_time": 1642.669,
+    "benefit_rate": "28.25%"
+  },
+  {
+    "Column1": 16,
+    "original_sql_id": "12c.sql",
+    "original_execution_time": 1762.759,
+    "rewrite_sql_id": "12c_44.sql",
+    "rewrite_mv_id": "mv44",
+    "rewrite_execution_time": 1583.21,
+    "benefit_time": 179.549,
+    "benefit_rate": "11.34%"
+  },
+  {
+    "Column1": 17,
+    "original_sql_id": "4a.sql",
+    "original_execution_time": 609.196,
+    "rewrite_sql_id": "4a_443.sql",
+    "rewrite_mv_id": "mv443",
+    "rewrite_execution_time": 209.104,
+    "benefit_time": 400.092,
+    "benefit_rate": "191.34%"
+  },
+  {
+    "Column1": 18,
+    "original_sql_id": "13b.sql",
+    "original_execution_time": 5170.981,
+    "rewrite_sql_id": "13b_44.sql",
+    "rewrite_mv_id": "mv44",
+    "rewrite_execution_time": 3647.122,
+    "benefit_time": 1523.859,
+    "benefit_rate": "41.78%"
+  },
+  {
+    "Column1": 19,
+    "original_sql_id": "6b.sql",
+    "original_execution_time": 3255.52,
+    "rewrite_sql_id": "6b_475.sql",
+    "rewrite_mv_id": "mv475",
+    "rewrite_execution_time": 107.341,
+    "benefit_time": 3148.179,
+    "benefit_rate": "2932.88%"
+  },
+  {
+    "Column1": 20,
+    "original_sql_id": "29c.sql",
+    "original_execution_time": 8897.285,
+    "rewrite_sql_id": "29c_328.sql",
+    "rewrite_mv_id": "mv328",
+    "rewrite_execution_time": 423.548,
+    "benefit_time": 8473.737,
+    "benefit_rate": "20930.78%"
+  },
+  {
+    "Column1": 21,
+    "original_sql_id": "29a.sql",
+    "original_execution_time": 5571.928,
+    "rewrite_sql_id": "29a_328.sql",
+    "rewrite_mv_id": "mv328",
+    "rewrite_execution_time": 3963.044,
+    "benefit_time": 1608.884,
+    "benefit_rate": "40.60%"
+  },
+  {
+    "Column1": 22,
+    "original_sql_id": "28a.sql",
+    "original_execution_time": 3382.078,
+    "rewrite_sql_id": "28a_74.sql",
+    "rewrite_mv_id": "mv74",
+    "rewrite_execution_time": 2222.05,
+    "benefit_time": 1160.028,
+    "benefit_rate": "52.21%"
+  },
+  {
+    "Column1": 23,
+    "original_sql_id": "17f.sql",
+    "original_execution_time": 6888.302,
+    "rewrite_sql_id": "17f_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 5978.361,
+    "benefit_time": 909.9409999999998,
+    "benefit_rate": "15.22%"
+  },
+  {
+    "Column1": 24,
+    "original_sql_id": "28b.sql",
+    "original_execution_time": 1971.473,
+    "rewrite_sql_id": "28b_74.sql",
+    "rewrite_mv_id": "mv74",
+    "rewrite_execution_time": 1500.13,
+    "benefit_time": 471.3429999999998,
+    "benefit_rate": "31.42%"
+  },
+  {
+    "Column1": 25,
+    "original_sql_id": "6f.sql",
+    "original_execution_time": 5027.656,
+    "rewrite_sql_id": "6f_475.sql",
+    "rewrite_mv_id": "mv475",
+    "rewrite_execution_time": 225.581,
+    "benefit_time": 4802.075,
+    "benefit_rate": "2128.76%"
+  },
+  {
+    "Column1": 26,
+    "original_sql_id": "17d.sql",
+    "original_execution_time": 6456.624,
+    "rewrite_sql_id": "17d_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 4144.097,
+    "benefit_time": 2312.527,
+    "benefit_rate": "55.80%"
+  },
+  {
+    "Column1": 27,
+    "original_sql_id": "17a.sql",
+    "original_execution_time": 7311.05,
+    "rewrite_sql_id": "17a_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 4661.751,
+    "benefit_time": 2649.299,
+    "benefit_rate": "56.83%"
+  },
+  {
+    "Column1": 28,
+    "original_sql_id": "4c.sql",
+    "original_execution_time": 626.496,
+    "rewrite_sql_id": "4c_443.sql",
+    "rewrite_mv_id": "mv443",
+    "rewrite_execution_time": 238.759,
+    "benefit_time": 387.737,
+    "benefit_rate": "162.40%"
+  },
+  {
+    "Column1": 29,
+    "original_sql_id": "2d.sql",
+    "original_execution_time": 905.947,
+    "rewrite_sql_id": "2d_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 556.988,
+    "benefit_time": 348.9589999999999,
+    "benefit_rate": "62.65%"
+  },
+  {
+    "Column1": 30,
+    "original_sql_id": "8b.sql",
+    "original_execution_time": 1752.258,
+    "rewrite_sql_id": "8b_491.sql",
+    "rewrite_mv_id": "mv491",
+    "rewrite_execution_time": 258.868,
+    "benefit_time": 1493.39,
+    "benefit_rate": "576.89%"
+  },
+  {
+    "Column1": 31,
+    "original_sql_id": "6a.sql",
+    "original_execution_time": 3376.235,
+    "rewrite_sql_id": "6a_471.sql",
+    "rewrite_mv_id": "mv471",
+    "rewrite_execution_time": 0.367,
+    "benefit_time": 3375.868,
+    "benefit_rate": "919855.04%"
+  },
+  {
+    "Column1": 32,
+    "original_sql_id": "13c.sql",
+    "original_execution_time": 5149.776,
+    "rewrite_sql_id": "13c_44.sql",
+    "rewrite_mv_id": "mv44",
+    "rewrite_execution_time": 3782.71,
+    "benefit_time": 1367.066,
+    "benefit_rate": "36.14%"
+  },
+  {
+    "Column1": 33,
+    "original_sql_id": "16b.sql",
+    "original_execution_time": 9133.678,
+    "rewrite_sql_id": "16b_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 6535.809,
+    "benefit_time": 2597.869,
+    "benefit_rate": "39.75%"
+  },
+  {
+    "Column1": 34,
+    "original_sql_id": "29b.sql",
+    "original_execution_time": 3793.049,
+    "rewrite_sql_id": "29b_328.sql",
+    "rewrite_mv_id": "mv328",
+    "rewrite_execution_time": 3381.069,
+    "benefit_time": 411.98,
+    "benefit_rate": "12.18%"
+  },
+  {
+    "Column1": 35,
+    "original_sql_id": "22a.sql",
+    "original_execution_time": 2492.932,
+    "rewrite_sql_id": "22a_74.sql",
+    "rewrite_mv_id": "mv74",
+    "rewrite_execution_time": 2094.821,
+    "benefit_time": 398.1109999999999,
+    "benefit_rate": "19.00%"
+  },
+  {
+    "Column1": 36,
+    "original_sql_id": "14a.sql",
+    "original_execution_time": 3184.033,
+    "rewrite_sql_id": "14a_74.sql",
+    "rewrite_mv_id": "mv74",
+    "rewrite_execution_time": 2597.166,
+    "benefit_time": 586.8669999999997,
+    "benefit_rate": "22.60%"
+  },
+  {
+    "Column1": 37,
+    "original_sql_id": "2b.sql",
+    "original_execution_time": 903.321,
+    "rewrite_sql_id": "2b_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 273.382,
+    "benefit_time": 629.9390000000001,
+    "benefit_rate": "230.42%"
+  },
+  {
+    "Column1": 38,
+    "original_sql_id": "6d.sql",
+    "original_execution_time": 4900.956,
+    "rewrite_sql_id": "6d_475.sql",
+    "rewrite_mv_id": "mv475",
+    "rewrite_execution_time": 111.886,
+    "benefit_time": 4789.07,
+    "benefit_rate": "4280.31%"
+  },
+  {
+    "Column1": 39,
+    "original_sql_id": "19d.sql",
+    "original_execution_time": 9751.934,
+    "rewrite_sql_id": "19d_69.sql",
+    "rewrite_mv_id": "mv69",
+    "rewrite_execution_time": 5654.753,
+    "benefit_time": 4097.181,
+    "benefit_rate": "72.46%"
+  },
+  {
+    "Column1": 40,
+    "original_sql_id": "32b.sql",
+    "original_execution_time": 394.707,
+    "rewrite_sql_id": "32b_119.sql",
+    "rewrite_mv_id": "mv119",
+    "rewrite_execution_time": 128.199,
+    "benefit_time": 266.508,
+    "benefit_rate": "207.89%"
+  },
+  {
+    "Column1": 41,
+    "original_sql_id": "28c.sql",
+    "original_execution_time": 7824.633,
+    "rewrite_sql_id": "28c_74.sql",
+    "rewrite_mv_id": "mv74",
+    "rewrite_execution_time": 2357.058,
+    "benefit_time": 5467.575,
+    "benefit_rate": "231.97%"
+  },
+  {
+    "Column1": 42,
+    "original_sql_id": "27c.sql",
+    "original_execution_time": 3583.352,
+    "rewrite_sql_id": "27c_19.sql",
+    "rewrite_mv_id": "mv19",
+    "rewrite_execution_time": 2156.125,
+    "benefit_time": 1427.227,
+    "benefit_rate": "1561.84%"
+  }
+]

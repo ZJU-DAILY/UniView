@@ -1,3 +1,3 @@
 select company_name.country_code AS country_code, company_name.id AS company_name_id_1, company_type.id AS company_type_id_2, company_type.kind AS kind, info_type.id AS info_type_id_4, info_type.info AS info_type_info_5, movie_companies.movie_id AS movie_id, movie_info_idx.info AS movie_info_idx_info_7
- from company_type,info_type,movie_companies,company_name,movie_info_idx
- where (movie_companies.company_type_id = company_type.id) And (company_type.kind = 'production companies') And (movie_info_idx.info_type_id = info_type.id) And (info_type.info = 'rating') And (movie_companies.movie_id = movie_info_idx.movie_id) And (company_name.id = movie_companies.company_id)
+ from movie_info_idx,movie_companies,company_type,company_name,info_type
+ where (movie_companies.movie_id = movie_info_idx.movie_id) And (movie_info_idx.info_type_id = info_type.id) And (movie_companies.company_type_id = company_type.id) And (company_name.id = movie_companies.company_id) And (company_type.kind = 'production companies') And (info_type.info = 'rating')

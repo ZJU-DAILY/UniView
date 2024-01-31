@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MV Results Evaluation</title>
+
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.1/dist/echarts.js"></script>
+
+    <style>
+        .wrap {
+            width: 450px;
+            padding-top: 30px;
+        }
+
+        .item {
+            height: 30px;
+        }
+
+        label {
+            width: 300px;
+            display: inline-block;
+            text-align: right;
+            padding-right: 5px;
+            font-weight: bold;
+        }
+
+        .top input {
+            width: 180px;
+        }
+
+        .first {
+            width: 25%;
+            float: left;
+            height: 450px;
+            /*border: 1px solid #3B6273;*/
+        }
+
+        .second {
+            width: 43%;
+            float: left;
+            height: 450px;
+            /*border: 1px solid #3B6273;*/
+        }
+
+        .third {
+            width: 30%;
+            float: left;
+            height: 450px;
+            border: 1px solid #3B6273;
+        }
+
+        /* Tooltip 容器 */
+        .my_tooltip {
+            position: relative;
+            width: 300px;
+            display: inline-block;
+            text-align: right;
+            padding-right: 5px;
+            font-weight: bold;
+            /*border-bottom: 1px dotted black; !* 悬停元素上显示点线 *!*/
+        }
+
+        /* Tooltip 文本 */
+        .my_tooltip .tooltiptext {
+            visibility: hidden;
+            width: 120px;
+            background-color: mediumseagreen;
+            color: #fff;
+            text-align: center;
+            padding: 5px 0;
+            border-radius: 6px;
+
+            /* 定位 */
+            position: absolute;
+            z-index: 1;
+
+            top: -5px;
+            right: 30%;
+        }
+
+        /* 鼠标移动上去后显示提示框 */
+        .my_tooltip:hover .tooltiptext {
+            visibility: visible;
+        }
+
+        #myDiagramDiv {
+            background-color: #F8F8F8;
+            border: 1px solid #aaa;
+        }
+
+        table {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table td {
+            border: 2px solid #ddd;
+            padding: 8px;
+        }
+
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tr:hover {
+            background-color: #ddd;
+        }
+
+        /* 滚动槽 */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.06);
+            -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 滚动条滑块 */
+        ::-webkit-scrollbar-thumb {
+            border-radius: 3px;
+            background: rgba(0, 0, 0, 0.12);
+            -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+
+
+    </style>
+</head>
+
+
+<body>
+<br>
+<div class="container" style="border: 2px solid black; width: 1180px;   height: 680px;">
+    <nav class="navbar navbar-fix-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                        aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
+                    <!--                    <img style="max-width:100px; margin-top: -7px;" src="/static/logo_black.png">-->
+                    <h1 style="max-width:100px; margin-top: -7px;">UniView</h1>
+                </a>                    <!-- <a class="navbar-brand" href="#">DeepO</a> -->
+            </div>
+            <p></p>
+            <p></p>
+            <!-- <div id="navbar" class="navbar-collapse collapse">
+                <!-- <div class="nav nav-pills navbar-right">
+                    <li><a href="parameter_configuration.html">Parameter
+                        Configuration</a></li>
+                    <li><a href="MV_process_tracking.html">MV Process Tracking</a></li>
+                    <li role="presentation" class="nav-item active"><a href="#.html">MV Results
+                        Evaluation</a></li>
+                    <li><a href="MV_history.html">MV History</a></li>
+                </div> -->
+                <!-- <form class="navbar-form navbar-right">
+            <input type="text" class="form-control" placeholder="Search..."> -->
+                <!-- </form> -->
+            <!-- </div> --> -->
+        </div>
+    </nav>
+
+    <div class="main">
+        <div class="btn-toolbar" role="toolbar">
+            <div class="clo-md-4">
+                <div>
+                </div>
+            </div>
+            <br>
+
+
+            <!-- <div class="btn-toolbar">
+                <input type="file" id="fileInput" webkitdirectory directory multiple style="display:none;">
+                <button type="button" id="scwj" onclick="openFileExplorer()" class="btn btn-secondary" style="margin-top:40px; margin-left: 160px;background-color:#337ab7;
+	            color:white;
+	            width: 200px;
+	            height: 45px;
+	            border:0;
+	            font-size: 22px;
+	            box-sizing: content-box;
+                border-radius: 5px;">
+                    Evaluate
+                </button>
+            </div> -->
+
+            <div class="first"> -->
+                <div class="row marketing" style="margin-right: 0px">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" style="overflow: auto;">Benefit</div>
+                            <input type="file" id="fileInput" webkitdirectory directory multiple style="display:none;">
+                            <button onclick="openFileExplorer()">选择文件夹</button>
+                            <button onclick="uploadFiles()">上传文件夹</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- <div class="row marketing" style="margin-right: 0px">
+                    <div class="col-lg-12">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading" style="overflow: auto;">Coverage</div>
+                            <table class="table" style="width: 300px; height: 150px">
+                                <tbody class="x-cate" id="coverage"></tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div> -->
+            <!-- </div>
+
+            <div class="second" style="margin-right: 5px">
+                <div class="clo-md-4">
+                    <div class="row marketing">
+                        <div class="col-lg-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Execution time and result
+                                </div>
+                                <div style="overflow: scroll; height: 408px;">
+                                    <table class="table table-hover">
+                                        <thead>
+                                        <th scope="col" class="col-xs-1"
+                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                            Original SQL ID
+                                        </th>
+                                        <th scope="col" class="col-xs-1"
+                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">MV ID
+                                        </th>
+                                        <th scope="col" class="col-xs-1"
+                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                            Original execution time
+                                        </th>
+                                        <th scope="col" class="col-xs-1"
+                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">New
+                                            execution time
+                                        </th>
+                                        <th scope="col" class="col-xs-1"
+                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                            Benefit time
+                                        </th>
+                                        <th scope="col" class="col-xs-1"
+                                            style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                            Benefit rate
+                                        </th>
+                                        </thead>
+                                        <tbody class="x-cate" id="form"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="third" style="margin-right: 5px">
+                <div class="clo-md-4">
+                    <div class="row marketing">
+                        <div class="col-lg-12">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">Query plan</div>
+                                <div id="visualization"></div>
+                                <!-- <iframe src="./Visualization.html" frameborder="0" style="height: 400px; width: 340px"></iframe> -->
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <span style="height: 60px"></span>
+            <div class="btn-toolbar">
+                <button type="button" id="evaluate" class="btn btn-secondary" style="margin-top:40px; margin-left: 460px;background-color:#337ab7;
+	            color:white;
+	            width: 200px;
+	            height: 45px;
+	            border:0;
+	            font-size: 22px;
+	            box-sizing: content-box;
+                border-radius: 5px;">
+                    Evaluate
+                </button>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <br>
+</div>
+
+</body>
+
+<script>
+    var submit_num = "0";
+
+    $("#evaluate").click(function () {
+        // 同文件夹下的json文件路径，直接改为后端URL即可
+        // var url = "时间性能测试结果PG.json"
+        var url = "http://127.0.0.1:5000/evaluate_result"
+        // 申明一个XMLHttpRequest
+        var request = new XMLHttpRequest();
+        // 设置请求方法与路径
+        request.open("get", url);
+        // 不发送数据到服务器
+        request.send(null);
+        //XHR对象获取到返回信息后执行
+        request.onload = function () {
+            // 返回状态为200，即为数据获取成功
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+
+                var str1 = "";   //声明str1，防止产生undefined
+                $.each(data, function (infoIndex, info) {
+                    info["benefit_time"] = info["benefit_time"].toFixed(3)
+                    str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                        "<td>" + info["original_sql_id"] + "</td>" +
+                        "<td>" + info["rewrite_mv_id"] + "</td>" +
+                        "<td>" + info["original_execution_time"] + "</td>" +
+                        "<td>" + info["rewrite_execution_time"] + "</td>" +
+                        "<td>" + info["benefit_time"] + "</td>" +
+                        "<td>" + info["benefit_rate"] + "</td>" + "</tr>"
+                })
+                form.innerHTML = str1;
+                coverage.innerHTML =
+                    "<li style='margin-top:10px; margin-left: 5px;font-size: 16px;'>There are <span style='color:red'>113</span> original queries. <span style='color:mediumseagreen'>30</span> views are recommended, and <span style='color:mediumseagreen'>43</span> queries are covered by these views." +
+                    "<br><li style='margin-left: 5px;font-size: 16px;'>Coverage is <span style='color:mediumseagreen'>38.05%</span>."
+                visualization.innerHTML = 
+                    "<iframe src='./Visualization.html' frameborder='0' style='height: 400px; width: 340px'></iframe>";
+                $("#graph").load('test.html');
+            }
+        };
+    })
+
+
+    function change(change) {
+        var oObj = window.event.srcElement;
+        //alert(change.tagName.toLowerCase());
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            for (var i = 0; i < document.all.form.rows.length; i++) {
+                document.all.form.rows[i].style.backgroundColor = "";
+                document.all.form.rows[i].tag = false;
+            }
+            submit_num = oObj.parentElement.rowIndex;
+            console.log(submit_num);
+            oTr.style.backgroundColor = "#CCCCFF";
+            oTr.tag = true;
+        }
+    }
+
+    //鼠标点击另外一行时关闭已选行变色
+    function out() {
+        var oObj = event.srcElement;
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            if (!oTr.tag) oTr.style.backgroundColor = "";
+        }
+    }
+
+    //鼠标移动到选择行上时的行变色
+    function over() {
+        var oObj = event.srcElement;
+        if (oObj.tagName.toLowerCase() == "td") {
+            var oTr = oObj.parentNode;
+            if (!oTr.tag) oTr.style.backgroundColor = "#E1E9FD";
+        }
+    }
+
+
+    // 点击按钮时触发文件选择
+    function chooseFile() {
+        document.getElementById('fileInput').click();
+    }
+
+    // 监听文件选择框的变化
+    document.getElementById('fileInput').addEventListener('change', function () {
+        // 获取选中的文件
+        const selectedFile = this.files[0];
+        if (selectedFile) {
+            // 在这里可以进行处理选中文件的操作
+            console.log('选中的文件：', selectedFile);
+        }
+    });
+    
+
+    // 打开文件夹脚本
+    function openFileExplorer() {
+        document.getElementById('fileInput').click();
+    }
+
+    function uploadFiles() {
+        const fileInput = document.getElementById('fileInput');
+        const files = fileInput.files;
+
+        var url = "http://127.0.0.1:5000/evaluate_result"
+        var request = new XMLHttpRequest();
+        request.open("get", url);
+
+        if (files.length > 0) {
+            const formData = new FormData();
+
+            for (let i = 0; i < files.length; i++) {
+                formData.append('files[]', files[i]);
+            }
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Upload successful:', data);
+            })
+            .catch(error => {
+                console.error('Error during upload:', error);
+            });
+        } else {
+            console.warn('No files selected for upload.');
+        }
+    }
+
+
+</script>

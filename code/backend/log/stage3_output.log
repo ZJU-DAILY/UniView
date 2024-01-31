@@ -1,0 +1,121 @@
+=====================================
+221
+======================================
+72
+train_data:72,test_data:18,test_X:18,test_Y:18
+./resources/ckpt_q.pt
+Epoch: 0, lr:0.005
+Epoch: 0, step: 0, train_y: 112951.1875, target_y: 112500.5
+Epoch: 0, step: 1, train_y: 107653.875, target_y: 105610.0703125
+Epoch: 0, step: 2, train_y: 196579.234375, target_y: 210920.984375
+Epoch: 0, step: 3, train_y: 395524.28125, target_y: 449575.90625
+Epoch: 0, step: 4, train_y: 146677.796875, target_y: 144298.78125
+Epoch: 0, step: 5, train_y: 317311.15625, target_y: 302744.65625
+Epoch: 0, step: 6, train_y: 368057.09375, target_y: 361831.5625
+Epoch: 0, step: 7, train_y: 81940.3984375, target_y: 77742.171875
+Epoch: 0, step: 8, train_y: 111798.140625, target_y: 111098.4921875
+Epoch: 0, test loss: 1130041344.0, train loss: 457961248.0, test_y: 10756.3076171875, pre_test_y: 25496.240234375
+Epoch: 1, lr:0.005
+Epoch: 1, step: 0, train_y: 189379.21875, target_y: 191398.265625
+Epoch: 1, step: 1, train_y: 173125.546875, target_y: 170542.34375
+Epoch: 1, step: 2, train_y: 245740.34375, target_y: 220012.484375
+Epoch: 1, step: 3, train_y: 183552.65625, target_y: 176344.90625
+Epoch: 1, step: 4, train_y: 265467.125, target_y: 255828.421875
+Epoch: 1, step: 5, train_y: 302832.875, target_y: 272930.3125
+Epoch: 1, step: 6, train_y: 90260.1171875, target_y: 91785.59375
+Epoch: 1, step: 7, train_y: 183693.484375, target_y: 183256.0625
+Epoch: 1, step: 8, train_y: 293954.90625, target_y: 314224.78125
+Epoch: 1, test loss: 681670208.0, train loss: 1383271552.0, test_y: 1972.4708251953125, pre_test_y: 25496.240234375
+Epoch: 2, lr:0.005
+Epoch: 2, step: 0, train_y: 212414.703125, target_y: 250240.828125
+Epoch: 2, step: 1, train_y: 96694.8984375, target_y: 113733.3359375
+Epoch: 2, step: 2, train_y: 217942.46875, target_y: 226032.15625
+Epoch: 2, step: 3, train_y: 191205.875, target_y: 197001.53125
+Epoch: 2, step: 4, train_y: 102687.515625, target_y: 116163.296875
+Epoch: 2, step: 5, train_y: 232530.3125, target_y: 233400.515625
+Epoch: 2, step: 6, train_y: 184891.25, target_y: 177758.359375
+Epoch: 2, step: 7, train_y: 281756.9375, target_y: 300131.21875
+Epoch: 2, step: 8, train_y: 244084.15625, target_y: 261861.859375
+Epoch: 2, test loss: 697707648.0, train loss: 1735819008.0, test_y: 8283.2158203125, pre_test_y: 25496.240234375
+Epoch: 3, lr:0.005
+Epoch: 3, step: 0, train_y: 171357.71875, target_y: 159230.40625
+Epoch: 3, step: 1, train_y: 138036.96875, target_y: 153851.703125
+Epoch: 3, step: 2, train_y: 196590.9375, target_y: 193314.0
+Epoch: 3, step: 3, train_y: 267969.59375, target_y: 286734.9375
+Epoch: 3, step: 4, train_y: 293565.15625, target_y: 275095.875
+Epoch: 3, step: 5, train_y: 207538.125, target_y: 215574.9375
+Epoch: 3, step: 6, train_y: 179765.359375, target_y: 166141.875
+Epoch: 3, step: 7, train_y: 273980.21875, target_y: 260423.78125
+Epoch: 3, step: 8, train_y: 174341.90625, target_y: 165955.59375
+Epoch: 3, test loss: 305019328.0, train loss: 147581312.0, test_y: 12612.36328125, pre_test_y: 25496.240234375
+Epoch: 4, lr:0.005
+Epoch: 4, step: 0, train_y: 159565.3125, target_y: 166434.71875
+Epoch: 4, step: 1, train_y: 192465.59375, target_y: 181337.90625
+Epoch: 4, step: 2, train_y: 265639.0625, target_y: 260277.34375
+Epoch: 4, step: 3, train_y: 76316.9453125, target_y: 87900.7734375
+Epoch: 4, step: 4, train_y: 263772.9375, target_y: 276255.09375
+Epoch: 4, step: 5, train_y: 140128.875, target_y: 143932.03125
+Epoch: 4, step: 6, train_y: 326098.65625, target_y: 333589.0625
+Epoch: 4, step: 7, train_y: 180117.78125, target_y: 217450.28125
+Epoch: 4, step: 8, train_y: 207489.296875, target_y: 209145.875
+Epoch: 4, test loss: 204855296.0, train loss: 534964512.0, test_y: 8009.478515625, pre_test_y: 25496.240234375
+Finally, MAPE: 10.779203474521637%
+=====================================
+221
+======================================
+64
+train_data:64,test_data:17,test_X:17,test_Y:17
+./resources/ckpt_q_mv.pt
+Epoch: 0, lr:0.005
+Epoch: 0, step: 0, train_y: 511574.9375, target_y: 605005.0625
+Epoch: 0, step: 1, train_y: 245840.84375, target_y: 182729.890625
+Epoch: 0, step: 2, train_y: 355778.21875, target_y: 329841.375
+Epoch: 0, step: 3, train_y: 323484.5, target_y: 274451.25
+Epoch: 0, step: 4, train_y: 285828.34375, target_y: 268634.1875
+Epoch: 0, step: 5, train_y: 463382.1875, target_y: 429760.125
+Epoch: 0, step: 6, train_y: 323938.03125, target_y: 355123.25
+Epoch: 0, step: 7, train_y: 231590.90625, target_y: 142975.578125
+Epoch: 0, test loss: 16141483008.0, train loss: 11402196992.0, test_y: 330932.625, pre_test_y: 309062.1875
+Epoch: 1, lr:0.005
+Epoch: 1, step: 0, train_y: 244483.546875, target_y: 232606.015625
+Epoch: 1, step: 1, train_y: 396694.25, target_y: 480994.71875
+Epoch: 1, step: 2, train_y: 215926.28125, target_y: 275917.3125
+Epoch: 1, step: 3, train_y: 376208.75, target_y: 387343.75
+Epoch: 1, step: 4, train_y: 242374.28125, target_y: 301882.34375
+Epoch: 1, step: 5, train_y: 283793.3125, target_y: 232924.5625
+Epoch: 1, step: 6, train_y: 311276.0, target_y: 248200.5625
+Epoch: 1, step: 7, train_y: 334278.9375, target_y: 428651.4375
+Epoch: 1, test loss: 16802784256.0, train loss: 19032934400.0, test_y: 348521.875, pre_test_y: 309062.1875
+Epoch: 2, lr:0.005
+Epoch: 2, step: 0, train_y: 377663.5625, target_y: 300601.09375
+Epoch: 2, step: 1, train_y: 242080.421875, target_y: 244719.90625
+Epoch: 2, step: 2, train_y: 215804.96875, target_y: 201663.9375
+Epoch: 2, step: 3, train_y: 423377.4375, target_y: 445227.09375
+Epoch: 2, step: 4, train_y: 289106.28125, target_y: 255754.640625
+Epoch: 2, step: 5, train_y: 335275.1875, target_y: 342062.59375
+Epoch: 2, step: 6, train_y: 279344.5625, target_y: 318569.28125
+Epoch: 2, step: 7, train_y: 398280.96875, target_y: 479922.125
+Epoch: 2, test loss: 16660400128.0, train loss: 22291830784.0, test_y: 355832.25, pre_test_y: 309062.1875
+Epoch: 3, lr:0.005
+Epoch: 3, step: 0, train_y: 319902.4375, target_y: 311356.21875
+Epoch: 3, step: 1, train_y: 407246.15625, target_y: 341306.5625
+Epoch: 3, step: 2, train_y: 229412.203125, target_y: 263741.53125
+Epoch: 3, step: 3, train_y: 337350.96875, target_y: 418470.6875
+Epoch: 3, step: 4, train_y: 477377.0, target_y: 429791.8125
+Epoch: 3, step: 5, train_y: 309822.125, target_y: 262623.59375
+Epoch: 3, step: 6, train_y: 238685.671875, target_y: 251067.953125
+Epoch: 3, step: 7, train_y: 358922.9375, target_y: 310162.375
+Epoch: 3, test loss: 16013290496.0, train loss: 10601697280.0, test_y: 366814.34375, pre_test_y: 309062.1875
+Epoch: 4, lr:0.005
+Epoch: 4, step: 0, train_y: 417053.25, target_y: 404619.65625
+Epoch: 4, step: 1, train_y: 264030.5625, target_y: 253463.375
+Epoch: 4, step: 2, train_y: 467190.25, target_y: 533469.875
+Epoch: 4, step: 3, train_y: 251370.34375, target_y: 224266.453125
+Epoch: 4, step: 4, train_y: 252181.40625, target_y: 278552.8125
+Epoch: 4, step: 5, train_y: 287504.4375, target_y: 252619.9375
+Epoch: 4, step: 6, train_y: 309625.1875, target_y: 319763.6875
+Epoch: 4, step: 7, train_y: 263642.46875, target_y: 321764.9375
+Epoch: 4, test loss: 15245728768.0, train loss: 20561321984.0, test_y: 361977.9375, pre_test_y: 309062.1875
+Finally, MAPE: 79.31845188140869%
+24.681167125701904
+run success!

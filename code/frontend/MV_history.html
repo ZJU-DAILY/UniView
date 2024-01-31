@@ -59,6 +59,7 @@
             display: inline-block;
             text-align: left;
             padding-right: 5px;
+            border-collapse: collapse;
             /*font-weight: bold;*/
             /*border-bottom: 1px dotted black; !* 悬停元素上显示点线 *!*/
         }
@@ -110,6 +111,7 @@
             top: 0;
         }
 
+
         /* 滚动槽 */
         ::-webkit-scrollbar {
             width: 6px;
@@ -127,6 +129,407 @@
             border-radius: 3px;
             background: rgba(0, 0, 0, 0.12);
             -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /*模态框主体样式*/
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0; /* 居中 */
+            top: 0; /* 居中 */
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        /*模态框公共样式*/
+        .modal-content {
+            background-color: #fefefe;
+            margin: 50px auto 0;
+            padding: 20px;
+            border: 1px solid #888;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            animation: modal-show 0.3s;
+        }
+
+        /* 正常大小 */
+        .modal-normal {
+            width: 600px;
+        }
+
+        /* 中等大小 */
+        .modal-medium {
+            width: 400px;
+        }
+
+        /* 迷你大小 */
+        .modal-mini {
+            width: 250px;
+        }
+
+        /* 隐藏 */
+        .modal-hide {
+            animation: modal-hide 0.3s;
+        }
+
+        /* 展示动画 */
+        @keyframes modal-show {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* 隐藏动画 */
+        @keyframes modal-hide {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+        }
+
+        /*关闭按钮*/
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(255,0,0,0);
+        }
+
+        /*关闭按钮的鼠标点击和经过样式*/
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+            -webkit-tap-highlight-color: rgba(255,0,0,0);
+        }
+
+        .button{
+        width: 350px;
+        line-height: 40px;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        text-shadow:1px 1px 1px #333;
+        border-radius: 5px;
+        margin:0 7px 20px 0;
+        position: relative;
+        overflow: hidden;
+        }
+        .button-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .button:nth-child(6n){
+        margin-right: 0;
+        }
+        .button.gray{
+        color: #8c96a0;
+        text-shadow:1px 1px 1px #fff;
+        border:1px solid #dce1e6;
+        box-shadow: 0 1px 2px #fff inset,0 -1px 0 #a8abae inset;
+        background: -webkit-linear-gradient(top,#f2f3f7,#e4e8ec);
+        background: -moz-linear-gradient(top,#f2f3f7,#e4e8ec);
+        background: linear-gradient(top,#f2f3f7,#e4e8ec);
+        }
+
+        .button.green{
+        border:1px solid #64c878;
+        box-shadow: 0 1px 2px #b9ecc4 inset,0 -1px 0 #6c9f76 inset,0 -2px 3px #b9ecc4 inset;
+        background: -webkit-linear-gradient(top,#90dfa2,#84d494);
+        background: -moz-linear-gradient(top,#90dfa2,#84d494);
+        background: linear-gradient(top,#90dfa2,#84d494);
+        }
+
+        .round,
+            .side,
+            .tags{
+        padding-right: 30px;
+        }
+        .round:after{
+        position: absolute;
+        display: inline-block;
+        content: "\003c";
+        top:50%;
+        right:10px;
+        margin-top: -10px;
+        width: 17px;
+        height: 20px;
+        padding-left: 3px;
+        line-height:18px;
+        font-size: 10px;
+        font-weight: normal;
+        border-radius: 10px;
+        text-shadow:-2px 0 1px #333;
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        transform:rotate(-90deg);
+        }
+        .gray.round:after{
+        box-shadow:1px 0 1px rgba(255,255,255,1) inset,1px 0 1px rgba(0,0,0,.2);
+        background:-webkit-linear-gradient(top,#dce1e6,#dde2e7);
+        background:-moz-linear-gradient(top,#dce1e6,#dde2e7);
+        background:linear-gradient(top,#dce1e6,#dde2e7);
+        text-shadow:-2px 0 1px #fff;
+        }
+
+        .green.round:after{
+        box-shadow:1px 0 1px rgba(255,255,255,.8) inset,1px 0 1px rgba(51,126,66,.9);
+        background:-webkit-linear-gradient(top,#64c878,#6dcb80);
+        background:-moz-linear-gradient(top,#64c878,#6dcb80);
+        background:linear-gradient(top,#64c878,#6dcb80);
+        }
+
+        .side:after{
+        position: absolute;
+        display: inline-block;
+        content: "\00bb";
+        top:3px;
+        right:-4px;
+        width: 38px;
+        height:30px;
+        font-weight: normal;
+        line-height: 26px;
+        border-radius:0 0 5px 5px;
+        text-shadow:-2px 0 1px #333;
+        -webkit-transform:rotate(-90deg);
+        -moz-transform:rotate(-90deg);
+        transform:rotate(-90deg);
+        }
+        .gray.side:after{
+        text-shadow:-2px 0 1px #fff;
+        border-top: 1px solid #d4d4d4;
+        box-shadow:-2px 0 1px #eceef1 inset;
+        background:-webkit-linear-gradient(right,#e1e6ea,#f2f2f6 60%);
+        background:-moz-linear-gradient(right,#e1e6ea,#f2f2f6 60%);
+        background:linear-gradient(right,#e1e6ea,#f2f2f6 60%);
+        }
+
+        .green.side:after{
+        border-top: 1px solid #53b567;
+        box-shadow:-2px 0 1px #8ad599 inset;
+        background:-webkit-linear-gradient(right,#69ca7c,#91e5a5 60%);
+        background:-moz-linear-gradient(right,#69ca7c,#91e5a5 60%);
+        background:linear-gradient(right,#69ca7c,#91e5a5 60%);
+        }
+
+        .tags:after{
+        font-weight: normal;
+        position: absolute;
+        display: inline-block;
+        content: "FREE";
+        top:-3px;
+        right: -33px;
+        color: #fff;
+        text-shadow:none;
+        width: 85px;
+        height:25px;
+        line-height: 28px;
+        -webkit-transform:rotate(45deg) scale(.7,.7);
+        -moz-transform:rotate(45deg) scale(.7,.7);
+        transform:rotate(45deg) scale(.7,.7);
+        }
+        .gray.tags:after{
+        background: #8c96a0;
+        border:2px solid #fff;
+        }
+
+        .green.tags:after{
+        background: #64c878;
+        border:2px solid #9bebac;
+        }
+
+        .button.rarrow,
+            .button.larrow{
+        overflow:visible;
+        }
+        .rarrow:after,
+            .rarrow:before,
+            .larrow:after,
+            .larrow:before{
+        position:absolute;
+        content: "";
+        display: block;
+        width: 28px;
+        height: 28px;
+        -webkit-transform:rotate(45deg);
+        -moz-transform:rotate(45deg);
+        transform:rotate(45deg);
+        }
+        .rarrow:before{
+        width: 27px;
+        height: 27px;
+        top: 6px;
+        right: -13px;
+        clip: rect(auto auto 26px 2px);
+        }
+        .rarrow:after{
+        top: 6px;
+        right: -12px;
+        clip: rect(auto auto 26px 2px);
+        }
+        .gray.rarrow:before{
+        background: #d6dbe0;
+        }
+        .gray.rarrow:after{
+        box-shadow: 0 1px 0 #fff inset,-1px 0 0 #b7babd inset;
+        background:-webkit-linear-gradient(top left,#f2f3f7,#e4e8ec);
+        background:-moz-linear-gradient(top left,#f2f3f7,#e4e8ec);
+        background:linear-gradient(top left,#f2f3f7,#e4e8ec);
+        }
+
+        .green.rarrow:before{
+        background: #64C878;
+        }
+        .green.rarrow:after{
+        box-shadow: 0 1px 0 #B9ECC4 inset,-1px 0 0 #6C9F76 inset,-2px 0 0 #B9ECC4 inset;
+        background:-webkit-linear-gradient(top left,#90DFA2,#84D494);
+        background:-moz-linear-gradient(top left,#90DFA2,#84D494);
+        background:linear-gradient(top left,#90DFA2,#84D494);
+        }
+
+        .larrow:before{
+        top: 6px;
+        left: -13px;
+        width: 27px;
+        height: 27px;
+        clip: rect(2px 26px auto auto);
+        }
+        .larrow:after{
+        top: 6px;
+        left: -12px;
+        clip: rect(2px 26px auto auto);
+        }
+        .gray.larrow:before{
+        background: #d6dbe0;
+        }
+        .gray.larrow:after{
+        box-shadow: 0 -1px 0 #b7babd inset,1px 0 0 #fff inset;
+        background:-webkit-linear-gradient(top left,#f2f3f7,#e4e8ec);
+        background:-moz-linear-gradient(top left,#f2f3f7,#e4e8ec);
+        background:linear-gradient(top left,#f2f3f7,#e4e8ec);
+        }
+
+        .green.larrow:before{
+        background: #64C878;
+        }
+        .green.larrow:after{
+        box-shadow: 0 -1px 0 #6C9F76 inset,0 -2px 0 #B9ECC4 inset,1px 0 0 #B9ECC4 inset;
+        background:-webkit-linear-gradient(top left,#90DFA2,#84D494);
+        background:-moz-linear-gradient(top left,#90DFA2,#84D494);
+        background:linear-gradient(top left,#90DFA2,#84D494);
+        }
+
+        .gray:hover{
+        background: -webkit-linear-gradient(top,#fefefe,#ebeced);
+        background: -moz-linear-gradient(top,#f2f3f7,#ebeced);
+        background: linear-gradient(top,#f2f3f7,#ebeced);
+        }
+
+        .green:hover{
+        background: -webkit-linear-gradient(top,#aaebb9,#82d392);
+        background: -moz-linear-gradient(top,#aaebb9,#82d392);
+        background: linear-gradient(top,#aaebb9,#82d392);
+        }
+
+        .gray:active{
+        top:1px;
+        box-shadow: 0 1px 3px #a8abae inset,0 3px 0 #fff;
+        background: -webkit-linear-gradient(top,#e4e8ec,#e4e8ec);
+        background: -moz-linear-gradient(top,#e4e8ec,#e4e8ec);
+        background: linear-gradient(top,#e4e8ec,#e4e8ec);
+        }
+
+        .green:active{
+        top:1px;
+        box-shadow: 0 1px 3px #4d7254 inset,0 3px 0 #fff;
+        background: -webkit-linear-gradient(top,#5eac6e,#72b37e);
+        background: -moz-linear-gradient(top,#5eac6e,#72b37e);
+        background: linear-gradient(top,#5eac6e,#72b37e);
+        }
+
+        .gray.side:hover:after{
+        background:-webkit-linear-gradient(right,#e7ebee,#f8f8f8 60%);
+        background:-moz-linear-gradient(right,#e7ebee,#f8f8f8 60%);
+        background:linear-gradient(right,#e7ebee,#f8f8f8 60%);
+        }
+
+        .green.side:hover:after{
+        background:-webkit-linear-gradient(right,#85da95,#94e0a5 60%);
+        background:-moz-linear-gradient(right,#85da95,#94e0a5 60%);
+        background:linear-gradient(right,#85da95,#94e0a5 60%);
+        }
+
+        .gray.side:active:after{
+        top:4px;
+        border-top: 1px solid #9fa6ab;
+        box-shadow:-1px 0 1px #a8abae inset;
+        background:-webkit-linear-gradient(right,#e4e8ec,#e4e8ec 60%);
+        background:-moz-linear-gradient(right,#e4e8ec,#e4e8ec 60%);
+        background:linear-gradient(right,#e4e8ec,#e4e8ec 60%);
+        }
+
+        .green.side:active:after{
+        box-shadow:-1px 0 1px #33663d inset;
+        background:-webkit-linear-gradient(right,#63a870,#72b37e 60%);
+        background:-moz-linear-gradient(right,#63a870,#72b37e 60%);
+        background:linear-gradient(right,#63a870,#72b37e 60%);
+        }
+
+        .gray.rarrow:hover:after,
+            .gray.rarrow:hover:after{
+        background:-webkit-linear-gradient(top left,#fefefe,#ebeced);
+        background:-moz-linear-gradient(top left,#fefefe,#ebeced);
+        background:linear-gradient(top left,#fefefe,#ebeced);
+        }
+
+        .green.rarrow:hover:after,
+            .green.larrow:hover:after{
+        background:-webkit-linear-gradient(top left,#aaebb9,#82d392);
+        background:-moz-linear-gradient(top left,#aaebb9,#82d392);
+        background:linear-gradient(top left,#aaebb9,#82d392);
+        }
+
+        .gray.rarrow:active:after,
+            .gray.larrow:active:after{
+        background:-webkit-linear-gradient(top left,#e4e8ec,#e4e8ec);
+        background:-moz-linear-gradient(top left,#e4e8ec,#e4e8ec);
+        background:linear-gradient(top left,#e4e8ec,#e4e8ec);
+        }
+        .green.rarrow:active:after,
+            .green.larrow:active:after{
+        background:-webkit-linear-gradient(top left,#63a870,#72b37e);
+        background:-moz-linear-gradient(top left,#63a870,#72b37e);
+        background:linear-gradient(top left,#63a870,#72b37e);
+        }
+
+        .gray.rarrow:active:after{
+        box-shadow: 0 1px 0 #b7babd inset,-1px 0 0 #b7babd inset;
+        }
+        .gray.larrow:active:after{
+        box-shadow: 0 -1px 0 #b7babd inset,1px 0 0 #b7babd inset;
+        }
+        .green.rarrow:active:after{
+        box-shadow: 0 1px 0 #4d7254 inset,-1px 0 0 #4d7254 inset;
+        }
+        .green.larrow:active:after{
+        box-shadow: 0 -1px 0 #4d7254 inset,1px 0 0 #4d7254 inset;
         }
 
     </style>
@@ -148,24 +551,25 @@
                 </button>
                 <a class="navbar-brand" rel="home" href="#" title="Buy Sell Rent Everyting">
                     <!--                    <img style="max-width:100px; margin-top: -7px;" src="/static/logo_black.png">-->
-                    <h1 style="max-width:100px; margin-top: -7px;">UniView</h1>
+                    <h1 style="max-width:100px; margin-top: -7px; font-size: 40px;">UniView</h1>
                 </a>                    <!-- <a class="navbar-brand" href="#">DeepO</a> -->
             </div>
             <p></p>
             <p></p>
-            <div id="navbar" class="navbar-collapse collapse">
+            <div id="navbar" class="navbar-collapse collapse" style="font-size: 16px;">
                 <div class="nav nav-pills navbar-right">
                     <li><a href="parameter_configuration.html">Parameter
                         Configuration</a></li>
                     <li><a href="MV_process_tracking.html">MV Process Tracking</a></li>
                     <li><a href="MV_results_evaluation.html">MV Results
-                        Evaluation</a></li>
-                    <li role="presentation" class="nav-item active"><a href="#.html">MV History</a></li>
+                        Visualization</a></li>
+                    <li role="presentation" class="nav-item active"><a href="#.html">MV Results Evaluation</a></li>
                 </div>
             </div>
         </div>
     </nav>
     <br>
+
     <div class="main">
         <div class="btn-toolbar" role="toolbar">
             <div class="clo-md-4">
@@ -173,27 +577,25 @@
                     <div class="row marketing">
                         <div class="col-lg-12">
                             <div class="panel panel-primary">
-                                <div class="panel-heading">Current Result</div>
+                                <div class="panel-heading" style="font-size: 22px;">Current Result</div>
                                 <table class="table table-hover"
                                        style="table-layout: fixed;border-collapse: collapse;width: 1200px;height: 100px;">
                                     <!-- 关键代码 start -->
                                     <colgroup>
-                                        <col style="width: 60px;">
-                                        <col style="width: 70px;">
-                                        <col style="width: 80px;">
-                                        <col style="width: 70px;">
-                                        <col style="width: 80px;">
-                                        <col style="width: 70px;">
+                                        <col style="width: 50px;">
+                                        <col style="width: 93px;">
+                                        <col style="width: 95px;">
+                                        <col style="width: 98px;">
+                                        <col style="width: 95px;">
                                     </colgroup>
                                     <!-- 关键代码 end -->
                                     <thead>
                                     <tr>
-                                        <th scope="col" class="col-xs-1">Time</th>
-                                        <th scope="col" class="col-xs-1">Query SQL list</th>
-                                        <th scope="col" class="col-xs-1">Parameter configuration</th>
-                                        <th scope="col" class="col-xs-1">Benefit</th>
-                                        <th scope="col" class="col-xs-1">Coverage</th>
-                                        <th scope="col" class="col-xs-1">Recommend MV list</th>
+                                        <th scope="col" class="col-xs-1" style="font-size: 20px;">Time</th>
+                                        <th scope="col" class="col-xs-1" style="font-size: 20px;">Parameter configuration</th>
+                                        <th scope="col" class="col-xs-1" style="font-size: 20px;">Benefit</th>
+                                        <th scope="col" class="col-xs-1" style="font-size: 20px;">Coverage</th>
+                                        <th scope="col" class="col-xs-1" style="font-size: 20px;">Execution time</th>
                                     </tr>
                                     </thead>
                                     <tbody class="x-cate" id="current_result">
@@ -210,45 +612,40 @@
                     <div class="row marketing">
                         <div class="col-lg-12">
                             <div class="panel panel-primary">
-                                <div class="panel-heading">Historical Results</div>
-                                <div style="overflow: auto; height: 300px;">
+                                <div class="panel-heading" style="font-size: 22px;">Historical Results</div>
+                                <div style="overflow: auto; height: 280px;">
                                     <table id="history_table" class="table table-hover"
-                                           style="table-layout: fixed;border-collapse: collapse;width: 1200px;height: 300px;">
+                                           style="table-layout: fixed;border-collapse: collapse;width: 1200px;height: 250px; overflow: hidden;">
                                         <thead>
                                         <!-- 关键代码 start -->
                                         <colgroup>
-                                            <col style="width: 60px;">
-                                            <col style="width: 70px;">
-                                            <col style="width: 80px;">
-                                            <col style="width: 70px;">
-                                            <col style="width: 80px;">
-                                            <col style="width: 70px;">
+                                            <col style="width: 50px;">
+                                            <col style="width: 95px;">
+                                            <col style="width: 95px;">
+                                            <col style="width: 98px;">
+                                            <col style="width: 95px;">
                                         </colgroup>
                                         <!-- 关键代码 end -->
                                         <tr>
                                             <th scope="col" class="col-xs-1"
-                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                style="font-size: 20px; z-index: 999;background-color: #ffffff;position:sticky; top:0;">
                                                 Time
                                             </th>
                                             <th scope="col" class="col-xs-1"
-                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
-                                                Query SQL list
-                                            </th>
-                                            <th scope="col" class="col-xs-1"
-                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                style="font-size: 20px; z-index: 999;background-color: #ffffff;position:sticky; top:0;">
                                                 Parameter configuration
                                             </th>
                                             <th scope="col" class="col-xs-1"
-                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                style="font-size: 20px; z-index: 999;background-color: #ffffff;position:sticky; top:0;">
                                                 Benefit
                                             </th>
                                             <th scope="col" class="col-xs-1"
-                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                style="font-size: 20px; z-index: 999;background-color: #ffffff;position:sticky; top:0;">
                                                 Coverage
                                             </th>
                                             <th scope="col" class="col-xs-1"
-                                                style="z-index: 999;background-color: #ffffff;position:sticky; top:0;">
-                                                Recommend MV list
+                                                style="font-size: 20px; z-index: 999;background-color: #ffffff;position:sticky; top:0;">
+                                                Execution time
                                             </th>
                                         </tr>
                                         </thead>
@@ -256,7 +653,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <br>
+                                <!-- <br> -->
                             </div>
                         </div>
                     </div>
@@ -275,11 +672,12 @@
 <script>
     var saveParameters = document.getElementById("saveParameters");
     var defaultParameters = document.getElementById("defaultParameters");
-    var ip = 'http://10.77.110.234:5002/';
+    var ip = 'http://127.0.0.1:5000/';
     var submit_num = "0";
 
     // 同文件夹下的json文件路径，改为url即可
-    var url_current = "./exam_result/MV_history_PG_v2.json"
+    // var url_current = "./exam_result/MV_history_PG_v2.json"
+    var url_current = "http://127.0.0.1:5000/mv_history_current"
     // 申明一个XMLHttpRequest
     var request_current = new XMLHttpRequest();
     // 设置请求方法与路径
@@ -294,56 +692,80 @@
             var obj_current = request_current.responseText;
             var data_current = eval("(" + obj_current + ")");
             console.log(data_current);
+            console.log(data_current['time'])
+            console.log(data_current.time)
 
-            var str_current = "";   //声明str1，防止产生undefined
-            str_current += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
-                "<td>" + data_current.time + "</td>" +
-                "<td><div class='my_tooltip'>"
-                + data_current.sql_list_part +
-                "<span class='tooltiptext' style='z-index: 1000;'>" + data_current.sql_list_all + "</span></div></td>" +
-                "<td><div class='my_tooltip'>" +
-                "Engine = <span style='color: mediumseagreen'>" + data_current.parameter_configuration.engine + "</span><br>" +
-                "Recommend method = <span style='color: mediumseagreen'>" + data_current.parameter_configuration.recommend_method + "</span><br>" +
-                "Single or multiple = <span style='color: mediumseagreen'>" + data_current.parameter_configuration.single_or_multiple + "</span><br>" +
+            var str_current = "";   // 声明str1，防止产生undefined
+            str_current += 
+                "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                "<td><span class='data_current-title' style='font-size: 16px;'>" + data_current['time'] + "</td>" +
+
+                "<td ><div class='my_tooltip'>" +
+                " <span class='engine-title' style='font-size: 16px;'>Engine = <span style='color: mediumseagreen; font-size: 16px;'>" + data_current.parameter_configuration.engine + "</span><br>" +
+                " <span class='Recommend-title' style='font-size: 16px;'>Recommend method = <span style='color: mediumseagreen; font-size: 16px;'>" + data_current.parameter_configuration.recommend_method + "</span><br>" +
+                " <span class='Single-title' style='font-size: 16px;'>Single or multiple = <span style='color: mediumseagreen; font-size: 16px;'>" + data_current.parameter_configuration.single_or_multiple + "</span><br>" +
                 "<span class='tooltiptext' style='z-index: 1000;'>" +
                 "Engine = " + data_current.parameter_configuration.engine + "<br>" +
                 "Recommend method = " + data_current.parameter_configuration.recommend_method + "<br>" +
                 "Single or multiple = " + data_current.parameter_configuration.single_or_multiple + "<br>" +
                 "Num of epoch = " + data_current.parameter_configuration.num_of_epoch + "<br>" +
-                "Num of train = " + data_current.parameter_configuration.num_of_train + "<br>" +
+                "Num of batch_size = " + data_current.parameter_configuration.num_of_train + "<br>" +
                 "Cnt limit = " + data_current.parameter_configuration.cnt_limit + "<br>" +
-                "Space limit = " + data_current.parameter_configuration.space_limit + "<br>" +
-                "Refer threshold = " + data_current.parameter_configuration.refer_threshold + "<br>" +
-                "Table size upper bound = " + data_current.parameter_configuration.table_size_upper_bound + "<br>" +
-                "Table size lower bound = " + data_current.parameter_configuration.table_size_lower_bound + "<br>" +
                 "</span></div></td>" +
+                
                 "<td><div class='my_tooltip'>" +
-                "The original query takes <span style='color: red'>" + data_current.benefit.benefit1 +
-                "</span>s, and the query after using the view takes <span style='color: mediumseagreen'>" + data_current.benefit.benefit2 + "</span>s.<br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Total benefit rate = <span style='color: red'>" + data_current.benefit.benefit3 + "</span>%<br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Original query times = <span style='color: mediumseagreen'>" + data_current.benefit.benefit1 + "</span>s<br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Rewrite query times = <span style='color: red'>" + data_current.benefit.benefit2 + "</span>s<br>" +
                 "<span class='tooltiptext' style='z-index: 1000;'>" +
                 "The original query takes " + data_current.benefit.benefit1 +
                 "s, and the query after using the view takes " + data_current.benefit.benefit2 + "s.<br>" +
                 "The total benefit rate is " + data_current.benefit.benefit3 + "%.<br>" +
                 "The highest single pick yield is " + data_current.benefit.benefit4 + "%, reduced from the original " +
                 data_current.benefit.benefit5 + "s to " + data_current.benefit.benefit6 + "s.<br>" +
-                "</span></div></td>" +
+                "</span></div></td>" + 
+                
                 "<td><div class='my_tooltip'>" +
-                "There are <span style='color: red'>" + data_current.coverage.coverage1 + "</span> original queries. <span style='color: mediumseagreen'>" + data_current.coverage.coverage2 +
-                "</span> views are recommended, and <span style='color: mediumseagreen'>" + data_current.coverage.coverage3 + "</span> queries are covered by these views.<br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Coverage = <span style='color: red'>" + data_current.coverage.coverage4 + "</span>%<br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Number of original queries = <span style='color: mediumseagreen'>" + data_current.coverage.coverage1 + "</span><br>" +
+                // "Number of MVs = <span style='color: mediumseagreen'>" + data_current.coverage.coverage2 + "</span><br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Number of original queries = <span style='color: red'>" + data_current.coverage.coverage3 + "</span><br>" +
                 "<span class='tooltiptext' style='z-index: 1000;'>" +
                 "There are " + data_current.coverage.coverage1 + " original queries. " + data_current.coverage.coverage2 +
                 " views are recommended, and " + data_current.coverage.coverage3 + " queries are covered by these views.<br>" +
                 "Coverage is " + data_current.coverage.coverage4 + "%.<br>" +
                 "</span></div></td>" +
-                "<td><div class='my_tooltip'>" +
-                data_current.mv_list_part +
-                "<span class='tooltiptext' style='z-index: 1000;'>" + data_current.mv_list_all + "</span></div></td>" + "</tr>"
+
+                // "<td><div class='my_tooltip'>"
+                // + data_current.sql_list_part +
+                // "<span class='tooltiptext' style='z-index: 1000;'>" + data_current.sql_list_all + "</span></div></td>" +
+
+                // "<td><div class='my_tooltip'>" +
+                // data_current.mv_list_part +
+                // "<span class='tooltiptext' style='z-index: 1000;'>" + data_current.mv_list_all + "</span></div></td>" 
+                
+                "<td><div style='display: flex; justify-content: center; align-items: center;'><button type='button' class='button green rarrow' data-modal-action='open' data-modal-target='myModal' style='font-size: 20px; margin-top: 10px;'>detailed information</button></div></td>" +
+                "<div id='myModal' class='modal'>" +
+                    "<div class='modal-content modal-normal'>" +
+                        "<span class='close' style='position: absolute; top: -2px; right: 2px;'>&times;</span>" +
+                        // "<tbody class='x-cate' id='form'></tbody>" +
+                        "<div style='overflow: scroll; height: 408px;'>" + 
+                        "</div>" +
+                    "</div>" +
+                "</div>" +
+                // "</td>" +
+                "</tr>"
+
+
             current_result.innerHTML = str_current;
+            
+            // modal_fun();
         }
     }
 
     // 同文件夹下的json文件路径，改为url即可
-    var url_history = "./exam_result/MV_history_v2.json"
+    // var url_history = "./exam_result/MV_history_v2.json"
+    var url_history = "http://127.0.0.1:5000/mv_history_former"
     // 申明一个XMLHttpRequest
     var request_history = new XMLHttpRequest();
     // 设置请求方法与路径
@@ -361,51 +783,145 @@
 
             var str2 = "";   //声明str1，防止产生undefined
             for (var i = 0; i < data_history.length; i++) {
-                str2 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
-                    "<td>" + data_history[i].time + "</td>" +
-                    "<td><div class='my_tooltip'>"
-                    + data_history[i].sql_list_part +
-                    "<span class='tooltiptext' style='z-index: 1000;'>" + data_history[i].sql_list_all + "</span></div></td>" +
-                    "<td><div class='my_tooltip'>" +
-                    "Engine = <span style='color: mediumseagreen'>" + data_history[i].parameter_configuration.engine + "</span><br>" +
-                    "Recommend method = <span style='color: mediumseagreen'>" + data_history[i].parameter_configuration.recommend_method + "</span><br>" +
-                    "Single or multiple = <span style='color: mediumseagreen'>" + data_history[i].parameter_configuration.single_or_multiple + "</span><br>" +
-                    "<span class='tooltiptext' style='z-index: 1000;'>" +
-                    "Engine = " + data_history[i].parameter_configuration.engine + "<br>" +
-                    "Recommend method = " + data_history[i].parameter_configuration.recommend_method + "<br>" +
-                    "Single or multiple = " + data_history[i].parameter_configuration.single_or_multiple + "<br>" +
-                    "Num of epoch = " + data_history[i].parameter_configuration.num_of_epoch + "<br>" +
-                    "Num of train = " + data_history[i].parameter_configuration.num_of_train + "<br>" +
-                    "Cnt limit = " + data_history[i].parameter_configuration.cnt_limit + "<br>" +
-                    "Space limit = " + data_history[i].parameter_configuration.space_limit + "<br>" +
-                    "Refer threshold = " + data_history[i].parameter_configuration.refer_threshold + "<br>" +
-                    "Table size upper bound = " + data_history[i].parameter_configuration.table_size_upper_bound + "<br>" +
-                    "Table size lower bound = " + data_history[i].parameter_configuration.table_size_lower_bound + "<br>" +
-                    "</span></div></td>" +
-                    "<td><div class='my_tooltip'>" +
-                    "The original query takes <span style='color: red'>" + data_history[i].benefit.benefit1 +
-                    "</span>s, and the query after using the view takes <span style='color: mediumseagreen'>" + data_history[i].benefit.benefit2 + "</span>s.<br>" +
-                    "<span class='tooltiptext' style='z-index: 1000;'>" +
-                    "The original query takes " + data_history[i].benefit.benefit1 +
-                    "s, and the query after using the view takes " + data_history[i].benefit.benefit2 + "s.<br>" +
-                    "The total benefit rate is " + data_history[i].benefit.benefit3 + "%.<br>" +
-                    "The highest single pick yield is " + data_history[i].benefit.benefit4 + "%, reduced from the original " +
-                    data_history[i].benefit.benefit5 + "s to " + data_history[i].benefit.benefit6 + "s.<br>" +
-                    "</span></div></td>" +
-                    "<td><div class='my_tooltip'>" +
-                    "There are <span style='color: red'>" + data_history[i].coverage.coverage1 + "</span> original queries. <span style='color: mediumseagreen'>" + data_history[i].coverage.coverage2 +
-                    "</span> views are recommended, and <span style='color: mediumseagreen'>" + data_history[i].coverage.coverage3 + "</span> queries are covered by these views.<br>" +
-                    "<span class='tooltiptext' style='z-index: 1000;'>" +
-                    "There are " + data_history[i].coverage.coverage1 + " original queries. " + data_history[i].coverage.coverage2 +
-                    " views are recommended, and " + data_history[i].coverage.coverage3 + " queries are covered by these views.<br>" +
-                    "Coverage is " + data_history[i].coverage.coverage4 + "%.<br>" +
-                    "</span></div></td>" +
-                    "<td><div class='my_tooltip'>" +
-                    data_history[i].mv_list_part +
-                    "<span class='tooltiptext' style='z-index: 1000;'>" + data_history[i].mv_list_all + "</span></div></td>" + "</tr>"
+                str2 += 
+                "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                "<td><span class='engine-title' style='font-size: 16px;'>" + data_history[i]['time'] + "</td>" +
+
+                "<td ><div class='my_tooltip'>" +
+                "<span class='engine-title' style='font-size: 16px;'>Engine = <span style='color: mediumseagreen'>" + data_history[i].parameter_configuration.engine + "</span><br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Recommend method = <span style='color: mediumseagreen'>" + data_history[i].parameter_configuration.recommend_method + "</span><br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Single or multiple = <span style='color: mediumseagreen'>" + data_history[i].parameter_configuration.single_or_multiple + "</span><br>" +
+                "<span class='tooltiptext' style='z-index: 1000;'>" +
+                "Engine = " + data_history[i].parameter_configuration.engine + "<br>" +
+                "Recommend method = " + data_history[i].parameter_configuration.recommend_method + "<br>" +
+                "Single or multiple = " + data_history[i].parameter_configuration.single_or_multiple + "<br>" +
+                "Num of epoch = " + data_history[i].parameter_configuration.num_of_epoch + "<br>" +
+                "Num of batch_size = " + data_history[i].parameter_configuration.num_of_train + "<br>" +
+                "Cnt limit = " + data_history[i].parameter_configuration.cnt_limit + "<br>" +
+                "</span></div></td>" +
+                
+                "<td><div class='my_tooltip'>" +
+                "<span class='engine-title' style='font-size: 16px;'>Total benefit rate = <span style='color: red'>" + data_history[i].benefit.benefit3 + "</span>%<br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Original query times = <span style='color: mediumseagreen'>" + data_history[i].benefit.benefit1 + "</span>s<br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Rewrite query times = <span style='color: red'>" + data_history[i].benefit.benefit2 + "</span>s<br>" +
+                "<span class='tooltiptext' style='z-index: 1000;'>" +
+                "The original query takes " + data_history[i].benefit.benefit1 +
+                "s, and the query after using the view takes " + data_history[i].benefit.benefit2 + "s.<br>" +
+                "The total benefit rate is " + data_history[i].benefit.benefit3 + "%.<br>" +
+                "The highest single pick yield is " + data_history[i].benefit.benefit4 + "%, reduced from the original " +
+                data_history[i].benefit.benefit5 + "s to " + data_history[i].benefit.benefit6 + "s.<br>" +
+                "</span></div></td>" + 
+                
+                "<td><div class='my_tooltip'>" +
+                "<span class='engine-title' style='font-size: 16px;'>Coverage = <span style='color: red'>" + data_history[i].coverage.coverage4 + "</span>%<br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Number of original queries = <span style='color: mediumseagreen'>" + data_history[i].coverage.coverage1 + "</span><br>" +
+                // "Number of MVs = <span style='color: mediumseagreen'>" + data_current.coverage.coverage2 + "</span><br>" +
+                "<span class='engine-title' style='font-size: 16px;'>Number of original queries = <span style='color: red'>" + data_history[i].coverage.coverage3 + "</span><br>" +
+                "<span class='tooltiptext' style='z-index: 1000;'>" +
+                "There are " + data_history[i].coverage.coverage1 + " original queries. " + data_history[i].coverage.coverage2 +
+                " views are recommended, and " + data_history[i].coverage.coverage3 + " queries are covered by these views.<br>" +
+                "Coverage is " + data_history[i].coverage.coverage4 + "%.<br>" +
+                "</span></div></td>" +
+
+                // "<td><div class='my_tooltip'>"
+                // + data_current.sql_list_part +
+                // "<span class='tooltiptext' style='z-index: 1000;'>" + data_current.sql_list_all + "</span></div></td>" +
+
+                // "<td><div class='my_tooltip'>" +
+                // data_current.mv_list_part +
+                // "<span class='tooltiptext' style='z-index: 1000;'>" + data_current.mv_list_all + "</span></div></td>" 
+                
+                "<td><div style='display: flex; justify-content: center; align-items: center;'><button type='button' class='button green rarrow' data-modal-action='open' data-modal-target='myModal' style='font-size: 20px; margin-top: 10px;'>detailed information</button></div></td>" +
+                "<div id='myModal' class='modal'>" +
+                    "<div class='modal-content modal-normal'>" +
+                        "<span class='close' style='position: absolute; top: -2px; right: 2px;'>&times;</span>" +
+                        // "<tbody class='x-cate' id='form'></tbody>" +
+                        "<div style='overflow: scroll; height: 408px;'>" + 
+                        "</div>" +
+                    "</div>" +
+                "</div>" +
+                // "</td>" +
+                "</tr>"
+
+                    // modal_fun();
             }
             historical_result.innerHTML = str2;
+            modal_fun();
         }
+    }
+
+    var is_in_execute = 1;
+
+    function get_execute_result() {
+        if (is_in_execute == 0) {
+            return
+        }
+        is_in_execute = 0;
+        var url = "http://127.0.0.1:5000/evaluate_result"
+        // 申明一个XMLHttpRequest
+        var request = new XMLHttpRequest();
+        // 设置请求方法与路径
+        request.open("get", url);
+        // 不发送数据到服务器
+        request.send(null);
+        // var formElement = document.getElementById('form');
+
+        // 获取模态框元素
+        var modal = document.getElementById('myModal');
+
+        // 创建表格元素
+        var table = document.createElement('table');
+        table.className = 'table table-hover';
+
+        // 创建表头行
+        var thead = table.createTHead();
+        var headerRow = thead.insertRow();
+
+        // 创建表头单元格
+        var headers = ['Original SQL ID', 'MV ID', 'Original execution time', 'New execution time', 'Benefit time', 'Benefit rate'];
+        for (var i = 0; i < headers.length; i++) {
+            var th = document.createElement('th');
+            th.textContent = headers[i];
+            th.className = 'col-xs-1';
+            th.style.zIndex = '999';
+            th.style.backgroundColor = '#ffffff';
+            th.style.position = 'sticky';
+            th.style.top = '0';
+            headerRow.appendChild(th);
+        }
+
+        // 创建表体元素
+        var tbody = document.createElement('tbody');
+        tbody.className = 'x-cate';
+        tbody.id = 'form';
+
+        // 将表体元素添加到表格中
+        table.appendChild(tbody);
+
+        // 将表格添加到模态框中
+        modal.querySelector('div[style="overflow: scroll; height: 408px;"]').appendChild(table);
+
+        //XHR对象获取到返回信息后执行
+        request.onload = function () {
+            // 返回状态为200，即为数据获取成功
+            if (request.status == 200) {
+                var data = JSON.parse(request.responseText);
+                console.log(data);
+
+                var str1 = "";   //声明str1，防止产生undefined
+                $.each(data, function (infoIndex, info) {
+                    info["benefit_time"] = info["benefit_time"].toFixed(3)
+                    str1 += "<tr cate-id='0' fid='0' onMouseOver='over()' onClick='change()' onMouseOut='out()'> " +
+                        "<td>" + info["original_sql_id"] + "</td>" +
+                        "<td>" + info["rewrite_mv_id"] + "</td>" +
+                        "<td>" + info["original_execution_time"] + "</td>" +
+                        "<td>" + info["rewrite_execution_time"] + "</td>" +
+                        "<td>" + info["benefit_time"] + "</td>" +
+                        "<td>" + info["benefit_rate"] + "</td>" + "</tr>"
+                })
+                form.innerHTML = str1;
+            }
+        };
     }
 
     //鼠标点击另外一行时关闭已选行变色
@@ -425,6 +941,74 @@
             if (!oTr.tag) oTr.style.backgroundColor = "#E1E9FD";
         }
     }
+
+    function change() {
+        // Your code for the change function goes here
+        // For example, you can add console.log to check if it's called
+        console.log('Change function called');
+    }
+    
+    function modal_fun() {
+        // 获取触发模态框的自定义属性
+        var modalButtons = document.querySelectorAll("[data-modal-action]");
+
+        // 获取模态框主体
+        var modals = document.querySelectorAll(".modal");
+
+        // 监听模态框的按钮事件
+        modalButtons.forEach(function(button) {
+            button.addEventListener("click", function() {
+                var targetId = this.dataset.modalTarget;
+                var targetModal = document.getElementById(targetId);
+
+                if (targetModal) {
+                    var action = this.dataset.modalAction;
+
+                    if (action === "open") {
+                        openModal(targetModal);
+                        get_execute_result();
+                    } else if (action === "close") {
+                        closeModal(targetModal);
+                    }
+                }
+            });
+        });
+
+        // 打开模态框
+        function openModal(modal) {
+            modal.style.display = "block";
+            modal.querySelector(".modal-content").classList.remove("modal-hide");
+        }
+
+        // 关闭模态框
+        function closeModal(modal) {
+            modal.querySelector(".modal-content").classList.add("modal-hide");
+            modal.querySelector(".modal-content").addEventListener("animationend", function () {
+                modal.style.display = "none";
+            }, { once: true });
+        }
+
+        // 监听模态框的关闭时事件
+        modals.forEach(function(modal) {
+            var closeButton = modal.querySelector(".close");
+            if (closeButton) {
+                closeButton.addEventListener("click", function() {
+                    var targetModal = this.closest(".modal");
+                    closeModal(targetModal);
+                });
+            }
+        });
+
+        // 当用户点击模态框外部时，关闭模态框
+        window.onclick = function (event) {
+            modals.forEach(function(modal) {
+                if (event.target === modal) {
+                    closeModal(modal);
+                }
+            });
+        };
+    };
+
 
 
 </script>

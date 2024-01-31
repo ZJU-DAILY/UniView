@@ -1,3 +1,3 @@
 create materialized view if not exists mv202 as select aka_title.movie_id AS movie_id, info_type.id AS id, info_type.info AS info_type_info_2, movie_info.info AS movie_info_info_3, movie_info.note AS note
- from movie_info,info_type,aka_title
+ from aka_title,movie_info,info_type
  where (movie_info.movie_id = aka_title.movie_id) And (info_type.id = movie_info.info_type_id) And (movie_info.note like '%internet%')  And  (movie_info.info like 'USA:% 200%') And (info_type.info = 'release dates')

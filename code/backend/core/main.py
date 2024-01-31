@@ -23,13 +23,15 @@ from get_json_PG import get_json_file_PG, get_json_file_para_PG
 from time import time
 from get_qmv_run_time import calculate_cost
 from read_mv import get_generate_materialized_view_size
+from zzimdbRewrite920 import query_rewrite_old
 
 
 database_types = ["CH", "PG", "spark"]
 tasks = ["cost_estimation", "update_model", "recommend", "get_candidates", "init_database_schema", "get_recommend_csv_mv", "build_data", "build_projection", "create_projection",
          "generate_projection_data", "generate_view_size", "run_rewrite_query", "test_encode_run", "remove_projection", "get_json_file_PG",
          "run_original_query_tpcds", "run_original_query_incre", "get_original_log_tpcds", "get_original_log_incre", "get_rewrite_log_tpcds", "get_rewrite_log_incre",
-         "get_candidates_spark_tpcds", "get_candidates_spark_incre", "test_encode_run_tpcds", "test_encode_run_incre", "calculate_cost", "get_generate_materialized_view_size"]
+         "get_candidates_spark_tpcds", "get_candidates_spark_incre", "test_encode_run_tpcds", "test_encode_run_incre", "calculate_cost", "get_generate_materialized_view_size",
+         "query_rewrite_old"]
 
 
 def set_seed(seed):
@@ -156,6 +158,13 @@ def run(task="recommend", database_type="spark", para3="resources/PG/q_mv/sql", 
         else:
             print(f"[main] error:The system only support PG/CH, not support {database_type}")
             return False
+    elif task == "query_rewrite_old":
+        # if database_type == "PG":
+        query_rewrite_old()
+        # else:
+        #     print(f"[main] error:The system only support PG, not support {database_type}")
+        #     return False
+
     elif task == "get_candidates_spark_tpcds":
         if database_type == "spark":
             generate_candidate_view_new_SP("resources/spark", False)

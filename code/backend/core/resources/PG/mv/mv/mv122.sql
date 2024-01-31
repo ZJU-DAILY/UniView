@@ -1,3 +1,3 @@
 create materialized view if not exists mv122 as select company_name.country_code AS country_code, company_name.id AS id, movie_companies.company_type_id AS company_type_id, movie_companies.movie_id AS movie_id, title.production_year AS production_year, title.title AS title
- from company_name,title,movie_companies
- where (movie_companies.company_id = company_name.id) And (company_name.country_code = '[us]') And (movie_companies.movie_id = title.id) And (title.production_year > 1990)
+ from movie_companies,title,company_name
+ where (movie_companies.movie_id = title.id) And (movie_companies.company_id = company_name.id) And (title.production_year > 1990) And (company_name.country_code = '[us]')

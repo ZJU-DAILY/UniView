@@ -1,0 +1,996 @@
+sameTabType 46 {'12a.sql', '26b.sql', '28c.sql', '32a.sql', '29a.sql', '20b.sql', '20c.sql', '27b.sql', '31a.sql', '30b.sql', '28a.sql', '28b.sql', '31c.sql', '31b.sql', '13b.sql', '13c.sql', '18a.sql', '25b.sql', '14b.sql', '33a.sql', '22d.sql', '18c.sql', '22b.sql', '12c.sql', '12b.sql', '13a.sql', '14a.sql', '25a.sql', '27c.sql', '29b.sql', '29c.sql', '33c.sql', '22a.sql', '22c.sql', '26c.sql', '32b.sql', '26a.sql', '13d.sql', '27a.sql', '14c.sql', '20a.sql', '33b.sql', '30a.sql', '25c.sql', '30c.sql', '18b.sql'}
+betweenType 24 {'12a.sql', '29a.sql', '21c.sql', '21b.sql', '21a.sql', '7b.sql', '19a.sql', '7c.sql', '15b.sql', '19b.sql', '33a.sql', '9b.sql', '12c.sql', '29c.sql', '29b.sql', '33c.sql', '27c.sql', '9a.sql', '11a.sql', '1b.sql', '27a.sql', '8b.sql', '7a.sql', '18b.sql'}
+orType 37 {'15c.sql', '26b.sql', '1a.sql', '23c.sql', '29a.sql', '20b.sql', '27b.sql', '21c.sql', '21b.sql', '30b.sql', '24b.sql', '21a.sql', '19a.sql', '31b.sql', '13b.sql', '13c.sql', '7c.sql', '19b.sql', '14b.sql', '9b.sql', '12b.sql', '24a.sql', '29c.sql', '27c.sql', '9a.sql', '11a.sql', '26c.sql', '26a.sql', '11c.sql', '27a.sql', '8b.sql', '20a.sql', '19c.sql', '23a.sql', '11b.sql', '7a.sql', '20c.sql'}
+start rewrite 1 sql.
+rewrite 1d.sql and mv6.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ct': 'company_type', 'it': 'info_type', 'mc': 'movie_companies', 'mi_idx': 'movie_info_idx', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_type': 'ct', 'info_type': 'it', 'movie_companies': 'mc', 'movie_info_idx': 'mi_idx', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mc.company_type_id', 'ct.id', 't.production_year', 'it.id', 'it.info', 'mc.movie_id', 'mi_idx.info_type_id', 'mi_idx.movie_id', 'ct.kind', 'mc.note'}
+["'production companies'", 'ct.kind']
+['ct.id', 'mc.company_type_id']
+['mc.movie_id', 't.id']
+['mv6.movie_id', 't.id']
+['mc.movie_id', 'mv6.movie_id']
+rewrite 1d.sql with mv6 end.
+start rewrite 2 sql.
+rewrite 2a.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'cn.id', 'mc.company_id', 'k.keyword', 'cn.country_code'}
+["'[de]'", 'cn.country_code']
+['cn.id', 'mc.company_id']
+['mc.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 2a.sql with mv12 end.
+start rewrite 3 sql.
+rewrite 2a.sql and mv15.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'cn.id', 'mc.company_id', 'k.keyword', 'cn.country_code'}
+["'[de]'", 'mv15.country_code']
+rewrite 2a.sql with mv15 end.
+start rewrite 4 sql.
+rewrite 2b.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'cn.id', 'mc.company_id', 'k.keyword', 'cn.country_code'}
+["'[nl]'", 'cn.country_code']
+['cn.id', 'mc.company_id']
+['mc.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 2b.sql with mv12 end.
+start rewrite 5 sql.
+rewrite 2b.sql and mv15.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'cn.id', 'mc.company_id', 'k.keyword', 'cn.country_code'}
+["'[nl]'", 'mv15.country_code']
+rewrite 2b.sql with mv15 end.
+start rewrite 6 sql.
+rewrite 2c.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'cn.id', 'mc.company_id', 'k.keyword', 'cn.country_code'}
+["'[sm]'", 'cn.country_code']
+['cn.id', 'mc.company_id']
+['mc.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 2c.sql with mv12 end.
+start rewrite 7 sql.
+rewrite 2c.sql and mv15.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'cn.id', 'mc.company_id', 'k.keyword', 'cn.country_code'}
+["'[sm]'", 'mv15.country_code']
+rewrite 2c.sql with mv15 end.
+start rewrite 8 sql.
+rewrite 2d.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'cn.id', 'mc.company_id', 'k.keyword', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['cn.id', 'mc.company_id']
+['mc.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 2d.sql with mv16 end.
+start rewrite 9 sql.
+rewrite 2d.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'cn.id', 'mc.company_id', 'k.keyword', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['cn.id', 'mc.company_id']
+['mc.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 2d.sql with mv12 end.
+start rewrite 10 sql.
+rewrite 2d.sql and mv15.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'cn.id', 'mc.company_id', 'k.keyword', 'cn.country_code'}
+["'[us]'", 'mv15.country_code']
+rewrite 2d.sql with mv15 end.
+start rewrite 11 sql.
+rewrite 2d.sql and mv17.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'cn.id', 'mc.company_id', 'k.keyword', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['cn.id', 'mv17.company_id']
+rewrite 2d.sql with mv17 end.
+start rewrite 12 sql.
+rewrite 3a.sql and mv18.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'k': 'keyword', 'mi': 'movie_info', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'keyword': 'k', 'movie_info': 'mi', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mi.movie_id', 'mk.movie_id', 't.production_year', 'k.keyword', 'mi.info'}
+['mi.movie_id', 't.id']
+['mv18.movie_id', 't.id']
+['mi.movie_id', 'mv18.movie_id']
+rewrite 3a.sql with mv18 end.
+start rewrite 13 sql.
+rewrite 3b.sql and mv18.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'k': 'keyword', 'mi': 'movie_info', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'keyword': 'k', 'movie_info': 'mi', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mi.movie_id', 'mk.movie_id', 't.production_year', 'k.keyword', 'mi.info'}
+['mi.movie_id', 't.id']
+['mv18.movie_id', 't.id']
+['mi.movie_id', 'mv18.movie_id']
+rewrite 3b.sql with mv18 end.
+start rewrite 14 sql.
+rewrite 3c.sql and mv18.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'k': 'keyword', 'mi': 'movie_info', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'keyword': 'k', 'movie_info': 'mi', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'mi.movie_id', 'mk.movie_id', 't.production_year', 'k.keyword', 'mi.info'}
+['mi.movie_id', 't.id']
+['mv18.movie_id', 't.id']
+['mi.movie_id', 'mv18.movie_id']
+rewrite 3c.sql with mv18 end.
+start rewrite 15 sql.
+rewrite 4a.sql and mv18.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'it': 'info_type', 'k': 'keyword', 'mi_idx': 'movie_info_idx', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'info_type': 'it', 'keyword': 'k', 'movie_info_idx': 'mi_idx', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 't.production_year', 'mk.movie_id', 'it.id', 'it.info', 'mi_idx.info_type_id', 'mi_idx.info', 'k.keyword', 'mi_idx.movie_id'}
+["'rating'", 'it.info']
+['mi_idx.movie_id', 't.id']
+['mv18.movie_id', 't.id']
+['mi_idx.movie_id', 'mv18.movie_id']
+['it.id', 'mi_idx.info_type_id']
+rewrite 4a.sql with mv18 end.
+start rewrite 16 sql.
+rewrite 4b.sql and mv18.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'it': 'info_type', 'k': 'keyword', 'mi_idx': 'movie_info_idx', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'info_type': 'it', 'keyword': 'k', 'movie_info_idx': 'mi_idx', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 't.production_year', 'mk.movie_id', 'it.id', 'it.info', 'mi_idx.info_type_id', 'mi_idx.info', 'k.keyword', 'mi_idx.movie_id'}
+["'rating'", 'it.info']
+['mi_idx.movie_id', 't.id']
+['mv18.movie_id', 't.id']
+['mi_idx.movie_id', 'mv18.movie_id']
+['it.id', 'mi_idx.info_type_id']
+rewrite 4b.sql with mv18 end.
+start rewrite 17 sql.
+rewrite 4c.sql and mv18.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'it': 'info_type', 'k': 'keyword', 'mi_idx': 'movie_info_idx', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'info_type': 'it', 'keyword': 'k', 'movie_info_idx': 'mi_idx', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 't.production_year', 'mk.movie_id', 'it.id', 'it.info', 'mi_idx.info_type_id', 'mi_idx.info', 'k.keyword', 'mi_idx.movie_id'}
+["'rating'", 'it.info']
+['mi_idx.movie_id', 't.id']
+['mv18.movie_id', 't.id']
+['mi_idx.movie_id', 'mv18.movie_id']
+['it.id', 'mi_idx.info_type_id']
+rewrite 4c.sql with mv18 end.
+start rewrite 18 sql.
+rewrite 6a.sql and mv43.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'k': 'keyword', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'keyword': 'k', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 't.production_year', 'mk.movie_id', 'n.name', 'k.keyword', 'ci.person_id', 'n.id', 'ci.movie_id'}
+['mv43.movie_id', 't.id']
+['ci.movie_id', 't.id']
+['ci.movie_id', 'mv43.movie_id']
+['ci.person_id', 'n.id']
+rewrite 6a.sql with mv43 end.
+start rewrite 19 sql.
+rewrite 6b.sql and mv47.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'k': 'keyword', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'keyword': 'k', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 't.production_year', 'mk.movie_id', 'n.name', 'k.keyword', 'ci.person_id', 'n.id', 'ci.movie_id'}
+['mv47.movie_id', 't.id']
+['ci.movie_id', 't.id']
+['ci.movie_id', 'mv47.movie_id']
+['ci.person_id', 'n.id']
+rewrite 6b.sql with mv47 end.
+start rewrite 20 sql.
+rewrite 6c.sql and mv43.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'k': 'keyword', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'keyword': 'k', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 't.production_year', 'mk.movie_id', 'n.name', 'k.keyword', 'ci.person_id', 'n.id', 'ci.movie_id'}
+['mv43.movie_id', 't.id']
+['ci.movie_id', 't.id']
+['ci.movie_id', 'mv43.movie_id']
+['ci.person_id', 'n.id']
+rewrite 6c.sql with mv43 end.
+start rewrite 21 sql.
+rewrite 6d.sql and mv47.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'k': 'keyword', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'keyword': 'k', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 't.production_year', 'mk.movie_id', 'n.name', 'k.keyword', 'ci.person_id', 'n.id', 'ci.movie_id'}
+['mv47.movie_id', 't.id']
+['ci.movie_id', 't.id']
+['ci.movie_id', 'mv47.movie_id']
+['ci.person_id', 'n.id']
+rewrite 6d.sql with mv47 end.
+start rewrite 22 sql.
+rewrite 6e.sql and mv43.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'k': 'keyword', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'keyword': 'k', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 't.production_year', 'mk.movie_id', 'n.name', 'k.keyword', 'ci.person_id', 'n.id', 'ci.movie_id'}
+['mv43.movie_id', 't.id']
+['ci.movie_id', 't.id']
+['ci.movie_id', 'mv43.movie_id']
+['ci.person_id', 'n.id']
+rewrite 6e.sql with mv43 end.
+start rewrite 23 sql.
+rewrite 6f.sql and mv47.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'k': 'keyword', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'keyword': 'k', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 't.production_year', 'mk.movie_id', 'n.name', 'k.keyword', 'ci.person_id', 'n.id', 'ci.movie_id'}
+['mv47.movie_id', 't.id']
+['ci.movie_id', 't.id']
+['ci.movie_id', 'mv47.movie_id']
+['ci.person_id', 'n.id']
+rewrite 6f.sql with mv47 end.
+start rewrite 24 sql.
+rewrite 8c.sql and mv77.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'a1': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'mc': 'movie_companies', 'n1': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'a1', 'cast_info': 'ci', 'company_name': 'cn', 'movie_companies': 'mc', 'name': 'n1', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'a1.person_id', 'rt.id', 'a1.name', 'n1.id', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'rt.role', 'ci.movie_id', 'ci.role_id', 'cn.country_code'}
+["'writer'", 'rt.role']
+['a1.person_id', 'n1.id']
+['ci.person_id', 'n1.id']
+['ci.movie_id', 't.id']
+['mv77.movie_id', 't.id']
+['ci.role_id', 'rt.id']
+['a1.person_id', 'ci.person_id']
+['ci.movie_id', 'mv77.movie_id']
+rewrite 8c.sql with mv77 end.
+start rewrite 25 sql.
+rewrite 8d.sql and mv77.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an1': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'mc': 'movie_companies', 'n1': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an1', 'cast_info': 'ci', 'company_name': 'cn', 'movie_companies': 'mc', 'name': 'n1', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'an1.name', 'rt.id', 'n1.id', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'rt.role', 'ci.movie_id', 'an1.person_id', 'ci.role_id', 'cn.country_code'}
+["'costume designer'", 'rt.role']
+['an1.person_id', 'n1.id']
+['ci.person_id', 'n1.id']
+['ci.movie_id', 't.id']
+['mv77.movie_id', 't.id']
+['ci.role_id', 'rt.id']
+['an1.person_id', 'ci.person_id']
+['ci.movie_id', 'mv77.movie_id']
+rewrite 8d.sql with mv77 end.
+start rewrite 26 sql.
+rewrite 9c.sql and mv87.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'mc': 'movie_companies', 'n': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'movie_companies': 'mc', 'name': 'n', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'chn.id', 'rt.role', 'cn.id', 'mc.company_id', 'n.id', 'n.gender', 'rt.id', 'ci.person_id', 'ci.movie_id', 'ci.person_role_id', 'cn.country_code', 'ci.note', 'n.name', 'mc.movie_id', 'ci.role_id', 'chn.name', 'an.person_id', 'an.name'}
+["'[us]'", 'cn.country_code']
+["'f'", 'n.gender']
+['mv87.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['mc.movie_id', 'mv87.movie_id']
+['cn.id', 'mc.company_id']
+['mv87.person_id', 'n.id']
+['chn.id', 'mv87.person_role_id']
+['an.person_id', 'n.id']
+['an.person_id', 'mv87.person_id']
+rewrite 9c.sql with mv87 end.
+start rewrite 27 sql.
+rewrite 9c.sql and mv88.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'mc': 'movie_companies', 'n': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'movie_companies': 'mc', 'name': 'n', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'chn.id', 'rt.role', 'cn.id', 'mc.company_id', 'n.id', 'n.gender', 'rt.id', 'ci.person_id', 'ci.movie_id', 'ci.person_role_id', 'cn.country_code', 'ci.note', 'n.name', 'mc.movie_id', 'ci.role_id', 'chn.name', 'an.person_id', 'an.name'}
+["'[us]'", 'cn.country_code']
+["'f'", 'mv88.gender']
+['mv88.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['mc.movie_id', 'mv88.movie_id']
+['cn.id', 'mc.company_id']
+['chn.id', 'mv88.person_role_id']
+['an.person_id', 'mv88.person_id']
+['an.person_id', 'mv88.person_id']
+rewrite 9c.sql with mv88 end.
+start rewrite 28 sql.
+rewrite 9c.sql and mv101.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'mc': 'movie_companies', 'n': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'movie_companies': 'mc', 'name': 'n', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'chn.id', 'rt.role', 'cn.id', 'mc.company_id', 'n.id', 'n.gender', 'rt.id', 'ci.person_id', 'ci.movie_id', 'ci.person_role_id', 'cn.country_code', 'ci.note', 'n.name', 'mc.movie_id', 'ci.role_id', 'chn.name', 'an.person_id', 'an.name'}
+["'[us]'", 'cn.country_code']
+["'f'", 'mv101.gender']
+['mv101.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['mc.movie_id', 'mv101.movie_id']
+['cn.id', 'mc.company_id']
+['an.person_id', 'mv101.person_id']
+['an.person_id', 'mv101.person_id']
+rewrite 9c.sql with mv101 end.
+start rewrite 29 sql.
+rewrite 9d.sql and mv87.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'mc': 'movie_companies', 'n': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'movie_companies': 'mc', 'name': 'n', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'chn.id', 'rt.role', 'cn.id', 'mc.company_id', 'n.id', 'n.gender', 'rt.id', 'ci.person_id', 'ci.movie_id', 'ci.person_role_id', 'cn.country_code', 'ci.note', 'n.name', 'mc.movie_id', 'ci.role_id', 'chn.name', 'an.person_id', 'an.name'}
+["'[us]'", 'cn.country_code']
+["'f'", 'n.gender']
+['mv87.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['mc.movie_id', 'mv87.movie_id']
+['cn.id', 'mc.company_id']
+['mv87.person_id', 'n.id']
+['chn.id', 'mv87.person_role_id']
+['an.person_id', 'n.id']
+['an.person_id', 'mv87.person_id']
+rewrite 9d.sql with mv87 end.
+start rewrite 30 sql.
+rewrite 9d.sql and mv88.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'mc': 'movie_companies', 'n': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'movie_companies': 'mc', 'name': 'n', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'chn.id', 'rt.role', 'cn.id', 'mc.company_id', 'n.id', 'n.gender', 'rt.id', 'ci.person_id', 'ci.movie_id', 'ci.person_role_id', 'cn.country_code', 'ci.note', 'n.name', 'mc.movie_id', 'ci.role_id', 'chn.name', 'an.person_id', 'an.name'}
+["'[us]'", 'cn.country_code']
+["'f'", 'mv88.gender']
+['mv88.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['mc.movie_id', 'mv88.movie_id']
+['cn.id', 'mc.company_id']
+['chn.id', 'mv88.person_role_id']
+['an.person_id', 'mv88.person_id']
+['an.person_id', 'mv88.person_id']
+rewrite 9d.sql with mv88 end.
+start rewrite 31 sql.
+rewrite 9d.sql and mv101.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'mc': 'movie_companies', 'n': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'movie_companies': 'mc', 'name': 'n', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'chn.id', 'rt.role', 'cn.id', 'mc.company_id', 'n.id', 'n.gender', 'rt.id', 'ci.person_id', 'ci.movie_id', 'ci.person_role_id', 'cn.country_code', 'ci.note', 'n.name', 'mc.movie_id', 'ci.role_id', 'chn.name', 'an.person_id', 'an.name'}
+["'[us]'", 'cn.country_code']
+["'f'", 'mv101.gender']
+['mv101.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['mc.movie_id', 'mv101.movie_id']
+['cn.id', 'mc.company_id']
+['an.person_id', 'mv101.person_id']
+['an.person_id', 'mv101.person_id']
+rewrite 9d.sql with mv101 end.
+start rewrite 32 sql.
+rewrite 10c.sql and mv77.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'ct': 'company_type', 'mc': 'movie_companies', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'company_type': 'ct', 'movie_companies': 'mc', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'ci.note', 'mc.company_type_id', 'chn.name', 'ct.id', 'chn.id', 't.production_year', 'rt.id', 'cn.id', 'mc.company_id', 'mc.movie_id', 'ci.movie_id', 'ci.person_role_id', 'ci.role_id', 'cn.country_code'}
+['mv77.movie_id', 't.id']
+['ci.movie_id', 't.id']
+['ci.movie_id', 'mv77.movie_id']
+['chn.id', 'ci.person_role_id']
+['ci.role_id', 'rt.id']
+['ct.id', 'mv77.company_type_id']
+rewrite 10c.sql with mv77 end.
+start rewrite 33 sql.
+rewrite 16a.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 't.episode_nr', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['an.person_id', 'n.id']
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+['cn.id', 'mc.company_id']
+['an.person_id', 'ci.person_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 16a.sql with mv16 end.
+start rewrite 34 sql.
+rewrite 16a.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 't.episode_nr', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['an.person_id', 'n.id']
+['ci.person_id', 'n.id']
+['ci.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cn.id', 'mc.company_id']
+['an.person_id', 'ci.person_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv12.movie_id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 16a.sql with mv12 end.
+start rewrite 35 sql.
+rewrite 16a.sql and mv227.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 't.episode_nr', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+['cn.id', 'mc.company_id']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+rewrite 16a.sql with mv227 end.
+start rewrite 36 sql.
+rewrite 16b.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['an.person_id', 'n.id']
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+['cn.id', 'mc.company_id']
+['an.person_id', 'ci.person_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 16b.sql with mv16 end.
+start rewrite 37 sql.
+rewrite 16b.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['an.person_id', 'n.id']
+['ci.person_id', 'n.id']
+['ci.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cn.id', 'mc.company_id']
+['an.person_id', 'ci.person_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv12.movie_id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 16b.sql with mv12 end.
+start rewrite 38 sql.
+rewrite 16b.sql and mv227.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+['cn.id', 'mc.company_id']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+rewrite 16b.sql with mv227 end.
+start rewrite 39 sql.
+rewrite 16c.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 't.episode_nr', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['an.person_id', 'n.id']
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+['cn.id', 'mc.company_id']
+['an.person_id', 'ci.person_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 16c.sql with mv16 end.
+start rewrite 40 sql.
+rewrite 16c.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 't.episode_nr', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['an.person_id', 'n.id']
+['ci.person_id', 'n.id']
+['ci.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cn.id', 'mc.company_id']
+['an.person_id', 'ci.person_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv12.movie_id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 16c.sql with mv12 end.
+start rewrite 41 sql.
+rewrite 16c.sql and mv227.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 't.episode_nr', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+['cn.id', 'mc.company_id']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+rewrite 16c.sql with mv227 end.
+start rewrite 42 sql.
+rewrite 16d.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 't.episode_nr', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['an.person_id', 'n.id']
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+['cn.id', 'mc.company_id']
+['an.person_id', 'ci.person_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 16d.sql with mv16 end.
+start rewrite 43 sql.
+rewrite 16d.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 't.episode_nr', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['an.person_id', 'n.id']
+['ci.person_id', 'n.id']
+['ci.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cn.id', 'mc.company_id']
+['an.person_id', 'ci.person_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv12.movie_id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 16d.sql with mv12 end.
+start rewrite 44 sql.
+rewrite 16d.sql and mv227.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mk.keyword_id', 'k.id', 'an.person_id', 'mk.movie_id', 'n.id', 't.episode_nr', 'mc.movie_id', 'mc.company_id', 'cn.id', 'ci.person_id', 'k.keyword', 'an.name', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+['cn.id', 'mc.company_id']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+['mc.movie_id', 'mv227.cast_info_movie_id_2']
+rewrite 16d.sql with mv227 end.
+start rewrite 45 sql.
+rewrite 17a.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 17a.sql with mv16 end.
+start rewrite 46 sql.
+rewrite 17a.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['ci.person_id', 'n.id']
+['ci.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv12.movie_id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 17a.sql with mv12 end.
+start rewrite 47 sql.
+rewrite 17a.sql and mv17.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv17.movie_id']
+['cn.id', 'mv17.company_id']
+['ci.movie_id', 'mv17.movie_id']
+['ci.movie_id', 'mv17.movie_id']
+rewrite 17a.sql with mv17 end.
+start rewrite 48 sql.
+rewrite 17a.sql and mv15.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'mv15.country_code']
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv15.movie_id']
+['ci.movie_id', 'mv15.movie_id']
+['ci.movie_id', 'mv15.movie_id']
+rewrite 17a.sql with mv15 end.
+start rewrite 49 sql.
+rewrite 17b.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 17b.sql with mv16 end.
+start rewrite 50 sql.
+rewrite 17b.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv12.movie_id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 17b.sql with mv12 end.
+start rewrite 51 sql.
+rewrite 17b.sql and mv17.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv17.movie_id']
+['cn.id', 'mv17.company_id']
+['ci.movie_id', 'mv17.movie_id']
+['ci.movie_id', 'mv17.movie_id']
+rewrite 17b.sql with mv17 end.
+start rewrite 52 sql.
+rewrite 17c.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 17c.sql with mv16 end.
+start rewrite 53 sql.
+rewrite 17c.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv12.movie_id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 17c.sql with mv12 end.
+start rewrite 54 sql.
+rewrite 17c.sql and mv17.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv17.movie_id']
+['cn.id', 'mv17.company_id']
+['ci.movie_id', 'mv17.movie_id']
+['ci.movie_id', 'mv17.movie_id']
+rewrite 17c.sql with mv17 end.
+start rewrite 55 sql.
+rewrite 17d.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 17d.sql with mv16 end.
+start rewrite 56 sql.
+rewrite 17d.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv12.movie_id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 17d.sql with mv12 end.
+start rewrite 57 sql.
+rewrite 17d.sql and mv17.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv17.movie_id']
+['cn.id', 'mv17.company_id']
+['ci.movie_id', 'mv17.movie_id']
+['ci.movie_id', 'mv17.movie_id']
+rewrite 17d.sql with mv17 end.
+start rewrite 58 sql.
+rewrite 17e.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 17e.sql with mv16 end.
+start rewrite 59 sql.
+rewrite 17e.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['ci.person_id', 'n.id']
+['ci.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv12.movie_id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 17e.sql with mv12 end.
+start rewrite 60 sql.
+rewrite 17e.sql and mv17.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'cn.country_code']
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv17.movie_id']
+['cn.id', 'mv17.company_id']
+['ci.movie_id', 'mv17.movie_id']
+['ci.movie_id', 'mv17.movie_id']
+rewrite 17e.sql with mv17 end.
+start rewrite 61 sql.
+rewrite 17e.sql and mv15.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id', 'cn.country_code'}
+["'[us]'", 'mv15.country_code']
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv15.movie_id']
+['ci.movie_id', 'mv15.movie_id']
+['ci.movie_id', 'mv15.movie_id']
+rewrite 17e.sql with mv15 end.
+start rewrite 62 sql.
+rewrite 17f.sql and mv16.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv16.movie_id']
+['mc.movie_id', 'mv16.movie_id']
+rewrite 17f.sql with mv16 end.
+start rewrite 63 sql.
+rewrite 17f.sql and mv12.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 't.id']
+['mv12.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cn.id', 'mc.company_id']
+['ci.movie_id', 'mc.movie_id']
+['ci.movie_id', 'mv12.movie_id']
+['mc.movie_id', 'mv12.movie_id']
+rewrite 17f.sql with mv12 end.
+start rewrite 64 sql.
+rewrite 17f.sql and mv17.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv17.movie_id']
+['cn.id', 'mv17.company_id']
+['ci.movie_id', 'mv17.movie_id']
+['ci.movie_id', 'mv17.movie_id']
+rewrite 17f.sql with mv17 end.
+start rewrite 65 sql.
+rewrite 17f.sql and mv15.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'ci': 'cast_info', 'cn': 'company_name', 'k': 'keyword', 'mc': 'movie_companies', 'mk': 'movie_keyword', 'n': 'name', 't': 'title'}
+tables_alias >>>>>>>>>>  {'cast_info': 'ci', 'company_name': 'cn', 'keyword': 'k', 'movie_companies': 'mc', 'movie_keyword': 'mk', 'name': 'n', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.id', 'mk.keyword_id', 'k.id', 'mk.movie_id', 'mc.movie_id', 'n.name', 'mc.company_id', 'cn.id', 'ci.person_id', 'n.id', 'k.keyword', 'ci.movie_id'}
+['ci.person_id', 'n.id']
+['ci.movie_id', 'mv15.movie_id']
+['ci.movie_id', 'mv15.movie_id']
+['ci.movie_id', 'mv15.movie_id']
+rewrite 17f.sql with mv15 end.
+start rewrite 66 sql.
+rewrite 19d.sql and mv87.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'it': 'info_type', 'mc': 'movie_companies', 'mi': 'movie_info', 'n': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'info_type': 'it', 'movie_companies': 'mc', 'movie_info': 'mi', 'name': 'n', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'chn.id', 'mi.movie_id', 'rt.role', 'cn.id', 'mc.company_id', 'n.id', 'n.gender', 'rt.id', 'ci.person_id', 'ci.movie_id', 'ci.person_role_id', 'mi.info_type_id', 'cn.country_code', 'ci.note', 't.production_year', 'it.id', 'it.info', 'n.name', 'mc.movie_id', 'ci.role_id', 'an.person_id'}
+["'[us]'", 'cn.country_code']
+["'release dates'", 'it.info']
+["'f'", 'n.gender']
+['mi.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['mv87.movie_id', 't.id']
+['mc.movie_id', 'mv87.movie_id']
+['mc.movie_id', 'mi.movie_id']
+['mi.movie_id', 'mv87.movie_id']
+['cn.id', 'mc.company_id']
+['it.id', 'mi.info_type_id']
+['mv87.person_id', 'n.id']
+['an.person_id', 'n.id']
+['an.person_id', 'mv87.person_id']
+['chn.id', 'mv87.person_role_id']
+rewrite 19d.sql with mv87 end.
+start rewrite 67 sql.
+rewrite 19d.sql and mv88.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'it': 'info_type', 'mc': 'movie_companies', 'mi': 'movie_info', 'n': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'info_type': 'it', 'movie_companies': 'mc', 'movie_info': 'mi', 'name': 'n', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'chn.id', 'mi.movie_id', 'rt.role', 'cn.id', 'mc.company_id', 'n.id', 'n.gender', 'rt.id', 'ci.person_id', 'ci.movie_id', 'ci.person_role_id', 'mi.info_type_id', 'cn.country_code', 'ci.note', 't.production_year', 'it.id', 'it.info', 'n.name', 'mc.movie_id', 'ci.role_id', 'an.person_id'}
+["'[us]'", 'cn.country_code']
+["'release dates'", 'it.info']
+["'f'", 'mv88.gender']
+['mi.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['mv88.movie_id', 't.id']
+['mc.movie_id', 'mv88.movie_id']
+['mc.movie_id', 'mi.movie_id']
+['mi.movie_id', 'mv88.movie_id']
+['cn.id', 'mc.company_id']
+['it.id', 'mi.info_type_id']
+['an.person_id', 'mv88.person_id']
+['an.person_id', 'mv88.person_id']
+['chn.id', 'mv88.person_role_id']
+rewrite 19d.sql with mv88 end.
+start rewrite 68 sql.
+rewrite 19d.sql and mv175.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'it': 'info_type', 'mc': 'movie_companies', 'mi': 'movie_info', 'n': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'info_type': 'it', 'movie_companies': 'mc', 'movie_info': 'mi', 'name': 'n', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'chn.id', 'mi.movie_id', 'rt.role', 'cn.id', 'mc.company_id', 'n.id', 'n.gender', 'rt.id', 'ci.person_id', 'ci.movie_id', 'ci.person_role_id', 'mi.info_type_id', 'cn.country_code', 'ci.note', 't.production_year', 'it.id', 'it.info', 'n.name', 'mc.movie_id', 'ci.role_id', 'an.person_id'}
+["'[us]'", 'cn.country_code']
+["'f'", 'n.gender']
+["'actress'", 'rt.role']
+['mv175.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['ci.movie_id', 't.id']
+['ci.movie_id', 'mc.movie_id']
+['mc.movie_id', 'mv175.movie_id']
+['ci.movie_id', 'mv175.movie_id']
+['cn.id', 'mc.company_id']
+['ci.person_id', 'n.id']
+['ci.role_id', 'rt.id']
+['an.person_id', 'n.id']
+['an.person_id', 'ci.person_id']
+['chn.id', 'ci.person_role_id']
+rewrite 19d.sql with mv175 end.
+start rewrite 69 sql.
+rewrite 19d.sql and mv101.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'an': 'aka_name', 'chn': 'char_name', 'ci': 'cast_info', 'cn': 'company_name', 'it': 'info_type', 'mc': 'movie_companies', 'mi': 'movie_info', 'n': 'name', 'rt': 'role_type', 't': 'title'}
+tables_alias >>>>>>>>>>  {'aka_name': 'an', 'char_name': 'chn', 'cast_info': 'ci', 'company_name': 'cn', 'info_type': 'it', 'movie_companies': 'mc', 'movie_info': 'mi', 'name': 'n', 'role_type': 'rt', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'chn.id', 'mi.movie_id', 'rt.role', 'cn.id', 'mc.company_id', 'n.id', 'n.gender', 'rt.id', 'ci.person_id', 'ci.movie_id', 'ci.person_role_id', 'mi.info_type_id', 'cn.country_code', 'ci.note', 't.production_year', 'it.id', 'it.info', 'n.name', 'mc.movie_id', 'ci.role_id', 'an.person_id'}
+["'[us]'", 'cn.country_code']
+["'release dates'", 'it.info']
+["'f'", 'mv101.gender']
+['mi.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['mv101.movie_id', 't.id']
+['mc.movie_id', 'mv101.movie_id']
+['mc.movie_id', 'mi.movie_id']
+['mi.movie_id', 'mv101.movie_id']
+['cn.id', 'mc.company_id']
+['it.id', 'mi.info_type_id']
+['an.person_id', 'mv101.person_id']
+['an.person_id', 'mv101.person_id']
+rewrite 19d.sql with mv101 end.
+start rewrite 70 sql.
+rewrite 23b.sql and mv201.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cc': 'complete_cast', 'cct1': 'comp_cast_type', 'cn': 'company_name', 'ct': 'company_type', 'it1': 'info_type', 'k': 'keyword', 'kt': 'kind_type', 'mc': 'movie_companies', 'mi': 'movie_info', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'complete_cast': 'cc', 'comp_cast_type': 'cct1', 'company_name': 'cn', 'company_type': 'ct', 'info_type': 'it1', 'keyword': 'k', 'kind_type': 'kt', 'movie_companies': 'mc', 'movie_info': 'mi', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mi.note', 'cct1.kind', 'cc.movie_id', 'k.id', 'mi.movie_id', 'kt.kind', 'cn.id', 'mc.company_id', 'k.keyword', 'kt.id', 'cct1.id', 'ct.id', 'mk.movie_id', 'it1.info', 'mi.info', 'mi.info_type_id', 'cn.country_code', 'cc.status_id', 't.production_year', 'mc.movie_id', 'mc.company_type_id', 'it1.id', 'mk.keyword_id', 't.kind_id'}
+["'complete+verified'", 'cct1.kind']
+["'[us]'", 'cn.country_code']
+['kt.id', 't.kind_id']
+['mv201.movie_id', 't.id']
+['mk.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['cc.movie_id', 't.id']
+['mk.movie_id', 'mv201.movie_id']
+['mc.movie_id', 'mk.movie_id']
+['cc.movie_id', 'mk.movie_id']
+['mc.movie_id', 'mv201.movie_id']
+['cc.movie_id', 'mv201.movie_id']
+['cc.movie_id', 'mc.movie_id']
+['k.id', 'mk.keyword_id']
+['cn.id', 'mc.company_id']
+['ct.id', 'mc.company_type_id']
+['cc.status_id', 'cct1.id']
+rewrite 23b.sql with mv201 end.
+start rewrite 71 sql.
+rewrite 23b.sql and mv274.
+------------------------------------------------------
+alias_tables >>>>>>>>>>  {'cc': 'complete_cast', 'cct1': 'comp_cast_type', 'cn': 'company_name', 'ct': 'company_type', 'it1': 'info_type', 'k': 'keyword', 'kt': 'kind_type', 'mc': 'movie_companies', 'mi': 'movie_info', 'mk': 'movie_keyword', 't': 'title'}
+tables_alias >>>>>>>>>>  {'complete_cast': 'cc', 'comp_cast_type': 'cct1', 'company_name': 'cn', 'company_type': 'ct', 'info_type': 'it1', 'keyword': 'k', 'kind_type': 'kt', 'movie_companies': 'mc', 'movie_info': 'mi', 'movie_keyword': 'mk', 'title': 't'}
+sqlColumns >>>>>>>>>>  {'t.title', 't.id', 'mi.note', 'cct1.kind', 'cc.movie_id', 'k.id', 'mi.movie_id', 'kt.kind', 'cn.id', 'mc.company_id', 'k.keyword', 'kt.id', 'cct1.id', 'ct.id', 'mk.movie_id', 'it1.info', 'mi.info', 'mi.info_type_id', 'cn.country_code', 'cc.status_id', 't.production_year', 'mc.movie_id', 'mc.company_type_id', 'it1.id', 'mk.keyword_id', 't.kind_id'}
+["'[us]'", 'cn.country_code']
+["'release dates'", 'it1.info']
+['kt.id', 't.kind_id']
+['mi.movie_id', 't.id']
+['mk.movie_id', 't.id']
+['mc.movie_id', 't.id']
+['mv274.movie_id', 't.id']
+['mi.movie_id', 'mk.movie_id']
+['mc.movie_id', 'mk.movie_id']
+['mk.movie_id', 'mv274.movie_id']
+['mc.movie_id', 'mi.movie_id']
+['mi.movie_id', 'mv274.movie_id']
+['mc.movie_id', 'mv274.movie_id']
+['k.id', 'mk.keyword_id']
+['it1.id', 'mi.info_type_id']
+['cn.id', 'mc.company_id']
+['ct.id', 'mc.company_type_id']
+rewrite 23b.sql with mv274 end.
+40.968005418777466
+run success!

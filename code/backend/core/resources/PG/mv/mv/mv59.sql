@@ -1,3 +1,3 @@
 create materialized view if not exists mv59 as select info_type.id AS info_type_id_0, info_type.info AS info_type_info_1, name.gender AS gender, name.id AS name_id_3, name.name AS name, name.name_pcode_cf AS name_pcode_cf, person_info.info AS person_info_info_6, person_info.note AS note
- from person_info,info_type,name
+ from person_info,name,info_type
  where (person_info.info_type_id = info_type.id) And (person_info.note IS NOT NULL) And (name.id = person_info.person_id) And (info_type.info = 'mini biography')

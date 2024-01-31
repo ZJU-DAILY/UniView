@@ -7,6 +7,7 @@ single_or_multiple_set = ["Single", "Multiple"]
 system_start = False
 system_stage = 0
 last_system_stage = 0
+log_msg = 'log'
 
 
 def check_valueisInt(value, value_name):
